@@ -6,12 +6,12 @@
 /* CSS Variables */
 :root {
     /* Colors */
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.4);
+    --bg-primary: #000000;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1c1c1e;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --text-muted: rgba(245, 245, 247, 0.4);
     --accent-primary: #00D9FF;
     --accent-secondary: #00F0FF;
     --accent-gradient: linear-gradient(135deg, #00D9FF 0%, #00F0FF 50%, #00D9FF 100%);
@@ -19,8 +19,8 @@
     --border-light: rgba(255, 255, 255, 0.12);
     
     /* Typography */
-    --font-display: 'Space Grotesk', -apple-system, sans-serif;
-    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", 'Space Grotesk', sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", 'Inter', sans-serif;
     
     /* Spacing */
     --section-padding: clamp(80px, 12vh, 150px);
@@ -30,6 +30,13 @@
     /* Animations */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    /* Spring Easing Approximation for Framer feel */
+    --ease-spring: linear(
+        0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%, 1.017,
+        1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,
+        1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%,
+        0.997 69.8%, 1.003 76.9%, 1
+    );
     --duration-fast: 0.3s;
     --duration-normal: 0.5s;
     --duration-slow: 0.8s;
@@ -617,7 +624,7 @@ button {
     font-size: 1rem;
     font-weight: 600;
     border-radius: var(--radius-xl);
-    transition: all var(--duration-fast) var(--ease-out-expo);
+    transition: all var(--duration-normal) var(--ease-spring);
 }
 
 .btn-primary {
@@ -628,9 +635,13 @@ button {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
+    transform: scale(1.02);
     box-shadow: 0 20px 40px rgba(0, 217, 255, 0.3);
     background-position: right center;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -642,7 +653,11 @@ button {
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: var(--accent-primary);
-    transform: translateY(-3px);
+    transform: scale(1.02);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 /* Scroll Indicator */
@@ -775,6 +790,15 @@ button {
     align-items: start;
 }
 
+.about-content {
+    background: rgba(28, 28, 30, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+}
+
 .about-text {
     margin-bottom: 50px;
 }
@@ -827,9 +851,11 @@ button {
 }
 
 .visual-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    background: rgba(28, 28, 30, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
     padding: 40px;
     position: relative;
     overflow: hidden;
@@ -928,18 +954,24 @@ button {
 }
 
 .project-card {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    background: rgba(28, 28, 30, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     cursor: pointer;
-    transition: all var(--duration-normal) var(--ease-out-expo);
+    transition: all var(--duration-normal) var(--ease-spring);
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.02);
     border-color: var(--accent-primary);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:active {
+    transform: scale(0.98);
 }
 
 .project-visual {
@@ -2056,16 +2088,16 @@ button {
    ============================================ */
 [data-scroll] {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    transform: translateY(40px) scale(0.95);
+    transition: opacity 1s var(--ease-spring), transform 1s var(--ease-spring);
 }
 
 [data-scroll="fade-left"] {
-    transform: translateX(-60px);
+    transform: translateX(-60px) scale(0.95);
 }
 
 [data-scroll="fade-right"] {
-    transform: translateX(60px);
+    transform: translateX(60px) scale(0.95);
 }
 
 [data-scroll="scale-up"] {
