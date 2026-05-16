@@ -5,40 +5,47 @@
 
 /* CSS Variables */
 :root {
-    /* Colors */
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.4);
-    --accent-primary: #00D9FF;
-    --accent-secondary: #00F0FF;
-    --accent-gradient: linear-gradient(135deg, #00D9FF 0%, #00F0FF 50%, #00D9FF 100%);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-light: rgba(255, 255, 255, 0.12);
+    /* Colors - Apple Inspired Dark Mode */
+    --bg-primary: #000000;
+    --bg-secondary: #111111; /* Slightly lighter for cards */
+    --bg-tertiary: #1c1c1e; /* iOS modal background */
+    --text-primary: #f5f5f7; /* Apple text color */
+    --text-secondary: #86868b;
+    --text-muted: #6e6e73;
+    --accent-primary: #0a84ff; /* Apple Blue */
+    --accent-secondary: #5e5ce6; /* Apple Indigo */
+    --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(255, 255, 255, 0.15);
     
-    /* Typography */
-    --font-display: 'Space Grotesk', -apple-system, sans-serif;
-    --font-body: 'Inter', -apple-system, sans-serif;
+    /* Glassmorphism */
+    --glass-bg: rgba(28, 28, 30, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: 20px;
+
+    /* Typography - SF Pro System Font Stack */
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     
     /* Spacing */
-    --section-padding: clamp(80px, 12vh, 150px);
-    --container-width: min(90vw, 1400px);
+    --section-padding: clamp(100px, 15vh, 200px);
+    --container-width: min(85vw, 1200px);
     --container-padding: clamp(20px, 5vw, 60px);
     
-    /* Animations */
+    /* Animations - Framer Spring Physics equivalents */
+    --spring-bouncy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --spring-smooth: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
     --duration-fast: 0.3s;
-    --duration-normal: 0.5s;
-    --duration-slow: 0.8s;
+    --duration-normal: 0.6s;
+    --duration-slow: 0.9s;
     
     /* Borders */
     --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 30px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
 }
 
 /* Reset & Base */
@@ -392,14 +399,16 @@ button {
 .mobile-menu {
     position: fixed;
     inset: 0;
-    background: var(--bg-primary);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--duration-normal) var(--ease-out-expo);
+    transition: all var(--duration-normal) var(--spring-smooth);
 }
 
 .mobile-menu.active {
@@ -412,6 +421,12 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    transform: translateY(20px);
+    transition: transform var(--duration-normal) var(--spring-bouncy);
+}
+
+.mobile-menu.active .mobile-menu-content {
+    transform: translateY(0);
 }
 
 .mobile-link {
@@ -419,11 +434,12 @@ button {
     font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: 600;
     color: var(--text-secondary);
-    transition: color var(--duration-fast) ease;
+    transition: all var(--duration-fast) var(--spring-smooth);
 }
 
 .mobile-link:hover {
-    color: var(--accent-primary);
+    color: var(--text-primary);
+    transform: scale(1.05);
 }
 
 /* ============================================
@@ -617,32 +633,33 @@ button {
     font-size: 1rem;
     font-weight: 600;
     border-radius: var(--radius-xl);
-    transition: all var(--duration-fast) var(--ease-out-expo);
+    transition: all var(--duration-fast) var(--spring-smooth);
+    letter-spacing: -0.01em;
 }
 
 .btn-primary {
-    background: var(--accent-gradient);
+    background: var(--text-primary);
     color: var(--bg-primary);
     border: none;
-    background-size: 200% auto;
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.3);
-    background-position: right center;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary {
-    background: transparent;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     color: var(--text-primary);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--glass-border);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent-primary);
-    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--border-light);
+    transform: translateY(-3px) scale(1.02);
 }
 
 /* Scroll Indicator */
@@ -827,12 +844,19 @@ button {
 }
 
 .visual-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     padding: 40px;
     position: relative;
     overflow: hidden;
+    transition: transform var(--duration-normal) var(--spring-smooth);
+}
+
+.visual-card:hover {
+    transform: translateY(-5px);
 }
 
 .card-glow {
@@ -1079,23 +1103,26 @@ button {
 }
 
 .project-mini {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: 25px;
     cursor: pointer;
-    transition: all var(--duration-fast) ease;
+    transition: all var(--duration-normal) var(--spring-smooth);
     transform-style: preserve-3d;
     perspective: 1000px;
 }
 
 .project-mini:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+    border-color: var(--border-light);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
 }
 
 .project-mini.tilt {
-    transition: transform 0.1s ease-out, border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    transition: transform 0.1s var(--spring-smooth), border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
 }
 
 .mini-header {
@@ -1875,7 +1902,7 @@ button {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--duration-normal) var(--ease-out-expo);
+    transition: all var(--duration-normal) var(--spring-smooth);
 }
 
 .project-modal.active {
@@ -1886,20 +1913,22 @@ button {
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .modal-container {
     position: relative;
     width: min(90vw, 800px);
     max-height: 90vh;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    transform: scale(0.9) translateY(30px);
-    transition: transform var(--duration-normal) var(--ease-out-expo);
+    transform: scale(0.95) translateY(20px);
+    transition: transform var(--duration-normal) var(--spring-bouncy);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
 }
 
 .project-modal.active .modal-container {
@@ -2057,7 +2086,8 @@ button {
 [data-scroll] {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    transition: opacity 0.8s var(--spring-smooth), transform 1s var(--spring-bouncy);
+    will-change: transform, opacity;
 }
 
 [data-scroll="fade-left"] {
@@ -2069,7 +2099,7 @@ button {
 }
 
 [data-scroll="scale-up"] {
-    transform: scale(0.9);
+    transform: scale(0.85);
 }
 
 [data-scroll].visible {
