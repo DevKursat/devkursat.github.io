@@ -7,365 +7,104 @@
 // PROJECT DATA (Bilingual)
 // ============================================
 const projectsData = {
-    risko: {
-        title: "Risko",
-        category: { tr: "AI Platform", en: "AI Platform" },
+    otag: {
+        title: "Otağ",
+        category: { tr: "Topluluk & İletişim", en: "Community & Chat" },
         status: { tr: "Aktif", en: "Active" },
         statusType: "active",
-        icon: "🌍",
-        gradient: "linear-gradient(135deg, #00D9FF, #0099CC)",
+        icon: "🛖",
+        gradient: "linear-gradient(135deg, #00D9FF, #0066FF)",
+        spotlightColor: "0, 102, 255",
+        filter: "web",
         description: {
-            tr: "Deprem, sel, yangın ve fırtına gibi afetler için AI destekli risk analizi yapan platform. Konum bazlı yapısal, jeolojik ve iklimsel verileri analiz ederek kapsamlı risk skorları sunar.",
-            en: "AI-powered risk analysis platform for disasters like earthquakes, floods, fires, and storms. Analyzes location-based structural, geological, and climate data to provide comprehensive risk scores."
+            tr: "Yerel ve anlık topluluk iletişimi için geliştirilmiş, etkileşimli haber panosu ve gerçek zamanlı sohbet odaları sunan modern bir sosyal ağ platformu.",
+            en: "A modern social network platform developed for local and instant community communication, offering interactive boards and real-time chat rooms."
         },
         features: {
             tr: [
-                "AI destekli çoklu afet risk analizi",
-                "Konum bazlı detaylı raporlama",
-                "Yapısal ve jeolojik veri entegrasyonu",
-                "Gerçek zamanlı iklim verisi takibi",
-                "Detaylı risk skor kartları"
+                "Gerçek zamanlı oda tabanlı sohbetler",
+                "Anlık duyuru ve pano sistemi",
+                "Gelişmiş kullanıcı etkileşimleri",
+                "Modern ve minimalist arayüz"
             ],
             en: [
-                "AI-powered multi-disaster risk analysis",
-                "Location-based detailed reporting",
-                "Structural and geological data integration",
-                "Real-time climate data tracking",
-                "Detailed risk scorecards"
+                "Real-time room-based chats",
+                "Instant announcement and board system",
+                "Advanced user interactions",
+                "Modern and minimalist interface"
             ]
         },
-        tech: ["Python", "FastAPI", "TensorFlow", "PostgreSQL", "React"],
-        github: "https://github.com/DevKursat/Risko"
-    },
-    "linkedin-agent": {
-        title: "LinkedIn Agent",
-        category: { tr: "Otomasyon", en: "Automation" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "🤖",
-        gradient: "linear-gradient(135deg, #0077B5, #00A0DC)",
-        description: {
-            tr: "LinkedIn'de otomatik içerik üretimi ve paylaşımı yapan AI bot. Gemini API ile kişiselleştirilmiş içerikler oluşturur ve optimal zamanlarda paylaşır.",
-            en: "AI bot for automatic content generation and sharing on LinkedIn. Creates personalized content with Gemini API and shares at optimal times."
-        },
-        features: {
-            tr: [
-                "AI ile otomatik içerik üretimi",
-                "Zamanlı paylaşım sistemi",
-                "Kişiselleştirilmiş ton ve stil",
-                "Engagement analizi",
-                "Çoklu profil desteği"
-            ],
-            en: [
-                "AI-powered automatic content generation",
-                "Scheduled posting system",
-                "Personalized tone and style",
-                "Engagement analytics",
-                "Multi-profile support"
-            ]
-        },
-        tech: ["Python", "Gemini API", "Selenium", "Supabase"],
-        github: "https://github.com/DevKursat/linkednai"
-    },
-    "iyilik-zinciri": {
-        title: "İyilik Zinciri",
-        category: { tr: "Sosyal Etki", en: "Social Impact" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "💫",
-        gradient: "linear-gradient(135deg, #FF6B6B, #FF8E53)",
-        description: {
-            tr: "AI tarafından verilen iyilik görevlerini tamamlayarak puan kazanılan sosyal etki platformu. Toplumda pozitif değişim yaratmayı hedefler.",
-            en: "Social impact platform where you earn points by completing AI-generated kindness tasks. Aims to create positive change in society."
-        },
-        features: {
-            tr: [
-                "AI destekli görev oluşturma",
-                "Puan ve rozet sistemi",
-                "Topluluk liderlik tablosu",
-                "Sosyal paylaşım entegrasyonu",
-                "Günlük iyilik hatırlatıcıları"
-            ],
-            en: [
-                "AI-powered task generation",
-                "Points and badge system",
-                "Community leaderboard",
-                "Social sharing integration",
-                "Daily kindness reminders"
-            ]
-        },
-        tech: ["JavaScript", "Node.js", "OpenAI API", "MongoDB"],
-        github: "https://github.com/DevKursat/iyilikzinciri"
-    },
-    aura: {
-        title: "Aura",
-        category: { tr: "Lifestyle", en: "Lifestyle" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "✨",
-        gradient: "linear-gradient(135deg, #667EEA, #764BA2)",
-        description: {
-            tr: "Yapay zeka destekli kişisel yaşam asistanı. Hedefler, alışkanlıklar, finans takibi ve kişisel gelişim önerilerini tek çatı altında toplar.",
-            en: "AI-powered personal life assistant. Combines goals, habits, finance tracking, and personal development suggestions under one roof."
-        },
-        features: {
-            tr: [
-                "Kişiselleştirilmiş AI asistanı",
-                "Hedef ve alışkanlık takibi",
-                "Finansal yönetim araçları",
-                "Mood ve enerji takibi",
-                "Günlük öneriler ve motivasyon"
-            ],
-            en: [
-                "Personalized AI assistant",
-                "Goal and habit tracking",
-                "Financial management tools",
-                "Mood and energy tracking",
-                "Daily suggestions and motivation"
-            ]
-        },
-        tech: ["Next.js", "TypeScript", "Prisma", "OpenAI", "PostgreSQL"],
-        github: "https://github.com/DevKursat/Aura"
+        tech: ["React", "CSS Grid", "Socket.io", "Express"],
+        github: "https://github.com/DevKursat/Otag",
+        githubRepo: "Otag",
+        stars: 24,
+        forks: 3
     },
     lusid: {
         title: "Lusid",
-        category: { tr: "Yaratıcı Platform", en: "Creative Platform" },
+        category: { tr: "Yaşam & Yaratıcı Yazarlık", en: "Lifestyle & Writing" },
         status: { tr: "Aktif", en: "Active" },
         statusType: "active",
         icon: "📚",
-        gradient: "linear-gradient(135deg, #00D9FF, #0066FF)",
+        gradient: "linear-gradient(135deg, #a18cd1, #fbc2eb)",
+        spotlightColor: "161, 140, 209",
+        filter: "web",
         description: {
-            tr: "Kitap okuma, günlük yazma, meditasyon ve rüya yorumlama özellikleri sunan kapsamlı bir kişisel gelişim platformu.",
-            en: "A comprehensive personal development platform offering book reading, journaling, meditation, and dream interpretation features."
+            tr: "Kitap okuma takibi, rüya yorumlama, meditasyon seansları ve günlük yazma özelliklerini tek çatı altında toplayan kişisel gelişim platformu.",
+            en: "Personal development platform combining book reading tracking, AI-powered dream interpretation, meditation sessions, and journaling features."
         },
         features: {
             tr: [
-                "Dijital kitaplık yönetimi",
-                "AI destekli rüya yorumu",
-                "Günlük yazma arayüzü",
-                "Meditasyon seansları",
-                "Kişisel gelişim takibi"
+                "Dijital kitaplık ve okuma takibi",
+                "AI destekli rüya yorumlama",
+                "Minimalist günlük editörü",
+                "Zihinsel sağlık ve meditasyon seansları"
             ],
             en: [
-                "Digital library management",
+                "Digital library and reading tracking",
                 "AI-powered dream interpretation",
-                "Journaling interface",
-                "Meditation sessions",
-                "Personal development tracking"
+                "Minimalist journal editor",
+                "Mental health and meditation sessions"
             ]
         },
         tech: ["Flutter", "Firebase", "OpenAI API", "Dart"],
-        github: "https://github.com/DevKursat/lusid"
+        github: "https://github.com/DevKursat/lusid",
+        githubRepo: "lusid",
+        stars: 15,
+        forks: 1
     },
-    viralwave: {
-        title: "ViralWaveAi",
-        category: { tr: "Sosyal Medya", en: "Social Media" },
-        status: { tr: "Beklemede", en: "On Hold" },
-        statusType: "waiting",
-        icon: "📱",
-        gradient: "linear-gradient(135deg, #FF0050, #FF4081)",
-        description: {
-            tr: "TikTok trend analizi ve içerik stratejisi platformu. Organik büyüme için veri odaklı içgörüler sunar.",
-            en: "TikTok trend analysis and content strategy platform. Provides data-driven insights for organic growth."
-        },
-        features: {
-            tr: [
-                "Trend analizi ve tahminleme",
-                "Viral içerik önerileri",
-                "Hashtag optimizasyonu",
-                "Rakip analizi",
-                "Performans raporları"
-            ],
-            en: [
-                "Trend analysis and forecasting",
-                "Viral content suggestions",
-                "Hashtag optimization",
-                "Competitor analysis",
-                "Performance reports"
-            ]
-        },
-        tech: ["Python", "FastAPI", "TikTok API", "ML Models"],
-        github: "https://github.com/DevKursat/viralwaveai"
-    },
-    vera: {
-        title: "Vera",
-        category: { tr: "Yemek Teknolojisi", en: "Food Tech" },
-        status: { tr: "Beklemede", en: "On Hold" },
-        statusType: "waiting",
-        icon: "🍽️",
-        gradient: "linear-gradient(135deg, #FF6B6B, #FFA07A)",
-        description: {
-            tr: "AI garsonlu akıllı restoran sipariş sistemi. Müşteri deneyimini kişiselleştirir ve restoran operasyonlarını optimize eder.",
-            en: "AI waiter smart restaurant ordering system. Personalizes customer experience and optimizes restaurant operations."
-        },
-        features: {
-            tr: [
-                "AI destekli sipariş asistanı",
-                "Kişiselleştirilmiş öneriler",
-                "Diyet ve alerji takibi",
-                "Akıllı masa yönetimi",
-                "Mutfak entegrasyonu"
-            ],
-            en: [
-                "AI-powered order assistant",
-                "Personalized recommendations",
-                "Diet and allergy tracking",
-                "Smart table management",
-                "Kitchen integration"
-            ]
-        },
-        tech: ["React Native", "Node.js", "OpenAI", "PostgreSQL"],
-        github: "https://github.com/DevKursat/vera"
-    },
-    veraqr: {
-        title: "VeraQR",
-        category: { tr: "QR Menü", en: "QR Menu" },
+    firdews: {
+        title: "Firdews",
+        category: { tr: "Mistik & Yaşam", en: "Mystic & Lifestyle" },
         status: { tr: "Aktif", en: "Active" },
         statusType: "active",
-        icon: "📋",
-        gradient: "linear-gradient(135deg, #FF8E53, #FFA726)",
+        icon: "🌱",
+        gradient: "linear-gradient(135deg, #11998e, #38ef7d)",
+        spotlightColor: "17, 153, 142",
+        filter: "mobile",
         description: {
-            tr: "Restoranlar için modern QR kod menü sistemi. Anlık güncelleme, çoklu dil desteği ve analitik özellikleri sunar.",
-            en: "Modern QR code menu system for restaurants. Offers instant updates, multi-language support, and analytics features."
+            tr: "Zihinsel huzur, manevi gelişim ve günlük rutinler için geliştirilmiş, estetik ve dinlendirici kullanıcı deneyimine odaklanan mobil platform.",
+            en: "Mobile platform developed for mental peace, spiritual growth, and daily routines, focusing on an aesthetic and calming user experience."
         },
         features: {
             tr: [
-                "Anlık menü güncelleme",
-                "Çoklu dil desteği",
-                "Fiyat ve stok yönetimi",
-                "Görsel menü tasarımı",
-                "Müşteri analitiği"
+                "Kişiselleştirilmiş manevi rutinler",
+                "Zihinsel dinlenme egzersizleri",
+                "Estetik arayüz ve ses kütüphanesi",
+                "İnteraktif hatırlatıcılar"
             ],
             en: [
-                "Instant menu updates",
-                "Multi-language support",
-                "Price and stock management",
-                "Visual menu design",
-                "Customer analytics"
+                "Personalized spiritual routines",
+                "Mental relaxation exercises",
+                "Aesthetic interface and sound library",
+                "Interactive reminders"
             ]
         },
-        tech: ["Next.js", "Supabase", "Tailwind CSS", "QR Code API"],
-        github: "https://github.com/DevKursat/veraqr"
-    },
-    "kursat-social": {
-        title: "Kürşat",
-        category: { tr: "Sosyal Medya", en: "Social Media" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "🇹🇷",
-        gradient: "linear-gradient(135deg, #E1306C, #C13584)",
-        description: {
-            tr: "Yerli ve milli sosyal medya platformu. Türk kullanıcılar için özel tasarlanmış, güvenli ve kullanıcı dostu bir deneyim sunar.",
-            en: "Local and national social media platform. Specially designed for Turkish users, offering a secure and user-friendly experience."
-        },
-        features: {
-            tr: [
-                "Yerli altyapı",
-                "Güvenli veri saklama",
-                "Türkçe öncelikli arayüz",
-                "Topluluk yönetimi araçları",
-                "İçerik moderasyonu"
-            ],
-            en: [
-                "Local infrastructure",
-                "Secure data storage",
-                "Turkish-first interface",
-                "Community management tools",
-                "Content moderation"
-            ]
-        },
-        tech: ["Flutter", "Firebase", "Node.js", "MongoDB"],
-        github: "https://github.com/DevKursat/kursat"
-    },
-    lincard: {
-        title: "Lincard",
-        category: { tr: "Link Yönetimi", en: "Link Management" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "🔗",
-        gradient: "linear-gradient(135deg, #39E09B, #00D9FF)",
-        description: {
-            tr: "Tüm linklerinizi tek bir sayfada toplayan modern bio link platformu. Analitik ve özelleştirme seçenekleri sunar.",
-            en: "Modern bio link platform that collects all your links on one page. Offers analytics and customization options."
-        },
-        features: {
-            tr: [
-                "Sınırsız link ekleme",
-                "Özelleştirilebilir temalar",
-                "Tıklama analitiği",
-                "QR kod oluşturma",
-                "Sosyal medya entegrasyonu"
-            ],
-            en: [
-                "Unlimited link adding",
-                "Customizable themes",
-                "Click analytics",
-                "QR code generation",
-                "Social media integration"
-            ]
-        },
-        tech: ["Next.js", "Prisma", "PostgreSQL", "Vercel"],
-        github: "https://github.com/DevKursat/lincard"
-    },
-    voltnet: {
-        title: "Voltnet",
-        category: { tr: "EV Şarj", en: "EV Charging" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "⚡",
-        gradient: "linear-gradient(135deg, #00D9FF, #00FF88)",
-        description: {
-            tr: "Farklı elektrikli araç şarj ağlarını tek platformda birleştiren uygulama. Şarj istasyonu bulma, fiyat karşılaştırma ve ödeme kolaylığı sağlar.",
-            en: "Application that unifies different electric vehicle charging networks on one platform. Provides charging station finding, price comparison, and payment convenience."
-        },
-        features: {
-            tr: [
-                "Çoklu şarj ağı entegrasyonu",
-                "Gerçek zamanlı uygunluk",
-                "Fiyat karşılaştırma",
-                "Rota planlama",
-                "Tek ödeme sistemi"
-            ],
-            en: [
-                "Multi-charging network integration",
-                "Real-time availability",
-                "Price comparison",
-                "Route planning",
-                "Single payment system"
-            ]
-        },
-        tech: ["Flutter", "Node.js", "Maps API", "PostgreSQL"],
-        github: "https://github.com/DevKursat/voltnet"
-    },
-    alove: {
-        title: "aLove",
-        category: { tr: "Flört Uygulaması", en: "Dating App" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "❤️",
-        gradient: "linear-gradient(135deg, #FD297B, #FF655B)",
-        description: {
-            tr: "Anlamlı bağlantılar kurmayı hedefleyen modern flört uygulaması. AI destekli eşleştirme ve güvenlik özellikleri sunar.",
-            en: "Modern dating app aimed at building meaningful connections. Offers AI-powered matching and security features."
-        },
-        features: {
-            tr: [
-                "AI destekli eşleştirme",
-                "Profil doğrulama sistemi",
-                "Güvenli mesajlaşma",
-                "Video tanışma özelliği",
-                "Gizlilik kontrolleri"
-            ],
-            en: [
-                "AI-powered matching",
-                "Profile verification system",
-                "Secure messaging",
-                "Video dating feature",
-                "Privacy controls"
-            ]
-        },
-        tech: ["React Native", "Firebase", "Node.js", "ML Kit"],
-        github: "https://github.com/DevKursat/alove"
+        tech: ["Next.js", "Tailwind CSS", "Supabase", "Prisma"],
+        github: "https://github.com/DevKursat/Firdews",
+        githubRepo: "Firdews",
+        stars: 18,
+        forks: 2
     }
 };
 
@@ -397,6 +136,11 @@ function setLanguage(lang) {
             updateModalContent(projectsData[projectId]);
         }
     }
+    
+    // Update dynamically rendered projects
+    const activeFilterBtn = document.querySelector('.filter-btn.active');
+    const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+    renderProjects(filter);
 }
 
 function initLanguage() {
@@ -619,35 +363,207 @@ function animateCount(element, target) {
 // ============================================
 // PROJECT MODAL
 // ============================================
-function initProjectModal() {
-    const modal = document.getElementById('projectModal');
-    const modalBackdrop = modal.querySelector('.modal-backdrop');
-    const modalClose = modal.querySelector('.modal-close');
-    const projectCards = document.querySelectorAll('[data-project]');
-    
-    projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const projectId = card.dataset.project;
-            const project = projectsData[projectId];
-            
-            if (project) {
-                openModal(project, projectId);
+// PROJECTS DIRECTORY SYSTEM
+// ============================================
+async function fetchGitHubStats() {
+    try {
+        const response = await fetch('https://api.github.com/users/DevKursat/repos?per_page=100');
+        if (!response.ok) return;
+        const repos = await response.json();
+        
+        repos.forEach(repo => {
+            const repoNameLower = repo.name.toLowerCase();
+            for (const key in projectsData) {
+                const proj = projectsData[key];
+                if (proj.githubRepo && proj.githubRepo.toLowerCase() === repoNameLower) {
+                    proj.stars = repo.stargazers_count;
+                    proj.forks = repo.forks_count;
+                    
+                    // Update on-screen stars/forks count
+                    const card = document.querySelector(`[data-project="${key}"]`);
+                    if (card) {
+                        const starsEl = card.querySelector('.project-stars-count');
+                        const forksEl = card.querySelector('.project-forks-count');
+                        if (starsEl) starsEl.textContent = repo.stargazers_count;
+                        if (forksEl) forksEl.textContent = repo.forks_count;
+                    }
+                }
             }
         });
-    });
+    } catch (error) {
+        console.error("Error fetching GitHub stats:", error);
+    }
+}
+
+function renderProjects(filter = 'all') {
+    const container = document.getElementById('projectsContainer');
+    if (!container) return;
     
-    modalClose.addEventListener('click', closeModal);
-    modalBackdrop.addEventListener('click', closeModal);
+    let html = '';
+    const lang = currentLang;
     
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
+    for (const key in projectsData) {
+        const project = projectsData[key];
+        if (filter !== 'all' && project.filter !== filter) continue;
+        
+        const techHTML = project.tech.slice(0, 3).map(t => `<span>${t}</span>`).join('');
+        
+        html += `
+            <article class="project-card" data-project="${key}" style="--spotlight-color: ${project.spotlightColor}" data-scroll="scale-up">
+                <div class="project-card-visual">
+                    <div class="project-card-glow" style="--gradient: ${project.gradient}"></div>
+                    <div class="project-card-pattern"></div>
+                    <div class="project-card-icon-wrapper">
+                        ${project.icon}
+                    </div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-card-meta">
+                        <span class="project-card-category">${project.category[lang]}</span>
+                        <span class="project-status ${project.statusType}">${project.status[lang]}</span>
+                    </div>
+                    <h3 class="project-card-title">${project.title}</h3>
+                    <p class="project-card-desc">${project.description[lang]}</p>
+                    <div class="project-card-footer">
+                        <div class="project-card-tech">
+                            ${techHTML}
+                        </div>
+                        <div class="project-card-stats">
+                            <span class="project-stat-item" title="Stars">
+                                🌟 <span class="project-stars-count">${project.stars}</span>
+                            </span>
+                            <span class="project-stat-item" title="Forks">
+                                🍴 <span class="project-forks-count">${project.forks}</span>
+                            </span>
+                            <button class="project-card-expand" aria-label="Detayları gör">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        `;
+    }
+    
+    // Curated bilingual values for the 4th GitHub card
+    const moreProjectsTitle = lang === 'tr' ? 'Daha Fazla Proje' : 'More Projects';
+    const moreProjectsDesc = lang === 'tr' 
+        ? "Bazı kurumsal ve özel projelerimi gizlilik sözleşmeleri (NDA) sebebiyle burada gösteremiyorum. Diğer açık kaynaklı çalışmalarımı keşfetmek için GitHub profilimi ziyaret edebilirsiniz." 
+        : "Due to confidentiality agreements (NDA), some of my enterprise projects are not shown here. Visit my GitHub profile to explore my open-source works.";
+    const moreProjectsCategory = lang === 'tr' ? 'Daha Fazlası' : 'More';
+    const moreProjectsStatus = lang === 'tr' ? 'Keşfet' : 'Explore';
+    
+    // Append the 4th special GitHub card (Wide horizontal layout)
+    html += `
+        <article class="project-card more-projects-card" onclick="window.open('https://github.com/DevKursat', '_blank')" style="--spotlight-color: 0, 217, 255" data-scroll="scale-up">
+            <div class="more-projects-glow" style="--gradient: linear-gradient(135deg, #00D9FF, #0066FF); opacity: 0.12;"></div>
+            <div class="more-projects-pattern"></div>
+            
+            <div class="more-projects-left">
+                <div class="more-projects-icon-wrapper">
+                    📂
+                </div>
+            </div>
+            
+            <div class="more-projects-middle">
+                <h3 class="more-projects-title">${moreProjectsTitle}</h3>
+                <p class="more-projects-desc">${moreProjectsDesc}</p>
+            </div>
+            
+            <div class="more-projects-right">
+                <span class="more-projects-link">
+                    github.com/DevKursat
+                    <svg class="more-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </span>
+            </div>
+        </article>
+    `;
+    
+    container.innerHTML = html;
+    
+    // Scroll reveal binding (trigger layout refresh since items are added dynamically)
+    if (typeof scrollReveal === 'function') {
+        scrollReveal();
+    } else {
+        // Fallback: manually trigger scroll animation visible class
+        const dynamicItems = container.querySelectorAll('[data-scroll]');
+        if (typeof IntersectionObserver !== 'undefined') {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            dynamicItems.forEach(item => observer.observe(item));
+        } else {
+            dynamicItems.forEach(item => item.classList.add('visible'));
+        }
+    }
+    
+    // Attach event listeners
+    const cards = container.querySelectorAll('.project-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+        
+        if (!card.classList.contains('more-projects-card')) {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                const project = projectsData[projectId];
+                if (project) {
+                    openModal(project, projectId);
+                }
+            });
         }
     });
 }
 
+function initProjects() {
+    renderProjects('all');
+    
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            renderProjects(filter);
+        });
+    });
+    
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        const modalBackdrop = modal.querySelector('.modal-backdrop');
+        const modalClose = modal.querySelector('.modal-close');
+        
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+    
+    fetchGitHubStats();
+}
+
 function openModal(project, projectId) {
     const modal = document.getElementById('projectModal');
+    if (!modal) return;
     modal.dataset.projectId = projectId;
     
     updateModalContent(project);
@@ -658,6 +574,7 @@ function openModal(project, projectId) {
 
 function updateModalContent(project) {
     const modal = document.getElementById('projectModal');
+    if (!modal) return;
     const lang = currentLang;
     
     // Update visual
@@ -688,6 +605,7 @@ function updateModalContent(project) {
 
 function closeModal() {
     const modal = document.getElementById('projectModal');
+    if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
 }
@@ -709,442 +627,230 @@ function initParallax() {
 }
 
 // ============================================
-// SKILLS WHEEL ANIMATION WITH DRAGGABLE PLANETS
 // ============================================
-function initSkillsWheel() {
-    const wheel = document.querySelector('.skills-wheel');
-    if (!wheel) return;
-    
-    const orbits = wheel.querySelectorAll('.skill-orbit');
-    const planets = wheel.querySelectorAll('.skill-planet');
-    
-    // Pause animation on hover
-    wheel.addEventListener('mouseenter', () => {
-        orbits.forEach(orbit => {
-            orbit.style.animationPlayState = 'paused';
-        });
-    });
-    
-    wheel.addEventListener('mouseleave', () => {
-        if (!wheel.classList.contains('dragging-active')) {
-            orbits.forEach(orbit => {
-                orbit.style.animationPlayState = 'running';
-            });
-        }
-    });
-    
-    // Tooltip positioning - always on top with mouse tracking
-    planets.forEach(planet => {
-        const tooltip = planet.querySelector('.skill-tooltip');
-        if (!tooltip) return;
-        
-        // Show tooltip and position it
-        planet.addEventListener('mouseenter', (e) => {
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-            updateTooltipPosition(e, tooltip);
-        });
-        
-        planet.addEventListener('mousemove', (e) => {
-            updateTooltipPosition(e, tooltip);
-        });
-        
-        planet.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-        });
-    });
-    
-    // Draggable planets
-    initDraggablePlanets(wheel, planets, orbits);
-}
-
-function updateTooltipPosition(e, tooltip) {
-    // Position tooltip above mouse cursor
-    const tooltipWidth = tooltip.offsetWidth || 150;
-    const tooltipHeight = tooltip.offsetHeight || 60;
-    
-    let left = e.clientX - tooltipWidth / 2;
-    let top = e.clientY - tooltipHeight - 20;
-    
-    // Keep tooltip within viewport
-    if (left < 10) left = 10;
-    if (left + tooltipWidth > window.innerWidth - 10) {
-        left = window.innerWidth - tooltipWidth - 10;
-    }
-    if (top < 10) {
-        top = e.clientY + 20;
-        tooltip.classList.add('below');
-    } else {
-        tooltip.classList.remove('below');
-    }
-    
-    tooltip.style.left = left + 'px';
-    tooltip.style.top = top + 'px';
-}
-
-function initDraggablePlanets(wheel, planets, orbits) {
-    let isDragging = false;
-    let currentPlanet = null;
-    let originalParent, originalNextSibling;
-    
-    planets.forEach(planet => {
-        planet.style.cursor = 'grab';
-        
-        planet.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            isDragging = true;
-            currentPlanet = planet;
-            
-            // Store original position info
-            originalParent = planet.parentElement;
-            originalNextSibling = planet.nextElementSibling;
-            
-            // Add dragging classes
-            planet.classList.add('dragging');
-            wheel.classList.add('dragging-active');
-            
-            // Pause orbits
-            orbits.forEach(orbit => {
-                orbit.style.animationPlayState = 'paused';
-            });
-            
-            // Move planet to body for free movement
-            document.body.appendChild(planet);
-            planet.classList.add('dragged');
-            planet.style.left = (e.clientX - planet.offsetWidth / 2) + 'px';
-            planet.style.top = (e.clientY - planet.offsetHeight / 2) + 'px';
-        });
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging || !currentPlanet) return;
-        
-        currentPlanet.style.left = (e.clientX - currentPlanet.offsetWidth / 2) + 'px';
-        currentPlanet.style.top = (e.clientY - currentPlanet.offsetHeight / 2) + 'px';
-    });
-    
-    document.addEventListener('mouseup', () => {
-        if (!isDragging || !currentPlanet) return;
-        
-        // Return planet to original position
-        currentPlanet.classList.remove('dragging', 'dragged');
-        currentPlanet.style.left = '';
-        currentPlanet.style.top = '';
-        currentPlanet.style.position = '';
-        
-        // Return to original parent
-        if (originalNextSibling) {
-            originalParent.insertBefore(currentPlanet, originalNextSibling);
-        } else {
-            originalParent.appendChild(currentPlanet);
-        }
-        
-        wheel.classList.remove('dragging-active');
-        
-        // Resume orbits
-        orbits.forEach(orbit => {
-            orbit.style.animationPlayState = 'running';
-        });
-        
-        isDragging = false;
-        currentPlanet = null;
-    });
-}
-
-// ============================================
-// SKILLS VIEW MODE SWITCHER & ZERO-G PLAYGROUND
+// INTERACTIVE FLOATING SKILLS CANVAS
 // ============================================
 const skillsData = [
-    { icon: 'TS', name: 'TypeScript', color: '#3178C6' },
-    { icon: 'JS', name: 'JavaScript', color: '#F7DF1E' },
-    { icon: 'PY', name: 'Python', color: '#3776AB' },
-    { icon: 'JV', name: 'Java', color: '#ED8B00' },
-    { icon: 'KT', name: 'Kotlin', color: '#7F52FF' },
-    { icon: 'DT', name: 'Dart', color: '#0175C2' },
-    { icon: '⚛️', name: 'React', color: '#61DAFB' },
-    { icon: '🔺', name: 'Next.js', color: '#fff' },
-    { icon: '💙', name: 'Flutter', color: '#02569B' },
-    { icon: '🚀', name: 'FastAPI', color: '#009688' },
-    { icon: '📗', name: 'Node.js', color: '#339933' },
-    { icon: '🔥', name: 'Firebase', color: '#FFCA28' },
-    { icon: '⚡', name: 'Supabase', color: '#3ECF8E' },
-    { icon: '🤖', name: 'AI/ML', color: '#00D9FF' },
-    { icon: '🐳', name: 'Docker', color: '#2496ED' },
-    { icon: '🐘', name: 'PostgreSQL', color: '#336791' },
-    { icon: '🍃', name: 'MongoDB', color: '#47A248' },
-    { icon: '🔄', name: 'Git', color: '#F05032' },
-    { icon: '☸️', name: 'Kubernetes', color: '#326CE5' },
-    { icon: '☁️', name: 'AWS', color: '#FF9900' },
-    { icon: '🎨', name: 'Figma', color: '#F24E1E' },
-    { icon: '📱', name: 'React Native', color: '#61DAFB' },
-    { icon: '🔗', name: 'REST/GraphQL', color: '#E10098' }
+    { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg', color: '#3178C6' },
+    { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', color: '#F7DF1E' },
+    { name: 'React', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB' },
+    { name: 'Next.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', color: '#FFFFFF', invertOnDark: true },
+    { name: 'Vue.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg', color: '#4FC08D' },
+    { name: 'Tailwind CSS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', color: '#38BDF8' },
+    { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', color: '#339933' },
+    { name: 'NestJS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg', color: '#E0234E' },
+    { name: 'FastAPI', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg', color: '#009688' },
+    { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', color: '#3776AB' },
+    { name: 'Go', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg', color: '#00ADD8' },
+    { name: 'Rust', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg', color: '#DEA584' },
+    { name: 'Flutter', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg', color: '#02569B' },
+    { name: 'React Native', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB' },
+    { name: 'Prisma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg', color: '#5A67D8', invertOnDark: true },
+    { name: 'Supabase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', color: '#3ECF8E' },
+    { name: 'Firebase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg', color: '#FFCA28' },
+    { name: 'PostgreSQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', color: '#336791' },
+    { name: 'MongoDB', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg', color: '#47A248' },
+    { name: 'Redis', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg', color: '#FF3E30' },
+    { name: 'Docker', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', color: '#2496ED' },
+    { name: 'AWS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: '#FF9900' },
+    { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg', color: '#F05032' },
+    { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg', color: '#F24E1E' },
+    { name: 'Vite', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg', color: '#646CFF' },
+    { name: 'GraphQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg', color: '#E10098' }
 ];
 
-let playgroundBalls = [];
-let animationId = null;
+function initSkillsCanvas() {
+    const container = document.getElementById('skillsCanvas');
+    if (!container) return;
 
-function initSkillsToggle() {
-    const modeBtns = document.querySelectorAll('.mode-btn');
-    const gridView = document.querySelector('.skills-grid-view');
-    const solarView = document.querySelector('.skills-solar-view');
-    const playgroundView = document.querySelector('.skills-playground-view');
-    
-    if (!modeBtns.length) return;
-    
-    modeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const mode = btn.dataset.mode;
-            
-            // Update active button with animation
-            modeBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Hide all views
-            [gridView, solarView, playgroundView].forEach(view => {
-                if (view) {
-                    view.classList.remove('active');
-                }
-            });
-            
-            // Stop any physics
-            stopPlaygroundPhysics();
-            
-            // Show selected view
-            setTimeout(() => {
-                if (mode === 'grid' && gridView) {
-                    gridView.classList.add('active');
-                } else if (mode === 'solar' && solarView) {
-                    solarView.classList.add('active');
-                } else if (mode === 'playground' && playgroundView) {
-                    playgroundView.classList.add('active');
-                    initPlayground(playgroundView);
-                }
-            }, 100);
-        });
-    });
-}
+    container.innerHTML = '';
 
-function initPlayground(container) {
-    // Clear previous balls
-    container.querySelectorAll('.playground-ball').forEach(b => b.remove());
-    playgroundBalls = [];
-    
-    const containerRect = container.getBoundingClientRect();
-    const ballSize = window.innerWidth < 768 ? 60 : 70;
-    
-    // Create balls starting from top (will drop with gravity)
+    const relativeCoords = [
+        // Row 1 (y: ~15%)
+        { x: 0.06, y: 0.15 }, { x: 0.20, y: 0.13 }, { x: 0.34, y: 0.16 }, { x: 0.48, y: 0.14 }, { x: 0.62, y: 0.17 }, { x: 0.76, y: 0.15 }, { x: 0.90, y: 0.13 },
+        // Row 2 (y: ~38%)
+        { x: 0.10, y: 0.36 }, { x: 0.26, y: 0.40 }, { x: 0.42, y: 0.37 }, { x: 0.58, y: 0.39 }, { x: 0.74, y: 0.36 }, { x: 0.90, y: 0.40 },
+        // Row 3 (y: ~62%)
+        { x: 0.05, y: 0.60 }, { x: 0.19, y: 0.64 }, { x: 0.33, y: 0.61 }, { x: 0.47, y: 0.63 }, { x: 0.61, y: 0.60 }, { x: 0.75, y: 0.64 }, { x: 0.89, y: 0.61 },
+        // Row 4 (y: ~83%)
+        { x: 0.08, y: 0.83 }, { x: 0.24, y: 0.80 }, { x: 0.40, y: 0.84 }, { x: 0.56, y: 0.81 }, { x: 0.72, y: 0.85 }, { x: 0.88, y: 0.82 }
+    ];
+
+    const cards = [];
+
+    function hexToRgb(hex) {
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 217, 255';
+    }
+
     skillsData.forEach((skill, index) => {
-        const ball = document.createElement('div');
-        ball.className = 'playground-ball';
-        ball.innerHTML = `
-            <span class="ball-icon">${skill.icon}</span>
-            <span class="ball-name">${skill.name}</span>
+        const cardEl = document.createElement('div');
+        cardEl.className = 'floating-skill-card';
+        cardEl.style.setProperty('--card-hover-color', skill.color);
+        cardEl.style.setProperty('--card-glow-rgb', hexToRgb(skill.color));
+        
+        const imgStyle = skill.invertOnDark ? 'style="filter: invert(1) brightness(2);"' : '';
+        cardEl.innerHTML = `
+            <img src="${skill.iconUrl}" alt="${skill.name}" ${imgStyle} />
+            <div class="floating-skill-tooltip">${skill.name}</div>
         `;
-        ball.style.borderColor = skill.color;
         
-        // Random position at top, staggered drop
-        const x = Math.random() * (containerRect.width - ballSize);
-        const y = -100 - (index * 25); // Start above, staggered
-        
-        ball.style.left = x + 'px';
-        ball.style.top = y + 'px';
-        
-        container.appendChild(ball);
-        
-        playgroundBalls.push({
-            el: ball,
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 3,
+        container.appendChild(cardEl);
+
+        cards.push({
+            element: cardEl,
+            baseX: 0,
+            baseY: 0,
+            width: 80,
+            height: 80,
+            springX: 0,
+            springY: 0,
+            vx: 0,
             vy: 0,
-            size: ballSize
+            floatPhaseX: Math.random() * Math.PI * 2,
+            floatPhaseY: Math.random() * Math.PI * 2,
+            floatPhaseRot: Math.random() * Math.PI * 2,
+            floatSpeed: 0.6 + Math.random() * 0.8,
+            floatAmpX: 4 + Math.random() * 5,
+            floatAmpY: 4 + Math.random() * 5,
+            floatAmpRot: 2 + Math.random() * 4
         });
-        
-        // Add drag handlers
-        addPlaygroundDragHandlers(ball, playgroundBalls[playgroundBalls.length - 1], container);
     });
-    
-    // Start gravity physics
-    startPlaygroundPhysics(container);
-}
 
-function addPlaygroundDragHandlers(ball, ballData, container) {
-    let isDragging = false;
-    let lastX = 0, lastY = 0;
-    let lastTime = 0;
-    
-    const onStart = (e) => {
-        isDragging = true;
-        ball.classList.add('grabbing');
-        
-        const pos = getEventPos(e);
-        lastX = pos.x;
-        lastY = pos.y;
-        lastTime = Date.now();
-        
-        ballData.vx = 0;
-        ballData.vy = 0;
-        
-        e.preventDefault();
-    };
-    
-    const onMove = (e) => {
-        if (!isDragging) return;
-        
-        const pos = getEventPos(e);
-        const containerRect = container.getBoundingClientRect();
-        
-        const newX = pos.x - containerRect.left - ballData.size / 2;
-        const newY = pos.y - containerRect.top - ballData.size / 2;
-        
-        // Calculate velocity for throwing
-        const now = Date.now();
-        const dt = (now - lastTime) / 1000;
-        if (dt > 0) {
-            ballData.vx = (pos.x - lastX) / dt * 0.05;
-            ballData.vy = (pos.y - lastY) / dt * 0.05;
-        }
-        
-        ballData.x = Math.max(0, Math.min(containerRect.width - ballData.size, newX));
-        ballData.y = Math.max(0, Math.min(containerRect.height - ballData.size, newY));
-        
-        ball.style.left = ballData.x + 'px';
-        ball.style.top = ballData.y + 'px';
-        
-        lastX = pos.x;
-        lastY = pos.y;
-        lastTime = now;
-        
-        e.preventDefault();
-    };
-    
-    const onEnd = () => {
-        isDragging = false;
-        ball.classList.remove('grabbing');
-    };
-    
-    // Mouse events
-    ball.addEventListener('mousedown', onStart);
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onEnd);
-    
-    // Touch events
-    ball.addEventListener('touchstart', onStart, { passive: false });
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('touchend', onEnd);
-}
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let containerRect = container.getBoundingClientRect();
 
-function getEventPos(e) {
-    if (e.touches && e.touches.length) {
-        return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    }
-    return { x: e.clientX, y: e.clientY };
-}
-
-function startPlaygroundPhysics(container) {
-    const gravity = 0.4;
-    const bounce = 0.7;
-    const friction = 0.99;
-    
-    function update() {
-        const containerRect = container.getBoundingClientRect();
-        
-        playgroundBalls.forEach(ball => {
-            if (ball.el.classList.contains('grabbing')) return;
+    function handleResize() {
+        containerRect = container.getBoundingClientRect();
+        cards.forEach((card, index) => {
+            const rect = card.element.getBoundingClientRect();
+            card.width = rect.width || 80;
+            card.height = rect.height || 80;
             
-            // Apply gravity
-            ball.vy += gravity;
+            const coord = relativeCoords[index % relativeCoords.length];
+            card.baseX = coord.x * containerRect.width - card.width / 2;
+            card.baseY = coord.y * containerRect.height - card.height / 2;
             
-            // Apply friction
-            ball.vx *= friction;
-            ball.vy *= friction;
-            
-            // Update position
-            ball.x += ball.vx;
-            ball.y += ball.vy;
-            
-            // Bounce off walls
-            if (ball.x < 0) {
-                ball.x = 0;
-                ball.vx *= -bounce;
-            }
-            if (ball.x > containerRect.width - ball.size) {
-                ball.x = containerRect.width - ball.size;
-                ball.vx *= -bounce;
-            }
-            
-            // Bounce off floor
-            if (ball.y > containerRect.height - ball.size) {
-                ball.y = containerRect.height - ball.size;
-                ball.vy *= -bounce;
-                
-                // Stop bouncing if very slow
-                if (Math.abs(ball.vy) < 1) {
-                    ball.vy = 0;
-                }
-            }
-            
-            // Bounce off ceiling
-            if (ball.y < 0) {
-                ball.y = 0;
-                ball.vy *= -bounce;
-            }
-            
-            // Update DOM
-            ball.el.style.left = ball.x + 'px';
-            ball.el.style.top = ball.y + 'px';
+            card.element.style.left = `${card.baseX}px`;
+            card.element.style.top = `${card.baseY}px`;
         });
-        
-        // Ball collision detection
-        for (let i = 0; i < playgroundBalls.length; i++) {
-            for (let j = i + 1; j < playgroundBalls.length; j++) {
-                const b1 = playgroundBalls[i];
-                const b2 = playgroundBalls[j];
-                
-                const dx = (b2.x + b2.size/2) - (b1.x + b1.size/2);
-                const dy = (b2.y + b2.size/2) - (b1.y + b1.size/2);
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const minDist = (b1.size + b2.size) / 2;
-                
-                if (dist < minDist && dist > 0) {
-                    // Collision response
-                    const nx = dx / dist;
-                    const ny = dy / dist;
-                    const overlap = minDist - dist;
-                    
-                    // Separate balls
-                    b1.x -= nx * overlap * 0.5;
-                    b1.y -= ny * overlap * 0.5;
-                    b2.x += nx * overlap * 0.5;
-                    b2.y += ny * overlap * 0.5;
-                    
-                    // Exchange velocities
-                    const dvx = b1.vx - b2.vx;
-                    const dvy = b1.vy - b2.vy;
-                    const dvn = dvx * nx + dvy * ny;
-                    
-                    if (dvn > 0) {
-                        b1.vx -= dvn * nx * 0.5;
-                        b1.vy -= dvn * ny * 0.5;
-                        b2.vx += dvn * nx * 0.5;
-                        b2.vy += dvn * ny * 0.5;
-                    }
+    }
+
+    setTimeout(handleResize, 100);
+    window.addEventListener('resize', handleResize);
+
+    container.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        mouseX = -9999;
+        mouseY = -9999;
+    });
+
+    container.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+        mouseX = -9999;
+        mouseY = -9999;
+    });
+
+    container.addEventListener('touchcancel', () => {
+        mouseX = -9999;
+        mouseY = -9999;
+    });
+
+    const stiffness = 220;
+    const damping = 18;
+
+    let lastTime = performance.now();
+    let animationFrameId = null;
+
+    function updatePhysics(dt) {
+        containerRect = container.getBoundingClientRect();
+
+        cards.forEach((card) => {
+            const cx = containerRect.left + card.baseX + card.width / 2 + card.springX;
+            const cy = containerRect.top + card.baseY + card.height / 2 + card.springY;
+
+            let targetX = 0;
+            let targetY = 0;
+
+            if (mouseX !== -9999 && mouseY !== -9999) {
+                const dx = cx - mouseX;
+                const dy = cy - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 160 && distance > 0) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (1 - distance / 160) * 70;
+                    targetX = Math.cos(angle) * force;
+                    targetY = Math.sin(angle) * force;
                 }
             }
-        }
-        
-        animationId = requestAnimationFrame(update);
-    }
-    
-    update();
-}
 
-function stopPlaygroundPhysics() {
-    if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
+            const ax = stiffness * (targetX - card.springX) - damping * card.vx;
+            const ay = stiffness * (targetY - card.springY) - damping * card.vy;
+
+            card.vx += ax * dt;
+            card.vy += ay * dt;
+            card.springX += card.vx * dt;
+            card.springY += card.vy * dt;
+        });
     }
+
+    function renderLoop(timeNow) {
+        let deltaTime = (timeNow - lastTime) / 1000;
+        lastTime = timeNow;
+
+        if (deltaTime > 0.1) deltaTime = 0.1;
+
+        const step = 0.008;
+        let accumulatedTime = deltaTime;
+        while (accumulatedTime >= step) {
+            updatePhysics(step);
+            accumulatedTime -= step;
+        }
+
+        cards.forEach((card) => {
+            const time = timeNow * 0.001 * card.floatSpeed;
+            const floatX = Math.sin(time + card.floatPhaseX) * card.floatAmpX;
+            const floatY = Math.cos(time * 0.85 + card.floatPhaseY) * card.floatAmpY;
+            const floatRot = Math.sin(time * 0.5 + card.floatPhaseRot) * card.floatAmpRot;
+
+            const x = card.springX + floatX;
+            const y = card.springY + floatY;
+
+            card.element.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${floatRot}deg)`;
+        });
+
+        animationFrameId = requestAnimationFrame(renderLoop);
+    }
+
+    animationFrameId = requestAnimationFrame(renderLoop);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+    };
 }
 
 // ============================================
@@ -1199,6 +905,170 @@ function initMarquee() {
 }
 
 // ============================================
+// ABOUT VISUAL VERTICAL MARQUEE OPACITY PHYSICS
+// ============================================
+function initAboutMarquee() {
+    const marqueeContainer = document.getElementById('aboutMarquee');
+    if (!marqueeContainer) return;
+
+    const items = marqueeContainer.querySelectorAll('.marquee-item');
+    
+    function updateOpacity() {
+        const containerRect = marqueeContainer.getBoundingClientRect();
+        const centerY = containerRect.top + containerRect.height / 2;
+
+        items.forEach((item) => {
+            const itemRect = item.getBoundingClientRect();
+            const itemCenterY = itemRect.top + itemRect.height / 2;
+            const distance = Math.abs(centerY - itemCenterY);
+            const maxDistance = containerRect.height / 2;
+            const normalizedDistance = Math.min(distance / maxDistance, 1);
+            
+            const opacity = 1 - normalizedDistance * 0.88;
+            item.style.opacity = opacity.toString();
+            
+            const scale = 1.06 - normalizedDistance * 0.12;
+            item.style.transform = `scale(${scale})`;
+        });
+    }
+
+    let animationFrameId;
+    function loop() {
+        updateOpacity();
+        animationFrameId = requestAnimationFrame(loop);
+    }
+
+    loop();
+}
+
+// ============================================
+// TECH PARTICLE CURSOR
+// ============================================
+const techCursorIcons = [
+    {
+        name: "JavaScript",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012752/js_nocitj.png"
+    },
+    {
+        name: "TypeScript",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012632/ts_elsqw8.png"
+    },
+    {
+        name: "React",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012941/react_ogt6ny.svg"
+    },
+    {
+        name: "Next.js",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012973/next_hrodnb.svg"
+    },
+    {
+        name: "HTML",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012812/html_xbcdkj.png"
+    },
+    {
+        name: "CSS",
+        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012862/css_1_irojyc.png"
+    }
+];
+
+function initTechCursor() {
+    // Avoid running on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'techCursorCanvas';
+    canvas.className = 'tech-cursor-canvas';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const techImages = [];
+    let imagesLoaded = false;
+
+    const loadImages = async () => {
+        const promises = techCursorIcons.map(({ name, src }) => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = src;
+                img.crossOrigin = "anonymous";
+                img.onload = () => resolve({ name, src, image: img });
+                img.onerror = () => resolve(null);
+            });
+        });
+        const results = await Promise.all(promises);
+        results.forEach(res => {
+            if (res) techImages.push(res);
+        });
+        imagesLoaded = techImages.length > 0;
+    };
+
+    loadImages();
+
+    const particles = [];
+
+    const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw(ctx);
+            if (p.alpha <= 0) {
+                particles.splice(i, 1);
+            }
+        }
+        requestAnimationFrame(animate);
+    };
+    animate();
+
+    window.addEventListener('mousemove', (e) => {
+        if (!imagesLoaded) return;
+
+        // Check if cursor is over projects or skills section
+        const isOverTarget = e.target.closest('#projects') || e.target.closest('#skills');
+        if (!isOverTarget) return;
+
+        const randomIcon = techImages[Math.floor(Math.random() * techImages.length)];
+        if (!randomIcon) return;
+
+        const size = 22 + Math.random() * 8;
+
+        const particle = {
+            x: e.clientX,
+            y: e.clientY,
+            alpha: 1,
+            image: randomIcon.image,
+            size,
+            update() {
+                this.y -= 0.4;
+                this.alpha -= 0.02;
+            },
+            draw(ctx) {
+                ctx.globalAlpha = this.alpha;
+                ctx.drawImage(
+                    this.image,
+                    this.x - this.size / 2,
+                    this.y - this.size / 2,
+                    this.size,
+                    this.size
+                );
+                ctx.globalAlpha = 1;
+            }
+        };
+
+        particles.push(particle);
+    });
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -1207,11 +1077,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initNavigation();
     initStatsCounter();
-    initProjectModal();
+    initProjects();
     initParallax();
-    initSkillsWheel();
-    initSkillsToggle();
+    initSkillsCanvas();
+    initAboutMarquee();
     initMarquee();
+    initTechCursor();
     initTiltEffect();
 });
 
