@@ -111,16 +111,29 @@ const projectsData = {
 // ============================================
 // LANGUAGE SYSTEM
 // ============================================
-let currentLang = localStorage.getItem('lang') || 'tr';
+function getPreferredLanguage() {
+    const browserLanguages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || navigator.userLanguage || 'tr'];
+
+    return browserLanguages.some(lang => lang.toLowerCase().startsWith('tr')) ? 'tr' : 'en';
+}
+
+let currentLang = localStorage.getItem('lang') || getPreferredLanguage();
 
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
     
     // Update all translatable elements
     document.querySelectorAll('[data-tr][data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    document.querySelectorAll('[data-tr-alt][data-en-alt]').forEach(el => {
+        el.setAttribute('alt', el.getAttribute(`data-${lang}-alt`));
     });
     
     // Update language buttons
