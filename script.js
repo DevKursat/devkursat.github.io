@@ -121,6 +121,12 @@ function getPreferredLanguage() {
 
 let currentLang = localStorage.getItem('lang') || getPreferredLanguage();
 
+function updateLocalizedLinks(lang) {
+    document.querySelectorAll('[data-tr-href][data-en-href]').forEach(el => {
+        el.setAttribute('href', el.getAttribute(`data-${lang}-href`));
+    });
+}
+
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
@@ -135,6 +141,8 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-tr-alt][data-en-alt]').forEach(el => {
         el.setAttribute('alt', el.getAttribute(`data-${lang}-alt`));
     });
+
+    updateLocalizedLinks(lang);
     
     // Update language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -164,6 +172,12 @@ function initLanguage() {
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             setLanguage(btn.dataset.lang);
+        });
+    });
+
+    document.querySelectorAll('[data-tr-href][data-en-href]').forEach(link => {
+        link.addEventListener('click', () => {
+            updateLocalizedLinks(currentLang);
         });
     });
 }
@@ -361,11 +375,12 @@ function animateCount(element, target) {
     const increment = target / 50;
     const duration = 1500;
     const stepTime = duration / 50;
+    const suffix = element.dataset.suffix || '';
     
     const counter = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = target;
+            element.textContent = `${target}${suffix}`;
             clearInterval(counter);
         } else {
             element.textContent = Math.floor(current);
