@@ -2,14 +2,14 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>KÜRŞAT Yılmaz | Tüm Bağlantılar & Resmi İletişim</title>
   <meta name="description" content="KÜRŞAT Yılmaz — Resmi kanallar, sosyal medya hesapları, açık kaynak projeler ve sponsorluk iletişimi.">
   <meta name="theme-color" content="#07080a">
   
   <!-- Open Graph -->
   <meta property="og:title" content="KÜRŞAT Yılmaz | Resmi Bağlantılar">
-  <meta property="og:description" content="KÜRŞAT Yılmaz — İçerik kanalları, mühendislik projeleri ve sponsorluk iş birlikleri.">
+  <meta property="og:description" content="KÜRŞAT Yılmaz — Orijinal animasyon projeleri, teknoloji ve sponsorluk iş birlikleri.">
   <meta property="og:image" content="https://devkursat.github.io/links/avatar_thumb.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://devkursat.github.io/links/">
@@ -23,14 +23,15 @@
       --bg: #07080a;
       --card-bg: rgba(18, 20, 26, 0.72);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(255, 255, 255, 0.24);
+      --card-hover-border: rgba(255, 255, 255, 0.28);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-subtle: #64748b;
       --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.2);
+      --accent-glow: rgba(56, 189, 248, 0.25);
       --radius-card: 18px;
-      --spring-easing: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring-physics: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --smooth-easing: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -39,6 +40,7 @@
       padding: 0;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -51,7 +53,7 @@
       align-items: center;
       position: relative;
       overflow-x: hidden;
-      padding: 40px 18px 64px;
+      padding: 36px 18px 64px;
     }
 
     ::selection {
@@ -67,7 +69,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     /* Ambient Lighting (Framer / Linear Aurora) */
@@ -112,7 +114,7 @@
       100% { transform: translate(-55%, -20px) scale(0.96); }
     }
 
-    /* Top Floating Action Bar (Share) */
+    /* Top Floating Action Bar */
     .top-action-bar {
       width: 100%;
       max-width: 500px;
@@ -132,19 +134,20 @@
       color: #cbd5e1;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 6px 14px;
+      padding: 7px 15px;
       border-radius: 100px;
       cursor: pointer;
       backdrop-filter: blur(10px);
-      transition: all 0.2s ease;
+      transition: all 0.25s var(--smooth-easing);
       font-family: inherit;
     }
 
-    .btn-share-profile:hover {
+    .btn-share-profile:hover, .btn-share-profile:active {
       background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.22);
-      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px) scale(1.02);
       color: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     /* Main Container */
@@ -156,6 +159,7 @@
       align-items: center;
       position: relative;
       z-index: 1;
+      perspective: 1000px;
     }
 
     /* Profile Header */
@@ -164,8 +168,8 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      margin-bottom: 24px;
-      animation: framerFadeIn 0.8s var(--spring-easing) both;
+      margin-bottom: 22px;
+      animation: framerEntrance 0.9s var(--spring-physics) both;
     }
 
     .avatar-wrapper {
@@ -173,6 +177,16 @@
       width: 114px;
       height: 114px;
       margin-bottom: 18px;
+      cursor: pointer;
+      transition: transform 0.4s var(--spring-physics);
+    }
+
+    .avatar-wrapper:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .avatar-wrapper:active {
+      transform: scale(0.96);
     }
 
     .avatar-ring {
@@ -201,7 +215,7 @@
 
     @keyframes pulseAvatar {
       0% { opacity: 0.5; filter: blur(14px); transform: scale(0.98); }
-      100% { opacity: 0.8; filter: blur(20px); transform: scale(1.04); }
+      100% { opacity: 0.85; filter: blur(22px); transform: scale(1.05); }
     }
 
     .avatar-img {
@@ -246,10 +260,10 @@
       color: var(--text-muted);
       line-height: 1.5;
       max-width: 420px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
-    /* Social Proof Metrics Badges */
+    /* Social Proof Metrics Bar */
     .metrics-bar {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -269,13 +283,13 @@
       text-align: center;
       gap: 3px;
       backdrop-filter: blur(8px);
-      transition: all 0.2s ease;
+      transition: all 0.25s var(--smooth-easing);
     }
 
     .metric-card:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
     }
 
     .metric-value {
@@ -317,7 +331,7 @@
       background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
     }
 
-    /* Spotlight Card Engine */
+    /* Interactive 3D Card Engine (Framer Physics) */
     .card-spotlight {
       position: relative;
       width: 100%;
@@ -327,8 +341,10 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-      transition: border-color 0.25s ease, transform 0.25s var(--spring-easing), box-shadow 0.25s ease;
+      transition: border-color 0.25s ease, transform 0.28s var(--spring-physics), box-shadow 0.28s ease;
       overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .card-spotlight::before {
@@ -336,9 +352,9 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 255, 255, 0.06),
-        transparent 40%
+        450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.08),
+        transparent 45%
       );
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -352,17 +368,93 @@
 
     .card-spotlight:hover {
       border-color: var(--card-hover-border);
-      transform: translateY(-2px);
-      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 20px -8px var(--accent-glow);
+      transform: translateY(-3px) scale(1.008);
+      box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.7), 0 0 24px -6px var(--accent-glow);
+    }
+
+    /* Mobile Touch Feedback */
+    .card-spotlight:active {
+      transform: scale(0.985);
+      border-color: rgba(56, 189, 248, 0.4);
+      transition-duration: 0.1s;
+    }
+
+    /* Featured Series Showcase Banner */
+    .series-banner-card {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-radius: var(--radius-card);
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      animation: framerEntrance 0.8s 0.15s var(--spring-physics) both;
+    }
+
+    .series-banner-img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--smooth-easing);
+    }
+
+    .series-banner-card:hover .series-banner-img {
+      transform: scale(1.04);
+    }
+
+    .series-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(7, 8, 10, 0.94) 0%, rgba(7, 8, 10, 0.2) 65%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 16px 18px;
+      z-index: 2;
+    }
+
+    .series-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      margin-bottom: 3px;
+    }
+
+    .series-headline {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    /* Border Beam Animation on Banner */
+    .border-beam {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-card);
+      padding: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: beamSweep 4s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes beamSweep {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     /* VIP Sponsor Card */
     .sponsor-card {
       margin-bottom: 8px;
       padding: 22px 20px;
-      border: 1px solid rgba(56, 189, 248, 0.22);
+      border: 1px solid rgba(56, 189, 248, 0.24);
       background: linear-gradient(145deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.7) 100%);
-      animation: framerFadeIn 0.8s 0.1s var(--spring-easing) both;
+      animation: framerEntrance 0.8s 0.08s var(--spring-physics) both;
     }
 
     .sponsor-badge-row {
@@ -440,15 +532,15 @@
       padding: 12px 14px;
       border-radius: 12px;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.2s var(--smooth-easing);
       cursor: pointer;
       border: none;
       font-family: inherit;
     }
 
-    .btn-mail-action:hover {
+    .btn-mail-action:hover, .btn-mail-action:active {
       background: #f1f5f9;
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.02);
       box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
     }
 
@@ -465,15 +557,15 @@
       border-radius: 12px;
       border: 1px solid rgba(37, 211, 102, 0.3);
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.2s var(--smooth-easing);
       cursor: pointer;
       font-family: inherit;
     }
 
-    .btn-wp-action:hover {
+    .btn-wp-action:hover, .btn-wp-action:active {
       background: rgba(37, 211, 102, 0.22);
       border-color: rgba(37, 211, 102, 0.45);
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.02);
       box-shadow: 0 8px 20px rgba(37, 211, 102, 0.15);
     }
 
@@ -489,12 +581,12 @@
       padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: all 0.2s ease;
+      transition: all 0.2s var(--smooth-easing);
       cursor: pointer;
       font-family: inherit;
     }
 
-    .btn-copy-action:hover {
+    .btn-copy-action:hover, .btn-copy-action:active {
       background: rgba(255, 255, 255, 0.14);
       border-color: rgba(255, 255, 255, 0.24);
       transform: translateY(-1px);
@@ -528,13 +620,13 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
       margin-right: 15px;
       flex-shrink: 0;
-      transition: transform 0.2s var(--spring-easing), background 0.2s ease;
+      transition: transform 0.25s var(--spring-physics), background 0.2s ease;
     }
 
     .link-item:hover .link-icon-box {
-      transform: scale(1.08);
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.16);
+      transform: scale(1.12);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .link-info {
@@ -618,36 +710,36 @@
       align-items: center;
       justify-content: center;
       color: #64748b;
-      transition: all 0.2s ease;
+      transition: all 0.25s var(--spring-physics);
       margin-left: 10px;
       flex-shrink: 0;
     }
 
     .link-item:hover .link-arrow-box {
       color: #ffffff;
-      transform: translateX(3px);
+      transform: translateX(4px);
     }
 
-    /* Staggered Animations */
-    @keyframes framerFadeIn {
+    /* Staggered Spring Entrance Animation */
+    @keyframes framerEntrance {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(24px) scale(0.97);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    .stagger-1 { animation: framerFadeIn 0.7s 0.08s var(--spring-easing) both; }
-    .stagger-2 { animation: framerFadeIn 0.7s 0.14s var(--spring-easing) both; }
-    .stagger-3 { animation: framerFadeIn 0.7s 0.20s var(--spring-easing) both; }
-    .stagger-4 { animation: framerFadeIn 0.7s 0.26s var(--spring-easing) both; }
-    .stagger-5 { animation: framerFadeIn 0.7s 0.32s var(--spring-easing) both; }
-    .stagger-6 { animation: framerFadeIn 0.7s 0.38s var(--spring-easing) both; }
-    .stagger-7 { animation: framerFadeIn 0.7s 0.44s var(--spring-easing) both; }
-    .stagger-8 { animation: framerFadeIn 0.7s 0.50s var(--spring-easing) both; }
+    .stagger-1 { animation: framerEntrance 0.75s 0.08s var(--spring-physics) both; }
+    .stagger-2 { animation: framerEntrance 0.75s 0.14s var(--spring-physics) both; }
+    .stagger-3 { animation: framerEntrance 0.75s 0.20s var(--spring-physics) both; }
+    .stagger-4 { animation: framerEntrance 0.75s 0.26s var(--spring-physics) both; }
+    .stagger-5 { animation: framerEntrance 0.75s 0.32s var(--spring-physics) both; }
+    .stagger-6 { animation: framerEntrance 0.75s 0.38s var(--spring-physics) both; }
+    .stagger-7 { animation: framerEntrance 0.75s 0.44s var(--spring-physics) both; }
+    .stagger-8 { animation: framerEntrance 0.75s 0.50s var(--spring-physics) both; }
 
     /* Toast Notification */
     .toast {
@@ -693,7 +785,7 @@
       gap: 8px;
       font-size: 12px;
       color: #64748b;
-      animation: framerFadeIn 0.8s 0.6s var(--spring-easing) both;
+      animation: framerEntrance 0.8s 0.6s var(--spring-physics) both;
       text-align: center;
     }
 
@@ -720,7 +812,7 @@
 
     @media (max-width: 480px) {
       body {
-        padding: 28px 14px 48px;
+        padding: 24px 14px 48px;
       }
       .name-title {
         font-size: 25px;
@@ -763,7 +855,7 @@
     
     <!-- Profile Section -->
     <header class="profile-header">
-      <div class="avatar-wrapper">
+      <div class="avatar-wrapper" onclick="pulseAvatarEffect()">
         <div class="avatar-glow"></div>
         <div class="avatar-ring"></div>
         <img src="/links/avatar_thumb.jpg" onerror="if(this.src.indexOf('avatar_thumb.jpg')!==-1 && this.src.indexOf('/links/')!==-1){this.src='avatar_thumb.jpg';}else{this.src='avatar.jpg';}" alt="KÜRŞAT Yılmaz" class="avatar-img" width="114" height="114" loading="eager" decoding="async">
@@ -841,11 +933,12 @@
     </div>
 
     <!-- Featured Series Showcase Banner -->
-    <div class="card-spotlight series-banner-card" style="margin-bottom: 12px; overflow: hidden; border-radius: 16px; position: relative;">
-      <img src="/links/banner.jpg" onerror="this.src='banner.jpg';" alt="Kürşat & Hamam Böceği Orijinal Animasyon Serisi" style="width: 100%; height: 160px; object-fit: cover; display: block;" loading="lazy">
-      <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7, 8, 10, 0.92) 0%, rgba(7, 8, 10, 0.2) 65%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px 16px;">
-        <span style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #38bdf8; margin-bottom: 3px;">Orijinal Animasyon Serisi</span>
-        <span style="font-size: 16px; font-weight: 800; color: #ffffff; letter-spacing: -0.01em;">Kürşat & Hamam Böceği • Boğaz'da Çay Keyfi</span>
+    <div class="card-spotlight series-banner-card">
+      <div class="border-beam"></div>
+      <img src="/links/banner.jpg" onerror="this.src='banner.jpg';" alt="Kürşat & Hamam Böceği Orijinal Animasyon Serisi" class="series-banner-img" loading="lazy">
+      <div class="series-banner-overlay">
+        <span class="series-badge">Orijinal Animasyon Serisi</span>
+        <span class="series-headline">Kürşat & Hamam Böceği • Boğaz'da Çay Keyfi</span>
       </div>
     </div>
 
@@ -1037,19 +1130,61 @@
   </main>
 
   <script>
-    // Spotlight Mouse Tracker (Framer Style Dynamic Reflection)
-    document.querySelectorAll('.card-spotlight').forEach(card => {
+    // 3D Tilt & Magnetic Physics (Desktop) + Touch Spring (Mobile)
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    const cards = document.querySelectorAll('.card-spotlight');
+
+    cards.forEach(card => {
+      // Dynamic Spotlight Reflection
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
+
+        if (!isTouch) {
+          // 3D Tilt calculation
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -6; // max 6 deg
+          const rotateY = ((x - centerX) / centerX) * 6;
+          card.style.transform = `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+        }
       });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+
+      // Mobile Touch Ripple & Spring Haptic
+      card.addEventListener('touchstart', e => {
+        const touch = e.touches[0];
+        const rect = card.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }, { passive: true });
     });
 
-    // Native Profile Sharing & Fallback
+    // Avatar Interactive Pulse
+    function pulseAvatarEffect() {
+      if (navigator.vibrate) navigator.vibrate(20);
+      const glow = document.querySelector('.avatar-glow');
+      if (glow) {
+        glow.style.transform = 'scale(1.3)';
+        glow.style.opacity = '1';
+        setTimeout(() => {
+          glow.style.transform = '';
+          glow.style.opacity = '';
+        }, 500);
+      }
+    }
+
+    // Native Profile Sharing & Haptic Feedback
     function shareProfile() {
+      if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
       const shareData = {
         title: 'KÜRŞAT Yılmaz | Tüm Bağlantılar',
         text: 'KÜRŞAT Yılmaz resmi bağlantı, proje ve sponsorluk iletişim portali:',
@@ -1065,6 +1200,7 @@
 
     // Copy Email to Clipboard
     function copyMail() {
+      if (navigator.vibrate) navigator.vibrate(15);
       copyToClipboard('tckursat@icloud.com', 'Mail adresi kopyalandı: tckursat@icloud.com');
     }
 
@@ -1103,13 +1239,13 @@
       }, 2600);
     }
 
-    // GPU Particle / Ambient Canvas Engine (5. Öneri)
+    // GPU Particle / Ambient Canvas Engine (60fps Lightweight)
     (function initAmbientCanvas() {
       const canvas = document.getElementById('ambient-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
       let particles = [];
-      const particleCount = 28;
+      const particleCount = 26;
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -1122,10 +1258,10 @@
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 1.6 + 0.6,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          alpha: Math.random() * 0.5 + 0.2
+          radius: Math.random() * 1.5 + 0.6,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          alpha: Math.random() * 0.45 + 0.2
         });
       }
 
