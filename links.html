@@ -127,14 +127,28 @@
 
     .avatar-wrapper {
       position: relative;
-      width: 108px;
-      height: 108px;
+      width: 112px;
+      height: 112px;
       margin-bottom: 18px;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #38bdf8, #818cf8, #ec4899, #f43f5e, #38bdf8);
+      animation: rotateRing 8s linear infinite;
+      filter: blur(1px);
+    }
+
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .avatar-glow {
       position: absolute;
-      inset: -4px;
+      inset: -6px;
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.8), rgba(99, 102, 241, 0.8), rgba(236, 72, 153, 0.6));
       border-radius: 50%;
       filter: blur(16px);
@@ -153,9 +167,10 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 3px solid #07080a;
       background-color: #12141a;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      z-index: 2;
     }
 
     .name-badge-row {
@@ -649,7 +664,8 @@
     <header class="profile-header">
       <div class="avatar-wrapper">
         <div class="avatar-glow"></div>
-        <img src="avatar_thumb.jpg" alt="KÜRŞAT Yılmaz" class="avatar-img" width="108" height="108">
+        <div class="avatar-ring"></div>
+        <img src="/links/avatar_thumb.jpg" onerror="if(this.src.indexOf('avatar_thumb.jpg')!==-1 && this.src.indexOf('/links/')!==-1){this.src='avatar_thumb.jpg';}else{this.src='avatar.jpg';}" alt="KÜRŞAT Yılmaz" class="avatar-img" width="112" height="112" loading="eager" decoding="async">
       </div>
       
       <div class="name-badge-row">
