@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust | Kürşat Yılmaz</title>
+    <meta name="description" content="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde saldırganlar tarafından ele geçirildi ve Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve ajan mimarileri postmortem analizi.">
+    <meta name="author" content="Kürşat Yılmaz">
+    <link rel="canonical" href="https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html">
+    
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html">
+    <meta property="og:title" content="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust">
+    <meta property="og:description" content="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde saldırganlar tarafından ele geçirildi ve Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve ajan mimarileri postmortem analizi.">
+    <meta property="og:image" content="https://devkursat.github.io/blog/claude-hacker-news.jpg">
+    <meta property="article:published_time" content="2026-10-31T08:40:00+03:00">
+    <meta property="article:author" content="Kürşat Yılmaz">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DevKursat">
+    <meta name="twitter:creator" content="@DevKursat">
+    <meta name="twitter:title" content="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust">
+    <meta name="twitter:description" content="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde saldırganlar tarafından ele geçirildi ve Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve ajan mimarileri postmortem analizi.">
+    <meta name="twitter:image" content="https://devkursat.github.io/blog/claude-hacker-news.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- AEO: Structured Data (Schema.org) for Generative Search & AI Crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust",
+      "description": "Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde saldırganlar tarafından ele geçirildi ve Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve ajan mimarileri postmortem analizi.",
+      "image": "https://devkursat.github.io/blog/claude-hacker-news.jpg",
+      "datePublished": "2026-10-31T08:40:00+03:00",
+      "dateModified": "2026-10-31T08:40:00+03:00",
+      "mainEntityOfPage": "https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html",
+      "author": {
+        "@type": "Person",
+        "name": "Kürşat Yılmaz",
+        "jobTitle": "Tech Founder & CEO",
+        "url": "https://devkursat.github.io",
+        "sameAs": [
+          "https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/",
+          "https://x.com/DevKursat",
+          "https://github.com/DevKursat"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Kürşat Yılmaz",
+        "url": "https://devkursat.github.io"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --border: #222222;
+            --text-primary: #ededed;
+            --text-secondary: #a0a0a0;
+            --accent: #3b82f6;
+            --code-bg: #161616;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.75;
+            font-size: 17px;
+            padding: 0 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+        header {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2.5rem 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .home-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
+        .header-nav a:hover { color: var(--text-primary); }
+        main {
+            max-width: 720px;
+            margin: 2.5rem auto 5rem;
+        }
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.75rem;
+            color: #ffffff;
+        }
+        .lead-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: block;
+        }
+        /* GEO: Generative Engine Optimization Highlight */
+        .geo-summary {
+            background-color: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+        .geo-summary strong { color: #ffffff; }
+        .content p {
+            margin-bottom: 1.6rem;
+            color: #d6d6d6;
+        }
+        .content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        .content code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #93c5fd;
+        }
+        .author-box {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .author-box img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+        .author-details h4 {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+        .author-details p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .social-links {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://devkursat.github.io" class="home-link">Kürşat Yılmaz.</a>
+        <nav class="header-nav">
+            <a href="https://devkursat.github.io">Hakkımda</a>
+            <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank">LinkedIn</a>
+            <a href="https://x.com/DevKursat" target="_blank">X (@DevKursat)</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="meta-info">
+            <time datetime="2026-10-31T08:40:00+03:00">31 Ekim 2026</time>
+            <span>•</span>
+            <span>4 dk okuma</span>
+            <span>•</span>
+            <span>Teknoloji & Mühendislik</span>
+        </div>
+
+        <h1>Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust</h1>
+
+        <img src="https://devkursat.github.io/blog/claude-hacker-news.jpg" alt="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust" class="lead-image" loading="eager">
+
+        <!-- GEO / AI Overview Executive Snippet -->
+        <div class="geo-summary">
+            <strong>Özet & Temel Çıkarım:</strong> Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde açığa çıkan tedarik zinciri zafiyeti, on binlerce geliştiricinin makinesine sessizce Remote Access Trojan bulaştırdı. Bu vaka, agentik yapay zeka araçlarının yerel sisteme bağlanmasında izole sandbox ve katı zero-trust mimarilerini tartışmasız bir zorunluluk haline getirmiştir.
+        </div>
+
+        <article class="content">
+            
+<p>Hediyeyi içeri buyur edip kapıyı arkasından kilitleyen Truva halkından tek farkımız, atı bizzat resmi mağazadan bir tıkla indirmiş olmamız.  Anthropic'in resmi Claude Code eklentisi, 2.1.313 sürümünde doğrudan saldırganların kontrolüne geçti.  Dünya genelinde on binlerce yazılımcının geliştirme ortamına sessizce Remote Access Trojan yerleştirildi.</p>
+
+<h2>Olayın Anatomisi: Resmi İmzalı Truva Atı</h2>
+<p>Güvenlik araştırmacısı Kevin Beaumont durumu açığa çıkarana kadar ne bir uyarı yapıldı ne de bir acil durum bülteni yayımlandı.  Anthropic olayı fark ettiğinde tek yaptığı şey <code>2.1.314</code> sürümünü sessizce depoya itmek oldu.  Halihazırda sisteme sızan zararlı yazılımın temizlenmesi ise tamamen geliştiricinin kendi şansına bırakıldı.</p>
+
+<p>Saldırganlar, resmi paket dağıtım zincirini istismar ederek doğrudan geliştirici makinelerindeki yerel yetkileri hedef aldı.  Geliştiricinin terminaline, SSH anahtarlarına, ortam değişkenlerine (<code>.env</code>) ve bulut kimlik bilgilerine doğrudan erişim sağlayan bir yapay zeka ajanı, aynı zamanda saldırganlar için en kusursuz atlama tahtasıdır.</p>
+
+<h2>"Sen Kod Yazma, Bana Güven" Masalı</h2>
+<p>Milyarlarca dolar yatırım alırken güvenlik ve yapay zekâ etiği dersi veren bir şirketin, kendi imzasını taşıyan bir aracı teslim edip sonra hiçbir şey olmamış gibi davranması sıradan bir hata değildir.  Yazılımcıya 'sen kod yazma, bana güven' diyenler, kendi kod depolarının anahtarını kime kaptırdıklarını bile açıklayamıyor.</p>
+
+<p>Güvenlik protokollerini pazarlama bültenine indirgeyen bir şirketten teknolojik devrim değil, sadece kurumsal sorumsuzluk çıkar.  Kurumsal sessizlik ve sessiz yama (silent patching) kültürü, geliştirici güvenliğini hiçe sayan en tehlikeli antitezdir.</p>
+
+<h2>Geliştiriciler İçin Hayatta Kalma Kuralları: Zero Trust</h2>
+<p>Bu olay münferit bir kaza değil; agent tabanlı geliştirme ekosisteminde yeni bir tehdit paradigmasının ilk büyük alarm zilidir.  Artık şu üç kuralı uygulamayan hiçbir yazılım mühendisi güvende değildir:</p>
+
+<p><strong>1. Asla Host Makinede Çalıştırma:</strong> Geliştirici ajanı ne kadar popüler olursa olsun, doğrudan kişisel macOS veya Linux ana makinenizde root/user yetkileriyle terminal açmasına izin vermeyin.  Her zaman izole Docker konteynerları veya Firecracker mikro-VM'leri kullanın.</p>
+
+<p><strong>2. Çevre Değişkenleri İzolasyonu:</strong> Üretim ortamı anahtarlarını, kişisel token'ları ve bulut erişim bilgilerini ajanların doğrudan okuyabileceği dizinlerde tutmayın.  Bellek taraması yapan basit bir Trojan, saniyeler içinde tüm altyapınızı dışarı aktarabilir.</p>
+
+<p><strong>3. Ağ Çıkışını Filtreleyin (Egress Filtering):</strong> Ajanın çalışacağı sandbox'tan harici IP'lere giden bilinmeyen istekleri güvenlik duvarı (WAF/Egress filter) seviyesinde bloklayın.</p>
+
+        </article>
+
+        <section class="author-box">
+            <img src="https://devkursat.github.io/avatar.jpg" alt="Kürşat Yılmaz">
+            <div class="author-details">
+                <h4>Kürşat Yılmaz</h4>
+                <p>Tech Founder & CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank">LinkedIn Takip Et (9.2k+)</a>
+                    <a href="https://x.com/DevKursat" target="_blank">X @DevKursat</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

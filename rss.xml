@@ -5,7 +5,14 @@
     <link>https://devkursat.github.io/</link>
     <description>Tech Founder &amp; CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</description>
     <language>tr</language>
-    <lastBuildDate>Sat, 31 Oct 2026 15:15:00 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 17:30:00 +0300</lastBuildDate>
     <atom:link href="https://devkursat.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust</title>
+      <link>https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html</guid>
+      <pubDate>Sat, 31 Oct 2026 08:40:00 +0300</pubDate>
+      <description>Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde saldırganlar tarafından ele geçirildi ve Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve ajan mimarileri postmortem analizi.</description>
+    </item>
   </channel>
 </rss>
