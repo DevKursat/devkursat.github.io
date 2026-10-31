@@ -607,81 +607,78 @@
       border-color: rgba(56, 189, 248, 0.25);
     }
 
-    /* QR Code Modal Backdrop & Card */
-    .qr-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(7, 8, 10, 0.84);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    /* Top Action Bar & Spacing */
+    .top-action-bar {
+      width: 100%;
+      max-width: 500px;
       display: flex;
+      justify-content: flex-end;
       align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease;
-      padding: 20px;
+      gap: 14px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 60;
     }
 
-    .qr-modal-backdrop.open {
+    .qr-popover-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .qr-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 240px;
+      background: #0d111a;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 24px rgba(56, 189, 248, 0.14);
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .qr-popover.open {
       opacity: 1;
+      transform: translateY(0) scale(1);
       pointer-events: auto;
     }
 
-    .qr-modal-card {
+    .qr-popover-header {
       width: 100%;
-      max-width: 310px;
-      background: #0d111a;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 20px;
-      padding: 22px 20px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
-      transform: scale(0.94);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .qr-modal-backdrop.open .qr-modal-card {
-      transform: scale(1);
-    }
-
-    .qr-modal-header {
-      width: 100%;
-      display: flex;
-      align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .qr-modal-title-box {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      text-align: left;
-    }
-
-    .qr-modal-title {
-      font-size: 15px;
+    .qr-popover-title {
+      font-size: 13.5px;
       font-weight: 700;
       color: #ffffff;
+      display: block;
       letter-spacing: -0.01em;
     }
 
-    .qr-modal-sub {
-      font-size: 11.5px;
+    .qr-popover-sub {
+      font-size: 11px;
       color: var(--text-muted);
     }
 
-    .btn-qr-close {
+    .btn-qr-mini-close {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--text-muted);
-      border-radius: 8px;
-      width: 28px;
-      height: 28px;
+      border-radius: 6px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -689,25 +686,44 @@
       transition: all 0.2s ease;
     }
 
-    .btn-qr-close:hover {
-      background: rgba(255, 255, 255, 0.14);
+    .btn-qr-mini-close:hover {
+      background: rgba(255, 255, 255, 0.15);
       color: #ffffff;
     }
 
-    .qr-img-wrapper {
-      padding: 10px;
-      background: #0b0f19;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 14px;
+    .qr-branded-container {
+      position: relative;
+      width: 168px;
+      height: 168px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 6px;
+      margin-bottom: 12px;
     }
 
-    .qr-img-wrapper img {
+    .qr-branded-container img.qr-base-img {
+      width: 154px;
+      height: 154px;
       border-radius: 8px;
       display: block;
+    }
+
+    .qr-center-avatar {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2.5px solid #0b0f19;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      object-fit: cover;
+      background: #1e293b;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .qr-url-pill {
@@ -715,11 +731,11 @@
       align-items: center;
       gap: 6px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       color: #94a3b8;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 100px;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -729,6 +745,112 @@
       color: #38bdf8;
       border-color: rgba(56, 189, 248, 0.3);
       background: rgba(56, 189, 248, 0.08);
+    }
+
+    /* Latest Post Spotlight Card */
+    .latest-post-card {
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      background: linear-gradient(145deg, rgba(18, 22, 34, 0.8) 0%, rgba(10, 13, 20, 0.9) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.6);
+      border-radius: var(--radius-card);
+    }
+
+    .latest-post-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .latest-post-header-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .live-pulse-cyan {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+      animation: pulseDot 1.8s infinite ease-in-out;
+    }
+
+    .latest-post-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+    }
+
+    .latest-post-tabs {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .post-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .post-tab-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #ffffff;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .latest-post-snippet {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #e2e8f0;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .latest-post-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .latest-post-meta {
+      font-size: 11.5px;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .latest-post-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-decoration: none;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .latest-post-cta:hover {
+      color: #7dd3fc;
+      transform: translateX(2px);
     }
 
     /* Handle copy button chip */
@@ -1232,10 +1354,34 @@
 
   <!-- Top Action Bar -->
   <div class="top-action-bar">
-    <button type="button" class="btn-share-profile" onclick="openQrModal()" aria-label="Telefonda Aç (QR Kod)" title="Telefonda Aç">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 17h.01"/><path d="M17 7h.01"/><path d="M7 7h.01"/></svg>
-      QR Kod
-    </button>
+    <div class="qr-popover-wrapper">
+      <button type="button" class="btn-share-profile" onclick="toggleQrPopover(event)" id="btn-qr-trigger" aria-expanded="false" aria-label="Telefonda Aç (QR Kod)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 17h.01"/><path d="M17 7h.01"/><path d="M7 7h.01"/></svg>
+        QR Kod
+      </button>
+
+      <!-- Attached Dropdown Popover Card -->
+      <div id="qr-popover" class="qr-popover" role="dialog" aria-label="QR Kod ile Bağlan" onclick="event.stopPropagation()">
+        <div class="qr-popover-header">
+          <div class="qr-popover-text">
+            <span class="qr-popover-title">Telefonda Aç</span>
+            <span class="qr-popover-sub">Kameranızı doğrultun</span>
+          </div>
+          <button type="button" class="btn-qr-mini-close" onclick="closeQrPopover()" aria-label="Kapat">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="qr-branded-container">
+          <img class="qr-base-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F&ecc=H&color=f8fafc&bgcolor=0b0f19&margin=4" alt="Kürşat Yılmaz QR" width="154" height="154" loading="lazy">
+          <img class="qr-center-avatar" src="/links/avatar_thumb.jpg" onerror="this.src='avatar_thumb.jpg'; this.onerror=function(){this.src='avatar.jpg';}" alt="Kürşat Yılmaz" width="38" height="38">
+        </div>
+        <div class="qr-url-pill" onclick="copyToClipboard('https://devkursat.github.io/links/', 'Bağlantı kopyalandı!')" title="Tıkla ve Kopyala">
+          <span>devkursat.github.io/links/</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        </div>
+      </div>
+    </div>
+
     <button type="button" class="btn-share-profile" onclick="shareProfile()" aria-label="Profili Paylaş">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       Paylaş
@@ -1536,6 +1682,30 @@
         <div class="section-line"></div>
       </div>
 
+      <!-- Son Paylaşım Vitrini (LinkedIn & Twitter Live Showcase) -->
+      <div class="card-spotlight latest-post-card" id="latest-post-card">
+        <div class="latest-post-top">
+          <div class="latest-post-header-left">
+            <span class="live-pulse-cyan"></span>
+            <span class="latest-post-label">Son Paylaşım</span>
+          </div>
+          <div class="latest-post-tabs">
+            <button type="button" class="post-tab-btn active" id="btn-post-li" onclick="switchLatestPost('linkedin')">LinkedIn</button>
+            <button type="button" class="post-tab-btn" id="btn-post-x" onclick="switchLatestPost('twitter')">X (Twitter)</button>
+          </div>
+        </div>
+        <p class="latest-post-snippet" id="latest-post-snippet">
+          Claude Code NPM ekosistemini sessizce taradı: 1.400 pakette gizlenmiş şüpheli betik ve trojan izi tespit edildi. Agent mimarilerinde "zero trust" artık lüks değil, hayatta kalma kuralıdır.
+        </p>
+        <div class="latest-post-footer">
+          <span class="latest-post-meta" id="latest-post-meta">kürşatyılmaz • Bugün</span>
+          <a href="https://www.linkedin.com/in/kürşatyılmaz/" target="_blank" rel="noopener noreferrer" class="latest-post-cta" id="latest-post-cta">
+            <span>Gönderiyi Görüntüle</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
       <div class="links-stack">
         
         <!-- 1. LinkedIn -->
@@ -1680,7 +1850,7 @@
             </div>
             <div class="live-blog-badge">
               <span class="live-pulse-amber"></span>
-              <span id="latest-blog-title">Son Analiz: Claude Code Trojan & Güvenlik</span>
+              <span>Blog & Teknik Postmortemler</span>
             </div>
           </div>
           <div class="link-arrow-box">
@@ -1691,29 +1861,7 @@
       </div>
     </section>
 
-    <!-- QR Code Modal (Desktop -> Mobile Transition) -->
-  <div id="qr-modal" class="qr-modal-backdrop" onclick="closeQrModal(event)" role="dialog" aria-modal="true" aria-label="Kürşat Yılmaz QR Kod">
-    <div class="qr-modal-card card-spotlight" onclick="event.stopPropagation()">
-      <div class="qr-modal-header">
-        <div class="qr-modal-title-box">
-          <span class="qr-modal-title">Telefonda Aç</span>
-          <span class="qr-modal-sub">Kameranızı QR koda doğrultun</span>
-        </div>
-        <button type="button" class="btn-qr-close" onclick="closeQrModal()" aria-label="Kapat">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="qr-img-wrapper">
-        <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F&color=f8fafc&bgcolor=0b0f19&margin=6" alt="Kürşat Yılmaz Bağlantı QR Kodu" width="190" height="190" loading="lazy">
-      </div>
-      <div class="qr-url-pill" onclick="copyToClipboard('https://devkursat.github.io/links/', 'Bağlantı kopyalandı!')" title="Tıkla ve Kopyala">
-        <span>devkursat.github.io/links/</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
+    <!-- Toast Notification -->
     <div id="toast" class="toast" role="status" aria-live="polite">
       <div class="toast-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1778,25 +1926,71 @@
 
     window.addEventListener('hashchange', initHashRouting);
 
-    // QR Code Modal Controls
-    function openQrModal() {
-      if (navigator.vibrate) navigator.vibrate(15);
-      const modal = document.getElementById('qr-modal');
-      modal?.classList.add('open');
+    // QR Code Attached Popover
+    function toggleQrPopover(e) {
+      if (e) e.stopPropagation();
+      if (navigator.vibrate) navigator.vibrate(12);
+      const popover = document.getElementById('qr-popover');
+      const btn = document.getElementById('btn-qr-trigger');
+      const isOpen = popover?.classList.toggle('open');
+      btn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
 
-    function closeQrModal(e) {
-      if (e && e.target !== e.currentTarget && !e.target.closest('.btn-qr-close')) return;
-      const modal = document.getElementById('qr-modal');
-      modal?.classList.remove('open');
+    function closeQrPopover() {
+      const popover = document.getElementById('qr-popover');
+      const btn = document.getElementById('btn-qr-trigger');
+      popover?.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
     }
 
-    function toggleQrModal() {
-      const modal = document.getElementById('qr-modal');
-      if (modal?.classList.contains('open')) {
-        closeQrModal();
-      } else {
-        openQrModal();
+    document.addEventListener('click', e => {
+      const popover = document.getElementById('qr-popover');
+      if (popover && popover.classList.contains('open') && !e.target.closest('.qr-popover-wrapper')) {
+        closeQrPopover();
+      }
+    });
+
+    // Latest Post Store & Switcher (LinkedIn / Twitter)
+    let latestPostData = {
+      linkedin: {
+        snippet: 'Claude Code NPM ekosistemini sessizce taradı: 1.400 pakette gizlenmiş şüpheli betik ve trojan izi tespit edildi. Agent mimarilerinde "zero trust" artık lüks değil, hayatta kalma kuralıdır.',
+        meta: 'kürşatyılmaz • Bugün',
+        url: 'https://www.linkedin.com/in/kürşatyılmaz/'
+      },
+      twitter: {
+        snippet: 'Büyük modeller zeki olabilir ama izole sandbox olmadan sisteme bağlamak saatli bomba bırakmaktır. Claude Code güvenlik anatomisi ve trojan analizi yayında:',
+        meta: '@DevKursat • Bugün',
+        url: 'https://x.com/DevKursat'
+      }
+    };
+
+    function switchLatestPost(platform) {
+      if (navigator.vibrate) navigator.vibrate(10);
+      document.getElementById('btn-post-li')?.classList.toggle('active', platform === 'linkedin');
+      document.getElementById('btn-post-x')?.classList.toggle('active', platform === 'twitter');
+
+      const data = latestPostData[platform];
+      if (!data) return;
+
+      const snippetEl = document.getElementById('latest-post-snippet');
+      const metaEl = document.getElementById('latest-post-meta');
+      const ctaEl = document.getElementById('latest-post-cta');
+
+      if (snippetEl) snippetEl.textContent = data.snippet;
+      if (metaEl) metaEl.textContent = data.meta;
+      if (ctaEl) ctaEl.href = data.url;
+    }
+
+    async function loadLatestPostFeed() {
+      try {
+        const res = await fetch('/latest-post.json?v=' + Date.now());
+        if (!res.ok) return;
+        const json = await res.json();
+        if (json.linkedin) latestPostData.linkedin = json.linkedin;
+        if (json.twitter) latestPostData.twitter = json.twitter;
+        switchLatestPost('linkedin');
+      } catch (err) {
+        // Fallback gracefully
       }
     }
 
@@ -1804,9 +1998,7 @@
     document.addEventListener('keydown', e => {
       const tag = document.activeElement ? document.activeElement.tagName : '';
       if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) {
-        if (e.key === 'Escape') {
-          document.activeElement.blur();
-        }
+        if (e.key === 'Escape') document.activeElement.blur();
         return;
       }
 
@@ -1827,89 +2019,19 @@
         copyMail();
       } else if (e.key === 'q' || e.key === 'Q') {
         e.preventDefault();
-        toggleQrModal();
+        toggleQrPopover();
       } else if (e.key === 'Escape') {
-        closeQrModal();
+        closeQrPopover();
         const panel = document.getElementById('proposal-panel');
         if (panel?.classList.contains('open')) toggleProposalPanel();
       }
     });
 
-    // Dynamic Live RSS Reader (Auto-fetches latest post from rss.xml)
-    async function loadLatestBlogPost() {
-      try {
-        const res = await fetch('/rss.xml?v=' + Date.now());
-        if (!res.ok) return;
-        const text = await res.text();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, 'text/xml');
-        const firstItem = xml.querySelector('channel > item');
-        if (!firstItem) return;
-
-        const titleEl = firstItem.querySelector('title');
-        const linkEl = firstItem.querySelector('link');
-
-        if (titleEl && titleEl.textContent) {
-          const blogTitle = titleEl.textContent.trim();
-          const titleTarget = document.getElementById('latest-blog-title');
-          if (titleTarget) {
-            titleTarget.textContent = 'Son Analiz: ' + blogTitle;
-          }
-        }
-        if (linkEl && linkEl.textContent) {
-          const postUrl = linkEl.textContent.trim();
-          const blogLink = document.getElementById('tech-blog-link');
-          if (blogLink) {
-            blogLink.href = postUrl;
-          }
-        }
-      } catch (err) {
-        // Fallback silently to static default
-      }
-    }
-
     // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
       initHashRouting();
-      loadLatestBlogPost();
+      loadLatestPostFeed();
     });
-
-    // 1-Click Handle Copy Chip
-    function copyHandle(e, text) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (navigator.vibrate) navigator.vibrate(15);
-      copyToClipboard(text, text + ' kopyalandı!');
-    }
-
-    // 1-Click vCard Contact Download
-    function downloadVCard() {
-      if (navigator.vibrate) navigator.vibrate(20);
-      const vcard = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        'FN;CHARSET=UTF-8:Kürşat Yılmaz',
-        'N;CHARSET=UTF-8:Yılmaz;Kürşat;;;',
-        'TITLE;CHARSET=UTF-8:Tech Founder & CEO',
-        'EMAIL;TYPE=INTERNET,WORK:tckursat@icloud.com',
-        'URL;TYPE=WORK:https://devkursat.github.io',
-        'URL;TYPE=LINKEDIN:https://www.linkedin.com/in/kürşatyılmaz/',
-        'URL;TYPE=TWITTER:https://x.com/DevKursat',
-        'NOTE;CHARSET=UTF-8:Tech Founder & CEO. Yazılım Mühendisliği ve Dijital İçerik Portali.',
-        'END:VCARD'
-      ].join('\r\n');
-
-      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Kursat_Yilmaz.vcf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('Kürşat Yılmaz rehber kartı (.vcf) indirildi!');
-    }
 
     // Proposal Panel & Form Engine
     let selectedDealType = 'Shorts / Reels Entegrasyonu';
