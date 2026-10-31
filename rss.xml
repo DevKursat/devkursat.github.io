@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kürşat Yılmaz | Blog</title>
+    <link>https://devkursat.github.io/</link>
+    <description>Tech Founder &amp; CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</description>
+    <language>tr</language>
+    <lastBuildDate>Sat, 31 Oct 2026 15:15:00 +0300</lastBuildDate>
+    <atom:link href="https://devkursat.github.io/rss.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
