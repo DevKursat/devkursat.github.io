@@ -5,8 +5,15 @@
     <link>https://devkursat.github.io/</link>
     <description>Tech Founder &amp; CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</description>
     <language>tr</language>
-    <lastBuildDate>Sat, 31 Oct 2026 17:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 14:15:00 +0300</lastBuildDate>
     <atom:link href="https://devkursat.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş</title>
+      <link>https://devkursat.github.io/blog/sam-altman-ram-krizi.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/sam-altman-ram-krizi.html</guid>
+      <pubDate>Mon, 02 Nov 2026 14:15:00 +0300</pubDate>
+      <description>OpenAI CEO'su Sam Altman'ın kişisel bilgisayarlarda RAM bulunmasını küresel israf ilan etmesi ve yerel yapay zeka modellerine karşı bulut tekellerinin açtığı savaşın teknik postmortemi.</description>
+    </item>
     <item>
       <title>Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust</title>
       <link>https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html</link>

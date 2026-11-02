@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş | Kürşat Yılmaz</title>
+    <meta name="description" content="OpenAI CEO'su Sam Altman'ın kişisel bilgisayarlarda RAM bulunmasını küresel israf ilan etmesi ve yerel yapay zeka modellerine karşı bulut tekellerinin açtığı savaşın teknik postmortemi.">
+    <meta name="author" content="Kürşat Yılmaz">
+    <link rel="canonical" href="https://devkursat.github.io/blog/sam-altman-ram-krizi.html">
+    
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://devkursat.github.io/blog/sam-altman-ram-krizi.html">
+    <meta property="og:title" content="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş">
+    <meta property="og:description" content="OpenAI CEO'su Sam Altman'ın kişisel bilgisayarlarda RAM bulunmasını küresel israf ilan etmesi ve yerel yapay zeka modellerine karşı bulut tekellerinin açtığı savaşın teknik postmortemi.">
+    <meta property="og:image" content="https://devkursat.github.io/blog/sam-altman-ram-krizi.png">
+    <meta property="article:published_time" content="2026-11-02T14:15:00+03:00">
+    <meta property="article:author" content="Kürşat Yılmaz">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DevKursat">
+    <meta name="twitter:creator" content="@DevKursat">
+    <meta name="twitter:title" content="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş">
+    <meta name="twitter:description" content="OpenAI CEO'su Sam Altman'ın kişisel bilgisayarlarda RAM bulunmasını küresel israf ilan etmesi ve yerel yapay zeka modellerine karşı bulut tekellerinin açtığı savaşın teknik postmortemi.">
+    <meta name="twitter:image" content="https://devkursat.github.io/blog/sam-altman-ram-krizi.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- AEO: Structured Data (Schema.org) for Generative Search & AI Crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş",
+      "description": "OpenAI CEO'su Sam Altman'ın kişisel bilgisayarlarda RAM bulunmasını küresel israf ilan etmesi ve yerel yapay zeka modellerine karşı bulut tekellerinin açtığı savaşın teknik postmortemi.",
+      "image": "https://devkursat.github.io/blog/sam-altman-ram-krizi.png",
+      "datePublished": "2026-11-02T14:15:00+03:00",
+      "dateModified": "2026-11-02T14:15:00+03:00",
+      "mainEntityOfPage": "https://devkursat.github.io/blog/sam-altman-ram-krizi.html",
+      "author": {
+        "@type": "Person",
+        "name": "Kürşat Yılmaz",
+        "jobTitle": "Tech Founder & CEO",
+        "url": "https://devkursat.github.io",
+        "sameAs": [
+          "https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/",
+          "https://x.com/DevKursat",
+          "https://github.com/DevKursat"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Kürşat Yılmaz",
+        "url": "https://devkursat.github.io"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --border: #222222;
+            --text-primary: #ededed;
+            --text-secondary: #a0a0a0;
+            --accent: #3b82f6;
+            --code-bg: #161616;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.75;
+            font-size: 17px;
+            padding: 0 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+        header {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2.5rem 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .home-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
+        .header-nav a:hover { color: var(--text-primary); }
+        main {
+            max-width: 720px;
+            margin: 2.5rem auto 5rem;
+        }
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.75rem;
+            color: #ffffff;
+        }
+        .lead-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: block;
+        }
+        /* GEO: Generative Engine Optimization Highlight */
+        .geo-summary {
+            background-color: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+        .geo-summary strong { color: #ffffff; }
+        .content p {
+            margin-bottom: 1.6rem;
+            color: #d6d6d6;
+        }
+        .content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        .content code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #93c5fd;
+        }
+        .author-box {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .author-box img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+        .author-details h4 {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+        .author-details p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .social-links {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://devkursat.github.io" class="home-link">Kürşat Yılmaz.</a>
+        <nav class="header-nav">
+            <a href="https://devkursat.github.io">Hakkımda</a>
+            <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank">LinkedIn</a>
+            <a href="https://x.com/DevKursat" target="_blank">X (@DevKursat)</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="meta-info">
+            <time datetime="2026-11-02T14:15:00+03:00">2 Kasım 2026</time>
+            <span>•</span>
+            <span>4 dk okuma</span>
+            <span>•</span>
+            <span>Teknoloji & Mühendislik</span>
+        </div>
+
+        <h1>Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş</h1>
+
+        <img src="https://devkursat.github.io/blog/sam-altman-ram-krizi.png" alt="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş" class="lead-image" loading="eager">
+
+        <!-- GEO / AI Overview Executive Snippet -->
+        <div class="geo-summary">
+            <strong>Özet & Temel Çıkarım:</strong> OpenAI CEO'su Sam Altman'ın tüketici bilgisayarlarındaki DRAM kullanımını verimsiz ilan ederek tüm belleğin bulut veri merkezlerinde toplanması gerektiği iddiası, yerel yapay zeka çıkarımına (local inference) ve açık kaynak modellere karşı geliştirilen kurumsal tekel stratejisinin açık bir yansımasıdır.
+        </div>
+
+        <article class="content">
+            
+<p>Silikon Vadisi'nin 'hiçbir şeye sahip olmayacaksınız ve mutlu olacaksınız' distopyası sonunda donanımınıza kadar uzandı.  OpenAI CEO'su Sam Altman çıktı ve pişkin pişkin şunu söyledi: 'İnsanların kişisel bilgisayarlarında kendi RAM'lerinin olması ve bunun sadece yüzde 5 kullanılması küresel bir kaynak israfıdır.  Tüm bellekler bulutta toplanmalı.'</p>
+
+<h2>Oto Galerici Mantığıyla Altyapı Yönetmek</h2>
+<p>Mantığa bakar mısınız?  Günün 23 saati otoparkta duruyor diye arabanızı galeriye hibe edip ömür boyu taksiye abone olmanızı isteyen bir tüccar kurnazlığı.  Evinizdeki buzdolabını da günde sadece üç kere açıyorsunuz; gelin buzdolabınızı da merkezi bir soğuk hava deposuna verin, her acıktığınızda mikro-ödeme yapıp peynir dilimi kiralayın.</p>
+
+<p>Mesele elbette kaynak verimliliği falan değil.  Mesele, insanların kendi donanımlarında yerel açık kaynak model (Llama, DeepSeek, Mistral) çalıştırmasından ve bulut tekellerine ayda yüzlerce dolar API haracı ödememesinden duyulan kurumsal panik.</p>
+
+<h2>Yerel Çıkarım Korkusu ve Bulut Tekelleri</h2>
+<p>Bugün bir mühendis kendi makinesinde 64 GB veya 128 GB RAM ile izole, sansürsüz ve tamamen ücretsiz modeller koşturabiliyor.  Ağ gecikmesi yok, telemetri sızıntısı yok, kredi kartı ekstresi stresi yok.  İşte Silikon Vadisi yöneticilerini asıl korkutan şey tam olarak bu bağımsızlıktır.</p>
+
+<p>Kullanıcıyı tamamen bir 'terminal ekranı'na indirgeyip bütün işlem gücünü kendi devasa veri merkezlerine hapsetmek isteyenler, ademi merkeziyetçi bilişimin en büyük antitezidir.</p>
+
+<h2>Mülkiyet Hakkınızı Teslim Etmeyin</h2>
+<p>Donanımınızın mülkiyetine göz dikenlere prim vermeyin.  Kendi masanızda, kendi anakartınızda sessizce çalışan bir gigabayt yerel RAM, Silikon Vadisi'nin sunucusundaki yüz gigabaytlık kiralık vaatten ve aylık abonelik esaretinden her zaman daha değerlidir.</p>
+
+        </article>
+
+        <section class="author-box">
+            <img src="https://devkursat.github.io/avatar.jpg" alt="Kürşat Yılmaz">
+            <div class="author-details">
+                <h4>Kürşat Yılmaz</h4>
+                <p>Tech Founder & CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank">LinkedIn Takip Et (9.2k+)</a>
+                    <a href="https://x.com/DevKursat" target="_blank">X @DevKursat</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
