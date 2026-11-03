@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-02T14:15:00+03:00",
-  "linkedin": {
-    "snippet": "Silikon Vadisi'nin 'hiçbir şeye sahip olmayacaksınız' distopyası sonunda donanımınıza kadar uzandı. Sam Altman çıktı ve 'bilgisayarınızda RAM olması israftır' dedi.",
-    "meta": "kürşatyılmaz • Bugün",
-    "url": "https://www.linkedin.com/in/kürşatyılmaz/"
-  },
-  "twitter": {
-    "snippet": "Sam Altman: 'Kişisel bilgisayarlarda RAM olması küresel israftır, hepsi bulutta toplanmalı' Arabanız otoparkta yatıyor diye galeriye hibe edin demekle aynı yüzsüzlük.",
-    "meta": "@DevKursat • Bugün",
-    "url": "https://x.com/DevKursat"
-  }
+  "title": "Ollama'nın \"Kolaylık Vergisi\": Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?",
+  "date": "2026-11-03",
+  "summary": "Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.",
+  "url": "https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html",
+  "image": "https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.png",
+  "tags": [
+    "Yerel AI",
+    "llama.cpp",
+    "vLLM",
+    "Mühendislik"
+  ]
 }
