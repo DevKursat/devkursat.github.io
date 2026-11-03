@@ -612,12 +612,47 @@
       width: 100%;
       max-width: 500px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
-      gap: 14px;
       margin-bottom: 12px;
       position: relative;
       z-index: 60;
+    }
+
+    .top-action-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-action-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-top-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 7px 13px;
+      border-radius: 100px;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s var(--smooth-easing);
+      font-family: inherit;
+    }
+
+    .btn-top-brand:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
     }
 
     .qr-popover-wrapper {
@@ -1318,6 +1353,264 @@
       color: #cbd5e1;
     }
 
+    /* Share Modal & Sheet */
+    .share-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 16px;
+    }
+
+    .share-modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .share-modal {
+      background: #0d121f;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 22px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9), 0 0 32px rgba(56, 189, 248, 0.12);
+      transform: scale(0.94) translateY(12px);
+      transition: transform 0.28s var(--smooth-easing);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .share-modal-backdrop.active .share-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .share-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .share-modal-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .btn-share-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-share-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* Live Profile Preview Card in Modal */
+    .share-preview-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+
+    .share-preview-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      flex-shrink: 0;
+    }
+
+    .share-preview-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .share-preview-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .share-preview-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .share-preview-bio {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .share-preview-url {
+      font-size: 0.72rem;
+      color: #38bdf8;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    /* Platforms Grid */
+    .share-platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .share-platform-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-size: 0.72rem;
+      font-weight: 600;
+      transition: all 0.22s var(--smooth-easing);
+    }
+
+    .share-platform-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .share-platform-btn.platform-wp:hover {
+      background: rgba(37, 211, 102, 0.12);
+      border-color: rgba(37, 211, 102, 0.4);
+      color: #25d366;
+    }
+
+    .share-platform-btn.platform-x:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+
+    .share-platform-btn.platform-tg:hover {
+      background: rgba(34, 158, 217, 0.12);
+      border-color: rgba(34, 158, 217, 0.4);
+      color: #38bdf8;
+    }
+
+    .share-platform-btn.platform-li:hover {
+      background: rgba(10, 102, 194, 0.15);
+      border-color: rgba(10, 102, 194, 0.4);
+      color: #60a5fa;
+    }
+
+    .share-platform-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Copy Box */
+    .share-copy-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 6px 6px 6px 12px;
+    }
+
+    .share-copy-input {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-family: inherit;
+      width: 100%;
+      outline: none;
+      text-overflow: ellipsis;
+    }
+
+    .btn-share-modal-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .btn-share-modal-copy:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #fff;
+    }
+
+    .btn-share-modal-copy.copied {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #4ade80;
+    }
+
+    @media (max-width: 520px) {
+      .share-modal-backdrop {
+        align-items: flex-end;
+        padding: 0;
+      }
+
+      .share-modal {
+        max-width: 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        transform: translateY(100%);
+        padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .share-modal-backdrop.active .share-modal {
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 640px) {
       body {
         padding: 24px 14px 48px;
@@ -1354,38 +1647,126 @@
 
   <!-- Top Action Bar -->
   <div class="top-action-bar">
-    <div class="qr-popover-wrapper">
-      <button type="button" class="btn-share-profile" onclick="toggleQrPopover(event)" id="btn-qr-trigger" aria-expanded="false" aria-label="Telefonda Aç (QR Kod)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 17h.01"/><path d="M17 7h.01"/><path d="M7 7h.01"/></svg>
-        QR Kod
-      </button>
-
-      <!-- Attached Dropdown Popover Card -->
-      <div id="qr-popover" class="qr-popover" role="dialog" aria-label="QR Kod ile Bağlan" onclick="event.stopPropagation()">
-        <div class="qr-popover-header">
-          <div class="qr-popover-text">
-            <span class="qr-popover-title">Telefonda Aç</span>
-            <span class="qr-popover-sub">Kameranızı doğrultun</span>
-          </div>
-          <button type="button" class="btn-qr-mini-close" onclick="closeQrPopover()" aria-label="Kapat">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <div class="qr-branded-container">
-          <img class="qr-base-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F&ecc=H&color=f8fafc&bgcolor=0b0f19&margin=4" alt="Kürşat Yılmaz QR" width="154" height="154" loading="lazy">
-          <img class="qr-center-avatar" src="/links/avatar_thumb.jpg" onerror="this.src='avatar_thumb.jpg'; this.onerror=function(){this.src='avatar.jpg';}" alt="Kürşat Yılmaz" width="38" height="38">
-        </div>
-        <div class="qr-url-pill" onclick="copyToClipboard('https://devkursat.github.io/links/', 'Bağlantı kopyalandı!')" title="Tıkla ve Kopyala">
-          <span>devkursat.github.io/links/</span>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-        </div>
-      </div>
+    <div class="top-action-left">
+      <a href="https://devkursat.github.io/" class="btn-top-brand" aria-label="Kişisel Web Sitesine Dön" title="devkursat.github.io Ana Sitesine Git">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <span>devkursat.github.io</span>
+      </a>
     </div>
 
-    <button type="button" class="btn-share-profile" onclick="shareProfile()" aria-label="Profili Paylaş">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      Paylaş
-    </button>
+    <div class="top-action-right">
+      <div class="qr-popover-wrapper">
+        <button type="button" class="btn-share-profile" onclick="toggleQrPopover(event)" id="btn-qr-trigger" aria-expanded="false" aria-label="Telefonda Aç (QR Kod)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 17h.01"/><path d="M17 7h.01"/><path d="M7 7h.01"/></svg>
+          QR Kod
+        </button>
+
+        <!-- Attached Dropdown Popover Card -->
+        <div id="qr-popover" class="qr-popover" role="dialog" aria-label="QR Kod ile Bağlan" onclick="event.stopPropagation()">
+          <div class="qr-popover-header">
+            <div class="qr-popover-text">
+              <span class="qr-popover-title">Telefonda Aç</span>
+              <span class="qr-popover-sub">Kameranızı doğrultun</span>
+            </div>
+            <button type="button" class="btn-qr-mini-close" onclick="closeQrPopover()" aria-label="Kapat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="qr-branded-container">
+            <img class="qr-base-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F&ecc=H&color=f8fafc&bgcolor=0b0f19&margin=4" alt="Kürşat Yılmaz QR" width="154" height="154" loading="lazy">
+            <img class="qr-center-avatar" src="/links/avatar_thumb.jpg" onerror="this.src='avatar_thumb.jpg'; this.onerror=function(){this.src='avatar.jpg';}" alt="Kürşat Yılmaz" width="38" height="38">
+          </div>
+          <div class="qr-url-pill" onclick="copyToClipboard('https://devkursat.github.io/links/', 'Bağlantı kopyalandı!')" title="Tıkla ve Kopyala">
+            <span>devkursat.github.io/links/</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-share-profile" onclick="openShareModal()" aria-label="Profili Paylaş">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Paylaş
+      </button>
+    </div>
+  </div>
+
+  <!-- Share Profile Modal Backdrop & Card -->
+  <div id="share-modal-backdrop" class="share-modal-backdrop" onclick="closeShareModal(event)">
+    <div class="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-modal-title" onclick="event.stopPropagation()">
+      <div class="share-modal-header">
+        <h3 id="share-modal-title" class="share-modal-title">Profili Paylaş</h3>
+        <button type="button" class="btn-share-modal-close" onclick="closeShareModal()" aria-label="Kapat">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Live Profile Rich Preview -->
+      <div class="share-preview-card">
+        <img class="share-preview-avatar" src="/links/avatar_thumb.jpg" onerror="this.src='avatar_thumb.jpg'; this.onerror=function(){this.src='avatar.jpg';}" alt="Kürşat Yılmaz" width="48" height="48">
+        <div class="share-preview-info">
+          <div class="share-preview-name-row">
+            <span class="share-preview-name">KÜRŞAT Yılmaz</span>
+            <svg class="verified-icon" viewBox="0 0 24 24" fill="#38bdf8" width="13" height="13">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <span class="share-preview-bio">@kursat.yz • Dijital İçerik Üreticisi & Geliştirici</span>
+          <span class="share-preview-url">devkursat.github.io/links</span>
+        </div>
+      </div>
+
+      <!-- Share Platform Action Grid -->
+      <div class="share-platforms-grid">
+        <!-- WhatsApp -->
+        <a href="https://api.whatsapp.com/send?text=K%C3%9CR%C5%9EAT%20Y%C4%B1lmaz%20resmi%20ba%C4%9Flant%C4%B1lar%C4%B1%2C%20projeleri%20ve%20medya%20kiti%3A%20https%3A%2F%2Fdevkursat.github.io%2Flinks%2F" target="_blank" rel="noopener noreferrer" class="share-platform-btn platform-wp" aria-label="WhatsApp ile Paylaş">
+          <div class="share-platform-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+          </div>
+          <span>WhatsApp</span>
+        </a>
+
+        <!-- X (Twitter) -->
+        <a href="https://twitter.com/intent/tweet?text=K%C3%9CR%C5%9EAT%20Y%C4%B1lmaz%20resmi%20ba%C4%9Flant%C4%B1lar%C4%B1%2C%20projeleri%20ve%20medya%20kiti%3A&url=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F" target="_blank" rel="noopener noreferrer" class="share-platform-btn platform-x" aria-label="X ile Paylaş">
+          <div class="share-platform-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <span>X (Twitter)</span>
+        </a>
+
+        <!-- Telegram -->
+        <a href="https://t.me/share/url?url=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F&text=K%C3%9CR%C5%9EAT%20Y%C4%B1lmaz%20resmi%20ba%C4%9Flant%C4%B1lar%C4%B1%2C%20projeleri%20ve%20medya%20kiti" target="_blank" rel="noopener noreferrer" class="share-platform-btn platform-tg" aria-label="Telegram ile Paylaş">
+          <div class="share-platform-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.941z"/>
+            </svg>
+          </div>
+          <span>Telegram</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdevkursat.github.io%2Flinks%2F" target="_blank" rel="noopener noreferrer" class="share-platform-btn platform-li" aria-label="LinkedIn ile Paylaş">
+          <div class="share-platform-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </div>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+      <!-- Quick Copy Link Bar -->
+      <div class="share-copy-box">
+        <input type="text" id="share-modal-url" class="share-copy-input" value="https://devkursat.github.io/links/" readonly>
+        <button type="button" id="btn-share-modal-copy" class="btn-share-modal-copy" onclick="copyShareModalUrl()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span id="share-modal-copy-label">Kopyala</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <main class="container">
@@ -1987,6 +2368,7 @@
         toggleQrPopover();
       } else if (e.key === 'Escape') {
         closeQrPopover();
+        closeShareModal();
         const panel = document.getElementById('proposal-panel');
         if (panel?.classList.contains('open')) toggleProposalPanel();
       }
@@ -2103,20 +2485,43 @@
       }
     }
 
-    // Native Profile Sharing & Haptic Feedback
-    function shareProfile() {
-      if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
-      const shareData = {
-        title: 'KÜRŞAT Yılmaz | Tüm Bağlantılar',
-        text: 'KÜRŞAT Yılmaz resmi bağlantı, proje ve sponsorluk iletişim portali:',
-        url: window.location.href.split('#')[0]
-      };
-
-      if (navigator.share) {
-        navigator.share(shareData).catch(() => {});
-      } else {
-        copyToClipboard(shareData.url, 'Profil bağlantısı kopyalandı!');
+    // Share Modal & Platform Engine
+    function openShareModal() {
+      if (navigator.vibrate) navigator.vibrate(20);
+      const backdrop = document.getElementById('share-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
+    }
+
+    function closeShareModal(e) {
+      if (e && e.target && e.target !== e.currentTarget && !e.target.closest('.btn-share-modal-close')) return;
+      const backdrop = document.getElementById('share-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function shareProfile() {
+      openShareModal();
+    }
+
+    function copyShareModalUrl() {
+      if (navigator.vibrate) navigator.vibrate(25);
+      const input = document.getElementById('share-modal-url');
+      const label = document.getElementById('share-modal-copy-label');
+      const btn = document.getElementById('btn-share-modal-copy');
+      const url = input ? input.value : 'https://devkursat.github.io/links/';
+
+      copyToClipboard(url, 'Bağlantı panoya kopyalandı!');
+      if (label) label.textContent = 'Kopyalandı! ✓';
+      if (btn) btn.classList.add('copied');
+      setTimeout(() => {
+        if (label) label.textContent = 'Kopyala';
+        if (btn) btn.classList.remove('copied');
+      }, 2500);
     }
 
     // Copy Email to Clipboard
