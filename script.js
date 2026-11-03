@@ -14,16 +14,30 @@ const projectsData = {
         statusType: "active",
         badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
         liveUrl: "https://www.itibar.app/",
-        icon: "assets/projects/itibar/logo-mark.svg",
-        logo: "assets/projects/itibar/logo-mark.svg",
-        image: "assets/projects/itibar/itibar-hero.png",
-        previewImage: "assets/projects/itibar/itibar-preview.jpg",
+        icon: "assets/projects/itibar/itibar-logo.jpg",
+        logo: "assets/projects/itibar/itibar-logo.jpg",
+        image: "assets/projects/itibar/itibar-bg.jpg",
+        previewImage: "assets/projects/itibar/itibar-bg.jpg",
         gradient: "linear-gradient(135deg, #10b981, #059669)",
         spotlightColor: "16, 185, 129",
         filter: "web",
         description: {
             tr: "Haksız ve organize 1-yıldızlı yorum saldırılarına karşı deterministik politika analiz motoru ve yasal mevzuat zemininde çalışan otonom B2B itibar savunma platformu.",
             en: "Autonomous B2B reputation defense platform operating on deterministic policy classification and statutory legal grounds against unfair and fake 1-star reviews."
+        },
+        metrics: {
+            tr: [
+                { value: "%100", label: "Deterministik NLP", desc: "Sıfır LLM maliyeti, anlık kural motoru" },
+                { value: "24+", label: "İhlal Türü Tespiti", desc: "TCK, TTK ve Google politikaları" },
+                { value: "4 Döviz", label: "Dinamik ROI Motoru", desc: "GBP, USD, EUR & TRY ciro kurtarımı" },
+                { value: "Headless", label: "macOS Chrome PDF", desc: "Karar verici hekime WhatsApp teslimi" }
+            ],
+            en: [
+                { value: "100%", label: "Deterministic NLP", desc: "Zero LLM cost, instant rule execution" },
+                { value: "24+", label: "Violation Classes", desc: "Statutory law & platform policy checks" },
+                { value: "4 Currencies", label: "Dynamic ROI Engine", desc: "GBP, USD, EUR & TRY revenue recovery" },
+                { value: "Headless", label: "macOS Chrome PDF", desc: "Automated WhatsApp delivery to leads" }
+            ]
         },
         features: {
             tr: [
@@ -52,12 +66,29 @@ const projectsData = {
         category: { tr: "Sivil Teknoloji & İletişim", en: "Civic Tech & Platform" },
         status: { tr: "Canlıda", en: "Live" },
         statusType: "active",
+        badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
+        liveUrl: "https://unutma.itibar.app",
         icon: "assets/projects/unutma-mark.png",
         logo: "assets/projects/unutma-logo.png",
         image: "assets/projects/unutma-preview.jpg",
+        previewImage: "assets/projects/unutma-preview.jpg",
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
         spotlightColor: "185, 56, 38",
         filter: "web",
+        metrics: {
+            tr: [
+                { value: "%100", label: "Fiziksel Teslimat", desc: "Fildişi kâğıt ve gerçek mum mühür" },
+                { value: "AI Uyum", label: "Cezaevi Mevzuatı", desc: "Mevzuata uygun mektup asistanı" },
+                { value: "81 İl", label: "Akıllı Adresleme", desc: "Tüm T-Tipi, F-Tipi ve Kapalı Cezaevleri" },
+                { value: "PTT", label: "Barkodlu Takip", desc: "Anlık SMS ve e-posta bilgilendirmesi" }
+            ],
+            en: [
+                { value: "100%", label: "Physical Delivery", desc: "Ivory paper with genuine wax seal" },
+                { value: "AI Compliant", label: "Correctional Rules", desc: "Regulated letter generation assistant" },
+                { value: "81 Cities", label: "Facility Directory", desc: "All state correctional facilities" },
+                { value: "PTT Track", label: "Certified Barcode", desc: "Real-time SMS and mail dispatch" }
+            ]
+        },
         liveUrl: "https://unutma.itibar.app",
         description: {
             tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan, yapay zekâ asistanlı sivil teknoloji platformu.",
@@ -635,7 +666,7 @@ function updateModalContent(project) {
     if (!modal) return;
     const lang = currentLang;
     
-    // Update visual
+    // Update visual header
     const modalVisual = modal.querySelector('.modal-visual');
     let modalBg = modalVisual.querySelector('.modal-bg-image');
     if (project.image) {
@@ -651,33 +682,83 @@ function updateModalContent(project) {
         modalBg.style.display = 'none';
     }
 
-    modal.querySelector('.modal-gradient').style.background = project.gradient;
+    const visualGrad = modal.querySelector('.modal-visual-gradient') || modal.querySelector('.modal-gradient');
+    if (visualGrad) {
+        visualGrad.style.background = `linear-gradient(180deg, rgba(14, 14, 18, 0.2) 0%, rgba(14, 14, 18, 0.75) 55%, #0e0e12 100%), ${project.gradient}`;
+    }
+
+    // Status Pill in header
+    const statusPill = modal.querySelector('.modal-status-pill');
+    if (statusPill && project.status) {
+        statusPill.innerHTML = `
+            <span class="live-pulse-dot"></span>
+            <span>${project.status[lang]}</span>
+        `;
+        statusPill.className = `modal-status-pill ${project.statusType || 'active'}`;
+    }
+
+    // Logo island
     const iconContainer = modal.querySelector('.modal-icon');
-    if (project.logo) {
-        iconContainer.innerHTML = `<img src="${project.logo}" alt="${project.title}" class="modal-custom-logo">`;
-    } else if (project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'))) {
-        iconContainer.innerHTML = `<img src="${project.icon}" alt="${project.title}" class="modal-custom-logo-square">`;
-    } else {
-        iconContainer.textContent = project.icon;
+    if (iconContainer) {
+        if (project.logo) {
+            iconContainer.innerHTML = `<img src="${project.logo}" alt="${project.title}" class="modal-custom-logo">`;
+        } else if (project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'))) {
+            iconContainer.innerHTML = `<img src="${project.icon}" alt="${project.title}" class="modal-custom-logo-square">`;
+        } else {
+            iconContainer.textContent = project.icon;
+        }
     }
     
-    // Update meta
-    modal.querySelector('.modal-category').textContent = project.category[lang];
-    const statusEl = modal.querySelector('.modal-status');
-    statusEl.textContent = project.status[lang];
-    statusEl.className = `modal-status ${project.statusType}`;
+    // Update category & title
+    const categoryEl = modal.querySelector('.modal-category');
+    if (categoryEl) categoryEl.textContent = project.category[lang];
     
-    // Update content
-    modal.querySelector('.modal-title').textContent = project.title;
-    modal.querySelector('.modal-description').textContent = project.description[lang];
+    const titleEl = modal.querySelector('.modal-title');
+    if (titleEl) titleEl.textContent = project.title;
     
-    // Update features
+    const descEl = modal.querySelector('.modal-description');
+    if (descEl) descEl.textContent = project.description[lang];
+    
+    // Metrics (Awwwards Impact Cards)
+    const metricsWrap = modal.querySelector('#modalMetrics');
+    if (metricsWrap) {
+        if (project.metrics && project.metrics[lang] && project.metrics[lang].length > 0) {
+            metricsWrap.style.display = 'block';
+            const metricsGrid = metricsWrap.querySelector('.modal-metrics-grid');
+            if (metricsGrid) {
+                metricsGrid.innerHTML = project.metrics[lang].map(m => `
+                    <div class="modal-metric-card" style="--spotlight-color: ${project.spotlightColor || '16, 185, 129'}">
+                        <span class="modal-metric-val">${m.value}</span>
+                        <span class="modal-metric-label">${m.label}</span>
+                        ${m.desc ? `<span class="modal-metric-desc">${m.desc}</span>` : ''}
+                    </div>
+                `).join('');
+            }
+        } else {
+            metricsWrap.style.display = 'none';
+        }
+    }
+
+    // Update features (2-Column Glass Cards)
     const featureList = modal.querySelector('.modal-feature-list');
-    featureList.innerHTML = project.features[lang].map(f => `<li>${f}</li>`).join('');
+    if (featureList && project.features && project.features[lang]) {
+        featureList.innerHTML = project.features[lang].map(f => `
+            <li class="modal-feature-item">
+                <span class="modal-feature-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </span>
+                <span class="modal-feature-text">${f}</span>
+            </li>
+        `).join('');
+    }
     
-    // Update tech
+    // Update tech stack
     const techList = modal.querySelector('.modal-tech-list');
-    techList.innerHTML = project.tech.map(t => `<span>${t}</span>`).join('');
+    if (techList && project.tech) {
+        techList.innerHTML = project.tech.map(t => `<span class="modal-tech-pill">${t}</span>`).join('');
+    }
     
     // Actions - Canlı Web Sitesi & GitHub Butonları
     const modalLiveBtn = modal.querySelector('.modal-live-btn');
@@ -688,13 +769,16 @@ function updateModalContent(project) {
     if (project.liveUrl && modalLiveBtn) {
         modalLiveBtn.href = project.liveUrl;
         modalLiveBtn.style.display = 'inline-flex';
-        const liveLabel = project.title === 'Unutma.'
-            ? (lang === 'tr' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Visit Live Website (unutma.itibar.app)')
-            : (lang === 'tr' ? 'Canlı Platformu Keşfet' : 'Explore Live Platform');
+        let liveLabel = lang === 'tr' ? 'Canlı Platformu Keşfet' : 'Explore Live Platform';
+        if (project.title === 'İtibar') {
+            liveLabel = lang === 'tr' ? 'itibar.app Platformunu Keşfet' : 'Explore itibar.app Live';
+        } else if (project.title === 'Unutma.') {
+            liveLabel = lang === 'tr' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Visit Live Website (unutma.itibar.app)';
+        }
         if (modalLiveText) {
             modalLiveText.textContent = liveLabel;
-            modalLiveText.dataset.tr = project.title === 'Unutma.' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Canlı Platformu Keşfet';
-            modalLiveText.dataset.en = project.title === 'Unutma.' ? 'Visit Live Website (unutma.itibar.app)' : 'Explore Live Platform';
+            modalLiveText.dataset.tr = liveLabel;
+            modalLiveText.dataset.en = liveLabel;
         }
     } else if (modalLiveBtn) {
         modalLiveBtn.style.display = 'none';
@@ -702,15 +786,14 @@ function updateModalContent(project) {
     
     if (modalGithubBtn) {
         if (project.title === 'Unutma.') {
-            // Unutma için GitHub butonunu gizle, sadece web sitesine yönlendir
             modalGithubBtn.style.display = 'none';
         } else {
             modalGithubBtn.style.display = 'inline-flex';
             modalGithubBtn.href = project.github || '#';
             if (modalGithubSpan) {
-                modalGithubSpan.textContent = lang === 'tr' ? "GitHub'da İncele" : 'View on GitHub';
-                modalGithubSpan.dataset.tr = "GitHub'da İncele";
-                modalGithubSpan.dataset.en = 'View on GitHub';
+                modalGithubSpan.textContent = lang === 'tr' ? "GitHub Kaynak Kodu" : 'View Source on GitHub';
+                modalGithubSpan.dataset.tr = "GitHub Kaynak Kodu";
+                modalGithubSpan.dataset.en = 'View Source on GitHub';
             }
         }
     }

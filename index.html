@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261103-media">
+    <link rel="stylesheet" href="styles.css?v=20261103-modal-v2">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 <body>
@@ -467,55 +467,84 @@
     </footer>
 
     <!-- Project Modal -->
-    <div class="project-modal" id="projectModal">
+    <!-- Project Modal (Awwwards Grade) -->
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-backdrop"></div>
         <div class="modal-container">
             <button class="modal-close" aria-label="Kapat">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 6L6 18M6 6l12 12"/>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
             <div class="modal-content">
+                <!-- Cinematic Visual Header -->
                 <div class="modal-visual">
-                    <img class="modal-image" src="" alt="Project Visual Preview" style="display: none;" />
-                    <div class="modal-gradient"></div>
-                    <div class="modal-icon"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-meta">
-                        <span class="modal-category"></span>
-                        <span class="modal-status"></span>
+                    <img class="modal-image modal-bg-image" src="" alt="Project Visual Preview" style="display: none;" />
+                    <div class="modal-visual-gradient"></div>
+                    <div class="modal-header-badge-wrap">
+                        <span class="modal-status-pill"></span>
                     </div>
-                    <h2 class="modal-title"></h2>
+                    <div class="modal-logo-island">
+                        <div class="modal-icon"></div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Title & Category Info -->
+                    <div class="modal-header-info">
+                        <span class="modal-category"></span>
+                        <h2 class="modal-title" id="modalTitle"></h2>
+                    </div>
+
                     <p class="modal-description"></p>
+
+                    <!-- Key Impact Metrics (Awwwards Highlight Grid) -->
+                    <div class="modal-metrics" id="modalMetrics" style="display: none;">
+                        <h4 class="modal-section-title">
+                            <span data-tr="Öne Çıkan Başarı & Metrikler" data-en="Key Metrics & Impact">Öne Çıkan Başarı & Metrikler</span>
+                        </h4>
+                        <div class="modal-metrics-grid"></div>
+                    </div>
+
+                    <!-- Core Capabilities / Features (2-Column Glass Cards) -->
                     <div class="modal-features">
-                        <h4 data-tr="Özellikler" data-en="Features">Özellikler</h4>
+                        <h4 class="modal-section-title">
+                            <span data-tr="Temel Kabiliyetler & Altyapı" data-en="Core Capabilities & Architecture">Temel Kabiliyetler & Altyapı</span>
+                        </h4>
                         <ul class="modal-feature-list"></ul>
                     </div>
+
+                    <!-- Tech Stack -->
                     <div class="modal-tech">
-                        <h4 data-tr="Teknolojiler" data-en="Technologies">Teknolojiler</h4>
+                        <h4 class="modal-section-title">
+                            <span data-tr="Teknoloji Mimarisi" data-en="Technology Architecture">Teknoloji Mimarisi</span>
+                        </h4>
                         <div class="modal-tech-list"></div>
                     </div>
+
+                    <!-- Action Bar (High-Conversion Traffic Magnet) -->
                     <div class="modal-actions">
                         <a href="#" class="btn btn-primary modal-live-btn" target="_blank" rel="noopener noreferrer" style="display: none;">
                             <span class="live-pulse-dot"></span>
-                            <span class="modal-live-text" data-tr="Canlı Platformu Keşfet (itibar.app)" data-en="Explore Live Platform (itibar.app)">Canlı Platformu Keşfet (itibar.app)</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <span class="modal-live-text" data-tr="itibar.app Platformunu Keşfet" data-en="Explore itibar.app Live">itibar.app Platformunu Keşfet</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M7 17L17 7M17 7H7M17 7V17"/>
                             </svg>
                         </a>
                         <a href="#" class="btn btn-secondary modal-link" target="_blank" rel="noopener noreferrer">
-                            <span data-tr="GitHub'da İncele" data-en="View on GitHub">GitHub'da İncele</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                             </svg>
+                            <span data-tr="GitHub Kaynak Kodu" data-en="View Source on GitHub">GitHub Kaynak Kodu</span>
                         </a>
+                        <span class="modal-esc-hint" data-tr="ESC ile kapat" data-en="ESC to close">ESC ile kapat</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=20261103-itibar"></script>
+    <script src="script.js?v=20261103-modal-v2"></script>
 </body>
 </html>
