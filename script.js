@@ -40,38 +40,38 @@ const projectsData = {
         stars: 24,
         forks: 3
     },
-    lusid: {
-        title: "Lusid",
-        category: { tr: "Yaşam & Yaratıcı Yazarlık", en: "Lifestyle & Writing" },
+    unutma: {
+        title: "Unutma.",
+        category: { tr: "Sivil Teknoloji & İletişim", en: "Civic Tech & Platform" },
         status: { tr: "Aktif", en: "Active" },
         statusType: "active",
-        icon: "📚",
-        gradient: "linear-gradient(135deg, #a18cd1, #fbc2eb)",
-        spotlightColor: "161, 140, 209",
+        icon: "✉️",
+        gradient: "linear-gradient(135deg, #b93826, #e06d53)",
+        spotlightColor: "185, 56, 38",
         filter: "web",
         description: {
-            tr: "Kitap okuma takibi, rüya yorumlama, meditasyon seansları ve günlük yazma özelliklerini tek çatı altında toplayan kişisel gelişim platformu.",
-            en: "Personal development platform combining book reading tracking, AI-powered dream interpretation, meditation sessions, and journaling features."
+            tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan, yapay zekâ asistanlı sivil teknoloji platformu.",
+            en: "Civic tech and communication platform enabling users to send wax-sealed, certified letters on ivory paper to inmates, powered by an AI assistant."
         },
         features: {
             tr: [
-                "Dijital kitaplık ve okuma takibi",
-                "AI destekli rüya yorumlama",
-                "Minimalist günlük editörü",
-                "Zihinsel sağlık ve meditasyon seansları"
+                "Fildişi kâğıt ve gerçek mum mühürlü fiziksel teslimat",
+                "Cezaevi mevzuatına uyumlu yapay zekâ mektup asistanı",
+                "İl / ilçe bazlı otomatik cezaevi ve koğuş adresleme sistemi",
+                "PTT barkodlu takip, anlık SMS ve e-posta bilgilendirmesi"
             ],
             en: [
-                "Digital library and reading tracking",
-                "AI-powered dream interpretation",
-                "Minimalist journal editor",
-                "Mental health and meditation sessions"
+                "Physical delivery on ivory paper with genuine wax seal",
+                "AI letter writing assistant compliant with prison regulations",
+                "Automated facility and ward address resolution by district",
+                "PTT barcode tracking with real-time SMS and email updates"
             ]
         },
-        tech: ["Flutter", "Firebase", "OpenAI API", "Dart"],
-        github: "https://github.com/DevKursat/lusid",
-        githubRepo: "lusid",
-        stars: 15,
-        forks: 1
+        tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Gemini AI"],
+        github: "https://github.com/DevKursat/unutma",
+        githubRepo: "unutma",
+        stars: 18,
+        forks: 3
     },
     firdews: {
         title: "Firdews",

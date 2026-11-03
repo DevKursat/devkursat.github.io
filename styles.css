@@ -971,13 +971,13 @@ button {
     animation: projectsOrbFloat1 22s infinite alternate ease-in-out;
 }
 
-/* Lusid - Purple/Pink */
+/* Unutma. - Crimson/Amber */
 .projects-orb-2 {
     bottom: -150px;
     right: -150px;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(161, 140, 209, 0.08) 0%, rgba(251, 194, 235, 0.01) 80%);
+    background: radial-gradient(circle, rgba(185, 56, 38, 0.09) 0%, rgba(224, 109, 83, 0.01) 80%);
     animation: projectsOrbFloat2 28s infinite alternate ease-in-out;
 }
 
