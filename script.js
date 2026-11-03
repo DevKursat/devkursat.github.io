@@ -7,48 +7,58 @@
 // PROJECT DATA (Bilingual)
 // ============================================
 const projectsData = {
-    otag: {
-        title: "Otağ",
-        category: { tr: "Topluluk & İletişim", en: "Community & Chat" },
-        status: { tr: "Aktif", en: "Active" },
+    itibar: {
+        title: "İtibar",
+        category: { tr: "B2B İtibar Savunma & Hukuk", en: "B2B Reputation Defense & Law" },
+        status: { tr: "Canlı Servis", en: "Live in Production" },
         statusType: "active",
-        icon: "🛖",
-        gradient: "linear-gradient(135deg, #00D9FF, #0066FF)",
-        spotlightColor: "0, 102, 255",
+        badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
+        liveUrl: "https://www.itibar.app/",
+        icon: "assets/projects/itibar/logo-mark.svg",
+        logo: "assets/projects/itibar/logo-mark.svg",
+        image: "assets/projects/itibar/itibar-hero.png",
+        previewImage: "assets/projects/itibar/itibar-preview.jpg",
+        gradient: "linear-gradient(135deg, #10b981, #059669)",
+        spotlightColor: "16, 185, 129",
         filter: "web",
         description: {
-            tr: "Yerel ve anlık topluluk iletişimi için geliştirilmiş, etkileşimli haber panosu ve gerçek zamanlı sohbet odaları sunan modern bir sosyal ağ platformu.",
-            en: "A modern social network platform developed for local and instant community communication, offering interactive boards and real-time chat rooms."
+            tr: "Haksız ve organize 1-yıldızlı yorum saldırılarına karşı deterministik politika analiz motoru ve yasal mevzuat zemininde çalışan otonom B2B itibar savunma platformu.",
+            en: "Autonomous B2B reputation defense platform operating on deterministic policy classification and statutory legal grounds against unfair and fake 1-star reviews."
         },
         features: {
             tr: [
-                "Gerçek zamanlı oda tabanlı sohbetler",
-                "Anlık duyuru ve pano sistemi",
-                "Gelişmiş kullanıcı etkileşimleri",
-                "Modern ve minimalist arayüz"
+                "24+ ihlal türünü saptayan sıfır bağımlılıklı deterministik kural motoru",
+                "TCK, TTK ve platform politikalarına dayalı resmi itiraz dilekçesi derleyicisi",
+                "Gerçek zamanlı ciro kaybı & dinamik ROI hesaplama motoru (GBP/USD/EUR/TRY)",
+                "macOS Headless Chrome ile karar vericilere özel lüks karanlık mod PDF raporlama",
+                "Karar verici hekim ve yöneticilere doğrudan otonom WhatsApp teslimat altyapısı"
             ],
             en: [
-                "Real-time room-based chats",
-                "Instant announcement and board system",
-                "Advanced user interactions",
-                "Modern and minimalist interface"
+                "Zero-dependency deterministic rule engine detecting 24+ policy violations",
+                "Official legal appeal generator referencing statutory law and platform policies",
+                "Real-time revenue hemorrhage & dynamic ROI calculator (GBP/USD/EUR/TRY)",
+                "macOS Headless Chrome compiled executive dark-mode PDF reputation audit report",
+                "Autonomous direct WhatsApp delivery pipeline for healthcare and enterprise executives"
             ]
         },
-        tech: ["React", "CSS Grid", "Socket.io", "Express"],
-        github: "https://github.com/DevKursat/Otag",
-        githubRepo: "Otag",
-        stars: 24,
-        forks: 3
+        tech: ["Vanilla JS", "Node.js", "Chrome Headless", "Jamstack", "REST API"],
+        github: "https://github.com/DevKursat/itibar",
+        githubRepo: "itibar",
+        stars: 34,
+        forks: 5
     },
     unutma: {
         title: "Unutma.",
         category: { tr: "Sivil Teknoloji & İletişim", en: "Civic Tech & Platform" },
-        status: { tr: "Aktif", en: "Active" },
+        status: { tr: "Canlıda", en: "Live" },
         statusType: "active",
-        icon: "✉️",
+        icon: "assets/projects/unutma-mark.png",
+        logo: "assets/projects/unutma-logo.png",
+        image: "assets/projects/unutma-preview.jpg",
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
         spotlightColor: "185, 56, 38",
         filter: "web",
+        liveUrl: "https://unutma.itibar.app",
         description: {
             tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan, yapay zekâ asistanlı sivil teknoloji platformu.",
             en: "Civic tech and communication platform enabling users to send wax-sealed, certified letters on ivory paper to inmates, powered by an AI assistant."
@@ -435,14 +445,25 @@ function renderProjects(filter = 'all') {
         if (filter !== 'all' && project.filter !== filter) continue;
         
         const techHTML = project.tech.slice(0, 3).map(t => `<span>${t}</span>`).join('');
+        const isIconImage = project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'));
+        const iconHTML = isIconImage 
+            ? `<img src="${project.icon}" alt="${project.title}" class="project-card-custom-logo">` 
+            : project.icon;
         
         html += `
-            <article class="project-card" data-project="${key}" style="--spotlight-color: ${project.spotlightColor}" data-scroll="scale-up">
+            <article class="project-card ${project.image ? 'has-card-image' : ''}" data-project="${key}" style="--spotlight-color: ${project.spotlightColor}" data-scroll="scale-up">
                 <div class="project-card-visual">
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}" class="project-card-bg-image" loading="lazy">` : ''}
                     <div class="project-card-glow" style="--gradient: ${project.gradient}"></div>
                     <div class="project-card-pattern"></div>
+                    ${project.liveUrl ? `
+                        <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-live-pill" onclick="event.stopPropagation();" aria-label="${lang === 'tr' ? 'Canlı Servisi Ziyaret Et' : 'Visit Live Platform'}">
+                            <span class="live-pulse-dot"></span>
+                            <span>${project.badge ? project.badge[lang] : (lang === 'tr' ? 'Canlı Servis ↗' : 'Live Platform ↗')}</span>
+                        </a>
+                    ` : ''}
                     <div class="project-card-icon-wrapper">
-                        ${project.icon}
+                        ${iconHTML}
                     </div>
                 </div>
                 <div class="project-card-body">
@@ -457,13 +478,22 @@ function renderProjects(filter = 'all') {
                             ${techHTML}
                         </div>
                         <div class="project-card-stats">
-                            <span class="project-stat-item" title="Stars">
-                                🌟 <span class="project-stars-count">${project.stars}</span>
-                            </span>
-                            <span class="project-stat-item" title="Forks">
-                                🍴 <span class="project-forks-count">${project.forks}</span>
-                            </span>
-                            <button class="project-card-expand" aria-label="Detayları gör">
+                            ${project.liveUrl ? `
+                                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-visit-btn" onclick="event.stopPropagation();" title="${lang === 'tr' ? 'Web Sitesini Aç' : 'Visit Website'}">
+                                    <span>${lang === 'tr' ? 'Sitemizi Aç' : 'Visit Site'}</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                    </svg>
+                                </a>
+                            ` : `
+                                <span class="project-stat-item" title="Stars">
+                                    🌟 <span class="project-stars-count">${project.stars}</span>
+                                </span>
+                                <span class="project-stat-item" title="Forks">
+                                    🍴 <span class="project-forks-count">${project.forks}</span>
+                                </span>
+                            `}
+                            <button class="project-card-expand" aria-label="${lang === 'tr' ? 'Detayları gör' : 'View details'}">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17"/>
                                 </svg>
@@ -606,8 +636,30 @@ function updateModalContent(project) {
     const lang = currentLang;
     
     // Update visual
+    const modalVisual = modal.querySelector('.modal-visual');
+    let modalBg = modalVisual.querySelector('.modal-bg-image');
+    if (project.image) {
+        if (!modalBg) {
+            modalBg = document.createElement('img');
+            modalBg.className = 'modal-bg-image';
+            modalVisual.prepend(modalBg);
+        }
+        modalBg.src = project.image;
+        modalBg.alt = project.title;
+        modalBg.style.display = 'block';
+    } else if (modalBg) {
+        modalBg.style.display = 'none';
+    }
+
     modal.querySelector('.modal-gradient').style.background = project.gradient;
-    modal.querySelector('.modal-icon').textContent = project.icon;
+    const iconContainer = modal.querySelector('.modal-icon');
+    if (project.logo) {
+        iconContainer.innerHTML = `<img src="${project.logo}" alt="${project.title}" class="modal-custom-logo">`;
+    } else if (project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'))) {
+        iconContainer.innerHTML = `<img src="${project.icon}" alt="${project.title}" class="modal-custom-logo-square">`;
+    } else {
+        iconContainer.textContent = project.icon;
+    }
     
     // Update meta
     modal.querySelector('.modal-category').textContent = project.category[lang];
@@ -627,8 +679,41 @@ function updateModalContent(project) {
     const techList = modal.querySelector('.modal-tech-list');
     techList.innerHTML = project.tech.map(t => `<span>${t}</span>`).join('');
     
-    // Update link
-    modal.querySelector('.modal-link').href = project.github;
+    // Actions - Canlı Web Sitesi & GitHub Butonları
+    const modalLiveBtn = modal.querySelector('.modal-live-btn');
+    const modalLiveText = modal.querySelector('.modal-live-text');
+    const modalGithubBtn = modal.querySelector('.modal-link');
+    const modalGithubSpan = modalGithubBtn ? modalGithubBtn.querySelector('span') : null;
+    
+    if (project.liveUrl && modalLiveBtn) {
+        modalLiveBtn.href = project.liveUrl;
+        modalLiveBtn.style.display = 'inline-flex';
+        const liveLabel = project.title === 'Unutma.'
+            ? (lang === 'tr' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Visit Live Website (unutma.itibar.app)')
+            : (lang === 'tr' ? 'Canlı Platformu Keşfet' : 'Explore Live Platform');
+        if (modalLiveText) {
+            modalLiveText.textContent = liveLabel;
+            modalLiveText.dataset.tr = project.title === 'Unutma.' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Canlı Platformu Keşfet';
+            modalLiveText.dataset.en = project.title === 'Unutma.' ? 'Visit Live Website (unutma.itibar.app)' : 'Explore Live Platform';
+        }
+    } else if (modalLiveBtn) {
+        modalLiveBtn.style.display = 'none';
+    }
+    
+    if (modalGithubBtn) {
+        if (project.title === 'Unutma.') {
+            // Unutma için GitHub butonunu gizle, sadece web sitesine yönlendir
+            modalGithubBtn.style.display = 'none';
+        } else {
+            modalGithubBtn.style.display = 'inline-flex';
+            modalGithubBtn.href = project.github || '#';
+            if (modalGithubSpan) {
+                modalGithubSpan.textContent = lang === 'tr' ? "GitHub'da İncele" : 'View on GitHub';
+                modalGithubSpan.dataset.tr = "GitHub'da İncele";
+                modalGithubSpan.dataset.en = 'View on GitHub';
+            }
+        }
+    }
 }
 
 function closeModal() {
