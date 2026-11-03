@@ -9,15 +9,17 @@
 const projectsData = {
     itibar: {
         title: "İtibar",
+        brandName: "itibar",
+        tagline: { tr: '"itibar\'dan tasarruf olmaz."', en: '"There is no compromise on reputation."' },
         category: { tr: "B2B İtibar Savunma & Hukuk", en: "B2B Reputation Defense & Law" },
         status: { tr: "Canlı Servis", en: "Live in Production" },
         statusType: "active",
         badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
         liveUrl: "https://www.itibar.app/",
-        icon: "assets/projects/itibar/itibar-logo.jpg",
-        logo: "assets/projects/itibar/itibar-logo.jpg",
-        image: "assets/projects/itibar/itibar-bg.jpg",
-        previewImage: "assets/projects/itibar/itibar-bg.jpg",
+        icon: "assets/projects/itibar/logo-mark.svg",
+        logo: "assets/projects/itibar/logo-mark.svg",
+        image: "assets/projects/itibar/itibar-luxury-bg.jpg",
+        previewImage: "assets/projects/itibar/itibar-luxury-bg.jpg",
         gradient: "linear-gradient(135deg, #10b981, #059669)",
         spotlightColor: "16, 185, 129",
         filter: "web",
@@ -69,9 +71,9 @@ const projectsData = {
         badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
         liveUrl: "https://unutma.itibar.app",
         icon: "assets/projects/unutma-mark.png",
-        logo: "assets/projects/unutma-logo.png",
-        image: "assets/projects/unutma-preview.jpg",
-        previewImage: "assets/projects/unutma-preview.jpg",
+        logo: "assets/projects/unutma-mark.png",
+        image: "assets/projects/unutma-hero.jpg",
+        previewImage: "assets/projects/unutma-hero.jpg",
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
         spotlightColor: "185, 56, 38",
         filter: "web",
@@ -485,16 +487,17 @@ function renderProjects(filter = 'all') {
             <article class="project-card ${project.image ? 'has-card-image' : ''}" data-project="${key}" style="--spotlight-color: ${project.spotlightColor}" data-scroll="scale-up">
                 <div class="project-card-visual">
                     ${project.image ? `<img src="${project.image}" alt="${project.title}" class="project-card-bg-image" loading="lazy">` : ''}
+                    <div class="project-card-visual-scrim"></div>
                     <div class="project-card-glow" style="--gradient: ${project.gradient}"></div>
-                    <div class="project-card-pattern"></div>
                     ${project.liveUrl ? `
                         <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-live-pill" onclick="event.stopPropagation();" aria-label="${lang === 'tr' ? 'Canlı Servisi Ziyaret Et' : 'Visit Live Platform'}">
                             <span class="live-pulse-dot"></span>
                             <span>${project.badge ? project.badge[lang] : (lang === 'tr' ? 'Canlı Servis ↗' : 'Live Platform ↗')}</span>
                         </a>
                     ` : ''}
-                    <div class="project-card-icon-wrapper">
-                        ${iconHTML}
+                    <div class="project-card-brand-island">
+                        <div class="project-card-brand-emblem">${iconHTML}</div>
+                        ${project.brandName ? `<span class="project-card-brand-name">${project.brandName}</span>` : ''}
                     </div>
                 </div>
                 <div class="project-card-body">
@@ -684,7 +687,7 @@ function updateModalContent(project) {
 
     const visualGrad = modal.querySelector('.modal-visual-gradient') || modal.querySelector('.modal-gradient');
     if (visualGrad) {
-        visualGrad.style.background = `linear-gradient(180deg, rgba(14, 14, 18, 0.2) 0%, rgba(14, 14, 18, 0.75) 55%, #0e0e12 100%), ${project.gradient}`;
+        visualGrad.style.background = `linear-gradient(180deg, rgba(8, 8, 10, 0.1) 0%, rgba(14, 14, 18, 0.5) 55%, #0e0e12 100%)`;
     }
 
     // Status Pill in header
@@ -697,15 +700,28 @@ function updateModalContent(project) {
         statusPill.className = `modal-status-pill ${project.statusType || 'active'}`;
     }
 
-    // Logo island
-    const iconContainer = modal.querySelector('.modal-icon');
-    if (iconContainer) {
+    // Brand Hero (Official Logo + Brand Word + Tagline)
+    const brandHero = modal.querySelector('.modal-brand-hero');
+    const brandLogoImg = modal.querySelector('.modal-brand-logo');
+    const brandNameEl = modal.querySelector('.modal-brand-name');
+    const brandTaglineEl = modal.querySelector('.modal-brand-tagline');
+
+    if (brandHero) {
         if (project.logo) {
-            iconContainer.innerHTML = `<img src="${project.logo}" alt="${project.title}" class="modal-custom-logo">`;
-        } else if (project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'))) {
-            iconContainer.innerHTML = `<img src="${project.icon}" alt="${project.title}" class="modal-custom-logo-square">`;
+            brandLogoImg.src = project.logo;
+            brandLogoImg.alt = `${project.title} Logo`;
+            brandLogoImg.style.display = 'block';
         } else {
-            iconContainer.textContent = project.icon;
+            brandLogoImg.style.display = 'none';
+        }
+        
+        if (brandNameEl) {
+            brandNameEl.textContent = project.brandName || project.title;
+        }
+        
+        if (brandTaglineEl) {
+            const taglineText = project.tagline ? project.tagline[lang] : project.category[lang];
+            brandTaglineEl.textContent = taglineText;
         }
     }
     
