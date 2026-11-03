@@ -1189,20 +1189,20 @@ button {
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 16px rgba(34, 197, 94, 0.16);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 16px rgba(var(--spotlight-color, 34, 197, 94), 0.16);
     z-index: 3;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card:hover .project-card-brand-island {
     transform: translateY(-2px);
-    border-color: rgba(34, 197, 94, 0.5);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 24px rgba(34, 197, 94, 0.3);
+    border-color: rgba(var(--spotlight-color, 34, 197, 94), 0.5);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 24px rgba(var(--spotlight-color, 34, 197, 94), 0.3);
 }
 
 .project-card-brand-emblem {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1213,7 +1213,7 @@ button {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.45));
+    filter: drop-shadow(0 0 8px rgba(var(--spotlight-color, 34, 197, 94), 0.45));
 }
 
 .project-card-brand-name {
@@ -2141,8 +2141,8 @@ button {
     border-radius: 9999px;
     background: rgba(12, 12, 16, 0.85);
     backdrop-filter: blur(14px);
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    color: #4ade80;
+    border: 1px solid rgba(var(--spotlight-color, 34, 197, 94), 0.4);
+    color: rgb(var(--spotlight-color, 74, 222, 128));
     font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -2164,26 +2164,26 @@ button {
     backdrop-filter: blur(24px) saturate(200%);
     -webkit-backdrop-filter: blur(24px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(34, 197, 94, 0.22);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(var(--spotlight-color, 34, 197, 94), 0.22);
     z-index: 5;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-brand-hero:hover {
     transform: translateY(-2px) scale(1.02);
-    border-color: rgba(34, 197, 94, 0.5);
+    border-color: rgba(var(--spotlight-color, 34, 197, 94), 0.5);
 }
 
 .modal-brand-emblem {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(34, 197, 94, 0.14);
-    border: 1px solid rgba(34, 197, 94, 0.35);
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(var(--spotlight-color, 34, 197, 94), 0.14);
+    border: 1px solid rgba(var(--spotlight-color, 34, 197, 94), 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px;
+    padding: 3px;
     flex-shrink: 0;
 }
 
@@ -2191,7 +2191,7 @@ button {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+    filter: drop-shadow(0 0 10px rgba(var(--spotlight-color, 34, 197, 94), 0.5));
 }
 
 .modal-brand-titles {
@@ -2211,7 +2211,7 @@ button {
 
 .modal-brand-tagline {
     font-size: 0.8rem;
-    color: #4ade80;
+    color: rgb(var(--spotlight-color, 74, 222, 128));
     font-weight: 500;
     letter-spacing: 0.02em;
 }
@@ -2229,7 +2229,7 @@ button {
 
 .modal-category {
     font-size: 0.78rem;
-    color: #10b981;
+    color: rgb(var(--spotlight-color, 16, 185, 129));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -2355,8 +2355,8 @@ button {
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: rgba(34, 197, 94, 0.15);
-    color: #4ade80;
+    background: rgba(var(--spotlight-color, 34, 197, 94), 0.15);
+    color: rgb(var(--spotlight-color, 74, 222, 128));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2490,8 +2490,8 @@ button {
     background: rgba(12, 12, 14, 0.75);
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid rgba(34, 197, 94, 0.35);
-    color: #4ade80;
+    border: 1px solid rgba(var(--spotlight-color, 34, 197, 94), 0.35);
+    color: rgb(var(--spotlight-color, 74, 222, 128));
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -2499,23 +2499,23 @@ button {
     text-decoration: none;
     z-index: 3;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(34, 197, 94, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(var(--spotlight-color, 34, 197, 94), 0.15);
 }
 
 .project-card-live-pill:hover {
-    background: rgba(34, 197, 94, 0.2);
-    border-color: rgba(34, 197, 94, 0.7);
-    color: #86efac;
+    background: rgba(var(--spotlight-color, 34, 197, 94), 0.2);
+    border-color: rgba(var(--spotlight-color, 34, 197, 94), 0.7);
+    color: #fff;
     transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--spotlight-color, 34, 197, 94), 0.35);
 }
 
 .live-pulse-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 10px #22c55e, 0 0 4px #86efac;
+    background: rgb(var(--spotlight-color, 34, 197, 94));
+    box-shadow: 0 0 10px rgb(var(--spotlight-color, 34, 197, 94)), 0 0 4px rgba(255, 255, 255, 0.7);
     position: relative;
     display: inline-block;
     animation: liveRadarPulse 2s infinite ease-in-out;
@@ -2524,17 +2524,17 @@ button {
 @keyframes liveRadarPulse {
     0% {
         transform: scale(0.9);
-        box-shadow: 0 0 4px #22c55e;
+        box-shadow: 0 0 4px rgb(var(--spotlight-color, 34, 197, 94));
         opacity: 0.8;
     }
     50% {
         transform: scale(1.25);
-        box-shadow: 0 0 14px #22c55e, 0 0 24px rgba(34, 197, 94, 0.5);
+        box-shadow: 0 0 14px rgb(var(--spotlight-color, 34, 197, 94)), 0 0 24px rgba(var(--spotlight-color, 34, 197, 94), 0.5);
         opacity: 1;
     }
     100% {
         transform: scale(0.9);
-        box-shadow: 0 0 4px #22c55e;
+        box-shadow: 0 0 4px rgb(var(--spotlight-color, 34, 197, 94));
         opacity: 0.8;
     }
 }
@@ -2546,9 +2546,9 @@ button {
     gap: 5px;
     padding: 4px 10px;
     border-radius: 20px;
-    background: rgba(34, 197, 94, 0.12);
-    border: 1px solid rgba(34, 197, 94, 0.35);
-    color: #4ade80;
+    background: rgba(var(--spotlight-color, 34, 197, 94), 0.12);
+    border: 1px solid rgba(var(--spotlight-color, 34, 197, 94), 0.35);
+    color: rgb(var(--spotlight-color, 74, 222, 128));
     font-size: 0.72rem;
     font-weight: 600;
     text-decoration: none;
@@ -2557,11 +2557,11 @@ button {
 }
 
 .project-card-visit-btn:hover {
-    background: rgba(34, 197, 94, 0.25);
-    border-color: #22c55e;
+    background: rgba(var(--spotlight-color, 34, 197, 94), 0.25);
+    border-color: rgb(var(--spotlight-color, 34, 197, 94));
     color: #fff;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+    box-shadow: 0 4px 12px rgba(var(--spotlight-color, 34, 197, 94), 0.25);
 }
 
 .project-card-visit-btn svg {
@@ -2574,22 +2574,22 @@ button {
 
 /* Modal Live Button - Conversion & Traffic Magnet */
 .modal-live-btn {
-    background: linear-gradient(135deg, #16a34a, #059669) !important;
-    border-color: rgba(34, 197, 94, 0.6) !important;
+    background: var(--modal-gradient, linear-gradient(135deg, #16a34a, #059669)) !important;
+    border-color: rgba(var(--spotlight-color, 34, 197, 94), 0.6) !important;
     color: #ffffff !important;
     font-weight: 600 !important;
     letter-spacing: 0.02em;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35), 0 0 20px rgba(34, 197, 94, 0.2) !important;
+    box-shadow: 0 10px 25px rgba(var(--spotlight-color, 22, 163, 74), 0.35), 0 0 20px rgba(var(--spotlight-color, 34, 197, 94), 0.2) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .modal-live-btn:hover {
-    background: linear-gradient(135deg, #22c55e, #10b981) !important;
+    filter: brightness(1.1);
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 14px 30px rgba(22, 163, 74, 0.5), 0 0 30px rgba(34, 197, 94, 0.4) !important;
+    box-shadow: 0 14px 30px rgba(var(--spotlight-color, 22, 163, 74), 0.5), 0 0 30px rgba(var(--spotlight-color, 34, 197, 94), 0.4) !important;
 }
 
 .modal-bg-image {

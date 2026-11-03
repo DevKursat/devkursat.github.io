@@ -65,13 +65,15 @@ const projectsData = {
     },
     unutma: {
         title: "Unutma.",
+        brandName: "Unutma.",
+        tagline: { tr: "Mesafe tanımaz, unutulmaz.", en: "Bridging distance with timeless ink." },
         category: { tr: "Sivil Teknoloji & İletişim", en: "Civic Tech & Platform" },
         status: { tr: "Canlıda", en: "Live" },
         statusType: "active",
         badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
         liveUrl: "https://unutma.itibar.app",
-        icon: "assets/projects/unutma-mark.png",
-        logo: "assets/projects/unutma-mark.png",
+        icon: "assets/projects/unutma-seal.png",
+        logo: "assets/projects/unutma-seal.png",
         image: "assets/projects/unutma-hero.jpg",
         previewImage: "assets/projects/unutma-hero.jpg",
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
@@ -658,6 +660,10 @@ function openModal(project, projectId) {
     if (!modal) return;
     modal.dataset.projectId = projectId;
     
+    // Hide tech cursor canvas so particles don't obscure modal
+    const canvas = document.getElementById('techCursorCanvas');
+    if (canvas) canvas.style.opacity = '0';
+    
     updateModalContent(project);
     
     modal.classList.add('active');
@@ -668,6 +674,10 @@ function updateModalContent(project) {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
     const lang = currentLang;
+    
+    // Bind spotlight color and dynamic gradient to modal
+    modal.style.setProperty('--spotlight-color', project.spotlightColor || '16, 185, 129');
+    modal.style.setProperty('--modal-gradient', project.gradient || 'linear-gradient(135deg, #10b981, #059669)');
     
     // Update visual header
     const modalVisual = modal.querySelector('.modal-visual');
@@ -820,6 +830,10 @@ function closeModal() {
     if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Restore tech cursor canvas
+    const canvas = document.getElementById('techCursorCanvas');
+    if (canvas) canvas.style.opacity = '1';
 }
 
 // ============================================
