@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111116"/>
+      <stop offset="100%" stop-color="#08080b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Obsidian Surface with 1px border -->
+  <rect width="480" height="320" rx="20" fill="url(#bgGrad)"/>
+  <rect x="0.5" y="0.5" width="479" height="319" rx="19.5" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <!-- Centered Official Logo -->
+  <g transform="translate(208, 96)">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="20" stroke="#00d9ff" stroke-width="2"/>
+  <text x="32" y="39" fill="#ffffff" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" text-anchor="middle">K.</text>
+</svg>
+  </g>
+
+  <!-- Clean, Authentic Handle Typography -->
+  <text x="240" y="210" fill="#f4f4f6" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="600" font-size="20" letter-spacing="-0.01em" text-anchor="middle">devkursat.github.io</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111116"/>
+      <stop offset="100%" stop-color="#08080b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Obsidian Surface with 1px border -->
+  <rect width="480" height="320" rx="20" fill="url(#bgGrad)"/>
+  <rect x="0.5" y="0.5" width="479" height="319" rx="19.5" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <!-- Centered Official Logo -->
+  <g transform="translate(208, 96)">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" fill="#FF0000"/>
+  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#FFFFFF"/>
+</svg>
+  </g>
+
+  <!-- Clean, Authentic Handle Typography -->
+  <text x="240" y="210" fill="#f4f4f6" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="600" font-size="20" letter-spacing="-0.01em" text-anchor="middle">@kursatsi</text>
+</svg>

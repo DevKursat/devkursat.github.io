@@ -15,12 +15,14 @@
     <meta property="og:title" content="Kürşat Yılmaz | Product Builder & Entrepreneur">
     <meta property="og:description" content="Yazılım ve tasarımda sıfırdan ürüne, hızla hayata geçiren girişimci.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://devkursat.github.io/Pr/">
+    <meta property="og:url" content="https://devkursat.github.io/">
+    <meta property="og:image" content="https://devkursat.github.io/assets/projects/itibar/itibar-luxury-bg.jpg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kürşat Yılmaz | Product Builder & Entrepreneur">
     <meta name="twitter:description" content="Yazılım ve tasarımda sıfırdan ürüne, hızla hayata geçiren girişimci.">
+    <meta name="twitter:image" content="https://devkursat.github.io/assets/projects/itibar/itibar-luxury-bg.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +33,29 @@
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <div class="cursor-follower">
+        <span class="cursor-label"></span>
+    </div>
 
-    <!-- Loader -->
-    <div class="loader">
+    <!-- Cinematic Real Progress Preloader & SVG Curtain -->
+    <div class="loader" id="sitePreloader">
         <div class="loader-content">
-            <div class="loader-logo">K<span class="loader-dots-inline"></span></div>
+            <div class="loader-top-meta">
+                <span class="loader-brand">KÜRŞAT YILMAZ</span>
+                <span class="loader-system">SYSTEM INIT [2026]</span>
+            </div>
+            <div class="loader-center-count">
+                <span class="loader-progress-num" id="loaderProgress">000</span>
+                <span class="loader-percent">%</span>
+            </div>
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill" id="loaderBarFill"></div>
+            </div>
+            <div class="loader-bottom-status" id="loaderStatusText" data-tr="Bileşenler ve mimari yükleniyor..." data-en="Loading components and architecture...">Bileşenler ve mimari yükleniyor...</div>
         </div>
+        <svg class="loader-curtain-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path id="loaderCurtainPath" d="M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z" fill="#050507"></path>
+        </svg>
     </div>
 
     <!-- Navigation -->
@@ -49,6 +67,7 @@
             <a href="#about" class="nav-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
             <a href="#projects" class="nav-link" data-tr="Projeler" data-en="Projects">Projeler</a>
             <a href="#skills" class="nav-link" data-tr="Beceriler" data-en="Skills">Beceriler</a>
+            <a href="#blog" class="nav-link" data-tr="Yazılar" data-en="Essays">Yazılar</a>
             <a href="#contact" class="nav-link" data-tr="İletişim" data-en="Contact">İletişim</a>
             <a href="links" class="nav-link nav-links-pill" data-tr="Bağlantılar ↗" data-en="Links ↗">Bağlantılar ↗</a>
         </div>
@@ -71,6 +90,7 @@
             <a href="#about" class="mobile-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
             <a href="#projects" class="mobile-link" data-tr="Projeler" data-en="Projects">Projeler</a>
             <a href="#skills" class="mobile-link" data-tr="Beceriler" data-en="Skills">Beceriler</a>
+            <a href="#blog" class="mobile-link" data-tr="Yazılar" data-en="Essays">Yazılar</a>
             <a href="#contact" class="mobile-link" data-tr="İletişim" data-en="Contact">İletişim</a>
             <a href="links" class="mobile-link" data-tr="Tüm Bağlantılar ↗" data-en="All Links ↗">Tüm Bağlantılar ↗</a>
         </div>
@@ -79,40 +99,38 @@
     <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="hero-bg">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+            <canvas id="heroShaderCanvas"></canvas>
             <div class="grid-overlay"></div>
             <div class="noise-overlay"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge" data-scroll="fade-up" data-scroll-delay="0">
+            <div class="hero-badge">
                 <span class="badge-dot"></span>
                 <span data-tr="Yeni projelere açık" data-en="Open to new projects">Yeni projelere açık</span>
             </div>
             <h1 class="hero-title">
-                <span class="title-line" data-scroll="fade-up" data-scroll-delay="100">
+                <span class="title-line">
                     <span data-tr="Merhaba, ben" data-en="Hi, I'm">Merhaba, ben</span>
                 </span>
-                <span class="title-line name-line" data-scroll="fade-up" data-scroll-delay="200">
+                <span class="title-line name-line">
                     <span class="word highlight">Kürşat</span>
                     <span class="word highlight">Yılmaz</span>
                 </span>
             </h1>
-            <div class="hero-roles" data-scroll="fade-up" data-scroll-delay="300">
+            <div class="hero-roles">
                 <span class="role">Entrepreneur</span>
                 <span class="role-divider">•</span>
                 <span class="role">Product Builder</span>
                 <span class="role-divider">•</span>
                 <span class="role">Innovator</span>
             </div>
-            <p class="hero-description" data-scroll="fade-up" data-scroll-delay="400">
+            <p class="hero-description">
                 <span data-tr="Yazılım ve tasarımda" data-en="From idea to product in">Yazılım ve tasarımda</span>
                 <span class="text-gradient" data-tr="sıfırdan ürüne" data-en="software & design">sıfırdan ürüne</span><span data-tr=", hızla hayata geçiren bir girişimci." data-en=", a fast-moving entrepreneur.">, hızla hayata geçiren bir girişimci.</span>
                 <br class="mobile-break">
                 <span data-tr="AI destekli platformlar ve yenilikçi çözümler geliştiriyorum." data-en="I build AI-powered platforms and innovative solutions.">AI destekli platformlar ve yenilikçi çözümler geliştiriyorum.</span>
             </p>
-            <div class="hero-cta" data-scroll="fade-up" data-scroll-delay="500">
+            <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">
                     <span data-tr="Projelerimi Keşfet" data-en="Explore Projects">Projelerimi Keşfet</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -193,33 +211,98 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p class="about-lead" data-scroll="fade-up">
-                            <span class="text-gradient" data-tr="İstanbul'dan" data-en="From Istanbul,">İstanbul'dan</span><span data-tr=" dünyaya uzanan projeler geliştiriyorum." data-en=" I'm building projects for the world."> dünyaya uzanan projeler geliştiriyorum.</span>
+                            <span class="text-gradient" data-tr="İstanbul'dan" data-en="From Istanbul,">İstanbul'dan</span><span data-tr=" dünyaya uzanan egemen ürün mimarileri inşa ediyorum." data-en=" I architect sovereign systems and products for the world."> dünyaya uzanan egemen ürün mimarileri inşa ediyorum.</span>
                         </p>
                         <p data-scroll="fade-up" data-scroll-delay="100">
-                            <span data-tr="Kendimi her alanda geliştirmeye açık, yenilikçi bir gencim. Yazılım benim için sadece bir araç değil — problemleri çözmenin ve eğlenmenin en yaratıcı yolu." data-en="I'm a young innovator open to self-improvement in every field. Software isn't just a tool for me — it's the most creative way to solve problems and have fun.">Kendimi her alanda geliştirmeye açık, yenilikçi bir gencim. Yazılım benim için sadece bir araç değil — problemleri çözmenin ve eğlenmenin en yaratıcı yolu.</span>
+                            <span data-tr="Karmaşık yasal regülasyonları, B2B itibar mekanizmalarını ve yapay zekâ modellerini soyut hype'tan arındırarak deterministik ürün mimarilerine dönüştürüyorum. Şişirilmiş kurumsal katmanlar ve gereksiz LLM API maliyetleri yerine hafif, sağlam ve yerel çalışan sistemleri tercih ederim." data-en="I convert complex statutory regulations, B2B reputation mechanics, and AI models from abstract hype into deterministic product architectures. Instead of bloated enterprise layers and unnecessary LLM API costs, I engineer lightweight, resilient, and locally deployable systems.">Karmaşık yasal regülasyonları, B2B itibar mekanizmalarını ve yapay zekâ modellerini soyut hype'tan arındırarak deterministik ürün mimarilerine dönüştürüyorum. Şişirilmiş kurumsal katmanlar ve gereksiz LLM API maliyetleri yerine hafif, sağlam ve yerel çalışan sistemleri tercih ederim.</span>
                         </p>
                         <p data-scroll="fade-up" data-scroll-delay="200">
-                            <span data-tr="Hedefim? Kendi şirketimi global ölçekte büyütmek ve uzaktan yönetirken huzurlu bir hayat yaşamak." data-en="My goal? Growing my own company globally while living a peaceful life managing it remotely.">Hedefim? Kendi şirketimi global ölçekte büyütmek ve uzaktan yönetirken huzurlu bir hayat yaşamak.</span>
+                            <span data-tr="Sadece kod yazmıyorum; mevzuat zeminini, sistem güvenliğini, kullanıcı psikolojisini ve dağıtım boru hatlarını tek bir çatı altında birleştirerek sıfırdan pazar payı alan bağımsız girişimler hayata geçiriyorum." data-en="Beyond writing code, I bridge statutory compliance, sovereign system security, user psychology, and deployment pipelines to build independent ventures that capture real market share from day zero.">Sadece kod yazmıyorum; mevzuat zeminini, sistem güvenliğini, kullanıcı psikolojisini ve dağıtım boru hatlarını tek bir çatı altında birleştirerek sıfırdan pazar payı alan bağımsız girişimler hayata geçiriyorum.</span>
                         </p>
+                    </div>
+                    
+                    <!-- Interactive Identity Bento (Live Clock, Spotify EQ, Boxer Discipline, Author) -->
+                    <div class="about-bento-grid" data-scroll="fade-up" data-scroll-delay="250">
+                        <div class="bento-card bento-clock">
+                            <div class="bento-icon">
+                                <span class="bento-pulse-dot"></span>
+                            </div>
+                            <div class="bento-body">
+                                <span class="bento-label" data-tr="Yerel Zaman" data-en="Local Time">Yerel Zaman</span>
+                                <span class="bento-value mono-val" id="istanbulClock">--:--:-- GMT+3</span>
+                                <span class="bento-sub">Europe / Istanbul</span>
+                            </div>
+                        </div>
+
+                        <a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer" class="bento-card bento-spotify" aria-label="Spotify Artist Profile">
+                            <div class="bento-icon spotify-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                </svg>
+                            </div>
+                            <div class="bento-body">
+                                <div class="bento-spotify-top">
+                                    <span class="bento-label" data-tr="Müzisyen &amp; Besteci" data-en="Musician &amp; Artist">Müzisyen &amp; Besteci</span>
+                                    <div class="spotify-eq-bars" aria-hidden="true">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                                <span class="bento-value">Kürşat Yılmaz</span>
+                                <span class="bento-sub" data-tr="Spotify'da Dinle ↗" data-en="Listen on Spotify ↗">Spotify'da Dinle ↗</span>
+                            </div>
+                        </a>
+
+                        <div class="bento-card bento-boxer">
+                            <div class="bento-icon boxer-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 14c1.66 0 3-1.34 3-3V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v4c0 1.66 1.34 3 3 3"/>
+                                    <path d="M5 14v4a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-4"/>
+                                    <path d="M9 10h6"/>
+                                </svg>
+                            </div>
+                            <div class="bento-body">
+                                <span class="bento-label" data-tr="Disiplin &amp; Odak" data-en="Discipline &amp; Focus">Disiplin &amp; Odak</span>
+                                <span class="bento-value" data-tr="Aktif Boksör" data-en="Active Boxer">Aktif Boksör</span>
+                                <span class="bento-sub" data-tr="Ring Disiplini • Kondisyon" data-en="Ring Grit • Conditioning">Ring Disiplini • Kondisyon</span>
+                            </div>
+                        </div>
+
+                        <div class="bento-card bento-author">
+                            <div class="bento-icon author-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m18 2-8 8 2 2 8-8a2 2 0 0 0-2-2z"/>
+                                    <path d="m10 10-6 6v4h4l6-6"/>
+                                    <path d="M12 18h8"/>
+                                </svg>
+                            </div>
+                            <div class="bento-body">
+                                <span class="bento-label" data-tr="Edebiyat &amp; Felsefe" data-en="Literature &amp; Thought">Edebiyat &amp; Felsefe</span>
+                                <span class="bento-value" data-tr="Şair &amp; Yazar" data-en="Author &amp; Poet">Şair &amp; Yazar</span>
+                                <span class="bento-sub" data-tr="Yayınlanmış Şiir &amp; Eserler" data-en="Published Poetry &amp; Prose">Yayınlanmış Şiir &amp; Eserler</span>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="about-stats" data-scroll="fade-up" data-scroll-delay="300">
                         <div class="stat-item">
                             <span class="stat-number" data-count="100" data-suffix="+">0</span>
-                            <span class="stat-label" data-tr="Proje" data-en="Projects">Proje</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="10">0</span>
-                            <span class="stat-label" data-tr="Teknoloji" data-en="Technologies">Teknoloji</span>
+                            <span class="stat-label" data-tr="Açık Kaynak &amp; Canlı Proje" data-en="Live &amp; Open Source">Açık Kaynak &amp; Canlı Proje</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" data-count="10" data-suffix="+">0</span>
-                            <span class="stat-label" data-tr="Yıl Deneyim" data-en="Years Exp.">Yıl Deneyim</span>
+                            <span class="stat-label" data-tr="Yıllık Sistem &amp; Kod Deneyimi" data-en="Years System &amp; Code">Yıllık Sistem &amp; Kod Deneyimi</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="about-visual" data-scroll="fade-left">
+                    <div class="about-portrait-card">
+                        <img src="assets/kursat-snellenberg-portrait.jpg" alt="Kürşat Yılmaz" class="about-portrait-img" loading="lazy">
+                        <div class="about-portrait-scrim"></div>
+                        <div class="about-portrait-floating-badge">
+                            <span class="live-pulse-dot"></span>
+                            <span data-tr="İstanbul, TR • Aktif Geliştirici" data-en="Istanbul, TR • Active Builder">İstanbul, TR • Aktif Geliştirici</span>
+                        </div>
                         <div class="visual-marquee-wrapper" id="aboutMarquee">
                             <!-- Top vignette -->
                             <div class="marquee-vignette vignette-top"></div>
@@ -227,27 +310,28 @@
                             <div class="vertical-marquee-track">
                                 <!-- Group 1 -->
                                 <div class="marquee-group">
+                                    <div class="marquee-item" data-tr="AI Sistem Mimarı" data-en="AI Architect">AI Sistem Mimarı</div>
+                                    <div class="marquee-item" data-tr="Ürün Geliştirici" data-en="Product Builder">Ürün Geliştirici</div>
+                                    <div class="marquee-item" data-tr="Girişimci" data-en="Entrepreneur">Girişimci</div>
                                     <div class="marquee-item" data-tr="Boksör" data-en="Boxer">Boksör</div>
                                     <div class="marquee-item" data-tr="Müzisyen" data-en="Musician">Müzisyen</div>
                                     <div class="marquee-item" data-tr="Şair & Yazar" data-en="Poet & Author">Şair & Yazar</div>
-                                    <div class="marquee-item" data-tr="Girişimci" data-en="Entrepreneur">Girişimci</div>
-                                    <div class="marquee-item" data-tr="Proje Mimarı" data-en="Project Architect">Proje Mimarı</div>
-                                    <div class="marquee-item" data-tr="Ürün Geliştirici" data-en="Product Builder">Ürün Geliştirici</div>
                                 </div>
                                 <!-- Group 2 -->
                                 <div class="marquee-group" aria-hidden="true">
+                                    <div class="marquee-item" data-tr="AI Sistem Mimarı" data-en="AI Architect">AI Sistem Mimarı</div>
+                                    <div class="marquee-item" data-tr="Ürün Geliştirici" data-en="Product Builder">Ürün Geliştirici</div>
+                                    <div class="marquee-item" data-tr="Girişimci" data-en="Entrepreneur">Girişimci</div>
                                     <div class="marquee-item" data-tr="Boksör" data-en="Boxer">Boksör</div>
                                     <div class="marquee-item" data-tr="Müzisyen" data-en="Musician">Müzisyen</div>
                                     <div class="marquee-item" data-tr="Şair & Yazar" data-en="Poet & Author">Şair & Yazar</div>
-                                    <div class="marquee-item" data-tr="Girişimci" data-en="Entrepreneur">Girişimci</div>
-                                    <div class="marquee-item" data-tr="Proje Mimarı" data-en="Project Architect">Proje Mimarı</div>
-                                    <div class="marquee-item" data-tr="Ürün Geliştirici" data-en="Product Builder">Ürün Geliştirici</div>
                                 </div>
                             </div>
                             
                             <!-- Bottom vignette -->
                             <div class="marquee-vignette vignette-bottom"></div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -291,6 +375,14 @@
                         <span class="text-gradient" data-tr="doğru araç." data-en="every project.">doğru araç.</span>
                     </h2>
                 </div>
+
+                <!-- Bilingual Drag & Throw Filter Pills -->
+                <div class="skills-filter-pills" id="skillsFilterPills">
+                    <button type="button" class="skill-filter-btn active" data-category="all" data-tr="Tümü" data-en="All">Tümü</button>
+                    <button type="button" class="skill-filter-btn" data-category="frontend" data-tr="Frontend &amp; UI" data-en="Frontend &amp; UI">Frontend &amp; UI</button>
+                    <button type="button" class="skill-filter-btn" data-category="backend" data-tr="Backend &amp; AI" data-en="Backend &amp; AI">Backend &amp; AI</button>
+                    <button type="button" class="skill-filter-btn" data-category="cloud" data-tr="Mobile &amp; Cloud" data-en="Mobile &amp; Cloud">Mobile &amp; Cloud</button>
+                </div>
             </div>
             
             <div class="skills-interactive-wrapper" data-scroll="fade-up">
@@ -301,28 +393,124 @@
         </div>
     </section>
 
+    <!-- 04 — Blog / Technical Essays Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header" data-scroll="fade-up">
+                <div class="section-label">
+                    <span class="label-line"></span>
+                    <span data-tr="04 — Yazılar &amp; Analizler" data-en="04 — Essays &amp; Teardowns">04 — Yazılar &amp; Analizler</span>
+                </div>
+                <h2 class="section-title">
+                    <span data-tr="Filtresiz" data-en="Unfiltered">Filtresiz</span>
+                    <span class="text-gradient" data-tr="mühendislik notları." data-en="engineering notes.">mühendislik notları.</span>
+                </h2>
+                <p class="section-sub" data-tr="Yazılım mimarileri, tedarik zinciri güvenliği, yerel yapay zekâ çıkarımı ve donanım egemenliği üzerine teknik postmortemler." data-en="Technical postmortems on sovereign system architecture, supply chain security, and local AI inference.">
+                    Yazılım mimarileri, tedarik zinciri güvenliği, yerel yapay zekâ çıkarımı ve donanım egemenliği üzerine teknik postmortemler.
+                </p>
+            </div>
+
+            <div class="blog-grid" data-scroll="fade-up" data-scroll-delay="150">
+                <!-- Article 1: Claude Code Trojan -->
+                <a href="blog/claude-code-trojan-npm-analiz.html" class="blog-card">
+                    <div class="blog-card-visual">
+                        <img src="blog/claude-hacker-news.jpg" alt="Anthropic Claude Code Trojan Anatomisi" loading="lazy">
+                        <span class="blog-card-tag" data-tr="SİBER GÜVENLİK" data-en="SECURITY">SİBER GÜVENLİK</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta">
+                            <time datetime="2026-10-31">31 Eki 2026</time>
+                            <span>•</span>
+                            <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                        </div>
+                        <h3 class="blog-card-title" data-tr="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust" data-en="Anthropic Claude Code and Trojan Postmortem: Zero Trust in Supply Chains">
+                            Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust
+                        </h3>
+                        <p class="blog-card-excerpt" data-tr="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi." data-en="Official Claude Code v2.1.313 was compromised with a Remote Access Trojan. Deep dive into agent sandboxing and zero-trust engineering.">
+                            Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi.
+                        </p>
+                        <div class="blog-card-footer">
+                            <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="read-more-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 2: Ollama Performance Tax -->
+                <a href="blog/ollama-performans-vergisi-vllm.html" class="blog-card">
+                    <div class="blog-card-visual">
+                        <img src="blog/ollama-performans-vergisi-vllm.png" alt="Ollama Performans Vergisi" loading="lazy">
+                        <span class="blog-card-tag" data-tr="AI &amp; DONANIM" data-en="AI &amp; COMPUTE">AI &amp; DONANIM</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta">
+                            <time datetime="2026-11-03">03 Kas 2026</time>
+                            <span>•</span>
+                            <span data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
+                        </div>
+                        <h3 class="blog-card-title" data-tr="Ollama'nın &quot;Kolaylık Vergisi&quot;: Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?" data-en="Ollama's 'Convenience Tax': Why Raw llama.cpp and vLLM Dominate Local Inference">
+                            Ollama'nın "Kolaylık Vergisi": Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?
+                        </h3>
+                        <p class="blog-card-excerpt" data-tr="Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı." data-en="How Ollama's wrapper overhead inflicts up to a 41% performance penalty compared to bare-metal llama.cpp and vLLM engines.">
+                            Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.
+                        </p>
+                        <div class="blog-card-footer">
+                            <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="read-more-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 3: Sam Altman RAM Crisis -->
+                <a href="blog/sam-altman-ram-krizi.html" class="blog-card">
+                    <div class="blog-card-visual">
+                        <img src="blog/sam-altman-ram-krizi.png" alt="Sam Altman ve RAM İsrafı Masalı" loading="lazy">
+                        <span class="blog-card-tag" data-tr="BULUT &amp; MÜLKİYET" data-en="SOVEREIGNTY">BULUT &amp; MÜLKİYET</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta">
+                            <time datetime="2026-11-02">02 Kas 2026</time>
+                            <span>•</span>
+                            <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                        </div>
+                        <h3 class="blog-card-title" data-tr="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş" data-en="Sam Altman and the RAM Waste Myth: The Corporate War Against Hardware Ownership">
+                            Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş
+                        </h3>
+                        <p class="blog-card-excerpt" data-tr="OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi." data-en="Deconstructing OpenAI's push to centralize memory into cloud monopolies and eliminate sovereign on-device computation.">
+                            OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi.
+                        </p>
+                        <div class="blog-card-footer">
+                            <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="read-more-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-content">
-                    <div class="section-label" data-scroll="fade-right">
+                    <div class="section-label">
                         <span class="label-line"></span>
-                        <span data-tr="04 — İletişim" data-en="04 — Contact">04 — İletişim</span>
+                        <span data-tr="05 — İletişim" data-en="05 — Contact">05 — İletişim</span>
                     </div>
-                    <h2 class="contact-title" data-scroll="fade-up">
+                    <h2 class="contact-title">
                         <span data-tr="Birlikte" data-en="Let's create">Birlikte</span>
                         <span class="text-gradient" data-tr="harika şeyler" data-en="amazing things">harika şeyler</span>
                         <span data-tr="yaratalım." data-en="together.">yaratalım.</span>
                     </h2>
-                    <p class="contact-lead" data-scroll="fade-up" data-scroll-delay="100">
+                    <p class="contact-lead">
                         <span data-tr="Yeni projeler, ortaklıklar veya sadece merhaba demek için iletişime geçin." data-en="Get in touch for new projects, partnerships, or just to say hello.">Yeni projeler, ortaklıklar veya sadece merhaba demek için iletişime geçin.</span>
                     </p>
-                    <a href="mailto:tckursat@icloud.com" class="contact-email" data-scroll="fade-up" data-scroll-delay="200">
+                    <a href="mailto:tckursat@icloud.com" class="contact-email">
                         <span class="email-text">tckursat@icloud.com</span>
                         <span class="email-arrow">→</span>
                     </a>
-                    <div class="social-links" data-scroll="fade-up" data-scroll-delay="300">
+                    <div class="social-links">
                         <a href="links" class="social-link links-pill-highlight" aria-label="Tüm Bağlantılar">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -342,14 +530,6 @@
                             </svg>
                             <span>GitHub</span>
                         </a>
-                        <a href="Kursat_Yilmaz_CV_TR.pdf" data-tr-href="Kursat_Yilmaz_CV_TR.pdf" data-en-href="Kursat_Yilmaz_CV_EN.pdf" target="_blank" rel="noopener noreferrer" class="social-link cv-link" aria-label="CV">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <path d="M14 2v6h6"/>
-                                <path d="M8 13h8M8 17h5"/>
-                            </svg>
-                            <span>CV</span>
-                        </a>
                         <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -364,94 +544,12 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="testimonials-column-wrapper" data-scroll="fade-left">
-                    <div class="testimonials-column">
-                        <div class="testimonials-track">
-                            <!-- Set 1 -->
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="Kürşat ile Risko projesinde çalıştık. AI entegrasyonlarındaki yeteneği ve sıfırdan bir ürünü hayata geçirme hızı gerçekten olağanüstü." data-en="We worked with Kürşat on the Risko project. His ability in AI integrations and speed in bringing a product to life from scratch is truly outstanding.">Kürşat ile Risko projesinde çalıştık. AI entegrasyonlarındaki yeteneği ve sıfırdan bir ürünü hayata geçirme hızı gerçekten olağanüstü.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #00D9FF, #0099CC)">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" alt="Alper Tunga" data-tr-alt="Alper Tunga" data-en-alt="Alex Morgan" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="AT" data-en="AM">AT</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Alper Tunga" data-en="Alex Morgan">Alper Tunga</h4>
-                                        <span class="testimonial-role" data-tr="Kurucu Ortak, Risko" data-en="Co-Founder, Risko">Kurucu Ortak, Risko</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="Aura uygulamasının arayüz tasarımını geliştirirken birlikte çalıştık. Harika bir vizyonu var ve tasarım detaylarını koda birebir yansıtıyor." data-en="We collaborated while developing the UI design of the Aura app. He has a great vision and translates design details into code perfectly.">Aura uygulamasının arayüz tasarımını geliştirirken birlikte çalıştık. Harika bir vizyonu var ve tasarım detaylarını koda birebir yansıtıyor.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #FF6B6B, #FF8E53)">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Zeynep Kaya" data-tr-alt="Zeynep Kaya" data-en-alt="Emma Carter" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="ZK" data-en="EC">ZK</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Zeynep Kaya" data-en="Emma Carter">Zeynep Kaya</h4>
-                                        <span class="testimonial-role" data-tr="Ürün Tasarımcısı" data-en="Product Designer">Ürün Tasarımcısı</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="LinkedIn Agent botunun backend entegrasyonunda çalıştık. API mimarisini kurma şekli ve kod temizliği standartların çok üstünde." data-en="We worked on the backend integration of the LinkedIn Agent bot. The way he structures the API architecture and clean code is well above standards.">LinkedIn Agent botunun backend entegrasyonunda çalıştık. API mimarisini kurma şekli ve kod temizliği standartların çok üstünde.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #667EEA, #764BA2)">
-                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" alt="Can Yılmaz" data-tr-alt="Can Yılmaz" data-en-alt="Daniel Reed" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="CY" data-en="DR">CY</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Can Yılmaz" data-en="Daniel Reed">Can Yılmaz</h4>
-                                        <span class="testimonial-role" data-tr="Kıdemli Yazılım Mühendisi" data-en="Senior Software Engineer">Kıdemli Yazılım Mühendisi</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Set 2 (Duplicate for Infinite Scroll) -->
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="Kürşat ile Risko projesinde çalıştık. AI entegrasyonlarındaki yeteneği ve sıfırdan bir ürünü hayata geçirme hızı gerçekten olağanüstü." data-en="We worked with Kürşat on the Risko project. His ability in AI integrations and speed in bringing a product to life from scratch is truly outstanding.">Kürşat ile Risko projesinde çalıştık. AI entegrasyonlarındaki yeteneği ve sıfırdan bir ürünü hayata geçirme hızı gerçekten olağanüstü.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #00D9FF, #0099CC)">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" alt="Alper Tunga" data-tr-alt="Alper Tunga" data-en-alt="Alex Morgan" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="AT" data-en="AM">AT</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Alper Tunga" data-en="Alex Morgan">Alper Tunga</h4>
-                                        <span class="testimonial-role" data-tr="Kurucu Ortak, Risko" data-en="Co-Founder, Risko">Kurucu Ortak, Risko</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="Aura uygulamasının arayüz tasarımını geliştirirken birlikte çalıştık. Harika bir vizyonu var ve tasarım detaylarını koda birebir yansıtıyor." data-en="We collaborated while developing the UI design of the Aura app. He has a great vision and translates design details into code perfectly.">Aura uygulamasının arayüz tasarımını geliştirirken birlikte çalıştık. Harika bir vizyonu var ve tasarım detaylarını koda birebir yansıtıyor.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #FF6B6B, #FF8E53)">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Zeynep Kaya" data-tr-alt="Zeynep Kaya" data-en-alt="Emma Carter" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="ZK" data-en="EC">ZK</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Zeynep Kaya" data-en="Emma Carter">Zeynep Kaya</h4>
-                                        <span class="testimonial-role" data-tr="Ürün Tasarımcısı" data-en="Product Designer">Ürün Tasarımcısı</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-card">
-                                <p class="testimonial-text" data-tr="LinkedIn Agent botunun backend entegrasyonunda çalıştık. API mimarisini kurma şekli ve kod temizliği standartların çok üstünde." data-en="We worked on the backend integration of the LinkedIn Agent bot. The way he structures the API architecture and clean code is well above standards.">LinkedIn Agent botunun backend entegrasyonunda çalıştık. API mimarisini kurma şekli ve kod temizliği standartların çok üstünde.</p>
-                                <div class="testimonial-user">
-                                    <div class="testimonial-avatar" style="--avatar-bg: linear-gradient(135deg, #667EEA, #764BA2)">
-                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" alt="Can Yılmaz" data-tr-alt="Can Yılmaz" data-en-alt="Daniel Reed" class="testimonial-avatar-img">
-                                        <span class="testimonial-avatar-fallback" data-tr="CY" data-en="DR">CY</span>
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h4 class="testimonial-name" data-tr="Can Yılmaz" data-en="Daniel Reed">Can Yılmaz</h4>
-                                        <span class="testimonial-role" data-tr="Kıdemli Yazılım Mühendisi" data-en="Senior Software Engineer">Kıdemli Yazılım Mühendisi</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="contact-bg">
+            <div class="gradient-orb orb-contact-1"></div>
+            <div class="gradient-orb orb-contact-2"></div>
+        </div>
             </div>
         </div>
         <div class="contact-bg">
@@ -469,7 +567,7 @@
                     <p><span data-tr="Fikirden ürüne," data-en="From idea to product,">Fikirden ürüne,</span> <span class="text-gradient" data-tr="hızla." data-en="fast.">hızla.</span></p>
                 </div>
                 <div class="footer-right">
-                    <p>© 2025 Kürşat Yılmaz</p>
+                    <p>© 2026 Kürşat Yılmaz</p>
                 </div>
             </div>
         </div>
@@ -477,16 +575,16 @@
 
     <!-- Project Modal -->
     <!-- Project Modal (Awwwards Grade) -->
-    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-lenis-prevent>
         <div class="modal-backdrop"></div>
-        <div class="modal-container">
+        <div class="modal-container" data-lenis-prevent>
             <button class="modal-close" aria-label="Kapat">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-            <div class="modal-content">
+            <div class="modal-content" data-lenis-prevent>
                 <!-- Cinematic Visual Header -->
                 <div class="modal-visual">
                     <img class="modal-image modal-bg-image" src="" alt="Project Visual Preview" style="display: none;" />
@@ -560,6 +658,13 @@
         </div>
     </div>
 
-    <script src="script.js?v=20261103-itibar-bg"></script>
+    <!-- Core Motion & Scroll Engines -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+
+    <script src="script.js?v=20261104-sotd"></script>
 </body>
 </html>

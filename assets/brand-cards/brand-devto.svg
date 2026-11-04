@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111116"/>
+      <stop offset="100%" stop-color="#08080b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Obsidian Surface with 1px border -->
+  <rect width="480" height="320" rx="20" fill="url(#bgGrad)"/>
+  <rect x="0.5" y="0.5" width="479" height="319" rx="19.5" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <!-- Centered Official Logo -->
+  <g transform="translate(208, 96)">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="#FFFFFF">
+  <path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H5.34v4.36h1.24c.4 0 .68-.08.86-.24.17-.16.26-.43.26-.82v-2.25c0-.39-.09-.66-.28-.82zm-2.8-1.57h2c.79 0 1.38.19 1.77.58.4.38.59.98.59 1.79v2.32c0 .82-.2 1.42-.6 1.8-.4.38-.99.58-1.76.58h-2V8.48zm8.79 4.88H11.5v-1.42h1.67v-.79H11.5V9.28h1.91v-.8H10.6v5.8h2.81v-.8zM15.35 8.48l1.32 4.3 1.33-4.3h1.03l-1.84 5.8h-1.04l-1.83-5.8h1.03z"/>
+</svg>
+  </g>
+
+  <!-- Clean, Authentic Handle Typography -->
+  <text x="240" y="210" fill="#f4f4f6" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="600" font-size="20" letter-spacing="-0.01em" text-anchor="middle">dev.to/devkursat</text>
+</svg>

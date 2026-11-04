@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" width="720" height="460">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0a0a"/>
+      <stop offset="100%" stop-color="#050507"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="ytClip">
+      <rect x="60" y="45" width="600" height="370" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <circle cx="360" cy="230" r="180" fill="#FF0000" opacity="0.08" filter="url(#glow)"/>
+
+  <!-- YouTube Video Player Container -->
+  <g clip-path="url(#ytClip)">
+    <rect x="60" y="45" width="600" height="370" fill="#141418" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+    <image href="/links/banner.jpg" x="60" y="45" width="600" height="370" preserveAspectRatio="xMidYMid slice" opacity="0.8"/>
+    
+    <!-- Dark gradient overlay bottom -->
+    <rect x="60" y="240" width="600" height="175" fill="black" opacity="0.75"/>
+    
+    <!-- Big Red YouTube Play Button in Center -->
+    <g transform="translate(325, 170)" filter="url(#glow)">
+      <rect x="0" y="0" width="70" height="48" rx="14" fill="#FF0000"/>
+      <polygon points="28,15 48,24 28,33" fill="#ffffff"/>
+    </g>
+
+    <!-- Top Badge -->
+    <rect x="80" y="65" width="95" height="26" rx="6" fill="rgba(0,0,0,0.75)" stroke="rgba(255,255,255,0.15)"/>
+    <text x="127" y="82" fill="#fff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">4K ULTRA HD</text>
+
+    <!-- Duration Pill -->
+    <rect x="600" y="280" width="46" height="22" rx="4" fill="rgba(0,0,0,0.85)"/>
+    <text x="623" y="295" fill="#fff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">03:45</text>
+
+    <!-- Video Info at Bottom -->
+    <g transform="translate(80, 310)">
+      <text x="0" y="24" fill="#ffffff" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="20">Boğaz'da Çay Simit | Orijinal Animasyon Bölüm 1</text>
+      <text x="0" y="50" fill="#ff4d4d" font-family="-apple-system, sans-serif" font-weight="600" font-size="13">Kürşat Yılmaz // @kursatsi</text>
+      <text x="175" y="50" fill="#888" font-family="-apple-system, sans-serif" font-size="13">• 240K görüntüleme • 4K 60fps</text>
+      <text x="0" y="74" fill="#aaa" font-family="-apple-system, sans-serif" font-size="12">YouTube Shorts &amp; Animasyon Prodüksiyonları</text>
+    </g>
+  </g>
+</svg>

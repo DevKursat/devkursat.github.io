@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111116"/>
+      <stop offset="100%" stop-color="#08080b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Obsidian Surface with 1px border -->
+  <rect width="480" height="320" rx="20" fill="url(#bgGrad)"/>
+  <rect x="0.5" y="0.5" width="479" height="319" rx="19.5" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <!-- Centered Official Logo -->
+  <g transform="translate(208, 96)">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="#FFFFFF">
+  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+</svg>
+  </g>
+
+  <!-- Clean, Authentic Handle Typography -->
+  <text x="240" y="210" fill="#f4f4f6" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="600" font-size="20" letter-spacing="-0.01em" text-anchor="middle">@DevKursat</text>
+</svg>

@@ -1,20 +1,32 @@
-/* ============================================
-   KÜRŞAT YILMAZ PORTFOLIO - JAVASCRIPT
-   Enhanced with Language Support (TR/EN)
-   ============================================ */
+/* ==========================================================================
+   KÜRŞAT YILMAZ PORTFOLIO — AWWWARDS JURY EDITION
+   Zero-Build Vanilla Stack with Lenis, GSAP, WebGL & Bilingual Architecture
+   ========================================================================== */
 
 // ============================================
-// PROJECT DATA (Bilingual)
+// 1. FLAGSHIP PROJECT SHOWCASE DATA (ITIBAR & UNUTMA ONLY)
 // ============================================
 const projectsData = {
     itibar: {
         title: "İtibar",
         brandName: "itibar",
-        tagline: { tr: '"itibar\'dan tasarruf olmaz."', en: '"There is no compromise on reputation."' },
-        category: { tr: "B2B İtibar Savunma & Hukuk", en: "B2B Reputation Defense & Law" },
-        status: { tr: "Canlı Servis", en: "Live in Production" },
+        tagline: { 
+            tr: '"itibar\'dan tasarruf olmaz."', 
+            en: '"There is no compromise on reputation."' 
+        },
+        category: { 
+            tr: "B2B İtibar Savunma & Hukuk Analizi", 
+            en: "B2B Reputation Defense & Statutory Law" 
+        },
+        status: { 
+            tr: "Canlı Servis", 
+            en: "Live in Production" 
+        },
         statusType: "active",
-        badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
+        badge: { 
+            tr: "Canlı Servis ↗", 
+            en: "Live Platform ↗" 
+        },
         liveUrl: "https://www.itibar.app/",
         icon: "assets/projects/itibar/logo-mark.svg",
         logo: "assets/projects/itibar/logo-mark.svg",
@@ -24,8 +36,8 @@ const projectsData = {
         spotlightColor: "16, 185, 129",
         filter: "web",
         description: {
-            tr: "Haksız ve organize 1-yıldızlı yorum saldırılarına karşı deterministik politika analiz motoru ve yasal mevzuat zemininde çalışan otonom B2B itibar savunma platformu.",
-            en: "Autonomous B2B reputation defense platform operating on deterministic policy classification and statutory legal grounds against unfair and fake 1-star reviews."
+            tr: "Organize 1-yıldızlı haksız yorum saldırılarına karşı deterministik politika kural motoru, TCK/TTK yasal dayanakları ve macOS Headless Chrome PDF raporlama boru hattıyla çalışan otonom B2B itibar savunma platformu.",
+            en: "Autonomous B2B reputation defense platform running on deterministic policy classification, statutory Turkish Commercial / Criminal law rules, and macOS Headless Chrome executive PDF report compilation."
         },
         metrics: {
             tr: [
@@ -66,11 +78,23 @@ const projectsData = {
     unutma: {
         title: "Unutma.",
         brandName: "Unutma.",
-        tagline: { tr: "Mesafe tanımaz, unutulmaz.", en: "Bridging distance with timeless ink." },
-        category: { tr: "Sivil Teknoloji & İletişim", en: "Civic Tech & Platform" },
-        status: { tr: "Canlıda", en: "Live" },
+        tagline: { 
+            tr: "Mesafe tanımaz, unutulmaz.", 
+            en: "Bridging distance with timeless ink." 
+        },
+        category: { 
+            tr: "Sivil Teknoloji & Regülasyon", 
+            en: "Civic Tech & Regulatory Platform" 
+        },
+        status: { 
+            tr: "Canlı Servis", 
+            en: "Live Platform" 
+        },
         statusType: "active",
-        badge: { tr: "Canlı Servis ↗", en: "Live Platform ↗" },
+        badge: { 
+            tr: "Canlı Servis ↗", 
+            en: "Live Platform ↗" 
+        },
         liveUrl: "https://unutma.itibar.app",
         icon: "assets/projects/unutma-seal.png",
         logo: "assets/projects/unutma-seal.png",
@@ -79,6 +103,10 @@ const projectsData = {
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
         spotlightColor: "185, 56, 38",
         filter: "web",
+        description: {
+            tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, gerçek mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan; cezaevi mevzuatına uyumlu yapay zekâ asistanlı sivil teknoloji platformu.",
+            en: "Civic tech and postal communication platform enabling users to send wax-sealed certified letters on ivory paper to inmates, compliant with prison regulations and assisted by AI."
+        },
         metrics: {
             tr: [
                 { value: "%100", label: "Fiziksel Teslimat", desc: "Fildişi kâğıt ve gerçek mum mühür" },
@@ -92,11 +120,6 @@ const projectsData = {
                 { value: "81 Cities", label: "Facility Directory", desc: "All state correctional facilities" },
                 { value: "PTT Track", label: "Certified Barcode", desc: "Real-time SMS and mail dispatch" }
             ]
-        },
-        liveUrl: "https://unutma.itibar.app",
-        description: {
-            tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan, yapay zekâ asistanlı sivil teknoloji platformu.",
-            en: "Civic tech and communication platform enabling users to send wax-sealed, certified letters on ivory paper to inmates, powered by an AI assistant."
         },
         features: {
             tr: [
@@ -117,44 +140,11 @@ const projectsData = {
         githubRepo: "unutma",
         stars: 18,
         forks: 3
-    },
-    firdews: {
-        title: "Firdews",
-        category: { tr: "Mistik & Yaşam", en: "Mystic & Lifestyle" },
-        status: { tr: "Aktif", en: "Active" },
-        statusType: "active",
-        icon: "🌱",
-        gradient: "linear-gradient(135deg, #11998e, #38ef7d)",
-        spotlightColor: "17, 153, 142",
-        filter: "mobile",
-        description: {
-            tr: "Zihinsel huzur, manevi gelişim ve günlük rutinler için geliştirilmiş, estetik ve dinlendirici kullanıcı deneyimine odaklanan mobil platform.",
-            en: "Mobile platform developed for mental peace, spiritual growth, and daily routines, focusing on an aesthetic and calming user experience."
-        },
-        features: {
-            tr: [
-                "Kişiselleştirilmiş manevi rutinler",
-                "Zihinsel dinlenme egzersizleri",
-                "Estetik arayüz ve ses kütüphanesi",
-                "İnteraktif hatırlatıcılar"
-            ],
-            en: [
-                "Personalized spiritual routines",
-                "Mental relaxation exercises",
-                "Aesthetic interface and sound library",
-                "Interactive reminders"
-            ]
-        },
-        tech: ["Next.js", "Tailwind CSS", "Supabase", "Prisma"],
-        github: "https://github.com/DevKursat/Firdews",
-        githubRepo: "Firdews",
-        stars: 18,
-        forks: 2
     }
 };
 
 // ============================================
-// LANGUAGE SYSTEM
+// 2. LANGUAGE SYSTEM (TR / EN)
 // ============================================
 function getPreferredLanguage() {
     const browserLanguages = navigator.languages && navigator.languages.length
@@ -194,7 +184,7 @@ function setLanguage(lang) {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
     
-    // If modal is open, update modal content
+    // Update modal if open
     const modal = document.getElementById('projectModal');
     if (modal && modal.classList.contains('active')) {
         const projectId = modal.dataset.projectId;
@@ -203,17 +193,12 @@ function setLanguage(lang) {
         }
     }
     
-    // Update dynamically rendered projects
-    const activeFilterBtn = document.querySelector('.filter-btn.active');
-    const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
-    renderProjects(filter);
+    // Re-render project cards & more projects card with updated text
+    renderProjects();
 }
 
 function initLanguage() {
-    // Set initial language
     setLanguage(currentLang);
-    
-    // Add click handlers to language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             setLanguage(btn.dataset.lang);
@@ -228,263 +213,502 @@ function initLanguage() {
 }
 
 // ============================================
-// CUSTOM CURSOR
+// 3. MOTION & SMOOTH SCROLL ENGINE (LENIS + GSAP)
+// ============================================
+let lenis = null;
+let currentScrollVelocity = 0;
+
+function initLenis() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || typeof Lenis === 'undefined') return;
+
+    try {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 1.8
+        });
+
+        if (typeof ScrollTrigger !== 'undefined') {
+            lenis.on('scroll', ScrollTrigger.update);
+        }
+
+        if (typeof gsap !== 'undefined') {
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        } else {
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        }
+
+        // Velocity reactive marquee skew & speed
+        lenis.on('scroll', (e) => {
+            currentScrollVelocity = e.velocity || 0;
+            const skew = Math.max(Math.min(currentScrollVelocity * 0.12, 6), -6);
+            document.querySelectorAll('.marquee-content').forEach(el => {
+                el.style.transform = `skewX(${skew}deg)`;
+            });
+        });
+    } catch (err) {
+        console.warn("Lenis init fallback:", err);
+    }
+}
+
+// ============================================
+// 4. CINEMATIC PRELOADER & CURTAIN REVEAL
+// ============================================
+function initLoader() {
+    const preloader = document.getElementById('sitePreloader');
+    const progressNum = document.getElementById('loaderProgress');
+    const barFill = document.getElementById('loaderBarFill');
+    const curtainPath = document.getElementById('loaderCurtainPath');
+
+    if (!preloader) {
+        initHeroReveal();
+        return;
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    let progress = 0;
+    const startTime = performance.now();
+    const minDuration = 1100; // ms
+
+    const interval = setInterval(() => {
+        const elapsed = performance.now() - startTime;
+        const fontReady = document.fonts ? document.fonts.status === 'loaded' : true;
+        
+        let targetProgress = Math.min(Math.floor((elapsed / minDuration) * 90), 92);
+        if (elapsed >= minDuration && fontReady) {
+            targetProgress = 100;
+        }
+
+        if (progress < targetProgress) {
+            progress += 2;
+            if (progress > 100) progress = 100;
+        }
+
+        if (progressNum) {
+            progressNum.textContent = String(progress).padStart(3, '0');
+        }
+        if (barFill) {
+            barFill.style.width = `${progress}%`;
+        }
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            finishPreloader();
+        }
+    }, 20);
+
+    function finishPreloader() {
+        if (typeof gsap !== 'undefined' && curtainPath) {
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = '';
+                    initHeroReveal();
+                    initScrollAnimations();
+                }
+            });
+
+            tl.to('.loader-content', {
+                opacity: 0,
+                y: -30,
+                duration: 0.4,
+                ease: 'power2.in'
+            });
+
+            // Smooth SVG curtain curve pull up
+            tl.to(curtainPath, {
+                attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
+                duration: 0.85,
+                ease: "power4.inOut"
+            }, "-=0.15");
+        } else {
+            // Vanilla Fallback
+            preloader.classList.add('hidden');
+            document.body.style.overflow = '';
+            initHeroReveal();
+            initScrollAnimations();
+        }
+    }
+}
+
+function initHeroReveal() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    if (typeof gsap !== 'undefined') {
+        try {
+            gsap.fromTo('.hero-badge, .hero-title .title-line, .hero-roles, .hero-description, .hero-cta, .hero-stats-banner',
+                { y: 35, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.85, stagger: 0.08, ease: "power3.out", delay: 0.1 }
+            );
+        } catch (e) {
+            console.warn("Hero reveal GSAP fallback:", e);
+        }
+    }
+}
+
+// ============================================
+// 5. INTERACTIVE RAW WEBGL HERO SHADER
+// ============================================
+function initHeroShader() {
+    const canvas = document.getElementById('heroShaderCanvas');
+    if (!canvas) return;
+
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) {
+        console.warn("WebGL not supported; falling back to CSS background.");
+        return;
+    }
+
+    const vertexSource = `
+        attribute vec2 a_position;
+        void main() {
+            gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+    `;
+
+    const fragmentSource = `
+        precision highp float;
+        uniform vec2 u_resolution;
+        uniform float u_time;
+        uniform vec2 u_mouse;
+        uniform float u_velocity;
+
+        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+        float snoise(vec2 v) {
+            const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+            vec2 i  = floor(v + dot(v, C.yy) );
+            vec2 x0 = v -   i + dot(i, C.xx);
+            vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+            vec4 x12 = x0.xyxy + C.xxzz;
+            x12.xy -= i1;
+            i = mod289(i);
+            vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+            vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+            m = m*m;
+            m = m*m;
+            vec3 x = 2.0 * fract(p * C.www) - 1.0;
+            vec3 h = abs(x) - 0.5;
+            vec3 ox = floor(x + 0.5);
+            vec3 a0 = x - ox;
+            m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+            vec3 g;
+            g.x  = a0.x  * x0.x  + h.x  * x0.y;
+            g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+            return 130.0 * dot(m, g);
+        }
+
+        void main() {
+            vec2 st = gl_FragCoord.xy / u_resolution.xy;
+            st.x *= u_resolution.x / u_resolution.y;
+
+            vec2 mouseNorm = u_mouse / u_resolution.xy;
+            mouseNorm.x *= u_resolution.x / u_resolution.y;
+            float distMouse = distance(st, mouseNorm);
+
+            float t = u_time * 0.16 + u_velocity * 0.0006;
+
+            float n1 = snoise(st * 1.6 + vec2(t * 0.18, t * 0.12));
+            float n2 = snoise(st * 3.0 - vec2(t * 0.22, -t * 0.15) + vec2(n1 * 0.45));
+            float n = (n1 * 0.65 + n2 * 0.35);
+
+            n += (1.0 - smoothstep(0.0, 0.48, distMouse)) * 0.35;
+
+            // Palette:
+            // Obsidian #050507 (0.02, 0.02, 0.027)
+            // Cyber Cyan #00D9FF (0.0, 0.85, 1.0)
+            // Emerald #10B981 (0.063, 0.725, 0.506)
+            // Crimson #B93826 (0.725, 0.22, 0.149)
+            vec3 c_bg = vec3(0.02, 0.02, 0.027);
+            vec3 c_cyan = vec3(0.0, 0.85, 1.0);
+            vec3 c_emerald = vec3(0.063, 0.725, 0.506);
+            vec3 c_crimson = vec3(0.725, 0.22, 0.149);
+
+            float v1 = smoothstep(-0.25, 0.55, n);
+            float v2 = smoothstep(0.18, 0.80, n);
+            float v3 = smoothstep(0.45, 0.95, n);
+
+            vec3 color = c_bg;
+            color = mix(color, c_cyan * 0.36, v1 * 0.4);
+            color = mix(color, c_emerald * 0.38, v2 * 0.32);
+            color = mix(color, c_crimson * 0.42, v3 * (1.0 - smoothstep(0.0, 0.5, distMouse)) * 0.55);
+
+            // Subtle edge vignette
+            vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+            float vig = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
+            vig = clamp(pow(16.0 * vig, 0.28), 0.0, 1.0);
+
+            gl_FragColor = vec4(color * vig, 1.0);
+        }
+    `;
+
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error(gl.getShaderInfoLog(shader));
+            gl.deleteShader(shader);
+            return null;
+        }
+        return shader;
+    }
+
+    const vertShader = createShader(gl, gl.VERTEX_SHADER, vertexSource);
+    const fragShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
+    if (!vertShader || !fragShader) return;
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vertShader);
+    gl.attachShader(program, fragShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(program));
+        return;
+    }
+    gl.useProgram(program);
+
+    // Quad geometry
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1,
+         1, -1,
+        -1,  1,
+        -1,  1,
+         1, -1,
+         1,  1
+    ]), gl.STATIC_DRAW);
+
+    const posAttr = gl.getAttribLocation(program, "a_position");
+    gl.enableVertexAttribArray(posAttr);
+    gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
+
+    const resLoc = gl.getUniformLocation(program, "u_resolution");
+    const timeLoc = gl.getUniformLocation(program, "u_time");
+    const mouseLoc = gl.getUniformLocation(program, "u_mouse");
+    const velLoc = gl.getUniformLocation(program, "u_velocity");
+
+    let mouseX = window.innerWidth * 0.5;
+    let mouseY = window.innerHeight * 0.5;
+    let currentMouseX = mouseX;
+    let currentMouseY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = window.innerHeight - e.clientY;
+    });
+
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = canvas.parentElement.offsetWidth * dpr;
+        canvas.height = canvas.parentElement.offsetHeight * dpr;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let isVisible = true;
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        const observer = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+        }, { threshold: 0.05 });
+        observer.observe(heroSection);
+    }
+
+    let startTime = performance.now();
+    function render() {
+        if (isVisible) {
+            const time = (performance.now() - startTime) * 0.001;
+            currentMouseX += (mouseX - currentMouseX) * 0.08;
+            currentMouseY += (mouseY - currentMouseY) * 0.08;
+
+            gl.uniform2f(resLoc, canvas.width, canvas.height);
+            gl.uniform1f(timeLoc, time);
+            gl.uniform2f(mouseLoc, currentMouseX * (canvas.width / window.innerWidth), currentMouseY * (canvas.height / window.innerHeight));
+            gl.uniform1f(velLoc, currentScrollVelocity);
+
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+        }
+        requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+}
+
+// ============================================
+// 6. SINGLE MAGNETIC MORPHING CURSOR
 // ============================================
 function initCursor() {
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    
+    const cursorLabel = follower ? follower.querySelector('.cursor-label') : null;
+
     if (!cursor || !follower) return;
-    
-    // Check for touch device
+
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         cursor.style.display = 'none';
         follower.style.display = 'none';
         return;
     }
-    
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    let followerX = 0, followerY = 0;
-    
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+    let followerX = mouseX;
+    let followerY = mouseY;
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
-    
-    function animate() {
-        // Cursor (fast)
-        cursorX += (mouseX - cursorX) * 0.5;
-        cursorY += (mouseY - cursorY) * 0.5;
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        
-        // Follower (slower)
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
-        follower.style.left = followerX + 'px';
-        follower.style.top = followerY + 'px';
-        
-        requestAnimationFrame(animate);
+
+    function renderCursor() {
+        cursorX += (mouseX - cursorX) * 0.45;
+        cursorY += (mouseY - cursorY) * 0.45;
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+
+        followerX += (mouseX - followerX) * 0.18;
+        followerY += (mouseY - followerY) * 0.18;
+        follower.style.left = `${followerX}px`;
+        follower.style.top = `${followerY}px`;
+
+        requestAnimationFrame(renderCursor);
     }
-    animate();
-    
-    // Hover effects
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .project-mini, .hobby-item, .skill-tag');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-            follower.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            follower.classList.remove('active');
-        });
-    });
-}
+    requestAnimationFrame(renderCursor);
 
-// ============================================
-// LOADER
-// ============================================
-function initLoader() {
-    const loader = document.querySelector('.loader');
-    
-    window.addEventListener('load', () => {
-        // Wait for dots animation to show
-        setTimeout(() => {
-            // Smooth fade out
-            loader.classList.add('fade-out');
-            
-            // After animation, hide completely
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                document.body.style.overflow = '';
-                initScrollAnimations();
-            }, 800);
-        }, 1000);
-    });
-    
-    // Prevent scrolling while loading
-    document.body.style.overflow = 'hidden';
-}
-
-// ============================================
-// NAVIGATION
-// ============================================
-function initNavigation() {
-    const nav = document.querySelector('.nav');
-    const menuBtn = document.querySelector('.nav-menu-btn');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    
-    // Scroll effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-        
-        if (currentScroll > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+    // Magnetic snaps on buttons & links
+    const magneticSelector = '.btn, .nav-link, .lang-btn, .social-link, .skill-filter-btn, .project-card-expand, .contact-submit-btn, .blog-card';
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest(magneticSelector);
+        if (target) {
+            follower.classList.add('is-magnetic');
         }
-        
-        lastScroll = currentScroll;
-    });
-    
-    // Mobile menu toggle
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-    
-    // Close mobile menu on link click
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-    
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offset = 80;
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
 
-// ============================================
-// SCROLL ANIMATIONS
-// ============================================
-function initScrollAnimations() {
-    const elements = document.querySelectorAll('[data-scroll]');
-    
-    const observerOptions = {
-        root: null,
-        rootMargin: '-50px',
-        threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.scrollDelay || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                observer.unobserve(entry.target);
+        const projectCard = e.target.closest('.project-card:not(.more-projects-card)');
+        if (projectCard) {
+            follower.classList.add('is-project-hover');
+            if (cursorLabel) {
+                cursorLabel.textContent = currentLang === 'tr' ? 'İNCELE ↗' : 'EXPLORE ↗';
             }
-        });
-    }, observerOptions);
-    
-    elements.forEach(el => observer.observe(el));
-}
-
-// ============================================
-// STATS COUNTER
-// ============================================
-function initStatsCounter() {
-    const stats = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const count = parseInt(target.dataset.count);
-                animateCount(target, count);
-                observer.unobserve(target);
-            }
-        });
-    }, observerOptions);
-    
-    stats.forEach(stat => observer.observe(stat));
-}
-
-function animateCount(element, target) {
-    let current = 0;
-    const increment = target / 50;
-    const duration = 1500;
-    const stepTime = duration / 50;
-    const suffix = element.dataset.suffix || '';
-    
-    const counter = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = `${target}${suffix}`;
-            clearInterval(counter);
-        } else {
-            element.textContent = Math.floor(current);
         }
-    }, stepTime);
+
+        const githubCard = e.target.closest('.more-projects-card');
+        if (githubCard) {
+            follower.classList.add('is-github-hover');
+            if (cursorLabel) {
+                cursorLabel.textContent = 'GITHUB 100+ ↗';
+            }
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest(magneticSelector);
+        if (target) {
+            follower.classList.remove('is-magnetic');
+        }
+
+        const projectCard = e.target.closest('.project-card:not(.more-projects-card)');
+        if (projectCard) {
+            follower.classList.remove('is-project-hover');
+            if (cursorLabel) cursorLabel.textContent = '';
+        }
+
+        const githubCard = e.target.closest('.more-projects-card');
+        if (githubCard) {
+            follower.classList.remove('is-github-hover');
+            if (cursorLabel) cursorLabel.textContent = '';
+        }
+    });
 }
 
 // ============================================
-// PROJECT MODAL
-// ============================================
-// PROJECTS DIRECTORY SYSTEM
+// 7. FLAGSHIP PROJECTS SHOWCASE (2 MONUMENTAL CARDS + 100+ GITHUB ARCHIVE)
 // ============================================
 async function fetchGitHubStats() {
     try {
-        const response = await fetch('https://api.github.com/users/DevKursat/repos?per_page=100');
-        if (!response.ok) return;
-        const repos = await response.json();
-        
+        const userRes = await fetch('https://api.github.com/users/DevKursat');
+        let publicRepoCount = 100;
+        if (userRes.ok) {
+            const userData = await userRes.json();
+            if (userData.public_repos) publicRepoCount = Math.max(userData.public_repos, 100);
+        }
+
+        const reposRes = await fetch('https://api.github.com/users/DevKursat/repos?per_page=100');
+        if (!reposRes.ok) return;
+        const repos = await reposRes.json();
+
+        let totalStars = 0;
         repos.forEach(repo => {
+            totalStars += repo.stargazers_count || 0;
             const repoNameLower = repo.name.toLowerCase();
             for (const key in projectsData) {
                 const proj = projectsData[key];
                 if (proj.githubRepo && proj.githubRepo.toLowerCase() === repoNameLower) {
                     proj.stars = repo.stargazers_count;
                     proj.forks = repo.forks_count;
-                    
-                    // Update on-screen stars/forks count
-                    const card = document.querySelector(`[data-project="${key}"]`);
-                    if (card) {
-                        const starsEl = card.querySelector('.project-stars-count');
-                        const forksEl = card.querySelector('.project-forks-count');
-                        if (starsEl) starsEl.textContent = repo.stargazers_count;
-                        if (forksEl) forksEl.textContent = repo.forks_count;
-                    }
                 }
             }
         });
-    } catch (error) {
-        console.error("Error fetching GitHub stats:", error);
+
+        const telemetryText = document.getElementById('githubTelemetryText');
+        if (telemetryText) {
+            const lang = currentLang;
+            telemetryText.textContent = lang === 'tr'
+                ? `${publicRepoCount}+ Proje • ${totalStars}+ GitHub Yıldızı ↗`
+                : `${publicRepoCount}+ Projects • ${totalStars}+ GitHub Stars ↗`;
+        }
+    } catch (err) {
+        console.warn("GitHub API telemetry warning:", err);
     }
 }
 
-function renderProjects(filter = 'all') {
+function renderProjects() {
     const container = document.getElementById('projectsContainer');
     if (!container) return;
-    
+
     let html = '';
     const lang = currentLang;
-    
+
+    // Render Flagship Projects (Itibar & Unutma Only)
     for (const key in projectsData) {
         const project = projectsData[key];
-        if (filter !== 'all' && project.filter !== filter) continue;
-        
-        const techHTML = project.tech.slice(0, 3).map(t => `<span>${t}</span>`).join('');
+        const techHTML = project.tech.slice(0, 4).map(t => `<span>${t}</span>`).join('');
         const isIconImage = project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'));
         const iconHTML = isIconImage 
             ? `<img src="${project.icon}" alt="${project.title}" class="project-card-custom-logo">` 
-            : project.icon;
-        
+            : (project.icon || '⭐');
+
+        const metricsPreview = (project.metrics && project.metrics[lang]) ? project.metrics[lang].slice(0, 4) : [];
+        const metricsStripHTML = metricsPreview.length > 0 ? `
+            <div class="project-card-metrics-strip">
+                ${metricsPreview.map(m => `
+                    <div class="project-card-mini-metric">
+                        <span class="mini-metric-value">${m.value}</span>
+                        <span class="mini-metric-label">${m.label}</span>
+                    </div>
+                `).join('')}
+            </div>
+        ` : '';
+
         html += `
             <article class="project-card ${project.image ? 'has-card-image' : ''}" data-project="${key}" style="--spotlight-color: ${project.spotlightColor}" data-scroll="scale-up">
                 <div class="project-card-visual">
@@ -509,6 +733,9 @@ function renderProjects(filter = 'all') {
                     </div>
                     <h3 class="project-card-title">${project.title}</h3>
                     <p class="project-card-desc">${project.description[lang]}</p>
+                    
+                    ${metricsStripHTML}
+
                     <div class="project-card-footer">
                         <div class="project-card-tech">
                             ${techHTML}
@@ -516,19 +743,12 @@ function renderProjects(filter = 'all') {
                         <div class="project-card-stats">
                             ${project.liveUrl ? `
                                 <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-visit-btn" onclick="event.stopPropagation();" title="${lang === 'tr' ? 'Web Sitesini Aç' : 'Visit Website'}">
-                                    <span>${lang === 'tr' ? 'Sitemizi Aç' : 'Visit Site'}</span>
+                                    <span>${lang === 'tr' ? 'Canlı Servis' : 'Live Site'}</span>
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                                     </svg>
                                 </a>
-                            ` : `
-                                <span class="project-stat-item" title="Stars">
-                                    🌟 <span class="project-stars-count">${project.stars}</span>
-                                </span>
-                                <span class="project-stat-item" title="Forks">
-                                    🍴 <span class="project-forks-count">${project.forks}</span>
-                                </span>
-                            `}
+                            ` : ''}
                             <button class="project-card-expand" aria-label="${lang === 'tr' ? 'Detayları gör' : 'View details'}">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -540,19 +760,16 @@ function renderProjects(filter = 'all') {
             </article>
         `;
     }
-    
-    // Curated bilingual values for the 4th GitHub card
-    const moreProjectsTitle = lang === 'tr' ? 'Daha Fazla Proje' : 'More Projects';
-    const moreProjectsDesc = lang === 'tr' 
-        ? "Bazı kurumsal ve özel projelerimi gizlilik sözleşmeleri (NDA) sebebiyle burada gösteremiyorum. Diğer açık kaynaklı çalışmalarımı keşfetmek için GitHub profilimi ziyaret edebilirsiniz." 
-        : "Due to confidentiality agreements (NDA), some of my enterprise projects are not shown here. Visit my GitHub profile to explore my open-source works.";
-    const moreProjectsCategory = lang === 'tr' ? 'Daha Fazlası' : 'More';
-    const moreProjectsStatus = lang === 'tr' ? 'Keşfet' : 'Explore';
-    
-    // Append the 4th special GitHub card (Wide horizontal layout)
+
+    // Upgraded "100+ Projects & Open Source Archive" Banner (Full Width)
+    const moreTitle = lang === 'tr' ? '100+ Proje & Açık Kaynak Arşivi' : '100+ Projects & Open-Source Archive';
+    const moreDesc = lang === 'tr' 
+        ? "Canlıdaki amiral gemisi ürünlerimin yanı sıra geliştirdiğim 100+ açık kaynak araç, otomasyon botu ve deneysel yazılım projesini GitHub profilimde inceleyebilirsiniz."
+        : "Alongside my live flagship products, explore 100+ open-source tools, automation engines, and experimental software projects on my GitHub profile.";
+
     html += `
         <article class="project-card more-projects-card" onclick="window.open('https://github.com/DevKursat', '_blank')" style="--spotlight-color: 0, 217, 255" data-scroll="scale-up">
-            <div class="more-projects-glow" style="--gradient: linear-gradient(135deg, #00D9FF, #0066FF); opacity: 0.12;"></div>
+            <div class="more-projects-glow" style="--gradient: linear-gradient(135deg, #00D9FF, #10B981); opacity: 0.15;"></div>
             <div class="more-projects-pattern"></div>
             
             <div class="more-projects-left">
@@ -562,8 +779,12 @@ function renderProjects(filter = 'all') {
             </div>
             
             <div class="more-projects-middle">
-                <h3 class="more-projects-title">${moreProjectsTitle}</h3>
-                <p class="more-projects-desc">${moreProjectsDesc}</p>
+                <h3 class="more-projects-title">${moreTitle}</h3>
+                <p class="more-projects-desc">${moreDesc}</p>
+                <div class="github-telemetry-pill" id="githubTelemetryPill">
+                    <span class="telemetry-dot"></span>
+                    <span id="githubTelemetryText">${lang === 'tr' ? '100+ Proje • Canlı GitHub Arşivi ↗' : '100+ Projects • Live GitHub Archive ↗'}</span>
+                </div>
             </div>
             
             <div class="more-projects-right">
@@ -576,31 +797,10 @@ function renderProjects(filter = 'all') {
             </div>
         </article>
     `;
-    
+
     container.innerHTML = html;
-    
-    // Scroll reveal binding (trigger layout refresh since items are added dynamically)
-    if (typeof scrollReveal === 'function') {
-        scrollReveal();
-    } else {
-        // Fallback: manually trigger scroll animation visible class
-        const dynamicItems = container.querySelectorAll('[data-scroll]');
-        if (typeof IntersectionObserver !== 'undefined') {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            dynamicItems.forEach(item => observer.observe(item));
-        } else {
-            dynamicItems.forEach(item => item.classList.add('visible'));
-        }
-    }
-    
-    // Attach event listeners
+
+    // Attach spotlight mouse coordinates & card click listeners
     const cards = container.querySelectorAll('.project-card');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -610,7 +810,7 @@ function renderProjects(filter = 'all') {
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
-        
+
         if (!card.classList.contains('more-projects-card')) {
             card.addEventListener('click', () => {
                 const projectId = card.dataset.project;
@@ -621,65 +821,74 @@ function renderProjects(filter = 'all') {
             });
         }
     });
+
+    initTiltEffect();
 }
 
-function initProjects() {
-    renderProjects('all');
-    
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            renderProjects(filter);
+function initTiltEffect() {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
         });
     });
-    
-    const modal = document.getElementById('projectModal');
-    if (modal) {
-        const modalBackdrop = modal.querySelector('.modal-backdrop');
-        const modalClose = modal.querySelector('.modal-close');
-        
-        if (modalClose) modalClose.addEventListener('click', closeModal);
-        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-    }
-    
-    fetchGitHubStats();
 }
 
+// ============================================
+// 8. CASE STUDY MODAL & GSAP CHOREOGRAPHY
+// ============================================
 function openModal(project, projectId) {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
     modal.dataset.projectId = projectId;
-    
-    // Hide tech cursor canvas so particles don't obscure modal
-    const canvas = document.getElementById('techCursorCanvas');
-    if (canvas) canvas.style.opacity = '0';
-    
-    updateModalContent(project);
-    
-    modal.classList.add('active');
+
+    if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
+
+    updateModalContent(project);
+    modal.classList.add('active');
+
+    if (typeof gsap !== 'undefined') {
+        const modalContainer = modal.querySelector('.modal-container');
+        const modalBackdrop = modal.querySelector('.modal-backdrop');
+
+        gsap.fromTo(modalBackdrop, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+        gsap.fromTo(modalContainer, 
+            { y: 50, scale: 0.94, opacity: 0 }, 
+            { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: 'power3.out' }
+        );
+
+        gsap.fromTo('.modal-metric-card', 
+            { y: 20, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.45, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
+        );
+
+        gsap.fromTo('.modal-feature-item', 
+            { x: -15, opacity: 0 }, 
+            { x: 0, opacity: 1, duration: 0.4, stagger: 0.06, ease: 'power2.out', delay: 0.25 }
+        );
+    }
 }
 
 function updateModalContent(project) {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
     const lang = currentLang;
-    
-    // Bind spotlight color and dynamic gradient to modal
+
     modal.style.setProperty('--spotlight-color', project.spotlightColor || '16, 185, 129');
     modal.style.setProperty('--modal-gradient', project.gradient || 'linear-gradient(135deg, #10b981, #059669)');
-    
-    // Update visual header
+
     const modalVisual = modal.querySelector('.modal-visual');
     let modalBg = modalVisual.querySelector('.modal-bg-image');
     if (project.image) {
@@ -695,12 +904,6 @@ function updateModalContent(project) {
         modalBg.style.display = 'none';
     }
 
-    const visualGrad = modal.querySelector('.modal-visual-gradient') || modal.querySelector('.modal-gradient');
-    if (visualGrad) {
-        visualGrad.style.background = `linear-gradient(180deg, rgba(8, 8, 10, 0.1) 0%, rgba(14, 14, 18, 0.5) 55%, #0e0e12 100%)`;
-    }
-
-    // Status Pill in header
     const statusPill = modal.querySelector('.modal-status-pill');
     if (statusPill && project.status) {
         statusPill.innerHTML = `
@@ -710,42 +913,32 @@ function updateModalContent(project) {
         statusPill.className = `modal-status-pill ${project.statusType || 'active'}`;
     }
 
-    // Brand Hero (Official Logo + Brand Word + Tagline)
-    const brandHero = modal.querySelector('.modal-brand-hero');
     const brandLogoImg = modal.querySelector('.modal-brand-logo');
     const brandNameEl = modal.querySelector('.modal-brand-name');
     const brandTaglineEl = modal.querySelector('.modal-brand-tagline');
 
-    if (brandHero) {
-        if (project.logo) {
-            brandLogoImg.src = project.logo;
-            brandLogoImg.alt = `${project.title} Logo`;
-            brandLogoImg.style.display = 'block';
-        } else {
-            brandLogoImg.style.display = 'none';
-        }
-        
-        if (brandNameEl) {
-            brandNameEl.textContent = project.brandName || project.title;
-        }
-        
-        if (brandTaglineEl) {
-            const taglineText = project.tagline ? project.tagline[lang] : project.category[lang];
-            brandTaglineEl.textContent = taglineText;
-        }
+    if (project.logo && brandLogoImg) {
+        brandLogoImg.src = project.logo;
+        brandLogoImg.alt = `${project.title} Logo`;
+        brandLogoImg.style.display = 'block';
+    } else if (brandLogoImg) {
+        brandLogoImg.style.display = 'none';
     }
-    
-    // Update category & title
+
+    if (brandNameEl) brandNameEl.textContent = project.brandName || project.title;
+    if (brandTaglineEl) {
+        brandTaglineEl.textContent = project.tagline ? project.tagline[lang] : project.category[lang];
+    }
+
     const categoryEl = modal.querySelector('.modal-category');
     if (categoryEl) categoryEl.textContent = project.category[lang];
-    
+
     const titleEl = modal.querySelector('.modal-title');
     if (titleEl) titleEl.textContent = project.title;
-    
+
     const descEl = modal.querySelector('.modal-description');
     if (descEl) descEl.textContent = project.description[lang];
-    
-    // Metrics (Awwwards Impact Cards)
+
     const metricsWrap = modal.querySelector('#modalMetrics');
     if (metricsWrap) {
         if (project.metrics && project.metrics[lang] && project.metrics[lang].length > 0) {
@@ -765,7 +958,6 @@ function updateModalContent(project) {
         }
     }
 
-    // Update features (2-Column Glass Cards)
     const featureList = modal.querySelector('.modal-feature-list');
     if (featureList && project.features && project.features[lang]) {
         featureList.innerHTML = project.features[lang].map(f => `
@@ -779,19 +971,16 @@ function updateModalContent(project) {
             </li>
         `).join('');
     }
-    
-    // Update tech stack
+
     const techList = modal.querySelector('.modal-tech-list');
     if (techList && project.tech) {
         techList.innerHTML = project.tech.map(t => `<span class="modal-tech-pill">${t}</span>`).join('');
     }
-    
-    // Actions - Canlı Web Sitesi & GitHub Butonları
+
     const modalLiveBtn = modal.querySelector('.modal-live-btn');
     const modalLiveText = modal.querySelector('.modal-live-text');
     const modalGithubBtn = modal.querySelector('.modal-link');
-    const modalGithubSpan = modalGithubBtn ? modalGithubBtn.querySelector('span') : null;
-    
+
     if (project.liveUrl && modalLiveBtn) {
         modalLiveBtn.href = project.liveUrl;
         modalLiveBtn.style.display = 'inline-flex';
@@ -799,28 +988,19 @@ function updateModalContent(project) {
         if (project.title === 'İtibar') {
             liveLabel = lang === 'tr' ? 'itibar.app Platformunu Keşfet' : 'Explore itibar.app Live';
         } else if (project.title === 'Unutma.') {
-            liveLabel = lang === 'tr' ? 'Web Sitesini Ziyaret Et (unutma.itibar.app)' : 'Visit Live Website (unutma.itibar.app)';
+            liveLabel = lang === 'tr' ? 'unutma.itibar.app Web Sitesi' : 'Visit Live Website';
         }
-        if (modalLiveText) {
-            modalLiveText.textContent = liveLabel;
-            modalLiveText.dataset.tr = liveLabel;
-            modalLiveText.dataset.en = liveLabel;
-        }
+        if (modalLiveText) modalLiveText.textContent = liveLabel;
     } else if (modalLiveBtn) {
         modalLiveBtn.style.display = 'none';
     }
-    
+
     if (modalGithubBtn) {
         if (project.title === 'Unutma.') {
             modalGithubBtn.style.display = 'none';
         } else {
             modalGithubBtn.style.display = 'inline-flex';
             modalGithubBtn.href = project.github || '#';
-            if (modalGithubSpan) {
-                modalGithubSpan.textContent = lang === 'tr' ? "GitHub Kaynak Kodu" : 'View Source on GitHub';
-                modalGithubSpan.dataset.tr = "GitHub Kaynak Kodu";
-                modalGithubSpan.dataset.en = 'View Source on GitHub';
-            }
         }
     }
 }
@@ -828,318 +1008,488 @@ function updateModalContent(project) {
 function closeModal() {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-    
-    // Restore tech cursor canvas
-    const canvas = document.getElementById('techCursorCanvas');
-    if (canvas) canvas.style.opacity = '1';
-}
 
-// ============================================
-// PARALLAX EFFECTS
-// ============================================
-function initParallax() {
-    const orbs = document.querySelectorAll('.gradient-orb');
-    
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        
-        orbs.forEach((orb, index) => {
-            const speed = 0.1 + (index * 0.05);
-            orb.style.transform = `translateY(${scrollY * speed}px)`;
+    if (lenis) lenis.start();
+
+    if (typeof gsap !== 'undefined') {
+        const modalContainer = modal.querySelector('.modal-container');
+        const modalBackdrop = modal.querySelector('.modal-backdrop');
+
+        gsap.to(modalContainer, {
+            y: 30,
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
-    });
+        gsap.to(modalBackdrop, { opacity: 0, duration: 0.3, ease: 'power2.in' });
+    } else {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function initProjects() {
+    renderProjects();
+
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        const modalBackdrop = modal.querySelector('.modal-backdrop');
+        const modalClose = modal.querySelector('.modal-close');
+
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    fetchGitHubStats();
 }
 
 // ============================================
+// 9. IDENTITY BENTO & LIVE EUROPE/ISTANBUL CLOCK
 // ============================================
-// INTERACTIVE FLOATING SKILLS CANVAS
+function initAboutBento() {
+    const clockEl = document.getElementById('istanbulClock');
+
+    function updateClock() {
+        if (!clockEl) return;
+        try {
+            const now = new Date();
+            const timeStr = new Intl.DateTimeFormat('tr-TR', {
+                timeZone: 'Europe/Istanbul',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+            clockEl.textContent = `${timeStr} GMT+3`;
+        } catch (e) {
+            clockEl.textContent = 'Istanbul GMT+3';
+        }
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+// ============================================
+// 10. DRAG-AND-THROW PHYSICS SKILLS CANVAS
 // ============================================
 const skillsData = [
-    { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg', color: '#3178C6' },
-    { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', color: '#F7DF1E' },
-    { name: 'React', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB' },
-    { name: 'Next.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', color: '#FFFFFF', invertOnDark: true },
-    { name: 'Vue.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg', color: '#4FC08D' },
-    { name: 'Tailwind CSS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', color: '#38BDF8' },
-    { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', color: '#339933' },
-    { name: 'NestJS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg', color: '#E0234E' },
-    { name: 'FastAPI', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg', color: '#009688' },
-    { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', color: '#3776AB' },
-    { name: 'Go', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg', color: '#00ADD8' },
-    { name: 'Rust', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg', color: '#DEA584' },
-    { name: 'Flutter', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg', color: '#02569B' },
-    { name: 'React Native', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB' },
-    { name: 'Prisma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg', color: '#5A67D8', invertOnDark: true },
-    { name: 'Supabase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', color: '#3ECF8E' },
-    { name: 'Firebase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg', color: '#FFCA28' },
-    { name: 'PostgreSQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', color: '#336791' },
-    { name: 'MongoDB', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg', color: '#47A248' },
-    { name: 'Redis', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg', color: '#FF3E30' },
-    { name: 'Docker', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', color: '#2496ED' },
-    { name: 'AWS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: '#FF9900' },
-    { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg', color: '#F05032' },
-    { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg', color: '#F24E1E' },
-    { name: 'Vite', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg', color: '#646CFF' },
-    { name: 'GraphQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg', color: '#E10098' }
+    { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg', color: '#3178C6', category: 'frontend' },
+    { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', color: '#F7DF1E', category: 'frontend' },
+    { name: 'React', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB', category: 'frontend' },
+    { name: 'Next.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', color: '#FFFFFF', invertOnDark: true, category: 'frontend' },
+    { name: 'Vue.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg', color: '#4FC08D', category: 'frontend' },
+    { name: 'Tailwind CSS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', color: '#38BDF8', category: 'frontend' },
+    { name: 'Vite', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg', color: '#646CFF', category: 'frontend' },
+    { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg', color: '#F24E1E', category: 'frontend' },
+
+    { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', color: '#339933', category: 'backend' },
+    { name: 'NestJS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg', color: '#E0234E', category: 'backend' },
+    { name: 'FastAPI', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg', color: '#009688', category: 'backend' },
+    { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', color: '#3776AB', category: 'backend' },
+    { name: 'Go', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg', color: '#00ADD8', category: 'backend' },
+    { name: 'Rust', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg', color: '#DEA584', category: 'backend' },
+    { name: 'PostgreSQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', color: '#336791', category: 'backend' },
+    { name: 'MongoDB', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg', color: '#47A248', category: 'backend' },
+    { name: 'Redis', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg', color: '#FF3E30', category: 'backend' },
+    { name: 'GraphQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg', color: '#E10098', category: 'backend' },
+
+    { name: 'Flutter', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg', color: '#02569B', category: 'cloud' },
+    { name: 'React Native', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB', category: 'cloud' },
+    { name: 'Prisma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg', color: '#5A67D8', invertOnDark: true, category: 'cloud' },
+    { name: 'Supabase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', color: '#3ECF8E', category: 'cloud' },
+    { name: 'Firebase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg', color: '#FFCA28', category: 'cloud' },
+    { name: 'Docker', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', color: '#2496ED', category: 'cloud' },
+    { name: 'AWS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: '#FF9900', category: 'cloud' },
+    { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg', color: '#F05032', category: 'cloud' }
 ];
 
 function initSkillsCanvas() {
     const container = document.getElementById('skillsCanvas');
     if (!container) return;
-
     container.innerHTML = '';
 
-    const relativeCoords = [
-        // Row 1 (y: ~15%)
-        { x: 0.06, y: 0.15 }, { x: 0.20, y: 0.13 }, { x: 0.34, y: 0.16 }, { x: 0.48, y: 0.14 }, { x: 0.62, y: 0.17 }, { x: 0.76, y: 0.15 }, { x: 0.90, y: 0.13 },
-        // Row 2 (y: ~38%)
-        { x: 0.10, y: 0.36 }, { x: 0.26, y: 0.40 }, { x: 0.42, y: 0.37 }, { x: 0.58, y: 0.39 }, { x: 0.74, y: 0.36 }, { x: 0.90, y: 0.40 },
-        // Row 3 (y: ~62%)
-        { x: 0.05, y: 0.60 }, { x: 0.19, y: 0.64 }, { x: 0.33, y: 0.61 }, { x: 0.47, y: 0.63 }, { x: 0.61, y: 0.60 }, { x: 0.75, y: 0.64 }, { x: 0.89, y: 0.61 },
-        // Row 4 (y: ~83%)
-        { x: 0.08, y: 0.83 }, { x: 0.24, y: 0.80 }, { x: 0.40, y: 0.84 }, { x: 0.56, y: 0.81 }, { x: 0.72, y: 0.85 }, { x: 0.88, y: 0.82 }
-    ];
-
     const cards = [];
+    const cardSize = 72;
 
     function hexToRgb(hex) {
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 217, 255';
+        let c = hex.replace('#', '');
+        if (c.length === 3) c = c.split('').map(x => x + x).join('');
+        const num = parseInt(c, 16);
+        return `${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}`;
     }
+
+    const w = container.offsetWidth || 1200;
+    const h = container.offsetHeight || 500;
+    const cols = 7;
+    const rows = Math.ceil(skillsData.length / cols);
+    const xStep = (w - 140) / cols;
+    const yStep = (h - 120) / rows;
 
     skillsData.forEach((skill, index) => {
         const cardEl = document.createElement('div');
         cardEl.className = 'floating-skill-card';
+        cardEl.dataset.category = skill.category;
         cardEl.style.setProperty('--card-hover-color', skill.color);
         cardEl.style.setProperty('--card-glow-rgb', hexToRgb(skill.color));
-        
+
         const imgStyle = skill.invertOnDark ? 'style="filter: invert(1) brightness(2);"' : '';
         cardEl.innerHTML = `
-            <img src="${skill.iconUrl}" alt="${skill.name}" ${imgStyle} />
+            <img src="${skill.iconUrl}" alt="${skill.name}" ${imgStyle} draggable="false" />
             <div class="floating-skill-tooltip">${skill.name}</div>
         `;
-        
         container.appendChild(cardEl);
 
+        const row = Math.floor(index / cols);
+        const col = index % cols;
+        const posX = 40 + col * xStep + (Math.random() - 0.5) * 40;
+        const posY = 35 + row * yStep + (Math.random() - 0.5) * 30;
+
         cards.push({
-            element: cardEl,
-            baseX: 0,
-            baseY: 0,
-            width: 80,
-            height: 80,
-            springX: 0,
-            springY: 0,
-            vx: 0,
-            vy: 0,
-            floatPhaseX: Math.random() * Math.PI * 2,
-            floatPhaseY: Math.random() * Math.PI * 2,
-            floatPhaseRot: Math.random() * Math.PI * 2,
-            floatSpeed: 0.6 + Math.random() * 0.8,
-            floatAmpX: 4 + Math.random() * 5,
-            floatAmpY: 4 + Math.random() * 5,
-            floatAmpRot: 2 + Math.random() * 4
+            el: cardEl,
+            category: skill.category,
+            x: Math.max(15, Math.min(posX, w - cardSize - 20)),
+            y: Math.max(15, Math.min(posY, h - cardSize - 20)),
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+            size: cardSize,
+            isDragging: false,
+            dragStartX: 0,
+            dragStartY: 0,
+            lastX: 0,
+            lastY: 0,
+            lastTime: 0
         });
     });
 
-    let mouseX = -9999;
-    let mouseY = -9999;
-    let containerRect = container.getBoundingClientRect();
+    // Pointer Drag & Throw Physics
+    cards.forEach(card => {
+        card.el.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            card.isDragging = true;
+            card.el.setPointerCapture(e.pointerId);
+            const rect = container.getBoundingClientRect();
+            card.dragStartX = (e.clientX - rect.left) - card.x;
+            card.dragStartY = (e.clientY - rect.top) - card.y;
+            card.lastX = e.clientX;
+            card.lastY = e.clientY;
+            card.lastTime = performance.now();
+            card.vx = 0;
+            card.vy = 0;
+            card.el.style.zIndex = '50';
+            card.el.style.cursor = 'grabbing';
+        });
 
-    function handleResize() {
-        containerRect = container.getBoundingClientRect();
-        cards.forEach((card, index) => {
-            const rect = card.element.getBoundingClientRect();
-            card.width = rect.width || 80;
-            card.height = rect.height || 80;
-            
-            const coord = relativeCoords[index % relativeCoords.length];
-            card.baseX = coord.x * containerRect.width - card.width / 2;
-            card.baseY = coord.y * containerRect.height - card.height / 2;
-            
-            card.element.style.left = `${card.baseX}px`;
-            card.element.style.top = `${card.baseY}px`;
+        card.el.addEventListener('pointermove', (e) => {
+            if (!card.isDragging) return;
+            const rect = container.getBoundingClientRect();
+            card.x = (e.clientX - rect.left) - card.dragStartX;
+            card.y = (e.clientY - rect.top) - card.dragStartY;
+
+            const now = performance.now();
+            const dt = Math.max(now - card.lastTime, 16);
+            card.vx = ((e.clientX - card.lastX) / dt) * 16;
+            card.vy = ((e.clientY - card.lastY) / dt) * 16;
+
+            card.lastX = e.clientX;
+            card.lastY = e.clientY;
+            card.lastTime = now;
+        });
+
+        const release = (e) => {
+            if (!card.isDragging) return;
+            card.isDragging = false;
+            card.el.releasePointerCapture(e.pointerId);
+            card.el.style.zIndex = '1';
+            card.el.style.cursor = 'grab';
+
+            // Limit throw speed
+            card.vx = Math.max(Math.min(card.vx, 18), -18);
+            card.vy = Math.max(Math.min(card.vy, 18), -18);
+        };
+
+        card.el.addEventListener('pointerup', release);
+        card.el.addEventListener('pointercancel', release);
+    });
+
+    // Filter pills with wide redistribution
+    const filterPills = document.querySelectorAll('.skill-filter-btn');
+    let activeCategory = 'all';
+
+    filterPills.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterPills.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCategory = btn.dataset.category;
+
+            const currentW = container.offsetWidth || 1200;
+            const currentH = container.offsetHeight || 500;
+            const activeCards = cards.filter(c => activeCategory === 'all' || c.category === activeCategory);
+            const actCount = activeCards.length;
+
+            activeCards.forEach((card, idx) => {
+                card.el.style.opacity = '1';
+                card.el.style.filter = 'none';
+                card.el.style.pointerEvents = 'auto';
+
+                const targetX = 40 + (idx / Math.max(actCount, 1)) * (currentW - 140) + (Math.random() - 0.5) * 60;
+                const targetY = 40 + ((idx % 3) / 3) * (currentH - 120) + (Math.random() - 0.5) * 40;
+                card.vx = (targetX - card.x) * 0.15;
+                card.vy = (targetY - card.y) * 0.15;
+            });
+
+            cards.filter(c => activeCategory !== 'all' && c.category !== activeCategory).forEach(card => {
+                card.el.style.opacity = '0.12';
+                card.el.style.filter = 'grayscale(1)';
+                card.el.style.pointerEvents = 'none';
+            });
+        });
+    });
+
+    // RAF Loop with boundary bouncing & IntersectionObserver guard
+    let isVisible = true;
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        const obs = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+        }, { threshold: 0.1 });
+        obs.observe(skillsSection);
+    }
+
+    function updatePhysics() {
+        if (isVisible) {
+            const w = container.offsetWidth;
+            const h = container.offsetHeight;
+
+            cards.forEach(card => {
+                if (!card.isDragging) {
+                    card.x += card.vx;
+                    card.y += card.vy;
+
+                    // Friction damping
+                    card.vx *= 0.96;
+                    card.vy *= 0.96;
+
+                    // Gentle floating wave when near rest
+                    if (Math.abs(card.vx) < 0.1 && Math.abs(card.vy) < 0.1) {
+                        card.vx += (Math.random() - 0.5) * 0.15;
+                        card.vy += (Math.random() - 0.5) * 0.15;
+                    }
+
+                    // Wall collision & restitution
+                    if (card.x < 10) {
+                        card.x = 10;
+                        card.vx = -card.vx * 0.75;
+                    } else if (card.x > w - card.size - 10) {
+                        card.x = w - card.size - 10;
+                        card.vx = -card.vx * 0.75;
+                    }
+
+                    if (card.y < 10) {
+                        card.y = 10;
+                        card.vy = -card.vy * 0.75;
+                    } else if (card.y > h - card.size - 10) {
+                        card.y = h - card.size - 10;
+                        card.vy = -card.vy * 0.75;
+                    }
+                }
+
+                card.el.style.transform = `translate3d(${card.x.toFixed(1)}px, ${card.y.toFixed(1)}px, 0)`;
+            });
+        }
+        requestAnimationFrame(updatePhysics);
+    }
+    requestAnimationFrame(updatePhysics);
+}
+
+// ============================================
+// 11. NAVIGATION & GENERAL INTERACTIONS
+// ============================================
+function initNavigation() {
+    const nav = document.querySelector('.nav');
+    const menuBtn = document.querySelector('.nav-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     }
 
-    setTimeout(handleResize, 100);
-    window.addEventListener('resize', handleResize);
-
-    container.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    container.addEventListener('mouseleave', () => {
-        mouseX = -9999;
-        mouseY = -9999;
-    });
-
-    container.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) {
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
-        }
-    }, { passive: true });
-
-    container.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
-        }
-    }, { passive: true });
-
-    container.addEventListener('touchend', () => {
-        mouseX = -9999;
-        mouseY = -9999;
-    });
-
-    container.addEventListener('touchcancel', () => {
-        mouseX = -9999;
-        mouseY = -9999;
-    });
-
-    const stiffness = 220;
-    const damping = 18;
-
-    let lastTime = performance.now();
-    let animationFrameId = null;
-
-    function updatePhysics(dt) {
-        containerRect = container.getBoundingClientRect();
-
-        cards.forEach((card) => {
-            const cx = containerRect.left + card.baseX + card.width / 2 + card.springX;
-            const cy = containerRect.top + card.baseY + card.height / 2 + card.springY;
-
-            let targetX = 0;
-            let targetY = 0;
-
-            if (mouseX !== -9999 && mouseY !== -9999) {
-                const dx = cx - mouseX;
-                const dy = cy - mouseY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 160 && distance > 0) {
-                    const angle = Math.atan2(dy, dx);
-                    const force = (1 - distance / 160) * 70;
-                    targetX = Math.cos(angle) * force;
-                    targetY = Math.sin(angle) * force;
+    // Smooth scroll for nav anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#!') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: -80 });
+                } else {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
                 }
             }
-
-            const ax = stiffness * (targetX - card.springX) - damping * card.vx;
-            const ay = stiffness * (targetY - card.springY) - damping * card.vy;
-
-            card.vx += ax * dt;
-            card.vy += ay * dt;
-            card.springX += card.vx * dt;
-            card.springY += card.vy * dt;
-        });
-    }
-
-    function renderLoop(timeNow) {
-        let deltaTime = (timeNow - lastTime) / 1000;
-        lastTime = timeNow;
-
-        if (deltaTime > 0.1) deltaTime = 0.1;
-
-        const step = 0.008;
-        let accumulatedTime = deltaTime;
-        while (accumulatedTime >= step) {
-            updatePhysics(step);
-            accumulatedTime -= step;
-        }
-
-        cards.forEach((card) => {
-            const time = timeNow * 0.001 * card.floatSpeed;
-            const floatX = Math.sin(time + card.floatPhaseX) * card.floatAmpX;
-            const floatY = Math.cos(time * 0.85 + card.floatPhaseY) * card.floatAmpY;
-            const floatRot = Math.sin(time * 0.5 + card.floatPhaseRot) * card.floatAmpRot;
-
-            const x = card.springX + floatX;
-            const y = card.springY + floatY;
-
-            card.element.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${floatRot}deg)`;
-        });
-
-        animationFrameId = requestAnimationFrame(renderLoop);
-    }
-
-    animationFrameId = requestAnimationFrame(renderLoop);
-
-    return () => {
-        window.removeEventListener('resize', handleResize);
-        if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-        }
-    };
-}
-
-// ============================================
-// 3D TILT EFFECT FOR PROJECT CARDS
-// ============================================
-function initTiltEffect() {
-    const cards = document.querySelectorAll('.project-mini');
-    
-    cards.forEach(card => {
-        card.classList.add('tilt');
-        
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
         });
     });
 }
 
-// ============================================
-// MARQUEE PAUSE ON HOVER
-// ============================================
+function initScrollAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        const elements = document.querySelectorAll('section:not(#hero) [data-scroll]');
+        elements.forEach(el => {
+            const delay = (parseInt(el.dataset.scrollDelay, 10) || 0) / 1000;
+            const scrollType = el.dataset.scroll;
+            const fromVars = {
+                opacity: 0,
+                duration: 0.85,
+                delay: delay,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 92%',
+                    toggleActions: 'play none none none',
+                    once: true
+                }
+            };
+
+            if (scrollType === 'fade-left') fromVars.x = -40;
+            else if (scrollType === 'fade-right') fromVars.x = 40;
+            else if (scrollType === 'scale-up') fromVars.scale = 0.94;
+            else fromVars.y = 30;
+
+            gsap.from(el, fromVars);
+        });
+
+        ScrollTrigger.refresh();
+    }
+}
+
+function initStatsCounter() {
+    const stats = document.querySelectorAll('.stat-number');
+    let triggered = new Set();
+
+    const trigger = (el) => {
+        if (triggered.has(el)) return;
+        triggered.add(el);
+        const count = parseInt(el.dataset.count, 10);
+        if (!isNaN(count)) animateCount(el, count);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                trigger(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '80px 0px' });
+
+    stats.forEach(stat => {
+        const rect = stat.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            trigger(stat);
+        } else {
+            observer.observe(stat);
+        }
+    });
+
+    if (lenis) {
+        lenis.on('scroll', () => {
+            stats.forEach(stat => {
+                if (!triggered.has(stat)) {
+                    const rect = stat.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 30) {
+                        trigger(stat);
+                        observer.unobserve(stat);
+                    }
+                }
+            });
+        });
+    }
+}
+
+function animateCount(element, target) {
+    let current = 0;
+    const duration = 900;
+    const steps = 30;
+    const increment = target / steps;
+    const stepTime = duration / steps;
+    const suffix = element.dataset.suffix || '';
+
+    const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = `${target}${suffix}`;
+            clearInterval(counter);
+        } else {
+            element.textContent = `${Math.floor(current)}${suffix}`;
+        }
+    }, stepTime);
+}
+
 function initMarquee() {
     const marquee = document.querySelector('.marquee');
     if (!marquee) return;
-    
     const contents = marquee.querySelectorAll('.marquee-content');
-    
+
     marquee.addEventListener('mouseenter', () => {
-        contents.forEach(content => {
-            content.style.animationPlayState = 'paused';
-        });
+        contents.forEach(c => c.style.animationPlayState = 'paused');
     });
-    
     marquee.addEventListener('mouseleave', () => {
-        contents.forEach(content => {
-            content.style.animationPlayState = 'running';
-        });
+        contents.forEach(c => c.style.animationPlayState = 'running');
     });
 }
 
-// ============================================
-// ABOUT VISUAL VERTICAL MARQUEE OPACITY PHYSICS
-// ============================================
 function initAboutMarquee() {
     const marqueeContainer = document.getElementById('aboutMarquee');
     if (!marqueeContainer) return;
 
     const items = marqueeContainer.querySelectorAll('.marquee-item');
-    
+    let isVisible = true;
+
+    const obs = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+    }, { threshold: 0.05 });
+    obs.observe(marqueeContainer);
+
     function updateOpacity() {
+        if (!isVisible) return;
         const containerRect = marqueeContainer.getBoundingClientRect();
         const centerY = containerRect.top + containerRect.height / 2;
 
@@ -1149,190 +1499,121 @@ function initAboutMarquee() {
             const distance = Math.abs(centerY - itemCenterY);
             const maxDistance = containerRect.height / 2;
             const normalizedDistance = Math.min(distance / maxDistance, 1);
-            
+
             const opacity = 1 - normalizedDistance * 0.88;
             item.style.opacity = opacity.toString();
-            
             const scale = 1.06 - normalizedDistance * 0.12;
             item.style.transform = `scale(${scale})`;
         });
     }
 
-    let animationFrameId;
     function loop() {
         updateOpacity();
-        animationFrameId = requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
     }
-
-    loop();
+    requestAnimationFrame(loop);
 }
 
 // ============================================
-// TECH PARTICLE CURSOR
+// 12. SNELLENBERG CONTACT FORM & CLOCK
 // ============================================
-const techCursorIcons = [
-    {
-        name: "JavaScript",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012752/js_nocitj.png"
-    },
-    {
-        name: "TypeScript",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012632/ts_elsqw8.png"
-    },
-    {
-        name: "React",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012941/react_ogt6ny.svg"
-    },
-    {
-        name: "Next.js",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012973/next_hrodnb.svg"
-    },
-    {
-        name: "HTML",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012812/html_xbcdkj.png"
-    },
-    {
-        name: "CSS",
-        src: "https://res.cloudinary.com/dz1fy2tof/image/upload/v1755012862/css_1_irojyc.png"
-    }
-];
-
-function initTechCursor() {
-    // Avoid running on touch devices
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
-
-    const canvas = document.createElement('canvas');
-    canvas.id = 'techCursorCanvas';
-    canvas.className = 'tech-cursor-canvas';
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const techImages = [];
-    let imagesLoaded = false;
-
-    const loadImages = async () => {
-        const promises = techCursorIcons.map(({ name, src }) => {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.src = src;
-                img.crossOrigin = "anonymous";
-                img.onload = () => resolve({ name, src, image: img });
-                img.onerror = () => resolve(null);
-            });
+function initContactForm() {
+    const servicePills = document.querySelectorAll('#contactServicePills .service-pill-btn');
+    servicePills.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('active');
         });
-        const results = await Promise.all(promises);
-        results.forEach(res => {
-            if (res) techImages.push(res);
-        });
-        imagesLoaded = techImages.length > 0;
-    };
+    });
 
-    loadImages();
-
-    const particles = [];
-
-    const animate = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.update();
-            p.draw(ctx);
-            if (p.alpha <= 0) {
-                particles.splice(i, 1);
+    const clockEl = document.getElementById('contactClock');
+    if (clockEl) {
+        function updateContactClock() {
+            try {
+                const now = new Date();
+                const timeStr = new Intl.DateTimeFormat('tr-TR', {
+                    timeZone: 'Europe/Istanbul',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(now);
+                clockEl.textContent = `${timeStr} GMT+3`;
+            } catch (e) {
+                clockEl.textContent = 'GMT+3';
             }
         }
-        requestAnimationFrame(animate);
-    };
-    animate();
+        updateContactClock();
+        setInterval(updateContactClock, 1000);
+    }
+}
 
-    window.addEventListener('mousemove', (e) => {
-        if (!imagesLoaded) return;
+function handleContactSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const selectedPills = Array.from(document.querySelectorAll('#contactServicePills .service-pill-btn.active'))
+        .map(b => b.textContent.trim())
+        .join(', ');
 
-        // Check if cursor is over projects or skills section
-        const isOverTarget = e.target.closest('#projects') || e.target.closest('#skills');
-        if (!isOverTarget) return;
+    const statusMsg = document.getElementById('formStatusMsg');
+    if (!name || !email || !message) return;
 
-        const randomIcon = techImages[Math.floor(Math.random() * techImages.length)];
-        if (!randomIcon) return;
+    if (statusMsg) {
+        statusMsg.textContent = currentLang === 'tr' 
+            ? '✓ E-posta istemciniz hazırlanıyor...' 
+            : '✓ Preparing email client...';
+    }
 
-        const size = 22 + Math.random() * 8;
+    const subject = encodeURIComponent(`[devkursat.github.io] Proje & Mimari Talebi - ${name}`);
+    const body = encodeURIComponent(
+`Merhaba Kürşat,
 
-        const particle = {
-            x: e.clientX,
-            y: e.clientY,
-            alpha: 1,
-            image: randomIcon.image,
-            size,
-            update() {
-                this.y -= 0.4;
-                this.alpha -= 0.02;
-            },
-            draw(ctx) {
-                ctx.globalAlpha = this.alpha;
-                ctx.drawImage(
-                    this.image,
-                    this.x - this.size / 2,
-                    this.y - this.size / 2,
-                    this.size,
-                    this.size
-                );
-                ctx.globalAlpha = 1;
-            }
-        };
+İsim: ${name}
+E-posta: ${email}
+Hizmet Alanı: ${selectedPills || 'Genel Mimarî Görüşme'}
 
-        particles.push(particle);
-    });
+Mesaj / Proje Detayı:
+${message}
+`
+    );
+
+    setTimeout(() => {
+        window.location.href = `mailto:tckursat@icloud.com?subject=${subject}&body=${body}`;
+        if (statusMsg) {
+            statusMsg.textContent = currentLang === 'tr' 
+                ? '✓ Mesaj iletildi. 24 saat içinde yanıt verilecektir.' 
+                : '✓ Message dispatched. I will reply within 24h.';
+        }
+    }, 400);
 }
 
 // ============================================
-// INITIALIZATION
+// 13. INITIALIZATION ORCHESTRATOR
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initLanguage();
+    initLenis();
     initLoader();
+    initHeroShader();
     initCursor();
     initNavigation();
     initStatsCounter();
     initProjects();
-    initParallax();
+    initAboutBento();
     initSkillsCanvas();
     initAboutMarquee();
     initMarquee();
-    initTechCursor();
-    initTiltEffect();
+    initContactForm();
 });
 
-// Handle page visibility
+// Tab Visibility Guard
 document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause animations when tab is not visible
-        document.querySelectorAll('.marquee-content, .skill-orbit').forEach(el => {
-            el.style.animationPlayState = 'paused';
-        });
-    } else {
-        // Resume animations
-        document.querySelectorAll('.marquee-content, .skill-orbit').forEach(el => {
-            el.style.animationPlayState = 'running';
-        });
-    }
+    const state = document.hidden ? 'paused' : 'running';
+    document.querySelectorAll('.marquee-content, .spotify-eq-bars span').forEach(el => {
+        el.style.animationPlayState = state;
+    });
 });
 
-// Performance: Reduce motion if user prefers
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.style.setProperty('--duration-fast', '0.01ms');
-    document.documentElement.style.setProperty('--duration-normal', '0.01ms');
-    document.documentElement.style.setProperty('--duration-slow', '0.01ms');
-}
-
-console.log('%c🚀 Portfolio by Kürşat Yılmaz', 'font-size: 20px; color: #00D9FF; font-weight: bold;');
-console.log('%cBuilding ideas into reality, fast.', 'font-size: 14px; color: #666;');
+console.log('%c🚀 Kürşat Yılmaz | Awwwards Juried Portfolio', 'font-size: 18px; color: #00D9FF; font-weight: 700;');
+console.log('%cArchitecting deterministic AI platforms & sovereign systems.', 'font-size: 13px; color: #10B981;');

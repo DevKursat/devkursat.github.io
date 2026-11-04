@@ -1,13 +1,12 @@
 {
-  "title": "Ollama'nın \"Kolaylık Vergisi\": Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?",
-  "date": "2026-11-03",
-  "summary": "Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.",
-  "url": "https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html",
-  "image": "https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.png",
+  "title": "Çin Açık Kaynağının Zaferi: Qwen'in 'Sonuna Kadar Açık Kaynak' Resti ve Silikon Vadisi Tekeli",
+  "date": "2026-11-04",
+  "summary": "Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının Doğu'ya kayması.",
+  "url": "https://devkursat.github.io/blog/qwen-acik-kaynak-silikon-vadisi.html",
+  "image": "https://devkursat.github.io/blog/qwen-acik-kaynak-silikon-vadisi.png",
   "tags": [
-    "Yerel AI",
-    "llama.cpp",
-    "vLLM",
-    "Mühendislik"
+    "Açık Kaynak",
+    "Qwen",
+    "Yapay Zeka"
   ]
 }
