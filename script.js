@@ -144,45 +144,216 @@ const projectsData = {
 };
 
 // ============================================
-// 2. LANGUAGE SYSTEM (TR / EN)
+// 2. LUXURY MULTI-LANGUAGE SYSTEM (TR / EN / DE / FR / ES / AZ)
 // ============================================
+const SUPPORTED_LANGUAGES = {
+    tr: {
+        code: 'tr',
+        name: 'Türkçe',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="16" rx="3" fill="#E30A17"/>
+            <circle cx="8.5" cy="8" r="4.2" fill="#FFFFFF"/>
+            <circle cx="9.6" cy="8" r="3.36" fill="#E30A17"/>
+            <polygon points="13.2,5.6 13.7,7.1 15.2,7.2 14.1,8.2 14.4,9.7 13.2,8.8 12,9.7 12.3,8.2 11.2,7.2 12.7,7.1" fill="#FFFFFF"/>
+        </svg>`
+    },
+    en: {
+        code: 'en',
+        name: 'English',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="ukClipNav"><rect width="24" height="16" rx="3"/></clipPath>
+            <g clip-path="url(#ukClipNav)">
+                <rect width="24" height="16" fill="#012169"/>
+                <path d="M0 0L24 16M24 0L0 16" stroke="#FFFFFF" stroke-width="3"/>
+                <path d="M0 0L24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.8"/>
+                <path d="M12 0V16M0 8H24" stroke="#FFFFFF" stroke-width="5"/>
+                <path d="M12 0V16M0 8H24" stroke="#C8102E" stroke-width="3"/>
+            </g>
+        </svg>`
+    },
+    de: {
+        code: 'de',
+        name: 'Deutsch',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="deClipNav"><rect width="24" height="16" rx="3"/></clipPath>
+            <g clip-path="url(#deClipNav)">
+                <rect width="24" height="5.33" y="0" fill="#000000"/>
+                <rect width="24" height="5.34" y="5.33" fill="#DD0000"/>
+                <rect width="24" height="5.33" y="10.67" fill="#FFCE00"/>
+            </g>
+        </svg>`
+    },
+    fr: {
+        code: 'fr',
+        name: 'Français',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="frClipNav"><rect width="24" height="16" rx="3"/></clipPath>
+            <g clip-path="url(#frClipNav)">
+                <rect width="8" height="16" x="0" fill="#002395"/>
+                <rect width="8" height="16" x="8" fill="#FFFFFF"/>
+                <rect width="8" height="16" x="16" fill="#ED2939"/>
+            </g>
+        </svg>`
+    },
+    es: {
+        code: 'es',
+        name: 'Español',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="esClipNav"><rect width="24" height="16" rx="3"/></clipPath>
+            <g clip-path="url(#esClipNav)">
+                <rect width="24" height="4" y="0" fill="#AA151B"/>
+                <rect width="24" height="8" y="4" fill="#F1BF00"/>
+                <rect width="24" height="4" y="12" fill="#AA151B"/>
+            </g>
+        </svg>`
+    },
+    az: {
+        code: 'az',
+        name: 'Azərbaycan',
+        flagSvg: `<svg viewBox="0 0 24 16" width="22" height="15" class="flag-svg" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="azClipNav"><rect width="24" height="16" rx="3"/></clipPath>
+            <g clip-path="url(#azClipNav)">
+                <rect width="24" height="5.33" y="0" fill="#00B5E2"/>
+                <rect width="24" height="5.34" y="5.33" fill="#EF3340"/>
+                <rect width="24" height="5.33" y="10.67" fill="#509E2F"/>
+                <circle cx="11.2" cy="8" r="2.2" fill="#FFFFFF"/>
+                <circle cx="11.7" cy="8" r="1.8" fill="#EF3340"/>
+                <polygon points="14,6.8 14.3,7.5 15,7.7 14.5,8.2 14.6,8.9 14,8.5 13.4,8.9 13.5,8.2 13,7.7 13.7,7.5" fill="#FFFFFF"/>
+            </g>
+        </svg>`
+    }
+};
+
+const CORE_I18N = {
+    de: {
+        'Hakkımda': 'Über mich',
+        'Projeler': 'Projekte',
+        'Beceriler': 'Fähigkeiten',
+        'Beceriler & Teknoloji': 'Fähigkeiten & Tech',
+        'Yazılar': 'Essays',
+        'Yazılar & Analizler': 'Essays & Analysen',
+        'İletişim': 'Kontakt',
+        'İletişim & Teklif': 'Kontakt & Angebot',
+        'Bağlantılar ↗': 'Links ↗',
+        'Tüm Bağlantılar (Dizin)': 'Alle Links (Verzeichnis)',
+        'KAPAT': 'SCHLIESSEN',
+        'KONUM & ZAMAN': 'STANDORT & ZEIT',
+        'DOĞRUDAN İLETİŞİM': 'DIREKTER KONTAKT',
+        'DİL SEÇİMİ': 'SPRACHE WÄHLEN'
+    },
+    fr: {
+        'Hakkımda': 'À propos',
+        'Projeler': 'Projets',
+        'Beceriler': 'Compétences',
+        'Beceriler & Teknoloji': 'Compétences & Tech',
+        'Yazılar': 'Essais',
+        'Yazılar & Analizler': 'Essais & Teardowns',
+        'İletişim': 'Contact',
+        'İletişim & Teklif': 'Contact & Proposition',
+        'Bağlantılar ↗': 'Liens ↗',
+        'Tüm Bağlantılar (Dizin)': 'Tous les Liens (Répertoire)',
+        'KAPAT': 'FERMER',
+        'KONUM & ZAMAN': 'LIEU & HEURE',
+        'DOĞRUDAN İLETİŞİM': 'CONTACT DIRECT',
+        'DİL SEÇİMİ': 'CHOISIR LA LANGUE'
+    },
+    es: {
+        'Hakkımda': 'Sobre mí',
+        'Projeler': 'Proyectos',
+        'Beceriler': 'Habilidades',
+        'Beceriler & Teknoloji': 'Habilidades & Tech',
+        'Yazılar': 'Artículos',
+        'Yazılar & Analizler': 'Artículos & Análisis',
+        'İletişim': 'Contacto',
+        'İletişim & Teklif': 'Contacto & Propuesta',
+        'Bağlantılar ↗': 'Enlaces ↗',
+        'Tüm Bağlantılar (Dizin)': 'Todos los Enlaces (Directorio)',
+        'KAPAT': 'CERRAR',
+        'KONUM & ZAMAN': 'UBICACIÓN & HORA',
+        'DOĞRUDAN İLETİŞİM': 'CONTACTO DIRECTO',
+        'DİL SEÇİMİ': 'SELECCIONAR IDIOMA'
+    },
+    az: {
+        'Hakkımda': 'Haqqımda',
+        'Projeler': 'Layihələr',
+        'Beceriler': 'Bacarıqlar',
+        'Beceriler & Teknoloji': 'Bacarıqlar & Texnologiya',
+        'Yazılar': 'Məqalələr',
+        'Yazılar & Analizler': 'Məqalələr & Təhlillər',
+        'İletişim': 'Əlaqə',
+        'İletişim & Teklif': 'Əlaqə & Təklif',
+        'Bağlantılar ↗': 'Keçidlər ↗',
+        'Tüm Bağlantılar (Dizin)': 'Bütün Keçidlər (Kataloq)',
+        'KAPAT': 'BAĞLA',
+        'KONUM & ZAMAN': 'MƏKAN & ZAMAN',
+        'DOĞRUDAN İLETİŞİM': 'BİRBAŞA ƏLAQƏ',
+        'DİL SEÇİMİ': 'DİL SEÇİMİ'
+    }
+};
+
 function getPreferredLanguage() {
     const browserLanguages = navigator.languages && navigator.languages.length
         ? navigator.languages
         : [navigator.language || navigator.userLanguage || 'tr'];
 
-    return browserLanguages.some(lang => lang.toLowerCase().startsWith('tr')) ? 'tr' : 'en';
+    for (const bLang of browserLanguages) {
+        const prefix = bLang.toLowerCase().slice(0, 2);
+        if (SUPPORTED_LANGUAGES[prefix]) return prefix;
+    }
+    return 'tr';
 }
 
 let currentLang = localStorage.getItem('lang') || getPreferredLanguage();
+if (!SUPPORTED_LANGUAGES[currentLang]) currentLang = 'tr';
 
 function updateLocalizedLinks(lang) {
     document.querySelectorAll('[data-tr-href][data-en-href]').forEach(el => {
-        el.setAttribute('href', el.getAttribute(`data-${lang}-href`));
+        const href = el.getAttribute(`data-${lang}-href`) || el.getAttribute('data-en-href') || el.getAttribute('data-tr-href');
+        if (href) el.setAttribute('href', href);
     });
 }
 
 function setLanguage(lang) {
+    if (!SUPPORTED_LANGUAGES[lang]) lang = 'tr';
     currentLang = lang;
     localStorage.setItem('lang', lang);
     document.documentElement.setAttribute('data-lang', lang);
     document.documentElement.setAttribute('lang', lang);
     
-    // Update all translatable elements
+    // Update the circular flag button in navbar
+    const flagSlot = document.getElementById('currentFlagSlot');
+    if (flagSlot && SUPPORTED_LANGUAGES[lang]) {
+        flagSlot.innerHTML = SUPPORTED_LANGUAGES[lang].flagSvg;
+    }
+
+    // Update active state in dropdown list
+    document.querySelectorAll('.lang-option-item').forEach(item => {
+        const isMatch = item.dataset.lang === lang;
+        item.classList.toggle('active', isMatch);
+        item.setAttribute('aria-selected', String(isMatch));
+    });
+
+    // Update all translatable elements with robust fallback (data-[lang] -> CORE_I18N -> data-en -> data-tr)
     document.querySelectorAll('[data-tr][data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+        let text = el.getAttribute(`data-${lang}`);
+        if (!text && CORE_I18N[lang]) {
+            const trText = el.getAttribute('data-tr');
+            if (CORE_I18N[lang][trText]) {
+                text = CORE_I18N[lang][trText];
+            }
+        }
+        if (!text) {
+            text = (lang === 'tr') ? el.getAttribute('data-tr') : (el.getAttribute('data-en') || el.getAttribute('data-tr'));
+        }
+        if (text) el.textContent = text;
     });
 
     document.querySelectorAll('[data-tr-alt][data-en-alt]').forEach(el => {
-        el.setAttribute('alt', el.getAttribute(`data-${lang}-alt`));
+        const alt = el.getAttribute(`data-${lang}-alt`) || el.getAttribute('data-en-alt') || el.getAttribute('data-tr-alt');
+        if (alt) el.setAttribute('alt', alt);
     });
 
     updateLocalizedLinks(lang);
-    
-    // Update language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
     
     // Update modal if open
     const modal = document.getElementById('projectModal');
@@ -195,13 +366,63 @@ function setLanguage(lang) {
     
     // Re-render project cards & more projects card with updated text
     renderProjects();
+
+    // Update active discipline readout in About
+    const activeChip = document.querySelector('.discipline-chip.active');
+    if (activeChip) {
+        activeChip.dispatchEvent(new Event('mouseenter'));
+    }
 }
 
 function initLanguage() {
+    const pickerBtn = document.getElementById('langPickerBtn');
+    const dropdownPanel = document.getElementById('langDropdownPanel');
+    const wrapper = document.getElementById('langPickerWrapper');
+
     setLanguage(currentLang);
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            setLanguage(btn.dataset.lang);
+
+    if (pickerBtn && dropdownPanel) {
+        pickerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdownPanel.classList.toggle('open');
+            pickerBtn.classList.toggle('active', isOpen);
+            pickerBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (wrapper && !wrapper.contains(e.target)) {
+                dropdownPanel.classList.remove('open');
+                pickerBtn.classList.remove('active');
+                pickerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && dropdownPanel.classList.contains('open')) {
+                dropdownPanel.classList.remove('open');
+                pickerBtn.classList.remove('active');
+                pickerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Bind option click handlers
+    document.querySelectorAll('.lang-option-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const targetLang = btn.dataset.lang;
+            if (targetLang) {
+                setLanguage(targetLang);
+                if (dropdownPanel) {
+                    dropdownPanel.classList.remove('open');
+                    if (pickerBtn) {
+                        pickerBtn.classList.remove('active');
+                        pickerBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            }
         });
     });
 
@@ -264,7 +485,7 @@ function initLenis() {
 }
 
 // ============================================
-// 4. NOTHIN' (PARIS SOTD) MONUMENTAL PRELOADER
+// 4. STUDIO FREIGHT SPLIT SHUTTER MONOLITH PRELOADER (AWWWARDS SOTD)
 // ============================================
 function initLoader() {
     const preloader = document.getElementById('sitePreloader');
@@ -272,7 +493,6 @@ function initLoader() {
     const barFill = document.getElementById('loaderBarFill');
     const statusText = document.getElementById('loaderStatusText');
     const sigInkRect = document.getElementById('sigInkRect');
-    const loaderClock = document.getElementById('loaderLiveClock');
 
     if (!preloader) {
         initHeroReveal();
@@ -281,56 +501,40 @@ function initLoader() {
 
     document.body.style.overflow = 'hidden';
 
-    // Live Clock in preloader header
-    function updateLoaderClock() {
-        if (!loaderClock) return;
-        const now = new Date();
-        loaderClock.textContent = now.toLocaleTimeString('tr-TR', { 
-            timeZone: 'Europe/Istanbul', 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit',
-            hour12: false 
-        });
-    }
-    updateLoaderClock();
-    const clockTimer = setInterval(updateLoaderClock, 1000);
-
     let progress = 0;
     const startTime = performance.now();
-    const minDuration = 1500; // ms for full Nothin' signature sweep
+    const minDuration = 520; // Snappy, zero delay so user is never kept waiting
 
     const interval = setInterval(() => {
         const elapsed = performance.now() - startTime;
-        const fontReady = document.fonts ? document.fonts.status === 'loaded' : true;
         
-        let targetProgress = Math.min(Math.floor((elapsed / minDuration) * 92), 94);
-        if (elapsed >= minDuration && fontReady) {
+        let targetProgress = Math.min(Math.floor((elapsed / minDuration) * 98), 98);
+        if (elapsed >= minDuration) {
             targetProgress = 100;
         }
 
         if (progress < targetProgress) {
-            progress += 2;
-            if (progress > 100) progress = 100;
+            progress += 4;
+            if (progress > targetProgress) progress = targetProgress;
         }
 
-        // Nothin' style 3-digit tabular mono counter (000 to 100)
+        // Natural unpadded counter (0, 7, 72, 100 - no leading zeroes)
         if (progressNum) {
-            progressNum.textContent = String(progress).padStart(3, '0');
+            progressNum.textContent = String(progress);
         }
 
-        // Hairline bottom indicator
+        // Seam hairline indicator
         if (barFill) {
             barFill.style.width = `${progress}%`;
         }
 
-        // Unmask real handwritten signature from left to right as pen draws
+        // Unmask real handwritten signature from left to right as pen sweeps
         if (sigInkRect) {
             const inkWidth = (progress / 100) * 620;
             sigInkRect.setAttribute('width', String(inkWidth));
         }
 
-        // Editorial status transitions
+        // Status transitions
         if (statusText) {
             const isTr = currentLang === 'tr';
             if (progress < 45) {
@@ -338,19 +542,23 @@ function initLoader() {
             } else if (progress < 85) {
                 statusText.textContent = isTr ? 'İMZA VE KİMLİK DOĞRULANIYOR' : 'VERIFYING SIGNATURE & IDENTITY';
             } else {
-                statusText.textContent = isTr ? 'SİSTEM HAZIR • GİRİŞ YAPILIYOR' : 'SYSTEM READY • ENTERING';
+                statusText.textContent = isTr ? 'SİSTEM HAZIR • AÇILIYOR' : 'SYSTEM READY • OPENING';
             }
         }
 
         if (progress >= 100) {
             clearInterval(interval);
-            clearInterval(clockTimer);
             finishPreloader();
         }
-    }, 20);
+    }, 16);
 
     function finishPreloader() {
-        if (typeof gsap !== 'undefined') {
+        const shutterTop = document.getElementById('shutterTop');
+        const shutterBottom = document.getElementById('shutterBottom');
+        const shutterStage = document.getElementById('shutterStage');
+        const shutterSeam = document.getElementById('shutterSeamLine');
+
+        if (typeof gsap !== 'undefined' && shutterTop && shutterBottom) {
             const tl = gsap.timeline({
                 onComplete: () => {
                     preloader.style.display = 'none';
@@ -360,31 +568,39 @@ function initLoader() {
                 }
             });
 
-            // Step 1: Center stage fades & elevates slightly
-            tl.to('.loader-inner-grid', {
+            // Step 1: Stage elevates and scales slightly
+            tl.to(shutterStage, {
                 opacity: 0,
-                y: -28,
-                scale: 0.98,
-                duration: 0.38,
+                scale: 1.03,
+                duration: 0.22,
                 ease: 'power2.in'
             });
 
-            // Step 2: Monolithic vertical shutter lift (Nothin' Paris style)
-            tl.to(preloader, {
+            if (shutterSeam) {
+                tl.to(shutterSeam, { opacity: 0, duration: 0.15 }, "-=0.18");
+            }
+
+            // Step 2: DUAL SPLIT SHUTTER (Fast, snappy Awwwards shutter release)
+            tl.to(shutterTop, {
                 yPercent: -100,
-                duration: 0.95,
-                ease: 'cubic-bezier(0.76, 0, 0.24, 1)'
+                duration: 0.85,
+                ease: 'power4.inOut'
             }, "-=0.1");
 
-            // Step 3: Hero section zooms & settles into place
+            tl.to(shutterBottom, {
+                yPercent: 100,
+                duration: 0.85,
+                ease: 'power4.inOut'
+            }, "<"); // Simultaneous split!
+
+            // Step 3: Hero section blooms in smoothly
             tl.fromTo('#hero', 
-                { scale: 0.96, y: 30, opacity: 0.8 },
-                { scale: 1, y: 0, opacity: 1, duration: 0.95, ease: 'power3.out' },
-                "-=0.9"
+                { scale: 0.96, opacity: 0.6 },
+                { scale: 1, opacity: 1, duration: 0.75, ease: 'power3.out' },
+                "-=0.6"
             );
         } else {
-            // Vanilla Fallback
-            preloader.classList.add('hidden');
+            preloader.style.display = 'none';
             document.body.style.overflow = '';
             initHeroReveal();
             initScrollAnimations();
@@ -644,11 +860,11 @@ function initCursor() {
     requestAnimationFrame(renderCursor);
 
     // Magnetic snaps on buttons & links (blog-card hariç tutularak çakışma engellendi)
-    const magneticSelector = '.btn, .nav-link, .lang-btn, .social-link, .skill-filter-btn, .project-card-expand, .contact-submit-btn, .blog-nav-arrow, .social-circle-mini-btn, .nav-menu-btn, .menu-close-btn, .footer-pill-btn, .back-to-top';
+    const magneticSelector = '.btn, .nav-link, .lang-btn, .social-link, .skill-filter-btn, .project-card-expand, .contact-submit-btn, .blog-nav-arrow, .social-circle-mini-btn, .nav-menu-btn, .menu-close-btn, .footer-pill-btn, .back-to-top, .fan-nav-btn, .btn-linkedin-follow, .menu-social-icon-btn, .discipline-chip';
     
     document.addEventListener('mouseover', (e) => {
         const target = e.target;
-        const blogCard = target.closest('.blog-card');
+        const blogCard = target.closest('.blog-card, .blog-fan-card');
         const projectCard = target.closest('.project-card:not(.more-projects-card)');
         const githubCard = target.closest('.more-projects-card');
         const magneticTarget = target.closest(magneticSelector);
@@ -682,7 +898,7 @@ function initCursor() {
         const target = e.target;
 
         // relatedTarget kontrolü ile alt elemanlar arasında gezinirken flicker %100 engellenir
-        const blogCard = target.closest('.blog-card');
+        const blogCard = target.closest('.blog-card, .blog-fan-card');
         if (blogCard && (!related || !blogCard.contains(related))) {
             follower.classList.remove('is-blog-hover');
             if (cursorLabel) cursorLabel.textContent = '';
@@ -794,6 +1010,7 @@ function renderProjects() {
 
     let html = '';
     const lang = currentLang;
+    const getLoc = (obj) => (obj && (obj[lang] || obj['en'] || obj['tr'])) || '';
 
     // Render Flagship Projects (Itibar & Unutma Only)
     for (const key in projectsData) {
@@ -806,7 +1023,8 @@ function renderProjects() {
             ? `<img src="${project.icon}" alt="${project.title}" class="project-card-custom-logo">` 
             : (project.icon || '⭐');
 
-        const metricsPreview = (project.metrics && project.metrics[lang]) ? project.metrics[lang].slice(0, 4) : [];
+        const metricsData = (project.metrics && (project.metrics[lang] || project.metrics['en'] || project.metrics['tr'])) || [];
+        const metricsPreview = metricsData.slice(0, 4);
         const metricsStripHTML = metricsPreview.length > 0 ? `
             <div class="project-card-metrics-strip">
                 ${metricsPreview.map(m => `
@@ -827,7 +1045,7 @@ function renderProjects() {
                     ${project.liveUrl ? `
                         <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-live-pill" onclick="event.stopPropagation();" aria-label="${lang === 'tr' ? 'Canlı Servisi Ziyaret Et' : 'Visit Live Platform'}">
                             <span class="live-pulse-dot"></span>
-                            <span>${project.badge ? project.badge[lang] : (lang === 'tr' ? 'Canlı Servis ↗' : 'Live Platform ↗')}</span>
+                            <span>${project.badge ? getLoc(project.badge) : (lang === 'tr' ? 'Canlı Servis ↗' : 'Live Platform ↗')}</span>
                         </a>
                     ` : ''}
                     <div class="project-card-brand-island">
@@ -837,10 +1055,10 @@ function renderProjects() {
                 </div>
                 <div class="project-card-body">
                     <div class="project-card-meta">
-                        <span class="project-card-category">${project.category[lang]}</span>
+                        <span class="project-card-category">${getLoc(project.category)}</span>
                     </div>
                     <h3 class="project-card-title">${project.title}</h3>
-                    <p class="project-card-desc">${project.description[lang]}</p>
+                    <p class="project-card-desc">${getLoc(project.description)}</p>
                     
                     ${metricsStripHTML}
 
@@ -1139,6 +1357,7 @@ function updateModalContent(project) {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
     const lang = currentLang;
+    const getLoc = (obj) => (obj && (obj[lang] || obj['en'] || obj['tr'])) || '';
 
     modal.style.setProperty('--spotlight-color', project.spotlightColor || '16, 185, 129');
     modal.style.setProperty('--modal-gradient', project.gradient || 'linear-gradient(135deg, #10b981, #059669)');
@@ -1162,7 +1381,7 @@ function updateModalContent(project) {
     if (statusPill && project.status) {
         statusPill.innerHTML = `
             <span class="live-pulse-dot"></span>
-            <span>${project.status[lang]}</span>
+            <span>${getLoc(project.status)}</span>
         `;
         statusPill.className = `modal-status-pill ${project.statusType || 'active'}`;
     }
@@ -1181,25 +1400,26 @@ function updateModalContent(project) {
 
     if (brandNameEl) brandNameEl.textContent = project.brandName || project.title;
     if (brandTaglineEl) {
-        brandTaglineEl.textContent = project.tagline ? project.tagline[lang] : project.category[lang];
+        brandTaglineEl.textContent = project.tagline ? getLoc(project.tagline) : getLoc(project.category);
     }
 
     const categoryEl = modal.querySelector('.modal-category');
-    if (categoryEl) categoryEl.textContent = project.category[lang];
+    if (categoryEl) categoryEl.textContent = getLoc(project.category);
 
     const titleEl = modal.querySelector('.modal-title');
     if (titleEl) titleEl.textContent = project.title;
 
     const descEl = modal.querySelector('.modal-description');
-    if (descEl) descEl.textContent = project.description[lang];
+    if (descEl) descEl.textContent = getLoc(project.description);
 
     const metricsWrap = modal.querySelector('#modalMetrics');
     if (metricsWrap) {
-        if (project.metrics && project.metrics[lang] && project.metrics[lang].length > 0) {
+        const mList = (project.metrics && (project.metrics[lang] || project.metrics['en'] || project.metrics['tr'])) || [];
+        if (mList.length > 0) {
             metricsWrap.style.display = 'block';
             const metricsGrid = metricsWrap.querySelector('.modal-metrics-grid');
             if (metricsGrid) {
-                metricsGrid.innerHTML = project.metrics[lang].map(m => `
+                metricsGrid.innerHTML = mList.map(m => `
                     <div class="modal-metric-card" style="--spotlight-color: ${project.spotlightColor || '16, 185, 129'}">
                         <span class="modal-metric-val">${m.value}</span>
                         <span class="modal-metric-label">${m.label}</span>
@@ -1213,8 +1433,9 @@ function updateModalContent(project) {
     }
 
     const featureList = modal.querySelector('.modal-feature-list');
-    if (featureList && project.features && project.features[lang]) {
-        featureList.innerHTML = project.features[lang].map(f => `
+    const fList = (project.features && (project.features[lang] || project.features['en'] || project.features['tr'])) || [];
+    if (featureList && fList.length > 0) {
+        featureList.innerHTML = fList.map(f => `
             <li class="modal-feature-item">
                 <span class="modal-feature-icon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -1789,173 +2010,105 @@ function initFullscreenMenu() {
     });
 }
 
-function initBlogCarousel() {
-    const track = document.getElementById('blogShowcaseTrack');
-    const prevBtn = document.getElementById('blogPrevBtn');
-    const nextBtn = document.getElementById('blogNextBtn');
-    const counter = document.getElementById('blogSlideCounter');
-    const progressBar = document.getElementById('blogProgressFill');
+// ============================================
+// 10. BLOG 3D CARD FAN CAROUSEL (AWWWARDS SOTD)
+// ============================================
+function initBlogFan() {
+    const deck = document.getElementById('blogFanDeck');
+    const prevBtn = document.getElementById('blogFanPrev');
+    const nextBtn = document.getElementById('blogFanNext');
+    const activeIdxEl = document.getElementById('blogActiveIdx');
 
-    if (!track) return;
+    if (!deck) return;
 
-    const cards = Array.from(track.querySelectorAll('.blog-slide-card'));
-    const total = cards.length || 3;
-    let activeIndex = 0;
+    const cards = Array.from(deck.querySelectorAll('.blog-fan-card'));
+    const total = cards.length;
+    let currentIndex = 0; // 0: Ollama (En güncel), 1: Sam Altman, 2: Claude Code
 
-    function updateCarouselUI(index) {
-        activeIndex = index;
-        
-        // 1. Slayt kartlarının is-active-slide sınıfını güncelle
+    function syncDeckHeight() {
+        const activeCard = deck.querySelector('.blog-fan-card.is-active') || cards[0];
+        if (activeCard) {
+            const h = Math.max(activeCard.offsetHeight, 540);
+            deck.style.minHeight = `${h + 20}px`;
+            deck.style.height = `${h + 20}px`;
+            const stage = deck.closest('.blog-fan-stage');
+            if (stage) stage.style.minHeight = `${h + 20}px`;
+        }
+    }
+
+    function updateDeck(newIndex) {
+        currentIndex = (newIndex + total) % total;
+
         cards.forEach((card, idx) => {
-            card.classList.toggle('is-active-slide', idx === activeIndex);
+            card.classList.remove('is-active', 'is-next', 'is-far');
+            
+            // Relative distance in cyclic 3-card stack: 0 = front, 1 = right/behind, 2 = furthest
+            const offset = (idx - currentIndex + total) % total;
+            
+            if (offset === 0) {
+                card.classList.add('is-active');
+            } else if (offset === 1) {
+                card.classList.add('is-next');
+            } else {
+                card.classList.add('is-far');
+            }
         });
 
-        // 2. Sayaç güncelle (01 / 03)
-        if (counter) {
-            const currentStr = String(activeIndex + 1).padStart(2, '0');
-            const totalStr = String(total).padStart(2, '0');
-            counter.textContent = `${currentStr} / ${totalStr}`;
+        if (activeIdxEl) {
+            activeIdxEl.textContent = String(currentIndex + 1).padStart(2, '0');
         }
 
-        // 3. İlerleme çubuğunu güncelle
-        if (progressBar) {
-            progressBar.style.width = `${((activeIndex + 1) / total) * 100}%`;
-        }
+        setTimeout(syncDeckHeight, 50);
     }
 
-    function scrollToSlide(index, smooth = true) {
-        if (!cards[index]) return;
-        const targetCard = cards[index];
-        const trackLeft = track.getBoundingClientRect().left;
-        const cardLeft = targetCard.getBoundingClientRect().left;
-        const currentScroll = track.scrollLeft;
-        const offset = cardLeft - trackLeft;
-        const targetScroll = currentScroll + offset;
+    window.addEventListener('resize', syncDeckHeight);
+    setTimeout(syncDeckHeight, 200);
 
-        if (typeof gsap !== 'undefined') {
-            gsap.to(track, {
-                scrollLeft: targetScroll,
-                duration: smooth ? 0.6 : 0,
-                ease: 'power3.out',
-                overwrite: 'auto'
-            });
-        } else {
-            track.scrollTo({
-                left: targetScroll,
-                behavior: smooth ? 'smooth' : 'auto'
-            });
-        }
-
-        updateCarouselUI(index);
-    }
-
-    // Döngüsel Next & Prev butonları (2'den sonra tekrar 0'a, 0'dan geriye 2'ye)
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            const nextIdx = (activeIndex + 1) % total;
-            scrollToSlide(nextIdx, true);
+            updateDeck(currentIndex + 1);
         });
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            const prevIdx = (activeIndex - 1 + total) % total;
-            scrollToSlide(prevIdx, true);
+            updateDeck(currentIndex - 1);
         });
     }
 
-    // Fare ile Sürükleyerek Kaydırma (Drag-to-Scroll)
-    let isDown = false;
-    let startX = 0;
-    let scrollStart = 0;
-    let isDraggingMoved = false;
-
-    track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        track.classList.add('is-dragging');
-        startX = e.pageX - track.offsetLeft;
-        scrollStart = track.scrollLeft;
-        isDraggingMoved = false;
-    });
-
-    window.addEventListener('mouseup', () => {
-        if (!isDown) return;
-        isDown = false;
-        track.classList.remove('is-dragging');
-
-        if (isDraggingMoved) {
-            snapToClosestCard();
-        }
-    });
-
-    track.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        const walk = (x - startX) * 1.4;
-        if (Math.abs(walk) > 6) {
-            isDraggingMoved = true;
-        }
-        track.scrollLeft = scrollStart - walk;
-    });
-
-    // Sürükleme yapılmışsa tıklanıp makaleye gitmesini engelle; pasif karta tıklanırsa odakla
+    // Clicking a non-active card brings it to the front; clicking front card navigates
     cards.forEach((card, idx) => {
         card.addEventListener('click', (e) => {
-            if (isDraggingMoved) {
+            if (e.target.closest('a')) return;
+
+            if (idx !== currentIndex) {
                 e.preventDefault();
-                e.stopPropagation();
-            } else if (idx !== activeIndex) {
-                e.preventDefault();
-                scrollToSlide(idx, true);
+                updateDeck(idx);
+            } else {
+                const link = card.dataset.link;
+                if (link) window.location.href = link;
             }
         });
     });
 
-    function snapToClosestCard() {
-        const trackRect = track.getBoundingClientRect();
-        let closestIdx = 0;
-        let minDiff = Infinity;
-
-        cards.forEach((card, idx) => {
-            const cardRect = card.getBoundingClientRect();
-            const diff = Math.abs(cardRect.left - trackRect.left);
-            if (diff < minDiff) {
-                minDiff = diff;
-                closestIdx = idx;
-            }
-        });
-
-        scrollToSlide(closestIdx, true);
-    }
-
-    // Scroll event listener (trackpad / mobil dokunmatik kaydırma için)
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-        if (isDown) return;
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            const trackRect = track.getBoundingClientRect();
-            let closestIdx = 0;
-            let minDiff = Infinity;
-
-            cards.forEach((card, idx) => {
-                const cardRect = card.getBoundingClientRect();
-                const diff = Math.abs(cardRect.left - trackRect.left);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestIdx = idx;
-                }
-            });
-
-            if (closestIdx !== activeIndex) {
-                updateCarouselUI(closestIdx);
-            }
-        }, 80);
+    // Touch / Swipe gestures for mobile & trackpad
+    let startX = null;
+    deck.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
     }, { passive: true });
 
-    // Başlangıç durumu
-    updateCarouselUI(0);
+    deck.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const diff = e.changedTouches[0].clientX - startX;
+        startX = null;
+        if (Math.abs(diff) > 40) {
+            if (diff < 0) updateDeck(currentIndex + 1);
+            else updateDeck(currentIndex - 1);
+        }
+    }, { passive: true });
+
+    // Initialize state
+    updateDeck(0);
 }
 
 let homeCurrentStep = 1;
@@ -2004,24 +2157,107 @@ window.advanceHomeTf = function(currentStep) {
     if (nextStep === 4) setTimeout(() => document.getElementById('htfMessage')?.focus(), 150);
 };
 
-window.submitHomeTypeform = function(channel) {
+window.submitHomeTypeform = async function(channel) {
     const name = document.getElementById('htfName')?.value.trim() || 'İsimsiz İletişim';
     const contact = document.getElementById('htfContact')?.value.trim() || 'Belirtilmedi';
     const message = document.getElementById('htfMessage')?.value.trim() || 'Belirtilmedi';
-    const topic = homeSelectedTopic;
+    const topic = homeSelectedTopic || 'Genel İletişim';
 
     if (channel === 'wa') {
         const text = encodeURIComponent(
             `Merhaba Kürşat Bey,\n\nKonu: ${topic}\nİsim / Marka: ${name}\nİletişim: ${contact}\n\nDetaylar:\n${message}`
         );
         window.open(`https://wa.me/kursat.yz?text=${text}`, '_blank');
-    } else {
+        return;
+    }
+
+    if (channel === 'mail') {
         const subject = encodeURIComponent(`[devkursat.github.io] ${topic} — ${name}`);
         const body = encodeURIComponent(
             `Merhaba Kürşat,\n\nTalep Konusu: ${topic}\nİsim / Marka: ${name}\nİletişim: ${contact}\n\nDetaylar:\n${message}\n\n—\nBu talep devkursat.github.io Typeform arayüzünden doğrudan oluşturulmuştur.`
         );
         window.location.href = `mailto:tckursat@icloud.com?subject=${subject}&body=${body}`;
+        return;
     }
+
+    // Direct Web Submission (Zero-Database Serverless Webhook Dispatch)
+    const directBtn = document.getElementById('htfDirectSubmitBtn');
+    const directText = document.getElementById('htfDirectBtnText');
+    const directSpinner = document.getElementById('htfSpinner');
+
+    if (directBtn) directBtn.disabled = true;
+    if (directSpinner) directSpinner.style.display = 'inline-block';
+    if (directText) directText.textContent = currentLang === 'tr' ? 'İletiliyor...' : 'Sending...';
+
+    try {
+        await fetch('https://ntfy.sh/kursat-portfolio-contact', {
+            method: 'POST',
+            headers: {
+                'Title': `Web İletişim Formu: ${name} [${topic}]`,
+                'Priority': 'high',
+                'Tags': 'envelope,incoming_envelope,briefcase',
+                'Actions': `view, İletişim: ${contact}, mailto:${contact.includes('@') ? contact : 'tckursat@icloud.com'}`
+            },
+            body: `📌 Talep Konusu: ${topic}\n👤 İsim / Marka: ${name}\n📬 İletişim: ${contact}\n\n💬 Mesaj / Notlar:\n${message}\n\n🕒 Tarih: ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`
+        });
+    } catch (err) {
+        console.warn('Web direct dispatch note:', err);
+    }
+
+    if (directBtn) directBtn.disabled = false;
+    if (directSpinner) directSpinner.style.display = 'none';
+    if (directText) directText.textContent = currentLang === 'tr' ? 'Siteden Doğrudan Gönder ↵' : 'Send Directly from Site ↵';
+
+    showHomeTfSuccess();
+};
+
+window.showHomeTfSuccess = function() {
+    const formWrap = document.getElementById('homeTypeform');
+    if (!formWrap) return;
+
+    const panes = formWrap.querySelectorAll('.typeform-step-pane');
+    panes.forEach(p => p.classList.remove('active'));
+
+    const successPane = document.getElementById('htfSuccessPane');
+    if (successPane) successPane.classList.add('active');
+
+    const progressBar = document.getElementById('htfProgress');
+    if (progressBar) progressBar.style.width = '100%';
+
+    const badge = document.getElementById('htfStepBadge');
+    if (badge) badge.textContent = '04 / 04';
+
+    const prevBtn = document.getElementById('htfPrevBtn');
+    if (prevBtn) prevBtn.style.visibility = 'hidden';
+};
+
+window.resetHomeTypeform = function() {
+    const formWrap = document.getElementById('homeTypeform');
+    if (!formWrap) return;
+
+    homeCurrentStep = 1;
+    const panes = formWrap.querySelectorAll('.typeform-step-pane');
+    panes.forEach(pane => {
+        pane.classList.remove('active');
+        if (parseInt(pane.dataset.step, 10) === 1) pane.classList.add('active');
+    });
+
+    const progressBar = document.getElementById('htfProgress');
+    if (progressBar) progressBar.style.width = '25%';
+
+    const badge = document.getElementById('htfStepBadge');
+    if (badge) badge.textContent = '01 / 04';
+
+    const prevBtn = document.getElementById('htfPrevBtn');
+    if (prevBtn) prevBtn.style.visibility = 'hidden';
+
+    // Clear inputs
+    const nameEl = document.getElementById('htfName');
+    const contactEl = document.getElementById('htfContact');
+    const msgEl = document.getElementById('htfMessage');
+    if (nameEl) nameEl.value = '';
+    if (contactEl) contactEl.value = '';
+    if (msgEl) msgEl.value = '';
 };
 
 function initHomeTypeform() {
@@ -2214,42 +2450,81 @@ function initMarquee() {
     });
 }
 
-function initAboutMarquee() {
-    const marqueeContainer = document.getElementById('aboutMarquee');
-    if (!marqueeContainer) return;
+// ============================================
+// 11. BIOMETRIC HUD & DISCIPLINE SCANNER (AWWWARDS SOTD)
+// ============================================
+function initDisciplineScanner() {
+    const card = document.getElementById('aboutPortraitCard');
+    if (!card) return;
 
-    const items = marqueeContainer.querySelectorAll('.marquee-item');
-    let isVisible = true;
+    const chips = document.querySelectorAll('.discipline-chip');
+    if (!chips || chips.length === 0) return;
 
-    const obs = new IntersectionObserver(([entry]) => {
-        isVisible = entry.isIntersecting;
-    }, { threshold: 0.05 });
-    obs.observe(marqueeContainer);
+    const readoutLabel = document.getElementById('readoutLabel');
+    const readoutDesc = document.getElementById('readoutDesc');
+    const photo = document.getElementById('portraitPhoto');
+    const lighting = document.getElementById('portraitLighting');
 
-    function updateOpacity() {
-        if (!isVisible) return;
-        const containerRect = marqueeContainer.getBoundingClientRect();
-        const centerY = containerRect.top + containerRect.height / 2;
+    const telemetryData = {
+        ai: {
+            labelTr: 'AI MİMARİSİ',
+            labelEn: 'AI ARCHITECTURE',
+            descTr: 'vLLM, egemen yerel çıkarım & ajan orkestrasyonu',
+            descEn: 'vLLM, sovereign local inference & agent swarms',
+            filter: 'contrast(1.15) brightness(0.95) grayscale(0.15)',
+            glow: 'radial-gradient(circle at 45% 28%, rgba(0, 217, 255, 0.14), transparent 65%)'
+        },
+        saas: {
+            labelTr: 'B2B YAZILIM',
+            labelEn: 'B2B SYSTEMS',
+            descTr: 'Deterministic policy motoru & Jamstack mimarisi',
+            descEn: 'Deterministic policy engine & Jamstack stack',
+            filter: 'contrast(1.1) brightness(0.9) grayscale(0.25)',
+            glow: 'radial-gradient(circle at 55% 35%, rgba(16, 185, 129, 0.14), transparent 65%)'
+        },
+        builder: {
+            labelTr: 'GİRİŞİMCİ',
+            labelEn: 'ENTREPRENEUR',
+            descTr: '100+ açık kaynak repo, itibar.app, unutma.app',
+            descEn: '100+ open-source repos, itibar.app, unutma.app',
+            filter: 'contrast(1.18) brightness(0.98) grayscale(0.05)',
+            glow: 'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 70%)'
+        },
+        boxer: {
+            labelTr: 'BOKSÖR',
+            labelEn: 'BOXER',
+            descTr: '12 raund kondisyon, refleks & baskı altında çelik odak',
+            descEn: '12-round conditioning, reflexes & relentless composure',
+            filter: 'contrast(1.28) brightness(0.85) grayscale(0.4)',
+            glow: 'radial-gradient(circle at 60% 40%, rgba(239, 68, 68, 0.14), transparent 65%)'
+        },
+        author: {
+            labelTr: 'MÜZİSYEN & YAZAR',
+            labelEn: 'POET & MUSICIAN',
+            descTr: 'Yayınlanmış şiirler & Spotify resmi sanatçı profili',
+            descEn: 'Published literary poetry & official Spotify artist stream',
+            filter: 'contrast(1.08) brightness(0.92) grayscale(0.1)',
+            glow: 'radial-gradient(circle at 40% 30%, rgba(168, 85, 247, 0.14), transparent 65%)'
+        }
+    };
 
-        items.forEach((item) => {
-            const itemRect = item.getBoundingClientRect();
-            const itemCenterY = itemRect.top + itemRect.height / 2;
-            const distance = Math.abs(centerY - itemCenterY);
-            const maxDistance = containerRect.height / 2;
-            const normalizedDistance = Math.min(distance / maxDistance, 1);
+    chips.forEach(chip => {
+        chip.addEventListener('mouseenter', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
 
-            const opacity = 1 - normalizedDistance * 0.88;
-            item.style.opacity = opacity.toString();
-            const scale = 1.06 - normalizedDistance * 0.12;
-            item.style.transform = `scale(${scale})`;
+            const key = chip.dataset.discipline;
+            const data = telemetryData[key];
+            if (!data) return;
+
+            const isTr = currentLang === 'tr';
+            if (readoutLabel) readoutLabel.textContent = isTr ? data.labelTr : data.labelEn;
+            if (readoutDesc) readoutDesc.textContent = isTr ? data.descTr : data.descEn;
+
+            if (photo) photo.style.filter = data.filter;
+            if (lighting) lighting.style.background = data.glow;
         });
-    }
-
-    function loop() {
-        updateOpacity();
-        requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
+    });
 }
 
 // ============================================
@@ -2340,10 +2615,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjects();
     initAboutBento();
     initSkillsCanvas();
-    initAboutMarquee();
+    initDisciplineScanner();
     initMarquee();
     initContactForm();
-    initBlogCarousel();
+    initBlogFan();
     initHomeTypeform();
 });
 
