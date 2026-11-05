@@ -26,9 +26,9 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261103-itibar-bg">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261105-sotd">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070709'/%3E%3Ctext x='18' y='46' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-size='38' font-weight='800' fill='%23ffffff'%3EK%3C/text%3E%3Ccircle cx='46' cy='44' r='4.5' fill='%2300d9ff'/%3E%3C/svg%3E">
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -37,31 +37,84 @@
         <span class="cursor-label"></span>
     </div>
 
-    <!-- Cinematic Real Progress Preloader & SVG Curtain -->
+    <!-- Nothin' (Paris SOTD) Inspired Monumental Architectural Preloader -->
     <div class="loader" id="sitePreloader">
-        <div class="loader-content">
-            <div class="loader-top-meta">
-                <span class="loader-brand">KÜRŞAT YILMAZ</span>
-                <span class="loader-system">SYSTEM INIT [2026]</span>
-            </div>
-            <div class="loader-center-count">
-                <span class="loader-progress-num" id="loaderProgress">000</span>
-                <span class="loader-percent">%</span>
-            </div>
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill" id="loaderBarFill"></div>
-            </div>
-            <div class="loader-bottom-status" id="loaderStatusText" data-tr="Bileşenler ve mimari yükleniyor..." data-en="Loading components and architecture...">Bileşenler ve mimari yükleniyor...</div>
+        <div class="loader-inner-grid">
+            <!-- Header: Studio Identity & Live Telemetry -->
+            <header class="loader-header">
+                <div class="loader-brand-lockup">
+                    <span class="loader-brand-k">K<span class="logo-dot">.</span></span>
+                    <span class="loader-brand-text">KÜRŞAT YILMAZ</span>
+                </div>
+                <div class="loader-telemetry">
+                    <span class="telemetry-live-dot"></span>
+                    <span class="telemetry-city">İSTANBUL, TR</span>
+                    <span class="telemetry-divider">•</span>
+                    <span class="telemetry-clock" id="loaderLiveClock">--:--:--</span>
+                    <span class="telemetry-tz">GMT+3</span>
+                </div>
+            </header>
+
+            <!-- Center Stage: Editorial Manifesto & Authentic Handwriting Signature -->
+            <main class="loader-stage">
+                <div class="loader-manifesto-wrap">
+                    <p class="loader-quote-text" data-tr="“Karmaşıklığı soyut heyecandan arındırır, egemen mimarilere dönüştürürüm.”" data-en="“Stripping complexity from abstract hype, transforming into sovereign systems.”">
+                        “Karmaşıklığı soyut heyecandan arındırır, egemen mimarilere dönüştürürüm.”
+                    </p>
+                </div>
+
+                <!-- Authentic Hand-Drawn Vector Signature (K. Yılmaz) -->
+                <div class="loader-signature-stage" aria-label="Kürşat Yılmaz İmzası">
+                    <svg viewBox="200 265 590 270" fill="none" class="authentic-sig-svg" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="realSigGrad" x1="200" y1="400" x2="790" y2="300" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#FFFFFF"/>
+                                <stop offset="65%" stop-color="#E2F9FF"/>
+                                <stop offset="100%" stop-color="#00D9FF"/>
+                            </linearGradient>
+                            <clipPath id="sigInkReveal">
+                                <rect id="sigInkRect" x="180" y="240" width="0" height="320" fill="#fff" />
+                            </clipPath>
+                        </defs>
+                        <g transform="translate(0, 784) scale(0.1, -0.1)" fill="url(#realSigGrad)" clip-path="url(#sigInkReveal)">
+                            <!-- K Monogram (Left) -->
+                            <path class="sig-path sig-path-mono" d="M3009 4377 c-51 -23 -197 -170 -219 -219 -31 -71 -70 -84 -151 -52 -55 22 -103 8 -171 -53 -61 -54 -102 -73 -158 -73 -61 0 -100 -21 -153 -83 -40 -47 -54 -75 -80 -157 -30 -101 -30 -101 -4 -158 36 -79 36 -79 15 -152 -23 -82 -33 -265 -15 -299 24 -48 43 -49 89 -5 24 23 71 62 104 87 37 28 66 58 72 76 14 40 125 181 165 209 17 12 44 22 59 22 19 0 43 13 71 38 23 21 64 52 91 70 41 27 55 31 87 26 49 -8 79 11 114 71 27 45 27 45 90 45 60 0 65 -2 120 -47 38 -32 67 -66 88 -107 27 -54 31 -73 35 -162 3 -74 0 -116 -12 -157 -9 -30 -16 -77 -16 -105 0 -36 -8 -63 -30 -103 -17 -30 -40 -74 -51 -99 -66 -144 -55 -131 -146 -156 -70 -18 -100 -38 -199 -133 -69 -66 -92 -81 -112 -79 -37 4 -63 77 -69 193 -7 124 8 195 57 270 44 68 49 101 24 165 -18 45 -39 60 -80 60 -27 0 -94 -35 -94 -49 0 -4 -11 -14 -25 -21 -26 -14 -146 -167 -182 -233 -30 -55 -29 -104 5 -218 42 -136 80 -210 122 -232 46 -24 113 -18 183 17 55 27 55 27 118 -6 56 -29 71 -33 143 -32 96 0 160 17 190 49 11 13 33 36 47 52 14 15 49 36 76 46 62 21 153 113 176 179 9 24 31 79 51 123 20 44 36 93 36 108 0 15 9 53 19 85 11 32 22 103 26 162 7 100 6 110 -25 204 -18 55 -52 149 -76 210 -60 151 -60 193 1 292 38 61 45 80 45 123 0 42 -5 57 -25 76 -13 14 -28 25 -34 25 -5 0 -51 -20 -102 -45 -50 -24 -96 -42 -100 -39 -5 3 -9 30 -9 61 0 52 -3 58 -44 99 -47 47 -84 56 -137 31z m181 -220 c0 -14 -20 -37 -32 -37 -13 0 -9 38 5 43 21 9 27 7 27 -6z" />
+                            <!-- Cursive Yilmaz (Right) -->
+                            <path class="sig-path sig-path-cursive" d="M7479 5116 c-43 -15 -62 -29 -152 -116 -46 -44 -83 -70 -115 -81 -35 -12 -54 -26 -77 -60 -17 -24 -48 -53 -69 -63 -33 -16 -45 -17 -87 -8 -47 11 -54 10 -147 -28 -201 -81 -244 -100 -269 -120 -38 -30 -85 -40 -223 -50 -97 -6 -141 -14 -195 -35 -38 -15 -99 -31 -134 -36 -35 -5 -79 -18 -96 -29 -41 -25 -72 -26 -80 -1 -8 27 39 177 69 222 27 40 41 112 31 158 -5 25 -13 33 -48 42 -92 25 -156 -16 -203 -130 -15 -36 -42 -88 -59 -116 -66 -104 -84 -144 -105 -226 -26 -102 -54 -153 -97 -180 -33 -21 -43 -19 -78 12 -13 11 -40 19 -75 21 -55 3 -55 3 -52 53 5 84 23 167 44 209 11 21 21 59 22 84 1 38 -3 47 -27 65 -32 24 -151 36 -183 19 -41 -22 -93 -115 -110 -197 -11 -52 -27 -95 -46 -122 -16 -24 -36 -62 -44 -85 -8 -23 -29 -65 -47 -92 -30 -47 -32 -57 -34 -142 -1 -105 -17 -145 -64 -170 -29 -15 -33 -14 -48 0 -27 28 -21 123 12 170 32 46 47 95 47 157 0 25 11 78 24 117 14 40 28 92 32 117 6 40 3 50 -17 72 -28 30 -82 55 -102 47 -8 -3 -39 -33 -69 -67 -53 -60 -57 -69 -121 -266 -74 -223 -76 -245 -53 -396 8 -49 17 -136 21 -193 4 -68 15 -128 31 -175 34 -101 32 -116 -25 -179 -27 -30 -64 -87 -84 -131 -20 -43 -53 -101 -73 -129 -34 -46 -56 -104 -107 -281 -14 -47 3 -85 48 -106 27 -13 33 -12 83 15 61 33 212 184 266 266 23 35 39 75 47 118 17 93 26 111 71 145 28 21 46 46 63 88 31 78 48 102 98 138 23 16 65 58 92 92 41 50 57 63 84 65 28 3 41 -3 72 -34 38 -37 40 -38 72 -25 108 45 166 61 232 61 134 0 166 22 244 163 70 126 117 150 216 107 63 -27 80 -26 168 15 69 32 84 35 169 35 113 1 132 10 172 83 38 68 116 154 153 168 15 6 75 13 133 16 58 2 121 9 140 14 19 6 85 14 146 19 93 7 120 13 170 38 32 16 97 42 144 56 98 32 128 46 192 92 26 18 71 45 100 60 121 61 198 125 234 196 30 58 30 102 3 170 -12 29 -25 90 -29 135 -8 98 -19 114 -97 143 -62 23 -150 26 -204 6z" />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="loader-sig-byline">
+                    <span class="byline-tag" data-tr="DOĞRULANMIŞ İMZA" data-en="VERIFIED SIGNATURE">DOĞRULANMIŞ İMZA</span>
+                    <span class="byline-dot">•</span>
+                    <span class="byline-author">KÜRŞAT YILMAZ</span>
+                </div>
+            </main>
+
+            <!-- Footer: Nothin' Signature 3-Digit Counter & Status -->
+            <footer class="loader-footer">
+                <div class="loader-status-block">
+                    <span class="status-kicker" data-tr="SİSTEM DURUMU" data-en="SYSTEM STATUS">SİSTEM DURUMU</span>
+                    <span class="status-message" id="loaderStatusText" data-tr="MİMARİ ÇEKİRDEK BAŞLATILIYOR" data-en="INITIALIZING CORE ARCHITECTURE">MİMARİ ÇEKİRDEK BAŞLATILIYOR</span>
+                </div>
+                <div class="loader-counter-block">
+                    <span class="loader-nbr" id="loaderProgress">000</span>
+                    <span class="loader-nbr-unit">%</span>
+                </div>
+            </footer>
         </div>
-        <svg class="loader-curtain-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path id="loaderCurtainPath" d="M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z" fill="#050507"></path>
-        </svg>
+        
+        <!-- Elegant Architectural Hairline Progress Line at Bottom -->
+        <div class="loader-hairline-track">
+            <div class="loader-hairline-fill" id="loaderBarFill"></div>
+        </div>
     </div>
 
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-logo">
-            <a href="#hero">K.</a>
+            <a href="#hero">K<span class="logo-dot">.</span></a>
         </div>
         <div class="nav-links">
             <a href="#about" class="nav-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
@@ -84,15 +137,68 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-content">
-            <a href="#about" class="mobile-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
-            <a href="#projects" class="mobile-link" data-tr="Projeler" data-en="Projects">Projeler</a>
-            <a href="#skills" class="mobile-link" data-tr="Beceriler" data-en="Skills">Beceriler</a>
-            <a href="#blog" class="mobile-link" data-tr="Yazılar" data-en="Essays">Yazılar</a>
-            <a href="#contact" class="mobile-link" data-tr="İletişim" data-en="Contact">İletişim</a>
-            <a href="links" class="mobile-link" data-tr="Tüm Bağlantılar ↗" data-en="All Links ↗">Tüm Bağlantılar ↗</a>
+    <!-- Fullscreen Awwwards Editorial Menu Overlay -->
+    <div class="fullscreen-menu-overlay" id="fullscreenMenu" aria-hidden="true">
+        <div class="menu-backdrop"></div>
+        <div class="menu-container">
+            <div class="menu-header">
+                <a href="#" class="menu-brand-logo">K<span class="logo-dot">.</span></a>
+                <button type="button" class="menu-close-btn" id="menuCloseBtn" aria-label="Menüyü Kapat">
+                    <span data-tr="KAPAT" data-en="CLOSE">KAPAT</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="menu-nav-list">
+                <a href="#about" class="menu-nav-item" data-index="01">
+                    <span class="menu-item-idx">01</span>
+                    <span class="menu-item-title" data-tr="Hakkımda" data-en="About">Hakkımda</span>
+                    <span class="menu-item-arrow">→</span>
+                </a>
+                <a href="#projects" class="menu-nav-item" data-index="02">
+                    <span class="menu-item-idx">02</span>
+                    <span class="menu-item-title" data-tr="Projeler" data-en="Projects">Projeler</span>
+                    <span class="menu-item-arrow">→</span>
+                </a>
+                <a href="#skills" class="menu-nav-item" data-index="03">
+                    <span class="menu-item-idx">03</span>
+                    <span class="menu-item-title" data-tr="Beceriler &amp; Teknoloji" data-en="Skills &amp; Tech">Beceriler &amp; Teknoloji</span>
+                    <span class="menu-item-arrow">→</span>
+                </a>
+                <a href="#blog" class="menu-nav-item" data-index="04">
+                    <span class="menu-item-idx">04</span>
+                    <span class="menu-item-title" data-tr="Yazılar &amp; Analizler" data-en="Essays &amp; Teardowns">Yazılar &amp; Analizler</span>
+                    <span class="menu-item-arrow">→</span>
+                </a>
+                <a href="#contact" class="menu-nav-item" data-index="05">
+                    <span class="menu-item-idx">05</span>
+                    <span class="menu-item-title" data-tr="İletişim &amp; Teklif" data-en="Contact &amp; Proposal">İletişim &amp; Teklif</span>
+                    <span class="menu-item-arrow">→</span>
+                </a>
+                <a href="links" class="menu-nav-item menu-item-pill" data-index="06">
+                    <span class="menu-item-idx">06</span>
+                    <span class="menu-item-title" data-tr="Tüm Bağlantılar (Dizin)" data-en="All Links (Directory)">Tüm Bağlantılar (Dizin)</span>
+                    <span class="menu-item-arrow">↗</span>
+                </a>
+            </nav>
+            <div class="menu-footer">
+                <div class="menu-footer-col">
+                    <span class="menu-footer-label" data-tr="KONUM &amp; ZAMAN" data-en="LOCATION &amp; TIME">KONUM &amp; ZAMAN</span>
+                    <span class="menu-footer-val">İstanbul, TR • <span id="menuLiveClock">--:--:--</span> GMT+3</span>
+                </div>
+                <div class="menu-footer-col">
+                    <span class="menu-footer-label" data-tr="DOĞRUDAN İLETİŞİM" data-en="DIRECT CONTACT">DOĞRUDAN İLETİŞİM</span>
+                    <a href="mailto:tckursat@icloud.com" class="menu-footer-val menu-email-link">tckursat@icloud.com</a>
+                </div>
+                <div class="menu-footer-socials">
+                    <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/kürşatyılmaz" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer">X</a>
+                    <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -492,64 +598,181 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-content">
-                    <div class="section-label">
-                        <span class="label-line"></span>
-                        <span data-tr="05 — İletişim" data-en="05 — Contact">05 — İletişim</span>
-                    </div>
-                    <h2 class="contact-title">
-                        <span data-tr="Birlikte" data-en="Let's create">Birlikte</span>
-                        <span class="text-gradient" data-tr="harika şeyler" data-en="amazing things">harika şeyler</span>
-                        <span data-tr="yaratalım." data-en="together.">yaratalım.</span>
-                    </h2>
-                    <p class="contact-lead">
-                        <span data-tr="Yeni projeler, ortaklıklar veya sadece merhaba demek için iletişime geçin." data-en="Get in touch for new projects, partnerships, or just to say hello.">Yeni projeler, ortaklıklar veya sadece merhaba demek için iletişime geçin.</span>
-                    </p>
-                    <a href="mailto:tckursat@icloud.com" class="contact-email">
+            <!-- Top: Full-Width Contact Hero Block -->
+            <div class="contact-hero-block">
+                <div class="section-label">
+                    <span class="label-line"></span>
+                    <span data-tr="05 — İletişim &amp; Teklif" data-en="05 — Contact &amp; Proposal">05 — İletişim &amp; Teklif</span>
+                </div>
+                <h2 class="contact-title">
+                    <span data-tr="Birlikte" data-en="Let's create">Birlikte</span>
+                    <span class="text-gradient" data-tr="harika şeyler" data-en="amazing things">harika şeyler</span>
+                    <span data-tr="yaratalım." data-en="together.">yaratalım.</span>
+                </h2>
+                <p class="contact-lead">
+                    <span data-tr="Yeni projeler, marka sponsorlukları veya teknik danışmanlık için doğrudan iletişime geçin." data-en="Get in touch for new projects, brand sponsorships, or technical consulting.">Yeni projeler, marka sponsorlukları veya teknik danışmanlık için doğrudan iletişime geçin.</span>
+                </p>
+                <div class="contact-email-wrapper">
+                    <a href="mailto:tckursat@icloud.com" class="contact-email contact-email-massive">
                         <span class="email-text">tckursat@icloud.com</span>
                         <span class="email-arrow">→</span>
                     </a>
-                    <div class="social-links">
-                        <a href="links" class="social-link links-pill-highlight" aria-label="Tüm Bağlantılar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                            </svg>
-                            <span data-tr="Tüm Bağlantılar ↗" data-en="All Links ↗">Tüm Bağlantılar ↗</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Spotify">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                            </svg>
-                            <span>Spotify</span>
-                        </a>
-                    </div>
+                </div>
+                <div class="social-links contact-social-row">
+                    <a href="links" class="social-link links-pill-highlight" aria-label="Tüm Bağlantılar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                        <span data-tr="Tüm Bağlantılar ↗" data-en="All Links ↗">Tüm Bağlantılar ↗</span>
+                    </a>
+                    <a href="https://wa.me/kursat.yz?text=Merhaba%20K%C3%BCr%C5%9Fat%20Bey%2C%20sitenizden%20ula%C5%9F%C4%B1yorum." target="_blank" rel="noopener noreferrer" class="social-link whatsapp-link-pill" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.979-.276-.1-.477-.15-.678.15-.2.301-.778.979-.954 1.18-.176.201-.352.226-.653.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.201-.301.301-.502.1-.201.05-.376-.025-.527-.075-.15-.678-1.633-.929-2.237-.245-.588-.493-.508-.678-.517-.176-.009-.377-.009-.578-.009-.201 0-.527.075-.803.376-.276.301-1.054 1.029-1.054 2.509 0 1.48 1.079 2.909 1.23 3.109.15.201 2.123 3.242 5.143 4.544.719.31 1.28.495 1.718.634.723.23 1.38.197 1.9.12.579-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.004 21.996h-.002c-1.787 0-3.538-.481-5.074-1.393l-.364-.216-3.771.989 1.006-3.676-.237-.377c-.999-1.589-1.527-3.428-1.527-5.321 0-5.514 4.486-10 10-10 2.671 0 5.182 1.04 7.071 2.929 1.889 1.889 2.929 4.4 2.929 7.071 0 5.514-4.486 10-10 10zm8.486-18.486C18.232 1.252 15.228 0 12.004 0 5.385 0 0 5.385 0 12.004c0 2.115.553 4.178 1.602 6.001L0 24l6.168-1.579c1.761.961 3.751 1.477 5.836 1.477 6.618 0 12.003-5.385 12.003-12.004 0-3.224-1.252-6.228-3.517-8.484z"/>
+                        </svg>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Spotify">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        <span>Spotify</span>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="contact-bg">
-            <div class="gradient-orb orb-contact-1"></div>
-            <div class="gradient-orb orb-contact-2"></div>
-        </div>
+
+            <!-- Bottom: Full-Width Independent Console Component (#homeTypeform) -->
+            <div class="contact-console-container" id="homeTypeform">
+                <div class="home-tf-card">
+                    <div class="typeform-progress-track">
+                        <div class="typeform-progress-fill" id="htfProgress" style="width: 25%;"></div>
+                    </div>
+
+                    <div class="typeform-top-meta">
+                        <span class="typeform-step-badge" id="htfStepBadge">01 / 04</span>
+                        <button type="button" class="typeform-prev-btn" id="htfPrevBtn" style="visibility: hidden;">
+                            ← <span data-tr="Önceki Adım" data-en="Previous">Önceki Adım</span>
+                        </button>
+                    </div>
+
+                    <!-- Step 1: Konu / Talep Türü (2x2 Grid) -->
+                    <div class="typeform-step-pane active" data-step="1">
+                        <div class="typeform-q-num">01 // PROJE VEYA GÖRÜŞME TÜRÜ</div>
+                        <h3 class="typeform-q-title" data-tr="Hangi konuda görüşmek istiyorsunuz?" data-en="What project are you interested in?">Hangi konuda görüşmek istiyorsunuz?</h3>
+                        <p class="typeform-q-sub" data-tr="Seçiminizi yapın; doğrudan sonraki adıma geçeceksiniz." data-en="Select an option below to proceed.">Seçiminizi yapın; doğrudan sonraki adıma geçeceksiniz.</p>
+                        <div class="typeform-cards-grid" id="htfTopicGrid">
+                            <button type="button" class="typeform-choice-card selected" data-topic="B2B Yazılım &amp; Sistem Mimarisi">
+                                <span class="tf-badge-key">A</span>
+                                <span class="tf-opt-label" data-tr="B2B Yazılım &amp; Mimari" data-en="B2B Software &amp; Architecture">B2B Yazılım &amp; Mimari</span>
+                                <span class="tf-opt-check">✓</span>
+                            </button>
+                            <button type="button" class="typeform-choice-card" data-topic="Yapay Zekâ, Ajanlar &amp; Yerel Çıkarım">
+                                <span class="tf-badge-key">B</span>
+                                <span class="tf-opt-label" data-tr="Yapay Zekâ &amp; LLM Çıkarımı" data-en="AI &amp; LLM Inference">Yapay Zekâ &amp; LLM Çıkarımı</span>
+                                <span class="tf-opt-check">✓</span>
+                            </button>
+                            <button type="button" class="typeform-choice-card" data-topic="Reklam Alanı Kiralama &amp; Sponsorluk">
+                                <span class="tf-badge-key">C</span>
+                                <span class="tf-opt-label" data-tr="Reklam &amp; Sponsorluk Kiralama" data-en="Ad Spot &amp; Sponsorship">Reklam &amp; Sponsorluk Kiralama</span>
+                                <span class="tf-opt-check">✓</span>
+                            </button>
+                            <button type="button" class="typeform-choice-card" data-topic="Genel / Diğer İş Birliği">
+                                <span class="tf-badge-key">D</span>
+                                <span class="tf-opt-label" data-tr="Genel / Diğer İş Birliği" data-en="General Inquiry">Genel / Diğer İş Birliği</span>
+                                <span class="tf-opt-check">✓</span>
+                            </button>
+                        </div>
+                        <div class="typeform-advance-row">
+                            <button type="button" class="typeform-btn-next" onclick="advanceHomeTf(1)">
+                                <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+                            </button>
+                            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: İsim / Marka -->
+                    <div class="typeform-step-pane" data-step="2">
+                        <div class="typeform-q-num">02 // ADINIZ &amp; ŞİRKETİNİZ</div>
+                        <h3 class="typeform-q-title" data-tr="Adınız Soyadınız veya Şirketiniz?" data-en="Your Name or Company?">Adınız Soyadınız veya Şirketiniz?</h3>
+                        <p class="typeform-q-sub" data-tr="Size veya temsil ettiğiniz ekibe nasıl hitap etmeliyim?" data-en="How should I address you or your team?">Size veya temsil ettiğiniz ekibe nasıl hitap etmeliyim?</p>
+                        <div class="typeform-input-container">
+                            <input type="text" id="htfName" class="typeform-hero-input" placeholder="Kürşat Yılmaz / Marka *" autocomplete="name" required>
+                        </div>
+                        <div class="typeform-advance-row">
+                            <button type="button" class="typeform-btn-next" onclick="advanceHomeTf(2)">
+                                <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+                            </button>
+                            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: İletişim Bilgisi -->
+                    <div class="typeform-step-pane" data-step="3">
+                        <div class="typeform-q-num">03 // İLETİŞİM ADRESİ</div>
+                        <h3 class="typeform-q-title" data-tr="Size hangi kanaldan dönüş yapayım?" data-en="Where can I get back to you?">Size hangi kanaldan dönüş yapayım?</h3>
+                        <p class="typeform-q-sub" data-tr="E-posta adresiniz veya WhatsApp telefon numaranız." data-en="Your email address or WhatsApp phone number.">E-posta adresiniz veya WhatsApp telefon numaranız.</p>
+                        <div class="typeform-input-container">
+                            <input type="text" id="htfContact" class="typeform-hero-input" placeholder="tckursat@icloud.com veya +90 5xx *" autocomplete="email" required>
+                        </div>
+                        <div class="typeform-advance-row">
+                            <button type="button" class="typeform-btn-next" onclick="advanceHomeTf(3)">
+                                <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+                            </button>
+                            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Mesaj / Not & Gönderim -->
+                    <div class="typeform-step-pane" data-step="4">
+                        <div class="typeform-q-num">04 // PROJE DETAYLARI &amp; TEKLİF</div>
+                        <h3 class="typeform-q-title" data-tr="Kısaca bahsetmek istediğiniz detaylar?" data-en="Brief details about the project?">Kısaca bahsetmek istediğiniz detaylar?</h3>
+                        <p class="typeform-q-sub" data-tr="Bütçe aralığı, teslim tarihi veya proje hedeflerinizi özetleyin." data-en="Target timeline, budget expectations, or general notes.">Bütçe aralığı, teslim tarihi veya proje hedeflerinizi özetleyin.</p>
+                        <div class="typeform-input-container">
+                            <textarea id="htfMessage" class="typeform-hero-textarea" rows="3" placeholder="Merhaba Kürşat, projemiz için şu kapsamda görüşmek istiyoruz..."></textarea>
+                        </div>
+                        <div class="typeform-submit-actions">
+                            <button type="button" class="tf-submit-btn tf-btn-mail" onclick="submitHomeTypeform('mail')">
+                                <span data-tr="E-posta ile İlet" data-en="Send via Email">E-posta ile İlet</span> ↗
+                            </button>
+                            <button type="button" class="tf-submit-btn tf-btn-wa" onclick="submitHomeTypeform('wa')">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                    <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.979-.276-.1-.477-.15-.678.15-.2.301-.778.979-.954 1.18-.176.201-.352.226-.653.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.201-.301.301-.502.1-.201.05-.376-.025-.527-.075-.15-.678-1.633-.929-2.237-.245-.588-.493-.508-.678-.517-.176-.009-.377-.009-.578-.009-.201 0-.527.075-.803.376-.276.301-1.054 1.029-1.054 2.509 0 1.48 1.079 2.909 1.23 3.109.15.201 2.123 3.242 5.143 4.544.719.31 1.28.495 1.718.634.723.23 1.38.197 1.9.12.579-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.004 21.996h-.002c-1.787 0-3.538-.481-5.074-1.393l-.364-.216-3.771.989 1.006-3.676-.237-.377c-.999-1.589-1.527-3.428-1.527-5.321 0-5.514 4.486-10 10-10 2.671 0 5.182 1.04 7.071 2.929 1.889 1.889 2.929 4.4 2.929 7.071 0 5.514-4.486 10-10 10zm8.486-18.486C18.232 1.252 15.228 0 12.004 0 5.385 0 0 5.385 0 12.004c0 2.115.553 4.178 1.602 6.001L0 24l6.168-1.579c1.761.961 3.751 1.477 5.836 1.477 6.618 0 12.003-5.385 12.003-12.004 0-3.224-1.252-6.228-3.517-8.484z"/>
+                                </svg>
+                                <span data-tr="WhatsApp ile Gönder" data-en="Send via WhatsApp">WhatsApp ile Gönder</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Status Meta Footer in Typeform -->
+                    <div class="home-tf-meta-footer">
+                        <div class="tf-meta-item">
+                            <span class="tf-meta-num">&lt; 2h</span>
+                            <span class="tf-meta-desc" data-tr="Ortalama Yanıt" data-en="Avg Response">Ortalama Yanıt</span>
+                        </div>
+                        <div class="tf-meta-item">
+                            <span class="tf-meta-num" id="contactLiveClock">--:--:--</span>
+                            <span class="tf-meta-desc">İstanbul, TR (GMT+3)</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="contact-bg">
@@ -558,18 +781,83 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Footer: Stellar Style Monumental Architecture (Awwwards SOTD) -->
+    <footer class="footer footer-massive-brand">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <span class="footer-logo">K.</span>
-                    <p><span data-tr="Fikirden ürüne," data-en="From idea to product,">Fikirden ürüne,</span> <span class="text-gradient" data-tr="hızla." data-en="fast.">hızla.</span></p>
+            <!-- 1. Üst Katman: Çok Sütunlu Stellar Mimari Grid -->
+            <div class="footer-stellar-grid">
+                <!-- Sol Ana Sütun: Profil & Aksiyon -->
+                <div class="footer-stellar-main-col">
+                    <h3 class="footer-stellar-name">Kürşat Yılmaz</h3>
+                    <div class="footer-stellar-meta">
+                        <span class="footer-stellar-loc">İstanbul, Türkiye • GMT+3</span>
+                        <a href="mailto:tckursat@icloud.com" class="footer-stellar-email">tckursat@icloud.com</a>
+                    </div>
+                    <div class="footer-stellar-pills">
+                        <a href="#contact" class="footer-pill-btn footer-pill-primary">
+                            <span data-tr="Proje &amp; Teklif" data-en="Project &amp; Proposal">Proje &amp; Teklif</span> ↗
+                        </a>
+                        <a href="links#kiralik" class="footer-pill-btn footer-pill-secondary">
+                            <span data-tr="Reklam Kirala" data-en="Sponsor Billboard">Reklam Kirala</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-right">
-                    <p>© 2026 Kürşat Yılmaz</p>
+
+                <!-- Sağ 3 Sütunluk Ferah Editoryal Dizin (Stellar Luxury Layout) -->
+                <div class="footer-stellar-nav-cols">
+                    <!-- Sütun 1: Navigasyon -->
+                    <div class="footer-nav-col">
+                        <h4 class="footer-col-title" data-tr="NAVİGASYON" data-en="NAVIGATION">NAVİGASYON</h4>
+                        <ul class="footer-col-list">
+                            <li><a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+                            <li><a href="#projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+                            <li><a href="#skills" data-tr="Beceriler" data-en="Skills">Beceriler</a></li>
+                            <li><a href="#blog" data-tr="Yazılar" data-en="Essays">Yazılar</a></li>
+                            <li><a href="#contact" data-tr="İletişim &amp; Teklif" data-en="Contact">İletişim &amp; Teklif</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sütun 2: Girişim & Kod -->
+                    <div class="footer-nav-col">
+                        <h4 class="footer-col-title" data-tr="GİRİŞİM &amp; KOD" data-en="VENTURES &amp; CODE">GİRİŞİM &amp; KOD</h4>
+                        <ul class="footer-col-list">
+                            <li><a href="https://itibar.app" target="_blank" rel="noopener noreferrer">itibar.app ↗</a></li>
+                            <li><a href="https://unutma.app" target="_blank" rel="noopener noreferrer">Unutma. (unutma.app) ↗</a></li>
+                            <li><a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer">GitHub (100+ Repo) ↗</a></li>
+                            <li><a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer">DEV.to Makaleler ↗</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sütun 3: Medya & Dizin -->
+                    <div class="footer-nav-col">
+                        <h4 class="footer-col-title" data-tr="MEDYA &amp; DİZİN" data-en="MEDIA &amp; DIRECTORY">MEDYA &amp; DİZİN</h4>
+                        <ul class="footer-col-list">
+                            <li><a href="links" data-tr="Resmi Dizin (/links) ↗" data-en="Official Directory (/links) ↗">Resmi Dizin (/links) ↗</a></li>
+                            <li><a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer">X (@DevKursat) ↗</a></li>
+                            <li><a href="https://instagram.com/kursatsi" target="_blank" rel="noopener noreferrer">Instagram (@kursatsi) ↗</a></li>
+                            <li><a href="https://youtube.com/@kursatsi" target="_blank" rel="noopener noreferrer">YouTube (@kursatsi) ↗</a></li>
+                            <li><a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer">Spotify Artist ↗</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+            <!-- 2. Orta İnce Çizgi & Telif / Başa Dön Satırı -->
+            <div class="footer-stellar-mid">
+                <div class="footer-stellar-divider"></div>
+                <div class="footer-mid-bottom">
+                    <span>© 2026 Kürşat Yılmaz • Sovereign Architecture &amp; Creative Media</span>
+                    <a href="#hero" class="back-to-top" id="backToTopBtn">
+                        <span data-tr="Başa Dön" data-en="Back to Top">Başa Dön</span>
+                        <span>↑</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- En Altta Alt Kenardan Kesilmiş (Bottom-Cropped) Devasa Kürşat Yazısı -->
+        <div class="footer-stellar-wordmark" aria-hidden="true">
+            <span class="stellar-huge-text">Kürşat</span>
         </div>
     </footer>
 
@@ -665,6 +953,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
 
-    <script src="script.js?v=20261104-sotd"></script>
+    <script src="script.js?v=20261105-sotd"></script>
 </body>
 </html>

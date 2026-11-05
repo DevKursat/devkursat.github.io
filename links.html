@@ -27,6 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070709'/%3E%3Ctext x='18' y='46' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-size='38' font-weight='800' fill='%23ffffff'%3EK%3C/text%3E%3Ccircle cx='46' cy='44' r='4.5' fill='%2300d9ff'/%3E%3C/svg%3E">
 
   <style>
     :root {
@@ -232,9 +233,55 @@
     }
 
     .hero-title .name-dim {
-      font-weight: 300;
-      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
       margin-left: 8px;
+      color: var(--accent-cyan);
+      user-select: none;
+    }
+
+    .slash-bar {
+      display: inline-block;
+      font-weight: 300;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 12px rgba(0, 217, 255, 0.45);
+      transition: transform 0.45s var(--ease-out-expo), color 0.3s ease, text-shadow 0.3s ease;
+      will-change: transform;
+      animation: slashInit 1s var(--ease-out-expo) backwards;
+    }
+
+    .slash-bar.slash-1 {
+      animation-delay: 0.15s;
+    }
+
+    .slash-bar.slash-2 {
+      animation-delay: 0.25s;
+      color: var(--accent-emerald);
+      text-shadow: 0 0 12px rgba(16, 185, 129, 0.45);
+    }
+
+    .hero-title:hover .slash-1 {
+      transform: skewX(-12deg) translateY(-5px) scale(1.1);
+      color: var(--accent-emerald);
+      text-shadow: 0 0 16px rgba(16, 185, 129, 0.65);
+    }
+
+    .hero-title:hover .slash-2 {
+      transform: skewX(-12deg) translateY(5px) scale(1.1);
+      color: var(--accent-cyan);
+      text-shadow: 0 0 16px rgba(0, 217, 255, 0.7);
+    }
+
+    @keyframes slashInit {
+      0% {
+        opacity: 0;
+        transform: skewX(-18deg) translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: skewX(0deg) translateY(0);
+      }
     }
 
     .hero-sub {
@@ -244,36 +291,44 @@
       line-height: 1.6;
     }
 
-    /* Sponsorship & Brand Partnership High-Converting Card */
-    .sponsorship-banner {
+    /* Clickable Billboard Sponsorship Banner */
+    .sponsorship-banner.clickable-billboard {
       margin: 32px 0 40px;
-      padding: 32px;
+      padding: 34px 38px;
       background: linear-gradient(135deg, rgba(20, 20, 28, 0.95) 0%, rgba(10, 10, 14, 0.95) 100%);
-      border: 1px solid rgba(0, 217, 255, 0.3);
+      border: 1px solid rgba(0, 217, 255, 0.28);
       border-radius: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 24px;
+      gap: 32px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 217, 255, 0.08);
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .sponsorship-banner::before {
+    .sponsorship-banner.clickable-billboard::before {
       content: '';
       position: absolute;
       top: -50%;
       right: -10%;
-      width: 300px;
-      height: 300px;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
+    .sponsorship-banner.clickable-billboard:hover {
+      border-color: rgba(0, 217, 255, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(0, 217, 255, 0.16);
+    }
+
     .sponsorship-left {
-      max-width: 640px;
+      max-width: 680px;
       position: relative;
       z-index: 2;
     }
@@ -283,316 +338,462 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-cyan);
       background: rgba(0, 217, 255, 0.1);
       border: 1px solid rgba(0, 217, 255, 0.25);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 999px;
       margin-bottom: 14px;
     }
 
     .sponsorship-title {
       font-family: var(--font-display);
-      font-size: 1.55rem;
+      font-size: clamp(1.3rem, 2.4vw, 1.7rem);
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
+      line-height: 1.3;
     }
 
     .sponsorship-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.6;
+      margin: 0;
     }
 
-    .sponsorship-ctas {
-      display: flex;
-      flex-direction: row;
+    .sponsorship-card-arrow {
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      padding: 12px 20px 12px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+      white-space: nowrap;
       flex-shrink: 0;
       position: relative;
       z-index: 2;
+      color: #ffffff;
     }
 
-    /* Refined Obsidian Luxury CTA Buttons (No harsh gradients) */
-    .sponsor-btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 26px;
-      border-radius: 999px;
+    .sponsorship-banner.clickable-billboard:hover .sponsorship-card-arrow {
       background: #ffffff;
       color: #070709;
+      border-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .arrow-text {
       font-family: var(--font-display);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-      white-space: nowrap;
-      cursor: pointer;
-      border: none;
     }
 
-    .sponsor-btn-primary svg {
+    .arrow-circle svg {
       transition: transform 0.25s ease;
     }
 
-    .sponsor-btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.25);
-      background: #f4f4f6;
+    .sponsorship-banner.clickable-billboard:hover .arrow-circle svg {
+      transform: translate(3px, -3px);
+      stroke: #070709;
     }
 
-    .sponsor-btn-primary:hover svg {
-      transform: translate(2px, -2px);
-    }
-
-    .sponsor-btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
-    }
-
-    .sponsor-btn-secondary svg {
-      transition: transform 0.25s ease;
-    }
-
-    .sponsor-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .sponsor-btn-secondary:hover svg {
-      transform: scale(1.1);
-    }
-
-    /* Minimalist Segmented Indicator Switch */
-    .persona-switch-wrapper {
-      margin-bottom: 28px;
+    /* Dennis & Aristide Architectural Category Navigation */
+    .editorial-category-nav {
       display: flex;
       align-items: center;
+      gap: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 32px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0;
     }
 
-    .persona-switch {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--surface-border);
-      border-radius: 999px;
-      padding: 4px;
-      gap: 2px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    .editorial-category-nav::-webkit-scrollbar {
+      display: none;
     }
 
-    .persona-switch-btn {
+    .editorial-tab-btn {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 20px;
-      border-radius: 999px;
-      border: none;
+      align-items: baseline;
+      gap: 10px;
+      padding: 14px 4px;
       background: transparent;
-      color: var(--text-muted);
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
       font-family: var(--font-display);
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      transition: all 0.25s ease;
       position: relative;
+      margin-bottom: -1px;
     }
 
-    .switch-indicator-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--text-dim);
+    .tab-index {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      transition: color 0.25s ease;
+      letter-spacing: 0.04em;
+    }
+
+    .tab-count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-dim);
       transition: all 0.25s ease;
     }
 
-    .persona-switch-btn:hover {
+    .editorial-tab-btn:hover {
       color: #ffffff;
     }
 
-    .persona-switch-btn:hover .switch-indicator-dot {
-      background: #ffffff;
+    .editorial-tab-btn:hover .tab-index {
+      color: var(--accent-cyan);
     }
 
-    .persona-switch-btn.active {
-      background: #ffffff;
-      color: #070709;
+    .editorial-tab-btn.active {
+      color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 2px 14px rgba(255, 255, 255, 0.2);
+      border-bottom-color: #ffffff;
     }
 
-    .persona-switch-btn.active .switch-indicator-dot {
-      background: #070709;
-    }
-
-    .switch-count {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
-      transition: all 0.25s ease;
-    }
-
-    .persona-switch-btn.active .switch-count {
-      background: rgba(0, 0, 0, 0.1);
-      color: #070709;
+    .editorial-tab-btn.active .tab-index {
+      color: var(--accent-cyan);
       font-weight: 700;
     }
 
-    /* 3. Alan: Hızlı İletişim & Teklif Formu Paneli */
+    .editorial-tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Typeform Step-by-Step Flow */
     .links-contact-panel {
       width: 100%;
       margin-bottom: 40px;
     }
 
-    .contact-panel-card {
+    .typeform-card {
       background: linear-gradient(135deg, rgba(20, 20, 26, 0.95) 0%, rgba(10, 10, 14, 0.95) 100%);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 36px 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      border-radius: 24px;
+      padding: 44px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
       position: relative;
+      overflow: hidden;
     }
 
-    .contact-panel-header {
+    @media (max-width: 768px) {
+      .typeform-card {
+        padding: 28px 20px;
+      }
+    }
+
+    .typeform-progress-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .typeform-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-cyan), #38ef7d);
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .typeform-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 28px;
     }
 
-    .contact-panel-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: #ffffff;
-      margin: 12px 0 8px;
+    .typeform-step-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      background: rgba(0, 217, 255, 0.08);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 217, 255, 0.2);
     }
 
-    .contact-panel-desc {
+    .typeform-prev-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+      padding: 4px 8px;
+    }
+
+    .typeform-prev-btn:hover {
+      color: #ffffff;
+    }
+
+    .typeform-step-pane {
+      display: none;
+      animation: typeformFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .typeform-step-pane.active {
+      display: block;
+    }
+
+    @keyframes typeformFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .typeform-q-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .typeform-q-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .typeform-q-sub {
       font-size: 0.95rem;
       color: var(--text-muted);
-      line-height: 1.55;
-      max-width: 680px;
+      margin-bottom: 28px;
+      line-height: 1.5;
     }
 
-    .links-fast-form {
+    .typeform-input-container {
+      margin-bottom: 28px;
+    }
+
+    .typeform-hero-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 0;
+      padding: 12px 0;
+      font-family: var(--font-body);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      color: #ffffff;
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+
+    .typeform-hero-input:focus {
+      border-bottom-color: var(--accent-cyan);
+    }
+
+    .typeform-hero-textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: #ffffff;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
+      transition: border-color 0.25s ease;
+    }
+
+    .typeform-hero-textarea:focus {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.02);
+    }
+
+    .typeform-advance-row {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .form-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .form-field-group {
-      display: flex;
-      flex-direction: column;
+    .typeform-btn-next {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #070709;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 18px rgba(255, 255, 255, 0.15);
     }
 
-    .form-field-label {
+    .typeform-btn-next:hover {
+      background: #f0f0f4;
+      transform: translateY(-1px);
+    }
+
+    .typeform-key-hint {
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
       color: var(--text-dim);
     }
 
-    .links-field-input, .links-field-textarea {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 12px;
-      padding: 14px 18px;
-      color: #ffffff;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.25s ease;
+    .typeform-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
-    .links-field-input:focus, .links-field-textarea:focus {
+    @media (max-width: 640px) {
+      .typeform-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .typeform-choice-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+    }
+
+    .typeform-choice-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .typeform-choice-card.selected {
       border-color: var(--accent-cyan);
-      background: rgba(0, 217, 255, 0.02);
+      background: rgba(0, 217, 255, 0.08);
       box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
     }
 
-    .links-field-textarea {
-      resize: vertical;
-      min-height: 100px;
+    .tf-badge-key {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent-cyan);
     }
 
-    .topic-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .tf-opt-check {
+      opacity: 0;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      transition: opacity 0.2s ease;
     }
 
-    .topic-pill-btn {
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .typeform-choice-card.selected .tf-opt-check {
+      opacity: 1;
     }
 
-    .topic-pill-btn:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-    }
-
-    .topic-pill-btn.active {
-      background: #ffffff;
-      color: #070709;
-      font-weight: 600;
-      border-color: #ffffff;
-      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.2);
-    }
-
-    .links-form-actions {
+    .typeform-submit-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-top: 6px;
       flex-wrap: wrap;
     }
 
-    .form-feedback-msg {
+    .typeform-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #070709;
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .typeform-submit-btn:hover {
+      background: #f4f4f8;
+      transform: translateY(-2px);
+    }
+
+    .typeform-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #25d366;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .typeform-whatsapp-btn:hover {
+      background: #25d366;
+      color: #070709;
+      transform: translateY(-2px);
+    }
+
+    .typeform-feedback {
       font-family: var(--font-mono);
       font-size: 0.85rem;
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     .direct-contact-footer-row {
@@ -833,33 +1034,230 @@
       letter-spacing: 0.04em;
     }
 
-    /* Footer */
-    .directory-footer {
-      margin-top: auto;
-      padding-top: 56px;
+    /* Stellar Style Monumental Footer (Awwwards SOTD) */
+    .footer.footer-massive-brand {
+      margin-top: 80px;
+      padding: 72px 0 0 !important;
+      background: #040406;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      margin-left: -24px;
+      margin-right: -24px;
+      margin-bottom: -80px;
+    }
+
+    .footer-stellar-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-stellar-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 56px;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-brand-location {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 0.03em;
+    }
+
+    .footer-brand-email {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-brand-email:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .footer-brand-pills {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.25s var(--ease-out-expo);
+      white-space: nowrap;
+    }
+
+    .footer-pill-primary {
+      background: #ffffff !important;
+      color: #070709 !important;
+      border: 1px solid #ffffff !important;
+    }
+
+    .footer-pill-primary:hover {
+      background: var(--accent-cyan, #00D9FF) !important;
+      border-color: var(--accent-cyan, #00D9FF) !important;
+      color: #070709 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 217, 255, 0.45);
+    }
+
+    .footer-pill-outline {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .footer-pill-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .footer-stellar-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-col-heading {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+
+    .footer-col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col-links a,
+    .footer-col-links span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-col-links a:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    /* Stellar Mid Strip */
+    .footer-stellar-mid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 24px 0 28px;
+    }
+
+    .footer-mid-top, .footer-mid-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-mono);
       font-size: 0.8rem;
       color: var(--text-dim);
-      border-top: 1px solid var(--surface-border);
-      flex-wrap: wrap;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
       gap: 16px;
     }
 
-    .footer-copy {
+    .footer-social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--text-muted);
+      transition: color 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
     }
 
-    .footer-actions {
-      display: flex;
-      gap: 24px;
+    .footer-social-icon:hover {
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
     }
 
-    .footer-actions a:hover {
+    .footer-stellar-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    /* Bottom-Cropped Monumental Wordmark */
+    .footer-stellar-wordmark {
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      line-height: 0.74;
+      user-select: none;
+      pointer-events: none;
+      margin-top: 8px;
+    }
+
+    .stellar-huge-text {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 20vw, 20rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 0.76;
       color: #ffffff;
-      text-decoration: underline;
+      transform: translateY(16%);
+      will-change: transform;
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-to-top:hover {
+      color: var(--accent-cyan);
     }
 
     /* Mobile Responsive */
@@ -942,9 +1340,15 @@
         font-size: 1.15rem;
       }
 
-      .directory-footer {
+      .footer-stellar-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-mid-top, .footer-mid-bottom {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
       }
     }
   </style>
@@ -988,64 +1392,56 @@
         <span data-tr="RESMİ DİZİN, KANALLAR &amp; MEDYA" data-en="OFFICIAL DIRECTORY &amp; MEDIA KIT">RESMİ DİZİN, KANALLAR &amp; MEDYA</span>
       </div>
       <h1 class="hero-title">
-        Kürşat Yılmaz <span class="name-dim">//</span>
+        Kürşat Yılmaz <span class="name-dim" aria-hidden="true"><span class="slash-bar slash-1">/</span><span class="slash-bar slash-2">/</span></span>
       </h1>
       <p class="hero-sub" data-tr="Orijinal animasyon ve mizah serileri, B2B egemen sistem mimarileri, açık kaynak depolar ve doğrudan sponsorluk kanalları." data-en="Original animation & comedy series, sovereign B2B system architectures, open-source repos, and direct sponsorship channels.">
         Orijinal animasyon ve mizah serileri, B2B egemen sistem mimarileri, açık kaynak depolar ve doğrudan sponsorluk kanalları.
       </p>
     </section>
 
-    <!-- Dedicated Sponsorship & Brand Partnership Area -->
-    <section class="sponsorship-banner">
+    <!-- Dedicated Sponsorship & Ad Spot Rental Section (Full Clickable Card) -->
+    <section class="sponsorship-banner clickable-billboard" id="sponsorshipBannerCard" role="button" tabindex="0" aria-label="Bu Alanı Kirala">
       <div class="sponsorship-left">
         <div class="sponsorship-badge">
           <span class="pulse-dot"></span>
-          <span data-tr="SPONSORLUK &amp; MARKA İŞ BİRLİĞİ (AÇIK)" data-en="SPONSORSHIPS &amp; BRAND COLLABORATIONS (OPEN)">SPONSORLUK &amp; MARKA İŞ BİRLİĞİ (AÇIK)</span>
+          <span data-tr="REKLAM &amp; SPONSORLUK ALANI • KİRALIK" data-en="ADVERTISING &amp; SPONSORSHIP SPOT • FOR RENT">REKLAM &amp; SPONSORLUK ALANI • KİRALIK</span>
         </div>
-        <h2 class="sponsorship-title" data-tr="Markanızı Organik ve Sadık Bir Kitleyle Buluşturun" data-en="Position Your Brand with an Engaged Organic Audience">
-          Markanızı Organik ve Sadık Bir Kitleyle Buluşturun
+        <h2 class="sponsorship-title" data-tr="Bu Alan Kiralıktır — Markanızı 10M+ Organik Kitleyle Buluşturun" data-en="This Space is For Rent — Position Your Brand in Front of 10M+ Organic Audience">
+          Bu Alan Kiralıktır — Markanızı 10M+ Organik Kitleyle Buluşturun
         </h2>
-        <p class="sponsorship-desc" data-tr="Viral animasyon skeçleri, mizah serileri ve yapay zekâ/yazılım projelerim genelinde markanızı konumlandırın. Özel senaryo entegrasyonu, ürün yerleştirme, sponsorluk ve ortaklık teklifleri için iletişime geçin." data-en="Feature your product across viral animation sketches, humor series, and tech projects. Reach out for custom scenario integrations, product placement, and brand partnerships.">
-          Viral animasyon skeçleri, mizah serileri ve yapay zekâ/yazılım projelerim genelinde markanızı konumlandırın. Özel senaryo entegrasyonu, ürün yerleştirme, sponsorluk ve ortaklık teklifleri için iletişime geçin.
+        <p class="sponsorship-desc" data-tr="Viral animasyon skeçleri, mizah serileri ve yazılım projelerim genelinde profil alanı kiralama, özel senaryo entegrasyonu ve doğrudan sponsorluk. Tıklayın ve anında teklif iletin." data-en="Rent high-visibility profile ad space, custom scenario integrations, and sponsorships across viral animation sketches and tech projects. Click to send an instant offer.">
+          Viral animasyon skeçleri, mizah serileri ve yazılım projelerim genelinde profil alanı kiralama, özel senaryo entegrasyonu ve doğrudan sponsorluk. Tıklayın ve anında teklif iletin.
         </p>
       </div>
-      <div class="sponsorship-ctas">
-        <a href="mailto:tckursat@icloud.com?subject=Sponsorluk%20ve%20Marka%20%C4%B0%C5%9F%20Birli%C4%9Fi%20Talebi&amp;body=Merhaba%20K%C3%BCr%C5%9Fat%2C%20markam%C4%B1z%20i%C3%A7in%20sponsorluk%20ve%20i%C5%9F%20birli%C4%9Fi%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz..." class="sponsor-btn-primary">
-          <span data-tr="Sponsorluk Teklifi İlet" data-en="Submit Sponsorship Offer">Sponsorluk Teklifi İlet</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="sponsorship-card-arrow">
+        <span class="arrow-text" data-tr="Bu Alanı Kirala" data-en="Rent This Spot">Bu Alanı Kirala</span>
+        <div class="arrow-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
-        </a>
-        <a href="https://wa.me/kursat.yz?text=Merhaba%20K%C3%BCr%C5%9Fat%20Bey%2C%20sponsorluk%20ve%20marka%20i%C5%9F%20birli%C4%9Fi%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." target="_blank" rel="noopener noreferrer" class="sponsor-btn-secondary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.06-2.029-.488-1.571-.643-2.613-2.28-2.695-2.389-.082-.109-.64-851-.64-1.624 0-.773.407-1.152.551-1.309.144-.158.314-.198.42-.198.106 0 .211.001.303.006.098.005.228-.037.355.27.133.318.454 1.107.494 1.189.04.082.067.177.013.283-.053.106-.08.172-.16.265-.08.093-.167.207-.239.278-.08.08-.163.167-.07.327.093.16.413.682.887 1.104.609.542 1.123.71 1.283.79.16.08.254.067.348-.04.093-.107.4-.467.507-.627.107-.16.214-.133.361-.08.147.053.935.441 1.096.521.161.08.268.12.308.187.04.067.04.387-.104.792z"/>
-          </svg>
-          <span data-tr="WhatsApp İletişim" data-en="WhatsApp Inquiry">WhatsApp İletişim</span>
-        </a>
+        </div>
       </div>
     </section>
 
-    <!-- Persona & Direct Contact Switcher (3 Tabs) -->
-    <div class="persona-switch-wrapper">
-      <div class="persona-switch" role="tablist" aria-label="Kanal Kategorisi">
-        <button type="button" class="persona-switch-btn active" data-filter="creative" role="tab" aria-selected="true" id="tab-creative">
-          <span class="switch-indicator-dot"></span>
-          <span class="switch-text" data-tr="Animasyon &amp; Mizah" data-en="Animation &amp; Comedy">Animasyon &amp; Mizah</span>
-          <span class="switch-count">5</span>
-        </button>
-        <button type="button" class="persona-switch-btn" data-filter="tech" role="tab" aria-selected="false" id="tab-tech">
-          <span class="switch-indicator-dot"></span>
-          <span class="switch-text" data-tr="Kişisel &amp; Yazılım" data-en="Personal &amp; Tech">Kişisel &amp; Yazılım</span>
-          <span class="switch-count">7</span>
-        </button>
-        <button type="button" class="persona-switch-btn" data-filter="contact" role="tab" aria-selected="false" id="tab-contact">
-          <span class="switch-indicator-dot"></span>
-          <span class="switch-text" data-tr="Hızlı İletişim" data-en="Direct Message">Hızlı İletişim</span>
-          <span class="switch-count">✎</span>
-        </button>
-      </div>
-    </div>
+    <!-- Dennis & Aristide Architectural Category Navigation -->
+    <nav class="editorial-category-nav" role="tablist" aria-label="Kanal ve Dizin Filtresi">
+      <button type="button" class="editorial-tab-btn active" data-filter="creative" role="tab" aria-selected="true" id="tab-creative">
+        <span class="tab-index">01</span>
+        <span class="tab-label" data-tr="Animasyon &amp; Mizah" data-en="Animation &amp; Comedy">Animasyon &amp; Mizah</span>
+        <span class="tab-count">5</span>
+      </button>
+      <button type="button" class="editorial-tab-btn" data-filter="tech" role="tab" aria-selected="false" id="tab-tech">
+        <span class="tab-index">02</span>
+        <span class="tab-label" data-tr="Kişisel &amp; Yazılım" data-en="Personal &amp; Tech">Kişisel &amp; Yazılım</span>
+        <span class="tab-count">7</span>
+      </button>
+      <button type="button" class="editorial-tab-btn" data-filter="contact" role="tab" aria-selected="false" id="tab-contact">
+        <span class="tab-index">03</span>
+        <span class="tab-label" data-tr="Hızlı İletişim &amp; Kiralama" data-en="Direct Line &amp; Rent">Hızlı İletişim &amp; Kiralama</span>
+        <span class="tab-count">↗</span>
+      </button>
+    </nav>
 
     <!-- Aristide Benoist Editorial Links Directory -->
     <main class="links-directory" id="directoryList">
@@ -1195,7 +1591,7 @@
       <!-- ================= TECH & PERSONAL (7 ADET) ================= -->
 
       <!-- 01 // ANA PORTFOLYO -->
-      <a href="/" class="directory-item" 
+      <a href="/" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-portfolio.svg" 
          data-preview-badge="PORTFOLYO ↗"
@@ -1223,7 +1619,7 @@
       </a>
 
       <!-- 02 // LINKEDIN -->
-      <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="directory-item" 
+      <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-linkedin.svg" 
          data-preview-badge="LINKEDIN ↗"
@@ -1251,7 +1647,7 @@
       </a>
 
       <!-- 03 // INSTAGRAM KİŞİSEL (@kursat.yz) -->
-      <a href="https://www.instagram.com/kursat.yz/" target="_blank" rel="noopener noreferrer" class="directory-item" 
+      <a href="https://www.instagram.com/kursat.yz/" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-instagram-personal.svg" 
          data-preview-badge="INSTAGRAM ↗"
@@ -1279,7 +1675,7 @@
       </a>
 
       <!-- 04 // GITHUB -->
-      <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item" 
+      <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-github.svg" 
          data-preview-badge="GITHUB ↗"
@@ -1307,7 +1703,7 @@
       </a>
 
       <!-- 05 // X / TWITTER (@DevKursat) -->
-      <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item" 
+      <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-x-tech.svg" 
          data-preview-badge="X MÜHENDİSLİK ↗"
@@ -1335,7 +1731,7 @@
       </a>
 
       <!-- 06 // DEV.TO -->
-      <a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer" class="directory-item" 
+      <a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-devto.svg" 
          data-preview-badge="DEV.TO ↗"
@@ -1363,7 +1759,7 @@
       </a>
 
       <!-- 07 // YAZILAR & ANALİZLER -->
-      <a href="/blog/claude-code-trojan-npm-analiz.html" class="directory-item" 
+      <a href="/blog/ollama-performans-vergisi-vllm.html" class="directory-item hidden-by-filter" 
          data-category="tech"
          data-preview="/assets/brand-cards/brand-blog.svg" 
          data-preview-badge="BLOG ↗"
@@ -1392,62 +1788,111 @@
 
     </main>
 
-    <!-- 3. Alan: Hızlı Doğrudan İletişim Formu & Kanalları -->
+    <!-- 3. Alan: Typeform Hızlı Doğrudan İletişim & Kiralama Formu -->
     <section class="links-contact-panel" id="linksContactPanel" style="display: none;">
-      <div class="contact-panel-card">
-        <div class="contact-panel-header">
-          <div class="sponsorship-badge">
-            <span class="pulse-dot"></span>
-            <span data-tr="DOĞRUDAN MESAJ &amp; TEKLİF FORMU" data-en="DIRECT INQUIRY &amp; MESSAGE FORM">DOĞRUDAN MESAJ &amp; TEKLİF FORMU</span>
-          </div>
-          <h2 class="contact-panel-title" data-tr="Doğrudan İletişime Geçin" data-en="Get in Touch Directly">Doğrudan İletişime Geçin</h2>
-          <p class="contact-panel-desc" data-tr="Animasyon &amp; senaryo sponsorluğu, B2B yapay zekâ mimarileri veya doğrudan teklifleriniz için formu doldurun; anında dönüş yapayım." data-en="For animation sponsorships, B2B AI architecture, or direct collaborations, send a message below for a swift response.">
-            Animasyon &amp; senaryo sponsorluğu, B2B yapay zekâ mimarileri veya doğrudan teklifleriniz için formu doldurun; anında dönüş yapayım.
-          </p>
+      <div class="typeform-card">
+        <div class="typeform-progress-track">
+          <div class="typeform-progress-fill" id="linksTfProgress" style="width: 25%;"></div>
         </div>
 
-        <form class="links-fast-form" id="linksFastForm" onsubmit="handleLinksFormSubmit(event)">
-          <div class="form-grid-2">
-            <div class="form-field-group">
-              <label for="lffName" class="form-field-label" data-tr="Adınız Soyadınız / Markanız" data-en="Your Name / Brand">Adınız Soyadınız / Markanız</label>
-              <input type="text" id="lffName" name="name" class="links-field-input" placeholder="Kürşat Yılmaz / Marka *" required>
-            </div>
-            <div class="form-field-group">
-              <label for="lffContact" class="form-field-label" data-tr="E-Posta / Telefon / Sosyal Medya" data-en="Email / Phone / Handle">E-Posta / Telefon / Sosyal Medya</label>
-              <input type="text" id="lffContact" name="contact" class="links-field-input" placeholder="ornek@sirket.com veya @hesap *" required>
-            </div>
-          </div>
+        <div class="typeform-top-meta">
+          <span class="typeform-step-badge" id="linksTfStepBadge">01 / 04</span>
+          <button type="button" class="typeform-prev-btn" id="linksTfPrevBtn" style="visibility: hidden;">
+            ← <span data-tr="Önceki Adım" data-en="Previous">Önceki Adım</span>
+          </button>
+        </div>
 
-          <div class="form-field-group">
-            <label class="form-field-label" data-tr="Konu &amp; Kategori" data-en="Inquiry Topic">Konu &amp; Kategori</label>
-            <div class="topic-pills" id="linksTopicPills">
-              <button type="button" class="topic-pill-btn active" data-topic="Sponsorluk &amp; Marka İş Birliği" data-tr="Sponsorluk &amp; Marka" data-en="Sponsorship &amp; Brand">Sponsorluk &amp; Marka</button>
-              <button type="button" class="topic-pill-btn" data-topic="B2B Yazılım &amp; Mimari Danışmanlık" data-tr="Yazılım &amp; Mimari" data-en="Software &amp; Architecture">Yazılım &amp; Mimari</button>
-              <button type="button" class="topic-pill-btn" data-topic="Animasyon &amp; Senaryo Entegrasyonu" data-tr="Animasyon &amp; Senaryo" data-en="Animation &amp; Script">Animasyon &amp; Senaryo</button>
-              <button type="button" class="topic-pill-btn" data-topic="Genel Görüşme &amp; Merhaba" data-tr="Genel / Diğer" data-en="General / Other">Genel / Diğer</button>
-            </div>
-          </div>
-
-          <div class="form-field-group">
-            <label for="lffMessage" class="form-field-label" data-tr="Mesajınız &amp; Detaylar" data-en="Your Message &amp; Brief">Mesajınız &amp; Detaylar</label>
-            <textarea id="lffMessage" name="message" class="links-field-textarea" rows="4" placeholder="Merhaba Kürşat, projemiz / teklifimiz hakkında..." required></textarea>
-          </div>
-
-          <div class="links-form-actions">
-            <button type="submit" class="sponsor-btn-primary" id="linksFormSubmitBtn">
-              <span data-tr="Mesajı İlet ↗" data-en="Send Message ↗">Mesajı İlet ↗</span>
+        <!-- Step 1: Konu Seçimi -->
+        <div class="typeform-step-pane active" data-step="1">
+          <div class="typeform-q-num">01 // TALEP KONUSU</div>
+          <h3 class="typeform-q-title" data-tr="Hangi konu hakkında görüşmek istiyorsunuz?" data-en="What are you interested in?">Hangi konu hakkında görüşmek istiyorsunuz?</h3>
+          <p class="typeform-q-sub" data-tr="Size en uygun seçeneği tıklayın; doğrudan bir sonraki adıma geçeceksiniz." data-en="Select an option below to proceed.">Size en uygun seçeneği tıklayın; doğrudan bir sonraki adıma geçeceksiniz.</p>
+          <div class="typeform-cards-grid" id="ltfTopicGrid">
+            <button type="button" class="typeform-choice-card selected" data-topic="Reklam Alanı Kiralama &amp; Sponsorluk" onclick="selectLinksTopic(this)">
+              <span class="tf-badge-key">A</span>
+              <span class="tf-opt-label" data-tr="Reklam Alanı Kiralama &amp; Sponsorluk" data-en="Ad Spot Rental &amp; Sponsorship">Reklam Alanı Kiralama &amp; Sponsorluk</span>
+              <span class="tf-opt-check">✓</span>
             </button>
-            <a href="https://wa.me/kursat.yz?text=Merhaba%20K%C3%BCr%C5%9Fat%20Bey%2C%20do%C4%9Frudan%20ileti%C5%9Fime%20ge%C3%A7mek%20istiyorum." target="_blank" rel="noopener noreferrer" class="sponsor-btn-secondary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.06-2.029-.488-1.571-.643-2.613-2.28-2.695-2.389-.082-.109-.64-851-.64-1.624 0-.773.407-1.152.551-1.309.144-.158.314-.198.42-.198.106 0 .211.001.303.006.098.005.228-.037.355.27.133.318.454 1.107.494 1.189.04.082.067.177.013.283-.053.106-.08.172-.16.265-.08.093-.167.207-.239.278-.08.08-.163.167-.07.327.093.16.413.682.887 1.104.609.542 1.123.71 1.283.79.16.08.254.067.348-.04.093-.107.4-.467.507-.627.107-.16.214-.133.361-.08.147.053.935.441 1.096.521.161.08.268.12.308.187.04.067.04.387-.104.792z"/>
-              </svg>
-              <span data-tr="WhatsApp ile Hızlı Yazış" data-en="Chat via WhatsApp">WhatsApp ile Hızlı Yazış</span>
-            </a>
+            <button type="button" class="typeform-choice-card" data-topic="B2B Yazılım &amp; Mimari Danışmanlık" onclick="selectLinksTopic(this)">
+              <span class="tf-badge-key">B</span>
+              <span class="tf-opt-label" data-tr="B2B Yazılım &amp; Mimari Danışmanlık" data-en="B2B Software &amp; System Architecture">B2B Yazılım &amp; Mimari Danışmanlık</span>
+              <span class="tf-opt-check">✓</span>
+            </button>
+            <button type="button" class="typeform-choice-card" data-topic="Animasyon &amp; Senaryo Entegrasyonu" onclick="selectLinksTopic(this)">
+              <span class="tf-badge-key">C</span>
+              <span class="tf-opt-label" data-tr="Animasyon &amp; Senaryo Entegrasyonu" data-en="Animation &amp; Scenario Integration">Animasyon &amp; Senaryo Entegrasyonu</span>
+              <span class="tf-opt-check">✓</span>
+            </button>
+            <button type="button" class="typeform-choice-card" data-topic="Genel Görüşme &amp; Merhaba" onclick="selectLinksTopic(this)">
+              <span class="tf-badge-key">D</span>
+              <span class="tf-opt-label" data-tr="Genel Görüşme &amp; Merhaba" data-en="General Inquiry &amp; Introduction">Genel Görüşme &amp; Merhaba</span>
+              <span class="tf-opt-check">✓</span>
+            </button>
           </div>
-          <div class="form-feedback-msg" id="linksFormFeedback"></div>
-        </form>
+          <div class="typeform-advance-row">
+            <button type="button" class="typeform-btn-next" onclick="advanceLinksTf(1)">
+              <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+            </button>
+            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+          </div>
+        </div>
 
-        <div class="direct-contact-footer-row">
+        <!-- Step 2: Ad / Şirket -->
+        <div class="typeform-step-pane" data-step="2">
+          <div class="typeform-q-num">02 // ADINIZ &amp; MARKANIZ</div>
+          <h3 class="typeform-q-title" data-tr="Adınız Soyadınız veya Şirketiniz?" data-en="Your Name or Company?">Adınız Soyadınız veya Şirketiniz?</h3>
+          <p class="typeform-q-sub" data-tr="Sizi veya temsil ettiğiniz markayı nasıl hitap etmeliyim?" data-en="How should I address you or your brand?">Sizi veya temsil ettiğiniz markayı nasıl hitap etmeliyim?</p>
+          <div class="typeform-input-container">
+            <input type="text" id="ltfName" class="typeform-hero-input" placeholder="Kürşat Yılmaz / Marka Adı *" autocomplete="name" required>
+          </div>
+          <div class="typeform-advance-row">
+            <button type="button" class="typeform-btn-next" onclick="advanceLinksTf(2)">
+              <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+            </button>
+            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+          </div>
+        </div>
+
+        <!-- Step 3: İletişim -->
+        <div class="typeform-step-pane" data-step="3">
+          <div class="typeform-q-num">03 // İLETİŞİM BİLGİSİ</div>
+          <h3 class="typeform-q-title" data-tr="Size nasıl ulaşabilirim?" data-en="How can I reach you?">Size nasıl ulaşabilirim?</h3>
+          <p class="typeform-q-sub" data-tr="E-posta adresiniz, WhatsApp numaranız veya sosyal medya kullanıcı adınız." data-en="Email address, WhatsApp phone number, or social handle.">E-posta adresiniz, WhatsApp numaranız veya sosyal medya kullanıcı adınız.</p>
+          <div class="typeform-input-container">
+            <input type="text" id="ltfContact" class="typeform-hero-input" placeholder="tckursat@icloud.com veya +90 5xx *" autocomplete="email" required>
+          </div>
+          <div class="typeform-advance-row">
+            <button type="button" class="typeform-btn-next" onclick="advanceLinksTf(3)">
+              <span data-tr="Devam Et" data-en="Continue">Devam Et</span> ↵
+            </button>
+            <span class="typeform-key-hint" data-tr="Enter ↵ tuşuna basabilirsiniz" data-en="or press Enter ↵">Enter ↵ tuşuna basabilirsiniz</span>
+          </div>
+        </div>
+
+        <!-- Step 4: Mesaj & Gönderim -->
+        <div class="typeform-step-pane" data-step="4">
+          <div class="typeform-q-num">04 // MESAJINIZ &amp; DETAYLAR</div>
+          <h3 class="typeform-q-title" data-tr="Mesajınız, bütçeniz veya proje detayları?" data-en="Your message, budget, or project brief?">Mesajınız, bütçeniz veya proje detayları?</h3>
+          <p class="typeform-q-sub" data-tr="Aklınızdaki zaman planı, hedef kitle veya entegrasyon fikirlerini paylaşın." data-en="Share your timeline, target audience, or partnership ideas.">Aklınızdaki zaman planı, hedef kitle veya entegrasyon fikirlerini paylaşın.</p>
+          <div class="typeform-input-container">
+            <textarea id="ltfMessage" class="typeform-hero-textarea" rows="3" placeholder="Merhaba Kürşat, projemiz / reklam alanı talebimiz hakkında..." required></textarea>
+          </div>
+          <div class="typeform-submit-row">
+            <button type="button" class="typeform-submit-btn" id="ltfSubmitBtn" onclick="submitLinksTypeform('email')">
+              <span data-tr="Teklifi İlet ↗" data-en="Send Proposal ↗">Teklifi İlet ↗</span>
+            </button>
+            <button type="button" class="typeform-whatsapp-btn" id="ltfWhatsAppBtn" onclick="submitLinksTypeform('whatsapp')">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <span data-tr="WhatsApp ile Hızlı İlet ↗" data-en="Send via WhatsApp ↗">WhatsApp ile Hızlı İlet ↗</span>
+            </button>
+          </div>
+          <div class="typeform-feedback" id="ltfFeedback"></div>
+        </div>
+
+        <!-- Direct Contact Footer Strip -->
+        <div class="direct-contact-footer-row" style="margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
           <div class="dcf-item">
             <span class="dcf-label" data-tr="E-POSTA" data-en="EMAIL">E-POSTA</span>
             <a href="mailto:tckursat@icloud.com" class="dcf-val">tckursat@icloud.com ↗</a>
@@ -1456,34 +1901,122 @@
             <span class="dcf-label" data-tr="LOKASYON &amp; ZAMAN" data-en="LOCATION &amp; TIME">LOKASYON &amp; ZAMAN</span>
             <span class="dcf-val">İstanbul, TR • GMT+3</span>
           </div>
+          <div class="dcf-item">
+            <span class="dcf-label" data-tr="ORTALAMA DÖNÜŞ SÜRESİ" data-en="AVG RESPONSE TIME">ORTALAMA DÖNÜŞ SÜRESİ</span>
+            <span class="dcf-val" style="color: var(--accent-cyan); font-weight: 600;">&lt; 2 Saat</span>
+          </div>
         </div>
       </div>
     </section>
-        <div class="item-meta">
-          <span class="item-metric-pill">devkursat.github.io/blog</span>
-          <span>Blog</span>
-        </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </div>
-      </a>
 
-    </main>
+    <!-- Footer: Stellar Style Monumental Architecture (Awwwards SOTD) -->
+    <footer class="footer footer-massive-brand">
+      <div class="footer-stellar-container">
+        <div class="footer-stellar-grid">
+          <!-- Sol Ana Sütun: Marka & Hızlı Eylem Kapsülleri -->
+          <div class="footer-brand-col">
+            <h3 class="footer-brand-title">Kürşat Yılmaz</h3>
+            <div class="footer-brand-location">İstanbul, Türkiye • GMT+3</div>
+            <a href="mailto:tckursat@icloud.com" class="footer-brand-email">tckursat@icloud.com ↗</a>
+            <div class="footer-brand-pills">
+              <a href="#contact" class="footer-pill-btn footer-pill-primary">
+                <span data-tr="Proje &amp; Teklif ↗" data-en="Project &amp; Proposal ↗">Proje &amp; Teklif ↗</span>
+              </a>
+              <a href="#kiralik" class="footer-pill-btn footer-pill-outline">
+                <span data-tr="Reklam Kirala" data-en="Rent Ad Space">Reklam Kirala</span>
+              </a>
+            </div>
+          </div>
 
-    <!-- Footer -->
-    <footer class="directory-footer">
-      <div class="footer-copy">
-        © 2026 Kürşat Yılmaz. All rights reserved. Sovereign Architecture &amp; Creative Media.
+          <!-- Sütun 1: Menü & Sayfalar -->
+          <div class="footer-stellar-col">
+            <div class="footer-col-heading" data-tr="MENÜ" data-en="PAGES">MENÜ</div>
+            <ul class="footer-col-links">
+              <li><a href="/#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+              <li><a href="/#projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+              <li><a href="/#skills" data-tr="Teknolojiler" data-en="Tech Stack">Teknolojiler</a></li>
+              <li><a href="/#blog" data-tr="Yazılar" data-en="Essays">Yazılar</a></li>
+              <li><a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+            </ul>
+          </div>
+
+          <!-- Sütun 2: Girişim & Kod -->
+          <div class="footer-stellar-col">
+            <div class="footer-col-heading" data-tr="GİRİŞİM &amp; KOD" data-en="VENTURES &amp; CODE">GİRİŞİM &amp; KOD</div>
+            <ul class="footer-col-links">
+              <li><a href="https://itibar.app" target="_blank" rel="noopener noreferrer">itibar.app ↗</a></li>
+              <li><a href="https://unutma.app" target="_blank" rel="noopener noreferrer">Unutma. (unutma.app) ↗</a></li>
+              <li><a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer">GitHub (100+ Repo) ↗</a></li>
+              <li><a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer">DEV.to Makaleler ↗</a></li>
+              <li><a href="/links" data-tr="Resmi Dizin (/links) ↗" data-en="Official Directory (/links) ↗">Resmi Dizin (/links) ↗</a></li>
+            </ul>
+          </div>
+
+          <!-- Sütun 3: Kreatif & Medya -->
+          <div class="footer-stellar-col">
+            <div class="footer-col-heading" data-tr="KREATİF &amp; MEDYA" data-en="CREATIVE &amp; MEDIA">KREATİF &amp; MEDYA</div>
+            <ul class="footer-col-links">
+              <li><a href="https://www.tiktok.com/@kursat.yz" target="_blank" rel="noopener noreferrer">TikTok (@kursat.yz) ↗</a></li>
+              <li><a href="https://www.instagram.com/kursatsi/" target="_blank" rel="noopener noreferrer">Instagram (@kursatsi) ↗</a></li>
+              <li><a href="https://www.youtube.com/@kursatsi" target="_blank" rel="noopener noreferrer">YouTube (@kursatsi) ↗</a></li>
+              <li><a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer">X (@DevKursat) ↗</a></li>
+              <li><a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer">Spotify Artist ↗</a></li>
+            </ul>
+          </div>
+
+          <!-- Sütun 4: Uzmanlık & Mimari -->
+          <div class="footer-stellar-col">
+            <div class="footer-col-heading" data-tr="UZMANLIK" data-en="EXPERTISE">UZMANLIK</div>
+            <ul class="footer-col-links">
+              <li><span data-tr="Egemen AI Mimarisi" data-en="Sovereign AI Systems">Egemen AI Mimarisi</span></li>
+              <li><span data-tr="Yerel LLM &amp; vLLM" data-en="Local LLMs &amp; vLLM">Yerel LLM &amp; vLLM</span></li>
+              <li><span data-tr="B2B SaaS Sistemler" data-en="B2B SaaS Architectures">B2B SaaS Sistemler</span></li>
+              <li><span data-tr="Zero-Trust Güvenlik" data-en="Zero-Trust Security">Zero-Trust Güvenlik</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stellar Mid: İkonlar, Ayırıcı Çizgi & Telif -->
+        <div class="footer-stellar-mid">
+          <div class="footer-mid-top">
+            <div class="footer-social-row">
+              <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@kursatsi" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Spotify">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              </a>
+            </div>
+            <span>© 2026 Kürşat Yılmaz</span>
+          </div>
+
+          <div class="footer-stellar-divider"></div>
+
+          <div class="footer-mid-bottom">
+            <span>Sovereign System Architecture &amp; Creative Media</span>
+            <a href="#" class="back-to-top" id="linksBackToTopBtn">
+              <span data-tr="Başa Dön" data-en="Back to Top">Başa Dön</span>
+              <span>↑</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-actions">
-        <a href="/" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-        <a href="/#about" data-tr="Hakkımda" data-en="About">Hakkımda</a>
-        <a href="/#projects" data-tr="Projeler" data-en="Projects">Projeler</a>
-        <a href="/#blog" data-tr="Yazılar" data-en="Essays">Yazılar</a>
-        <a href="/#contact" data-tr="İletişim" data-en="Contact">İletişim</a>
+
+      <!-- En Altta Alt Kenardan Kesilmiş (Bottom-Cropped) Devasa Kürşat Yazısı -->
+      <div class="footer-stellar-wordmark" aria-hidden="true">
+        <span class="stellar-huge-text">Kürşat</span>
       </div>
     </footer>
   </div>
@@ -1568,8 +2101,8 @@
         });
       });
 
-      // 3. 3-Way Switcher: 'creative' | 'tech' | 'contact'
-      const switchBtns = document.querySelectorAll('.persona-switch-btn');
+      // 3. Editorial Category Switcher: 'creative' | 'tech' | 'contact'
+      const tabBtns = document.querySelectorAll('.editorial-tab-btn');
       const directoryList = document.getElementById('directoryList');
       const contactPanel = document.getElementById('linksContactPanel');
 
@@ -1577,11 +2110,11 @@
         let activeKey = 'creative';
         if (filterKey === 'tech' || filterKey === 'personal') {
           activeKey = 'tech';
-        } else if (filterKey === 'contact' || filterKey === 'iletisim') {
+        } else if (filterKey === 'contact' || filterKey === 'iletisim' || filterKey === 'kiralik') {
           activeKey = 'contact';
         }
 
-        switchBtns.forEach(btn => {
+        tabBtns.forEach(btn => {
           const isActive = btn.dataset.filter === activeKey;
           btn.classList.toggle('active', isActive);
           btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -1606,7 +2139,7 @@
         }
       }
 
-      switchBtns.forEach(btn => {
+      tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const filter = btn.dataset.filter;
           setPersona(filter);
@@ -1616,11 +2149,162 @@
         });
       });
 
-      // Handle Hash Routing (Supports #anim, #creative, #tech, #personal, #contact, #iletisim)
+      // Clickable Billboard Sponsorship Banner
+      const sponsorshipBanner = document.getElementById('sponsorshipBannerCard');
+      if (sponsorshipBanner) {
+        sponsorshipBanner.addEventListener('click', () => {
+          setPersona('contact');
+          window.location.hash = 'kiralik';
+          const rentalTopic = document.querySelector('#ltfTopicGrid .typeform-choice-card[data-topic*="Reklam"]');
+          if (rentalTopic) {
+            document.querySelectorAll('#ltfTopicGrid .typeform-choice-card').forEach(c => c.classList.remove('selected'));
+            rentalTopic.classList.add('selected');
+          }
+
+          // Billboard tıklandığında konusu seçilmiş olarak doğrudan Step 2'ye (İsim & Marka) geçir
+          updateLinksTfUI(2);
+
+          if (contactPanel) {
+            contactPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => {
+              const nameInput = document.getElementById('ltfName');
+              if (nameInput) nameInput.focus();
+            }, 300);
+          }
+        });
+      }
+
+      // Typeform Step Navigation Logic
+      let currentLinksStep = 1;
+      const totalLinksSteps = 4;
+
+      function updateLinksTfUI(step) {
+        currentLinksStep = step;
+        document.querySelectorAll('.typeform-step-pane').forEach(p => {
+          p.classList.toggle('active', parseInt(p.dataset.step, 10) === step);
+        });
+
+        const progressFill = document.getElementById('linksTfProgress');
+        if (progressFill) progressFill.style.width = `${(step / totalLinksSteps) * 100}%`;
+
+        const stepBadge = document.getElementById('linksTfStepBadge');
+        if (stepBadge) stepBadge.textContent = `0${step} / 0${totalLinksSteps}`;
+
+        const prevBtn = document.getElementById('linksTfPrevBtn');
+        if (prevBtn) prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
+
+        setTimeout(() => {
+          if (step === 2) document.getElementById('ltfName')?.focus();
+          else if (step === 3) document.getElementById('ltfContact')?.focus();
+          else if (step === 4) document.getElementById('ltfMessage')?.focus();
+        }, 150);
+      }
+
+      window.advanceLinksTf = function(fromStep) {
+        if (fromStep === 1) {
+          // Step 1: Konu seçimi -> Step 2'ye geç
+          updateLinksTfUI(2);
+        } else if (fromStep === 2) {
+          // Step 2: İsim & Marka -> Step 3'e geç
+          const nameVal = (document.getElementById('ltfName')?.value || '').trim();
+          if (!nameVal) {
+            document.getElementById('ltfName')?.focus();
+            return;
+          }
+          updateLinksTfUI(3);
+        } else if (fromStep === 3) {
+          // Step 3: İletişim Bilgisi -> Step 4'e geç
+          const contactVal = (document.getElementById('ltfContact')?.value || '').trim();
+          if (!contactVal) {
+            document.getElementById('ltfContact')?.focus();
+            return;
+          }
+          updateLinksTfUI(4);
+        }
+      };
+
+      const prevBtn = document.getElementById('linksTfPrevBtn');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentLinksStep > 1) {
+            updateLinksTfUI(currentLinksStep - 1);
+          }
+        });
+      }
+
+      window.selectLinksTopic = function(btn) {
+        document.querySelectorAll('#ltfTopicGrid .typeform-choice-card').forEach(c => c.classList.remove('selected'));
+        btn.classList.add('selected');
+        // Seçim yapıldığında otomatik olarak Step 2'ye (İsim & Marka) geç!
+        setTimeout(() => {
+          updateLinksTfUI(2);
+        }, 200);
+      };
+
+      // Enter key support for input fields
+      const inputNameEl = document.getElementById('ltfName');
+      if (inputNameEl) {
+        inputNameEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            advanceLinksTf(2);
+          }
+        });
+      }
+
+      const inputContactEl = document.getElementById('ltfContact');
+      if (inputContactEl) {
+        inputContactEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            advanceLinksTf(3);
+          }
+        });
+      }
+
+      window.submitLinksTypeform = function(channel) {
+        const name = (document.getElementById('ltfName')?.value || '').trim() || 'İsimsiz';
+        const contact = (document.getElementById('ltfContact')?.value || '').trim() || 'Belirtilmedi';
+        const activeTopicCard = document.querySelector('#ltfTopicGrid .typeform-choice-card.selected');
+        const topic = activeTopicCard ? activeTopicCard.dataset.topic : 'Reklam & Sponsorluk';
+        const msg = (document.getElementById('ltfMessage')?.value || '').trim();
+
+        if (!msg) {
+          document.getElementById('ltfMessage')?.focus();
+          return;
+        }
+
+        const feedback = document.getElementById('ltfFeedback');
+        if (channel === 'whatsapp') {
+          const waText = encodeURIComponent(`Merhaba Kürşat Bey,\n\nBen ${name} (${contact}).\nKonu: ${topic}\n\nMesaj:\n${msg}`);
+          window.open(`https://wa.me/kursat.yz?text=${waText}`, '_blank');
+          if (feedback) {
+            feedback.innerHTML = '<span style="color: #25d366;">✓ WhatsApp açılıyor... Mesajınızı doğrudan iletebilirsiniz.</span>';
+          }
+        } else {
+          const subject = encodeURIComponent(`[${topic}] ${name}`);
+          const body = encodeURIComponent(`İsim / Marka: ${name}\nİletişim: ${contact}\nKonu: ${topic}\n\nMesaj:\n${msg}`);
+          window.location.href = `mailto:tckursat@icloud.com?subject=${subject}&body=${body}`;
+          if (feedback) {
+            feedback.innerHTML = '<span style="color: var(--accent-cyan);">✓ E-posta istemciniz hazırlandı. Teşekkürler, en kısa sürede dönüş yapacağım.</span>';
+          }
+        }
+      };
+
+      // Handle Hash Routing (Supports #anim, #creative, #tech, #personal, #contact, #iletisim, #kiralik)
       function checkHash() {
         const hash = window.location.hash.toLowerCase();
-        if (hash === '#contact' || hash === '#iletisim') {
+        if (hash === '#contact' || hash === '#iletisim' || hash === '#kiralik') {
           setPersona('contact');
+          if (hash === '#kiralik') {
+            const rentalCard = document.querySelector('#ltfTopicGrid .typeform-choice-card[data-topic*="Reklam"]');
+            if (rentalCard) {
+              document.querySelectorAll('#ltfTopicGrid .typeform-choice-card').forEach(c => c.classList.remove('selected'));
+              rentalCard.classList.add('selected');
+            }
+            // #kiralik ile gelindiğinde doğrudan Step 2'ye geç ve inputa odaklan
+            updateLinksTfUI(2);
+          }
         } else if (hash === '#tech' || hash === '#personal') {
           setPersona('tech');
         } else {
@@ -1629,34 +2313,6 @@
       }
       window.addEventListener('hashchange', checkHash);
       checkHash();
-
-      // Topic Pills Interaction
-      document.querySelectorAll('#linksTopicPills .topic-pill-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('#linksTopicPills .topic-pill-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-        });
-      });
-
-      // Direct Contact Fast Form Submit
-      window.handleLinksFormSubmit = function(e) {
-        e.preventDefault();
-        const name = document.getElementById('lffName').value.trim();
-        const contact = document.getElementById('lffContact').value.trim();
-        const activeBtn = document.querySelector('#linksTopicPills .topic-pill-btn.active');
-        const topic = activeBtn ? activeBtn.dataset.topic : 'Genel İletişim';
-        const msg = document.getElementById('lffMessage').value.trim();
-
-        const subject = encodeURIComponent(`[${topic}] ${name}`);
-        const body = encodeURIComponent(`İsim / Marka: ${name}\nİletişim: ${contact}\nKonu: ${topic}\n\nMesaj:\n${msg}`);
-
-        window.location.href = `mailto:tckursat@icloud.com?subject=${subject}&body=${body}`;
-
-        const feedback = document.getElementById('linksFormFeedback');
-        if (feedback) {
-          feedback.innerHTML = '<span style="color: var(--accent-emerald);">✓ E-posta istemciniz açıldı. Teşekkürler, en kısa sürede dönüş yapacağım.</span>';
-        }
-      };
 
       // 4. Bilingual i18n Switcher
       const langBtns = document.querySelectorAll('.lang-btn');
@@ -1679,6 +2335,15 @@
           setLanguage(btn.dataset.lang);
         });
       });
+
+      // 5. Back to Top Smooth Scroll
+      const linksBackToTop = document.getElementById('linksBackToTopBtn');
+      if (linksBackToTop) {
+        linksBackToTop.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
 
       // Initialize saved language
       const savedLang = localStorage.getItem('site_lang') || 'tr';

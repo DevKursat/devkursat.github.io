@@ -69,7 +69,7 @@ const projectsData = {
                 "Autonomous direct WhatsApp delivery pipeline for healthcare and enterprise executives"
             ]
         },
-        tech: ["Vanilla JS", "Node.js", "Chrome Headless", "Jamstack", "REST API"],
+        tech: ["Vanilla JS", "Node.js", "Chrome Headless", "Jamstack", "REST API", "TCK/TTK Motoru", "Otonom PDF", "WhatsApp API"],
         github: "https://github.com/DevKursat/itibar",
         githubRepo: "itibar",
         stars: 34,
@@ -135,7 +135,7 @@ const projectsData = {
                 "PTT barcode tracking with real-time SMS and email updates"
             ]
         },
-        tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Gemini AI"],
+        tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Gemini AI", "PTT Barkod API", "Mevzuat NLP", "PostgreSQL", "Edge Runtime"],
         github: "https://github.com/DevKursat/unutma",
         githubRepo: "unutma",
         stars: 18,
@@ -264,13 +264,15 @@ function initLenis() {
 }
 
 // ============================================
-// 4. CINEMATIC PRELOADER & CURTAIN REVEAL
+// 4. NOTHIN' (PARIS SOTD) MONUMENTAL PRELOADER
 // ============================================
 function initLoader() {
     const preloader = document.getElementById('sitePreloader');
     const progressNum = document.getElementById('loaderProgress');
     const barFill = document.getElementById('loaderBarFill');
-    const curtainPath = document.getElementById('loaderCurtainPath');
+    const statusText = document.getElementById('loaderStatusText');
+    const sigInkRect = document.getElementById('sigInkRect');
+    const loaderClock = document.getElementById('loaderLiveClock');
 
     if (!preloader) {
         initHeroReveal();
@@ -279,15 +281,30 @@ function initLoader() {
 
     document.body.style.overflow = 'hidden';
 
+    // Live Clock in preloader header
+    function updateLoaderClock() {
+        if (!loaderClock) return;
+        const now = new Date();
+        loaderClock.textContent = now.toLocaleTimeString('tr-TR', { 
+            timeZone: 'Europe/Istanbul', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit',
+            hour12: false 
+        });
+    }
+    updateLoaderClock();
+    const clockTimer = setInterval(updateLoaderClock, 1000);
+
     let progress = 0;
     const startTime = performance.now();
-    const minDuration = 1100; // ms
+    const minDuration = 1500; // ms for full Nothin' signature sweep
 
     const interval = setInterval(() => {
         const elapsed = performance.now() - startTime;
         const fontReady = document.fonts ? document.fonts.status === 'loaded' : true;
         
-        let targetProgress = Math.min(Math.floor((elapsed / minDuration) * 90), 92);
+        let targetProgress = Math.min(Math.floor((elapsed / minDuration) * 92), 94);
         if (elapsed >= minDuration && fontReady) {
             targetProgress = 100;
         }
@@ -297,21 +314,43 @@ function initLoader() {
             if (progress > 100) progress = 100;
         }
 
+        // Nothin' style 3-digit tabular mono counter (000 to 100)
         if (progressNum) {
             progressNum.textContent = String(progress).padStart(3, '0');
         }
+
+        // Hairline bottom indicator
         if (barFill) {
             barFill.style.width = `${progress}%`;
         }
 
+        // Unmask real handwritten signature from left to right as pen draws
+        if (sigInkRect) {
+            const inkWidth = (progress / 100) * 620;
+            sigInkRect.setAttribute('width', String(inkWidth));
+        }
+
+        // Editorial status transitions
+        if (statusText) {
+            const isTr = currentLang === 'tr';
+            if (progress < 45) {
+                statusText.textContent = isTr ? 'MİMARİ ÇEKİRDEK BAŞLATILIYOR' : 'INITIALIZING CORE ARCHITECTURE';
+            } else if (progress < 85) {
+                statusText.textContent = isTr ? 'İMZA VE KİMLİK DOĞRULANIYOR' : 'VERIFYING SIGNATURE & IDENTITY';
+            } else {
+                statusText.textContent = isTr ? 'SİSTEM HAZIR • GİRİŞ YAPILIYOR' : 'SYSTEM READY • ENTERING';
+            }
+        }
+
         if (progress >= 100) {
             clearInterval(interval);
+            clearInterval(clockTimer);
             finishPreloader();
         }
     }, 20);
 
     function finishPreloader() {
-        if (typeof gsap !== 'undefined' && curtainPath) {
+        if (typeof gsap !== 'undefined') {
             const tl = gsap.timeline({
                 onComplete: () => {
                     preloader.style.display = 'none';
@@ -321,19 +360,28 @@ function initLoader() {
                 }
             });
 
-            tl.to('.loader-content', {
+            // Step 1: Center stage fades & elevates slightly
+            tl.to('.loader-inner-grid', {
                 opacity: 0,
-                y: -30,
-                duration: 0.4,
+                y: -28,
+                scale: 0.98,
+                duration: 0.38,
                 ease: 'power2.in'
             });
 
-            // Smooth SVG curtain curve pull up
-            tl.to(curtainPath, {
-                attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
-                duration: 0.85,
-                ease: "power4.inOut"
-            }, "-=0.15");
+            // Step 2: Monolithic vertical shutter lift (Nothin' Paris style)
+            tl.to(preloader, {
+                yPercent: -100,
+                duration: 0.95,
+                ease: 'cubic-bezier(0.76, 0, 0.24, 1)'
+            }, "-=0.1");
+
+            // Step 3: Hero section zooms & settles into place
+            tl.fromTo('#hero', 
+                { scale: 0.96, y: 30, opacity: 0.8 },
+                { scale: 1, y: 0, opacity: 1, duration: 0.95, ease: 'power3.out' },
+                "-=0.9"
+            );
         } else {
             // Vanilla Fallback
             preloader.classList.add('hidden');
@@ -553,7 +601,7 @@ function initHeroShader() {
 }
 
 // ============================================
-// 6. SINGLE MAGNETIC MORPHING CURSOR
+// 6. SINGLE MAGNETIC MORPHING CURSOR & MAGNETIC PULL
 // ============================================
 function initCursor() {
     const cursor = document.querySelector('.cursor');
@@ -595,48 +643,107 @@ function initCursor() {
     }
     requestAnimationFrame(renderCursor);
 
-    // Magnetic snaps on buttons & links
-    const magneticSelector = '.btn, .nav-link, .lang-btn, .social-link, .skill-filter-btn, .project-card-expand, .contact-submit-btn, .blog-card';
+    // Magnetic snaps on buttons & links (blog-card hariç tutularak çakışma engellendi)
+    const magneticSelector = '.btn, .nav-link, .lang-btn, .social-link, .skill-filter-btn, .project-card-expand, .contact-submit-btn, .blog-nav-arrow, .social-circle-mini-btn, .nav-menu-btn, .menu-close-btn, .footer-pill-btn, .back-to-top';
+    
     document.addEventListener('mouseover', (e) => {
-        const target = e.target.closest(magneticSelector);
-        if (target) {
-            follower.classList.add('is-magnetic');
-        }
+        const target = e.target;
+        const blogCard = target.closest('.blog-card');
+        const projectCard = target.closest('.project-card:not(.more-projects-card)');
+        const githubCard = target.closest('.more-projects-card');
+        const magneticTarget = target.closest(magneticSelector);
 
-        const projectCard = e.target.closest('.project-card:not(.more-projects-card)');
-        if (projectCard) {
+        // Blog card üzerinde is-magnetic ile çakışmasın; doğrudan is-blog-hover olsun
+        if (blogCard) {
+            follower.classList.remove('is-magnetic', 'is-project-hover', 'is-github-hover');
+            follower.classList.add('is-blog-hover');
+            if (cursorLabel) {
+                cursorLabel.textContent = currentLang === 'tr' ? 'OKU ↗' : 'READ ↗';
+            }
+        } else if (projectCard) {
+            follower.classList.remove('is-magnetic', 'is-blog-hover', 'is-github-hover');
             follower.classList.add('is-project-hover');
             if (cursorLabel) {
                 cursorLabel.textContent = currentLang === 'tr' ? 'İNCELE ↗' : 'EXPLORE ↗';
             }
-        }
-
-        const githubCard = e.target.closest('.more-projects-card');
-        if (githubCard) {
+        } else if (githubCard) {
+            follower.classList.remove('is-magnetic', 'is-blog-hover', 'is-project-hover');
             follower.classList.add('is-github-hover');
             if (cursorLabel) {
                 cursorLabel.textContent = 'GITHUB 100+ ↗';
             }
+        } else if (magneticTarget) {
+            follower.classList.add('is-magnetic');
         }
     });
 
     document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest(magneticSelector);
-        if (target) {
-            follower.classList.remove('is-magnetic');
+        const related = e.relatedTarget;
+        const target = e.target;
+
+        // relatedTarget kontrolü ile alt elemanlar arasında gezinirken flicker %100 engellenir
+        const blogCard = target.closest('.blog-card');
+        if (blogCard && (!related || !blogCard.contains(related))) {
+            follower.classList.remove('is-blog-hover');
+            if (cursorLabel) cursorLabel.textContent = '';
         }
 
-        const projectCard = e.target.closest('.project-card:not(.more-projects-card)');
-        if (projectCard) {
+        const projectCard = target.closest('.project-card:not(.more-projects-card)');
+        if (projectCard && (!related || !projectCard.contains(related))) {
             follower.classList.remove('is-project-hover');
             if (cursorLabel) cursorLabel.textContent = '';
         }
 
-        const githubCard = e.target.closest('.more-projects-card');
-        if (githubCard) {
+        const githubCard = target.closest('.more-projects-card');
+        if (githubCard && (!related || !githubCard.contains(related))) {
             follower.classList.remove('is-github-hover');
             if (cursorLabel) cursorLabel.textContent = '';
         }
+
+        const magneticTarget = target.closest(magneticSelector);
+        if (magneticTarget && (!related || !magneticTarget.contains(related))) {
+            follower.classList.remove('is-magnetic');
+        }
+    });
+
+    // Gerçek Fiziksel GSAP Manyetik Çekim (Magnetic Pull %28)
+    initMagneticPull();
+}
+
+function initMagneticPull() {
+    const magneticPullSelector = '.btn, .blog-nav-arrow, .social-circle-mini-btn, .nav-menu-btn, .menu-close-btn, .back-to-top, .footer-pill-btn';
+    const pullElements = document.querySelectorAll(magneticPullSelector);
+
+    pullElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            if (typeof gsap === 'undefined') return;
+            const rect = el.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const distX = e.clientX - centerX;
+            const distY = e.clientY - centerY;
+
+            // Farenin merkezine olan mesafesinin %28'i kadar yumuşak çekim
+            gsap.to(el, {
+                x: distX * 0.28,
+                y: distY * 0.28,
+                duration: 0.3,
+                ease: 'power2.out',
+                overwrite: 'auto'
+            });
+        });
+
+        el.addEventListener('mouseleave', () => {
+            if (typeof gsap === 'undefined') return;
+            // Fare ayrıldığında elastik yaylanarak yerine dönüş
+            gsap.to(el, {
+                x: 0,
+                y: 0,
+                duration: 0.7,
+                ease: 'elastic.out(1, 0.3)',
+                overwrite: 'auto'
+            });
+        });
     });
 }
 
@@ -691,7 +798,9 @@ function renderProjects() {
     // Render Flagship Projects (Itibar & Unutma Only)
     for (const key in projectsData) {
         const project = projectsData[key];
-        const techHTML = project.tech.slice(0, 4).map(t => `<span>${t}</span>`).join('');
+        // Initial 3 visible technologies in the discrete conveyor window
+        const visibleTechHTML = project.tech.slice(0, 3).map(t => `<span class="conveyor-tag">${t}</span>`).join('');
+        const encodedTechList = encodeURIComponent(JSON.stringify(project.tech));
         const isIconImage = project.icon && (project.icon.endsWith('.png') || project.icon.endsWith('.jpg') || project.icon.endsWith('.svg'));
         const iconHTML = isIconImage 
             ? `<img src="${project.icon}" alt="${project.title}" class="project-card-custom-logo">` 
@@ -729,7 +838,6 @@ function renderProjects() {
                 <div class="project-card-body">
                     <div class="project-card-meta">
                         <span class="project-card-category">${project.category[lang]}</span>
-                        <span class="project-status ${project.statusType}">${project.status[lang]}</span>
                     </div>
                     <h3 class="project-card-title">${project.title}</h3>
                     <p class="project-card-desc">${project.description[lang]}</p>
@@ -737,23 +845,25 @@ function renderProjects() {
                     ${metricsStripHTML}
 
                     <div class="project-card-footer">
-                        <div class="project-card-tech">
-                            ${techHTML}
-                        </div>
-                        <div class="project-card-stats">
+                        <!-- Row 1: Full-width Single-Line Visit Action (Canlı Servis left, ↗ far right) -->
+                        <div class="project-card-action-row">
                             ${project.liveUrl ? `
-                                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-visit-btn" onclick="event.stopPropagation();" title="${lang === 'tr' ? 'Web Sitesini Aç' : 'Visit Website'}">
-                                    <span>${lang === 'tr' ? 'Canlı Servis' : 'Live Site'}</span>
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                                    </svg>
+                                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-card-visit-btn" onclick="event.stopPropagation();" title="${lang === 'tr' ? 'Canlı Servisi Ziyaret Et' : 'Visit Live Platform'}">
+                                    <span class="visit-label">${lang === 'tr' ? 'Canlı Servis' : 'Live Platform'}</span>
+                                    <span class="visit-arrow">↗</span>
                                 </a>
                             ` : ''}
-                            <button class="project-card-expand" aria-label="${lang === 'tr' ? 'Detayları gör' : 'View details'}">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                                </svg>
-                            </button>
+                        </div>
+
+                        <!-- Row 2: Discrete Step-by-Step Tech Conveyor (1 exits left/right, 1 enters from opposite side) -->
+                        <div class="project-tech-conveyor" data-conveyor="true" data-tech-list="${encodedTechList}" onclick="event.stopPropagation();" title="${lang === 'tr' ? 'Teknolojileri kaydırın' : 'Scroll tech stack'}">
+                            <button type="button" class="conveyor-step-btn conveyor-prev" aria-label="${lang === 'tr' ? 'Önceki teknoloji' : 'Previous tech'}">‹</button>
+                            <div class="conveyor-viewport">
+                                <div class="conveyor-track">
+                                    ${visibleTechHTML}
+                                </div>
+                            </div>
+                            <button type="button" class="conveyor-step-btn conveyor-next" aria-label="${lang === 'tr' ? 'Sonraki teknoloji' : 'Next tech'}">›</button>
                         </div>
                     </div>
                 </div>
@@ -823,6 +933,7 @@ function renderProjects() {
     });
 
     initTiltEffect();
+    initTechConveyors();
 }
 
 function initTiltEffect() {
@@ -845,6 +956,142 @@ function initTiltEffect() {
     });
 }
 
+function initTechConveyors() {
+    const conveyors = document.querySelectorAll('.project-tech-conveyor');
+    conveyors.forEach(conveyor => {
+        const rawList = conveyor.getAttribute('data-tech-list');
+        if (!rawList) return;
+        let techList = [];
+        try {
+            techList = JSON.parse(decodeURIComponent(rawList));
+        } catch (err) {
+            return;
+        }
+        if (techList.length <= 3) return;
+
+        const track = conveyor.querySelector('.conveyor-track');
+        const prevBtn = conveyor.querySelector('.conveyor-prev');
+        const nextBtn = conveyor.querySelector('.conveyor-next');
+        let startIndex = 0;
+        let isAnimating = false;
+        const visibleCount = 3;
+
+        function getWindowItems(idx) {
+            const res = [];
+            for (let i = 0; i < visibleCount; i++) {
+                res.push(techList[(idx + i + techList.length * 10) % techList.length]);
+            }
+            return res;
+        }
+
+        function stepConveyor(dir) {
+            if (isAnimating || !track) return;
+            isAnimating = true;
+
+            const currentTags = Array.from(track.querySelectorAll('.conveyor-tag'));
+            const nextIndex = (startIndex + dir + techList.length) % techList.length;
+            const nextItems = getWindowItems(nextIndex);
+
+            if (typeof gsap !== 'undefined' && currentTags.length === visibleCount) {
+                const exitTag = dir > 0 ? currentTags[0] : currentTags[visibleCount - 1];
+                const shiftTags = dir > 0 ? currentTags.slice(1) : currentTags.slice(0, visibleCount - 1);
+
+                gsap.to(exitTag, {
+                    x: dir > 0 ? -24 : 24,
+                    opacity: 0,
+                    scale: 0.9,
+                    duration: 0.16,
+                    ease: 'power2.in'
+                });
+
+                gsap.to(shiftTags, {
+                    x: dir > 0 ? -14 : 14,
+                    duration: 0.16,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        startIndex = nextIndex;
+                        track.innerHTML = nextItems.map(t => `<span class="conveyor-tag">${t}</span>`).join('');
+                        const newTags = Array.from(track.querySelectorAll('.conveyor-tag'));
+                        const enterTag = dir > 0 ? newTags[visibleCount - 1] : newTags[0];
+                        const settledTags = dir > 0 ? newTags.slice(0, visibleCount - 1) : newTags.slice(1);
+
+                        gsap.fromTo(settledTags,
+                            { x: dir > 0 ? 10 : -10 },
+                            { x: 0, duration: 0.2, ease: 'power2.out' }
+                        );
+
+                        gsap.fromTo(enterTag,
+                            { x: dir > 0 ? 26 : -26, opacity: 0, scale: 0.9 },
+                            {
+                                x: 0,
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.22,
+                                ease: 'back.out(1.4)',
+                                onComplete: () => {
+                                    isAnimating = false;
+                                }
+                            }
+                        );
+                    }
+                });
+            } else {
+                startIndex = nextIndex;
+                track.innerHTML = nextItems.map(t => `<span class="conveyor-tag">${t}</span>`).join('');
+                isAnimating = false;
+            }
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                stepConveyor(-1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                stepConveyor(1);
+            });
+        }
+
+        // Discrete wheel step (throttled per wheel gesture)
+        let lastWheelTime = 0;
+        conveyor.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const now = performance.now();
+            if (now - lastWheelTime < 220) return;
+            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+            if (Math.abs(delta) > 6) {
+                lastWheelTime = now;
+                stepConveyor(delta > 0 ? 1 : -1);
+            }
+        }, { passive: false });
+
+        // Mouse drag & touch swipe discrete step
+        let startX = null;
+        conveyor.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('.conveyor-step-btn')) return;
+            startX = e.clientX;
+        });
+
+        conveyor.addEventListener('pointerup', (e) => {
+            if (startX === null) return;
+            const diff = e.clientX - startX;
+            startX = null;
+            if (Math.abs(diff) > 18) {
+                stepConveyor(diff < 0 ? 1 : -1);
+            }
+        });
+
+        conveyor.addEventListener('pointerleave', () => {
+            startX = null;
+        });
+    });
+}
+
 // ============================================
 // 8. CASE STUDY MODAL & GSAP CHOREOGRAPHY
 // ============================================
@@ -854,10 +1101,17 @@ function openModal(project, projectId) {
     modal.dataset.projectId = projectId;
 
     if (lenis) lenis.stop();
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
 
     updateModalContent(project);
     modal.classList.add('active');
+
+    // Reset scroll of modal content to top
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) modalContent.scrollTop = 0;
 
     if (typeof gsap !== 'undefined') {
         const modalContainer = modal.querySelector('.modal-container');
@@ -1010,6 +1264,10 @@ function closeModal() {
     if (!modal) return;
 
     if (lenis) lenis.start();
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
 
     if (typeof gsap !== 'undefined') {
         const modalContainer = modal.querySelector('.modal-container');
@@ -1023,13 +1281,11 @@ function closeModal() {
             ease: 'power2.in',
             onComplete: () => {
                 modal.classList.remove('active');
-                document.body.style.overflow = '';
             }
         });
         gsap.to(modalBackdrop, { opacity: 0, duration: 0.3, ease: 'power2.in' });
     } else {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
     }
 }
 
@@ -1043,6 +1299,22 @@ function initProjects() {
 
         if (modalClose) modalClose.addEventListener('click', closeModal);
         if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+        // Lock background scroll during modal interaction
+        modal.addEventListener('wheel', (e) => {
+            const modalContent = modal.querySelector('.modal-content');
+            if (modalContent && modalContent.contains(e.target)) {
+                const isAtTop = modalContent.scrollTop <= 0;
+                const isAtBottom = modalContent.scrollTop + modalContent.clientHeight >= modalContent.scrollHeight - 1;
+                if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+                    e.preventDefault();
+                }
+                e.stopPropagation();
+            } else {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, { passive: false });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
@@ -1059,9 +1331,10 @@ function initProjects() {
 // ============================================
 function initAboutBento() {
     const clockEl = document.getElementById('istanbulClock');
+    const contactClockEl = document.getElementById('contactLiveClock');
+    const menuClockEl = document.getElementById('menuLiveClock');
 
     function updateClock() {
-        if (!clockEl) return;
         try {
             const now = new Date();
             const timeStr = new Intl.DateTimeFormat('tr-TR', {
@@ -1071,9 +1344,12 @@ function initAboutBento() {
                 second: '2-digit',
                 hour12: false
             }).format(now);
-            clockEl.textContent = `${timeStr} GMT+3`;
+            
+            if (clockEl) clockEl.textContent = `${timeStr} GMT+3`;
+            if (contactClockEl) contactClockEl.textContent = timeStr;
+            if (menuClockEl) menuClockEl.textContent = timeStr;
         } catch (e) {
-            clockEl.textContent = 'Istanbul GMT+3';
+            if (clockEl) clockEl.textContent = 'Istanbul GMT+3';
         }
     }
 
@@ -1131,11 +1407,13 @@ function initSkillsCanvas() {
     }
 
     const w = container.offsetWidth || 1200;
-    const h = container.offsetHeight || 500;
-    const cols = 7;
-    const rows = Math.ceil(skillsData.length / cols);
-    const xStep = (w - 140) / cols;
-    const yStep = (h - 120) / rows;
+    const h = container.offsetHeight || 540;
+    const cols = 6;
+    const rows = 4;
+    const xMargin = 40;
+    const yMargin = 35;
+    const xStep = (w - 2 * xMargin - cardSize) / Math.max(cols - 1, 1);
+    const yStep = (h - 2 * yMargin - cardSize) / Math.max(rows - 1, 1);
 
     skillsData.forEach((skill, index) => {
         const cardEl = document.createElement('div');
@@ -1153,8 +1431,8 @@ function initSkillsCanvas() {
 
         const row = Math.floor(index / cols);
         const col = index % cols;
-        const posX = 40 + col * xStep + (Math.random() - 0.5) * 40;
-        const posY = 35 + row * yStep + (Math.random() - 0.5) * 30;
+        const posX = xMargin + col * xStep + (Math.random() - 0.5) * 35;
+        const posY = yMargin + row * yStep + (Math.random() - 0.5) * 30;
 
         cards.push({
             el: cardEl,
@@ -1223,7 +1501,7 @@ function initSkillsCanvas() {
         card.el.addEventListener('pointercancel', release);
     });
 
-    // Filter pills with wide redistribution
+    // Filter pills with wide redistribution across entire canvas
     const filterPills = document.querySelectorAll('.skill-filter-btn');
     let activeCategory = 'all';
 
@@ -1234,19 +1512,28 @@ function initSkillsCanvas() {
             activeCategory = btn.dataset.category;
 
             const currentW = container.offsetWidth || 1200;
-            const currentH = container.offsetHeight || 500;
+            const currentH = container.offsetHeight || 540;
             const activeCards = cards.filter(c => activeCategory === 'all' || c.category === activeCategory);
             const actCount = activeCards.length;
+
+            const gridCols = Math.min(Math.max(Math.ceil(Math.sqrt(actCount * 1.6)), 3), 5);
+            const gridRows = Math.ceil(actCount / gridCols);
+            const xMarg = 60;
+            const yMarg = 50;
+            const colW = (currentW - 2 * xMarg - cardSize) / Math.max(gridCols - 1, 1);
+            const rowH = (currentH - 2 * yMarg - cardSize) / Math.max(gridRows - 1, 1);
 
             activeCards.forEach((card, idx) => {
                 card.el.style.opacity = '1';
                 card.el.style.filter = 'none';
                 card.el.style.pointerEvents = 'auto';
 
-                const targetX = 40 + (idx / Math.max(actCount, 1)) * (currentW - 140) + (Math.random() - 0.5) * 60;
-                const targetY = 40 + ((idx % 3) / 3) * (currentH - 120) + (Math.random() - 0.5) * 40;
-                card.vx = (targetX - card.x) * 0.15;
-                card.vy = (targetY - card.y) * 0.15;
+                const c = idx % gridCols;
+                const r = Math.floor(idx / gridCols);
+                const targetX = xMarg + c * colW + (Math.random() - 0.5) * 40;
+                const targetY = yMarg + r * rowH + (Math.random() - 0.5) * 35;
+                card.vx = (targetX - card.x) * 0.12;
+                card.vy = (targetY - card.y) * 0.12;
             });
 
             cards.filter(c => activeCategory !== 'all' && c.category !== activeCategory).forEach(card => {
@@ -1257,7 +1544,7 @@ function initSkillsCanvas() {
         });
     });
 
-    // RAF Loop with boundary bouncing & IntersectionObserver guard
+    // RAF Loop with boundary bouncing & soft card repulsion
     let isVisible = true;
     const skillsSection = document.getElementById('skills');
     if (skillsSection) {
@@ -1271,6 +1558,30 @@ function initSkillsCanvas() {
         if (isVisible) {
             const w = container.offsetWidth;
             const h = container.offsetHeight;
+
+            // Soft card-to-card repulsion so tiles spread out organically
+            for (let i = 0; i < cards.length; i++) {
+                for (let j = i + 1; j < cards.length; j++) {
+                    const c1 = cards[i];
+                    const c2 = cards[j];
+                    if (c1.isDragging || c2.isDragging) continue;
+
+                    const dx = (c2.x + c2.size / 2) - (c1.x + c1.size / 2);
+                    const dy = (c2.y + c2.size / 2) - (c1.y + c1.size / 2);
+                    const distSq = dx * dx + dy * dy;
+                    const minDist = 92;
+                    if (distSq < minDist * minDist && distSq > 0.01) {
+                        const dist = Math.sqrt(distSq);
+                        const overlap = (minDist - dist) * 0.035;
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+                        c1.vx -= nx * overlap;
+                        c1.vy -= ny * overlap;
+                        c2.vx += nx * overlap;
+                        c2.vy += ny * overlap;
+                    }
+                }
+            }
 
             cards.forEach(card => {
                 if (!card.isDragging) {
@@ -1318,9 +1629,6 @@ function initSkillsCanvas() {
 // ============================================
 function initNavigation() {
     const nav = document.querySelector('.nav');
-    const menuBtn = document.querySelector('.nav-menu-btn');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -1330,25 +1638,12 @@ function initNavigation() {
         }
     });
 
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        });
+    initFullscreenMenu();
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-    }
-
-    // Smooth scroll for nav anchor links
+    // Smooth scroll for nav anchor links (exclude fullscreen menu to avoid conflicts)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            if (this.closest('#fullscreenMenu')) return;
             const href = this.getAttribute('href');
             if (href === '#' || href === '#!') return;
             const target = document.querySelector(href);
@@ -1364,6 +1659,449 @@ function initNavigation() {
             }
         });
     });
+}
+
+function initFullscreenMenu() {
+    const menuBtn = document.querySelector('.nav-menu-btn');
+    const overlay = document.getElementById('fullscreenMenu');
+    const closeBtn = document.getElementById('menuCloseBtn');
+    const navItems = overlay ? overlay.querySelectorAll('.menu-nav-item') : [];
+    const timeEl = document.getElementById('menuLiveTime');
+
+    if (!overlay) return;
+
+    function updateMenuTime() {
+        if (!timeEl) return;
+        try {
+            const now = new Date();
+            const timeStr = new Intl.DateTimeFormat('tr-TR', {
+                timeZone: 'Europe/Istanbul',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+            timeEl.textContent = `${timeStr} GMT+3`;
+        } catch (e) {
+            timeEl.textContent = 'GMT+3';
+        }
+    }
+    updateMenuTime();
+    setInterval(updateMenuTime, 1000);
+
+    function openMenu() {
+        overlay.classList.add('is-active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
+
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(overlay.querySelector('.menu-backdrop'), 
+                { opacity: 0 }, 
+                { opacity: 1, duration: 0.4, ease: 'power2.out' }
+            );
+            gsap.fromTo(overlay.querySelector('.menu-header'), 
+                { opacity: 0, y: -20 }, 
+                { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power3.out' }
+            );
+            gsap.fromTo(navItems, 
+                { opacity: 0, y: 50, skewY: 3.5, rotate: -1.5 }, 
+                { opacity: 1, y: 0, skewY: 0, rotate: 0, duration: 0.7, stagger: 0.08, delay: 0.15, ease: 'power4.out' }
+            );
+            gsap.fromTo(overlay.querySelector('.menu-footer'), 
+                { opacity: 0, y: 20 }, 
+                { opacity: 1, y: 0, duration: 0.5, delay: 0.45, ease: 'power3.out' }
+            );
+        }
+    }
+
+    function closeMenu() {
+        if (!overlay.classList.contains('is-active')) return;
+        if (typeof gsap !== 'undefined') {
+            gsap.to(overlay, {
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    overlay.classList.remove('is-active');
+                    overlay.setAttribute('aria-hidden', 'true');
+                    overlay.style.opacity = '';
+                    document.body.style.overflow = '';
+                    if (lenis) lenis.start();
+                }
+            });
+        } else {
+            overlay.classList.remove('is-active');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lenis) lenis.start();
+        }
+    }
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openMenu();
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeMenu();
+        });
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const href = item.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                // 1. Immediately remove lock and hide menu
+                overlay.classList.remove('is-active');
+                overlay.setAttribute('aria-hidden', 'true');
+                overlay.style.opacity = '';
+                document.body.style.overflow = '';
+                if (lenis) lenis.start();
+
+                // 2. Scroll to section
+                if (target) {
+                    setTimeout(() => {
+                        if (lenis) {
+                            lenis.scrollTo(target, { offset: -70 });
+                        } else {
+                            const top = target.getBoundingClientRect().top + window.scrollY - 70;
+                            window.scrollTo({ top, behavior: 'smooth' });
+                        }
+                    }, 50);
+                }
+            } else {
+                closeMenu();
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+            closeMenu();
+        }
+    });
+}
+
+function initBlogCarousel() {
+    const track = document.getElementById('blogShowcaseTrack');
+    const prevBtn = document.getElementById('blogPrevBtn');
+    const nextBtn = document.getElementById('blogNextBtn');
+    const counter = document.getElementById('blogSlideCounter');
+    const progressBar = document.getElementById('blogProgressFill');
+
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll('.blog-slide-card'));
+    const total = cards.length || 3;
+    let activeIndex = 0;
+
+    function updateCarouselUI(index) {
+        activeIndex = index;
+        
+        // 1. Slayt kartlarının is-active-slide sınıfını güncelle
+        cards.forEach((card, idx) => {
+            card.classList.toggle('is-active-slide', idx === activeIndex);
+        });
+
+        // 2. Sayaç güncelle (01 / 03)
+        if (counter) {
+            const currentStr = String(activeIndex + 1).padStart(2, '0');
+            const totalStr = String(total).padStart(2, '0');
+            counter.textContent = `${currentStr} / ${totalStr}`;
+        }
+
+        // 3. İlerleme çubuğunu güncelle
+        if (progressBar) {
+            progressBar.style.width = `${((activeIndex + 1) / total) * 100}%`;
+        }
+    }
+
+    function scrollToSlide(index, smooth = true) {
+        if (!cards[index]) return;
+        const targetCard = cards[index];
+        const trackLeft = track.getBoundingClientRect().left;
+        const cardLeft = targetCard.getBoundingClientRect().left;
+        const currentScroll = track.scrollLeft;
+        const offset = cardLeft - trackLeft;
+        const targetScroll = currentScroll + offset;
+
+        if (typeof gsap !== 'undefined') {
+            gsap.to(track, {
+                scrollLeft: targetScroll,
+                duration: smooth ? 0.6 : 0,
+                ease: 'power3.out',
+                overwrite: 'auto'
+            });
+        } else {
+            track.scrollTo({
+                left: targetScroll,
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+        }
+
+        updateCarouselUI(index);
+    }
+
+    // Döngüsel Next & Prev butonları (2'den sonra tekrar 0'a, 0'dan geriye 2'ye)
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const nextIdx = (activeIndex + 1) % total;
+            scrollToSlide(nextIdx, true);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const prevIdx = (activeIndex - 1 + total) % total;
+            scrollToSlide(prevIdx, true);
+        });
+    }
+
+    // Fare ile Sürükleyerek Kaydırma (Drag-to-Scroll)
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let isDraggingMoved = false;
+
+    track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        track.classList.add('is-dragging');
+        startX = e.pageX - track.offsetLeft;
+        scrollStart = track.scrollLeft;
+        isDraggingMoved = false;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+
+        if (isDraggingMoved) {
+            snapToClosestCard();
+        }
+    });
+
+    track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        if (Math.abs(walk) > 6) {
+            isDraggingMoved = true;
+        }
+        track.scrollLeft = scrollStart - walk;
+    });
+
+    // Sürükleme yapılmışsa tıklanıp makaleye gitmesini engelle; pasif karta tıklanırsa odakla
+    cards.forEach((card, idx) => {
+        card.addEventListener('click', (e) => {
+            if (isDraggingMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+            } else if (idx !== activeIndex) {
+                e.preventDefault();
+                scrollToSlide(idx, true);
+            }
+        });
+    });
+
+    function snapToClosestCard() {
+        const trackRect = track.getBoundingClientRect();
+        let closestIdx = 0;
+        let minDiff = Infinity;
+
+        cards.forEach((card, idx) => {
+            const cardRect = card.getBoundingClientRect();
+            const diff = Math.abs(cardRect.left - trackRect.left);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+            }
+        });
+
+        scrollToSlide(closestIdx, true);
+    }
+
+    // Scroll event listener (trackpad / mobil dokunmatik kaydırma için)
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+        if (isDown) return;
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const trackRect = track.getBoundingClientRect();
+            let closestIdx = 0;
+            let minDiff = Infinity;
+
+            cards.forEach((card, idx) => {
+                const cardRect = card.getBoundingClientRect();
+                const diff = Math.abs(cardRect.left - trackRect.left);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestIdx = idx;
+                }
+            });
+
+            if (closestIdx !== activeIndex) {
+                updateCarouselUI(closestIdx);
+            }
+        }, 80);
+    }, { passive: true });
+
+    // Başlangıç durumu
+    updateCarouselUI(0);
+}
+
+let homeCurrentStep = 1;
+let homeSelectedTopic = 'B2B Yazılım & Sistem Mimarisi';
+
+window.advanceHomeTf = function(currentStep) {
+    const formWrap = document.getElementById('homeTypeform');
+    if (!formWrap) return;
+    const panes = formWrap.querySelectorAll('.typeform-step-pane');
+    const progressBar = document.getElementById('htfProgress');
+    const badge = document.getElementById('htfStepBadge');
+    const prevBtn = document.getElementById('htfPrevBtn');
+
+    if (currentStep === 2) {
+        const nameVal = document.getElementById('htfName')?.value.trim();
+        if (!nameVal) {
+            document.getElementById('htfName')?.focus();
+            return;
+        }
+    } else if (currentStep === 3) {
+        const contactVal = document.getElementById('htfContact')?.value.trim();
+        if (!contactVal) {
+            document.getElementById('htfContact')?.focus();
+            return;
+        }
+    }
+
+    const nextStep = currentStep + 1;
+    if (nextStep > 4) return;
+
+    homeCurrentStep = nextStep;
+    panes.forEach(pane => {
+        pane.classList.remove('active');
+        if (parseInt(pane.dataset.step, 10) === nextStep) {
+            pane.classList.add('active');
+        }
+    });
+
+    if (progressBar) progressBar.style.width = `${nextStep * 25}%`;
+    if (badge) badge.textContent = `0${nextStep} / 04`;
+    if (prevBtn) prevBtn.style.visibility = nextStep > 1 ? 'visible' : 'hidden';
+
+    // Focus input on active pane
+    if (nextStep === 2) setTimeout(() => document.getElementById('htfName')?.focus(), 150);
+    if (nextStep === 3) setTimeout(() => document.getElementById('htfContact')?.focus(), 150);
+    if (nextStep === 4) setTimeout(() => document.getElementById('htfMessage')?.focus(), 150);
+};
+
+window.submitHomeTypeform = function(channel) {
+    const name = document.getElementById('htfName')?.value.trim() || 'İsimsiz İletişim';
+    const contact = document.getElementById('htfContact')?.value.trim() || 'Belirtilmedi';
+    const message = document.getElementById('htfMessage')?.value.trim() || 'Belirtilmedi';
+    const topic = homeSelectedTopic;
+
+    if (channel === 'wa') {
+        const text = encodeURIComponent(
+            `Merhaba Kürşat Bey,\n\nKonu: ${topic}\nİsim / Marka: ${name}\nİletişim: ${contact}\n\nDetaylar:\n${message}`
+        );
+        window.open(`https://wa.me/kursat.yz?text=${text}`, '_blank');
+    } else {
+        const subject = encodeURIComponent(`[devkursat.github.io] ${topic} — ${name}`);
+        const body = encodeURIComponent(
+            `Merhaba Kürşat,\n\nTalep Konusu: ${topic}\nİsim / Marka: ${name}\nİletişim: ${contact}\n\nDetaylar:\n${message}\n\n—\nBu talep devkursat.github.io Typeform arayüzünden doğrudan oluşturulmuştur.`
+        );
+        window.location.href = `mailto:tckursat@icloud.com?subject=${subject}&body=${body}`;
+    }
+};
+
+function initHomeTypeform() {
+    const formWrap = document.getElementById('homeTypeform');
+    if (!formWrap) return;
+
+    const topicCards = formWrap.querySelectorAll('#htfTopicGrid .typeform-choice-card');
+    topicCards.forEach(card => {
+        card.addEventListener('click', () => {
+            topicCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            homeSelectedTopic = card.dataset.topic || card.textContent.trim();
+            advanceHomeTf(1);
+        });
+    });
+
+    const prevBtn = document.getElementById('htfPrevBtn');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (homeCurrentStep <= 1) return;
+            const panes = formWrap.querySelectorAll('.typeform-step-pane');
+            const progressBar = document.getElementById('htfProgress');
+            const badge = document.getElementById('htfStepBadge');
+
+            homeCurrentStep--;
+            panes.forEach(pane => {
+                pane.classList.remove('active');
+                if (parseInt(pane.dataset.step, 10) === homeCurrentStep) {
+                    pane.classList.add('active');
+                }
+            });
+
+            if (progressBar) progressBar.style.width = `${homeCurrentStep * 25}%`;
+            if (badge) badge.textContent = `0${homeCurrentStep} / 04`;
+            prevBtn.style.visibility = homeCurrentStep > 1 ? 'visible' : 'hidden';
+        });
+    }
+
+    // Enter key listeners
+    const nameInput = document.getElementById('htfName');
+    if (nameInput) {
+        nameInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                advanceHomeTf(2);
+            }
+        });
+    }
+
+    const contactInput = document.getElementById('htfContact');
+    if (contactInput) {
+        contactInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                advanceHomeTf(3);
+            }
+        });
+    }
+
+    // Live clock on contact typeform card
+    const clockEl = document.getElementById('contactLiveClock');
+    if (clockEl) {
+        function updateContactClock() {
+            try {
+                const now = new Date();
+                const timeStr = new Intl.DateTimeFormat('tr-TR', {
+                    timeZone: 'Europe/Istanbul',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(now);
+                clockEl.textContent = `${timeStr} GMT+3`;
+            } catch (e) {
+                clockEl.textContent = 'GMT+3';
+            }
+        }
+        updateContactClock();
+        setInterval(updateContactClock, 1000);
+    }
 }
 
 function initScrollAnimations() {
@@ -1605,6 +2343,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutMarquee();
     initMarquee();
     initContactForm();
+    initBlogCarousel();
+    initHomeTypeform();
 });
 
 // Tab Visibility Guard
