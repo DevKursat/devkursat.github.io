@@ -1,12 +1,13 @@
 {
-  "title": "'Yapay Zeka Yerimizi Alacak' Kibri İflas Etti: Kovulan Mühendislerin Dönüşü",
-  "date": "2026-11-05",
-  "summary": "Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor.",
-  "url": "https://devkursat.github.io/blog/ai-bumerangi-muhendislerin-donusu.html",
-  "image": "https://devkursat.github.io/blog/ai-bumerangi-muhendislerin-donusu.png",
+  "title": "OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura",
+  "date": "2026-11-07",
+  "summary": "OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü.",
+  "url": "https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html",
+  "image": "https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.png",
   "tags": [
-    "Mühendislik",
-    "Yapay Zeka",
-    "Sektör"
+    "Açık Kaynak",
+    "Siber Güvenlik",
+    "Linux",
+    "Yapay Zeka"
   ]
 }
