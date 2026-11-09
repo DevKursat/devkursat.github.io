@@ -1,13 +1,13 @@
 {
-  "title": "OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura",
-  "date": "2026-11-07",
-  "summary": "OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü.",
-  "url": "https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html",
-  "image": "https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.png",
+  "title": "3.5 Trilyon Dolarlık Ulusal Güvenlik Duvarı: Bir Deri Ceket ve Klasik Bal Tuzağı",
+  "date": "2026-11-09",
+  "summary": "Washington'ın çip ambargolarıyla dünyayı inlettiği haftada, Pentagon'un güvendiği 3.5 trilyon dolarlık Nvidia tekeli ve Jensen Huang'ın Soğuk Savaş usulü bal tuzağına düşüşünün anatomisi.",
+  "url": "https://devkursat.github.io/blog/nvidia-jensen-huang-cin-casusluk-skandali.html",
+  "image": "https://devkursat.github.io/blog/nvidia-jensen-huang-cin-casusluk-skandali.png",
   "tags": [
-    "Açık Kaynak",
     "Siber Güvenlik",
-    "Linux",
+    "Nvidia",
+    "Donanım",
     "Yapay Zeka"
   ]
 }
