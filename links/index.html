@@ -128,19 +128,97 @@
       background: rgba(255, 255, 255, 0.06);
     }
 
+    /* Interactive Ambient Cursor Spotlight */
+    .cursor-spotlight {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(750px circle at var(--mouse-x, 50vw) var(--mouse-y, 35vh), rgba(0, 217, 255, 0.045), transparent 75%);
+      transition: opacity 0.5s ease;
+      will-change: background;
+    }
+
     .top-meta {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: var(--text-muted);
+    }
+
+    .status-pill-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Web Audio UI Synthesizer Toggle */
+    .nav-audio-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out-expo);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .nav-audio-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 217, 255, 0.4);
+      box-shadow: 0 0 16px rgba(0, 217, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .nav-audio-btn .audio-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 12px;
+    }
+
+    .nav-audio-btn .audio-bars span {
+      width: 2px;
+      height: 100%;
+      background: var(--text-dim);
+      border-radius: 1px;
+      transition: height 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-audio-btn.is-active .audio-bars span {
+      background: var(--accent-cyan);
+      animation: soundEqBars 0.9s ease-in-out infinite alternate;
+    }
+
+    .nav-audio-btn.is-active .audio-bars span:nth-child(1) { animation-delay: 0.1s; height: 35%; }
+    .nav-audio-btn.is-active .audio-bars span:nth-child(2) { animation-delay: 0.3s; height: 100%; }
+    .nav-audio-btn.is-active .audio-bars span:nth-child(3) { animation-delay: 0.5s; height: 60%; }
+
+    @keyframes soundEqBars {
+      0% { height: 25%; }
+      50% { height: 100%; }
+      100% { height: 45%; }
     }
 
     .pulse-dot {
@@ -830,6 +908,100 @@
       color: var(--accent-cyan);
     }
 
+    /* Architectural Instant Search Box (Awwwards SOTD) */
+    .links-search-wrap {
+      margin: 12px 0 28px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .links-search-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 11px 18px;
+      transition: all 0.25s var(--ease-out-expo);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .links-search-box:focus-within {
+      border-color: rgba(0, 217, 255, 0.45);
+      background: rgba(255, 255, 255, 0.045);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 217, 255, 0.12);
+    }
+
+    .search-box-icon {
+      color: var(--text-dim);
+      flex-shrink: 0;
+      transition: color 0.25s ease;
+    }
+
+    .links-search-box:focus-within .search-box-icon {
+      color: var(--accent-cyan);
+    }
+
+    .links-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      letter-spacing: -0.01em;
+    }
+
+    .links-search-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .links-search-clear {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-muted);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .links-search-clear:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .search-box-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-match-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .search-kbd-hint kbd {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      color: var(--text-muted);
+    }
+
     /* Aristide Benoist Editorial Links Directory */
     .links-directory {
       display: flex;
@@ -840,16 +1012,18 @@
     .directory-item {
       position: relative;
       display: grid;
-      grid-template-columns: 80px 1fr auto 48px;
+      grid-template-columns: 88px 1fr auto auto;
       align-items: center;
-      padding: 26px 16px;
+      padding: 24px 16px;
       border-bottom: 1px solid var(--surface-border);
-      transition: all 0.3s var(--ease-out-expo);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
       text-decoration: none;
       color: inherit;
+      gap: 18px;
     }
 
-    .directory-item.hidden-by-filter {
+    .directory-item.hidden-by-filter,
+    .directory-item.search-hidden {
       display: none !important;
     }
 
@@ -867,11 +1041,46 @@
       opacity: 1;
     }
 
+    .item-visual {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     .item-index {
       font-family: var(--font-mono);
       font-size: 0.92rem;
       color: var(--text-dim);
       transition: color 0.3s ease;
+      min-width: 22px;
+    }
+
+    .item-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: all 0.3s var(--ease-out-expo);
+      flex-shrink: 0;
+      padding: 7px;
+    }
+
+    .item-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .directory-item:hover .item-avatar {
+      border-color: rgba(0, 217, 255, 0.5);
+      background: rgba(0, 217, 255, 0.08);
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px rgba(0, 217, 255, 0.2);
     }
 
     .directory-item:hover .item-index {
@@ -940,7 +1149,7 @@
       font-size: 0.8rem;
       color: var(--text-dim);
       text-align: right;
-      padding-right: 16px;
+      padding-right: 12px;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -959,9 +1168,43 @@
       border-radius: 4px;
     }
 
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 1-Click Quick Copy Button */
+    .item-copy-btn {
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out-expo);
+      flex-shrink: 0;
+    }
+
+    .item-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(0, 217, 255, 0.45);
+      color: #ffffff;
+      transform: scale(1.08);
+      box-shadow: 0 0 14px rgba(0, 217, 255, 0.25);
+    }
+
+    .item-copy-btn:active {
+      transform: scale(0.92);
+    }
+
     .item-arrow {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -969,6 +1212,7 @@
       border: 1px solid transparent;
       color: var(--text-dim);
       transition: all 0.3s var(--ease-out-expo);
+      flex-shrink: 0;
     }
 
     .directory-item:hover .item-arrow {
@@ -978,18 +1222,7 @@
       transform: rotate(45deg);
     }
 
-    /* Mobile Inline Thumbnail preview */
-    .item-mobile-thumb {
-      display: none;
-      width: 64px;
-      height: 48px;
-      border-radius: 8px;
-      object-fit: cover;
-      border: 1px solid var(--surface-border);
-      margin-top: 8px;
-    }
-
-    /* Floating Image Preview on Hover (Aristide Benoist Signature) */
+    /* Floating Image Preview on Hover (Aristide Benoist Signature - Physics Driven) */
     .cursor-preview {
       position: fixed;
       width: 340px;
@@ -999,17 +1232,149 @@
       pointer-events: none;
       z-index: 9999;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.85);
-      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 217, 255, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 217, 255, 0.18);
       border: 1px solid rgba(255, 255, 255, 0.15);
       background: #000000;
-      will-change: transform, opacity;
+      will-change: transform, opacity, left, top;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cursor-preview.active {
       opacity: 1;
+    }
+
+    /* Velvet Page Transition Curtain */
+    .page-transition-curtain {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .curtain-slab {
+      width: 100%;
+      height: 50%;
+      background: #060608;
+      transform: scaleY(0);
+      transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+
+    .curtain-slab-top { transform-origin: top center; }
+    .curtain-slab-bottom { transform-origin: bottom center; }
+
+    .curtain-monogram {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      opacity: 0;
+      transition: all 0.35s ease 0.1s;
+      pointer-events: none;
+    }
+
+    .page-transition-curtain.is-closing {
+      pointer-events: auto;
+    }
+
+    .page-transition-curtain.is-closing .curtain-slab {
+      transform: scaleY(1);
+    }
+
+    .page-transition-curtain.is-closing .curtain-monogram {
+      opacity: 1;
       transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Luxury Floating Glass Toast Notification */
+    .luxury-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: rgba(14, 14, 20, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 217, 255, 0.35);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 217, 255, 0.2);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+
+    .luxury-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast-icon {
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    /* Search Empty State */
+    .search-empty-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 20px;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .search-empty-icon {
+      font-size: 2.2rem;
+      opacity: 0.6;
+    }
+
+    .search-empty-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .search-empty-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.5;
+    }
+
+    .search-reset-btn {
+      margin-top: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.08);
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      padding: 6px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .search-reset-btn:hover {
+      background: rgba(0, 217, 255, 0.18);
+      color: #fff;
     }
 
     .cursor-preview img {
@@ -1260,10 +1625,19 @@
       color: var(--accent-cyan);
     }
 
-    /* Mobile Responsive */
+    /* Mobile Responsive (Awwwards Touch Experience) */
     @media (max-width: 768px) {
       .page-container {
-        padding: 24px 16px 60px;
+        padding: 20px 16px 60px;
+      }
+
+      .top-bar {
+        padding-bottom: 20px;
+        gap: 10px;
+      }
+
+      .top-meta {
+        gap: 10px;
       }
 
       .top-meta .status-badge {
@@ -1271,73 +1645,69 @@
       }
 
       .hero-header {
-        padding: 36px 0 24px;
+        padding: 28px 0 20px;
       }
 
-      .sponsorship-banner {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+
+      .sponsorship-banner.clickable-billboard {
         flex-direction: column;
         align-items: flex-start;
         padding: 24px 20px;
         gap: 20px;
       }
 
-      .sponsorship-ctas {
-        flex-direction: column;
+      .sponsorship-card-arrow {
         width: 100%;
-        gap: 10px;
+        justify-content: space-between;
       }
 
-      .sponsor-btn-primary, .sponsor-btn-secondary {
-        width: 100%;
+      .editorial-category-nav {
+        gap: 14px;
+        padding-bottom: 4px;
       }
 
-      .form-grid-2 {
-        grid-template-columns: 1fr;
+      .directory-item {
+        grid-template-columns: 46px 1fr auto;
+        gap: 12px;
+        padding: 16px 6px;
       }
 
-      .contact-panel-card {
-        padding: 24px 20px;
+      .item-visual .item-index {
+        display: none;
+      }
+
+      .item-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        padding: 7px;
+      }
+
+      .item-meta {
+        display: none;
+      }
+
+      .item-title {
+        font-size: 1.15rem;
+      }
+
+      .item-desc {
+        font-size: 0.82rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       .cursor-preview {
         display: none !important;
       }
 
-      .item-mobile-thumb {
-        display: none !important;
-      }
-
-      .directory-item {
-        grid-template-columns: 32px 1fr auto 24px;
-        gap: 12px;
-        padding: 18px 0;
-        align-items: center;
-      }
-
-      .item-meta {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-      }
-
-      .item-meta span:last-child {
-        display: none !important;
-      }
-
-      .item-metric-pill {
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        padding: 4px 9px;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: var(--accent-cyan);
-        white-space: nowrap;
-      }
-
-      .item-title {
-        font-size: 1.15rem;
+      .search-kbd-hint {
+        display: none;
       }
 
       .footer-stellar-grid {
@@ -1355,11 +1725,26 @@
 </head>
 <body>
   <div class="bg-grain" aria-hidden="true"></div>
+  <!-- Interactive Ambient Cursor Spotlight (Awwwards SOTD) -->
+  <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
 
-  <!-- Floating Hover Preview (Aristide Benoist Signature) -->
+  <!-- Floating Hover Preview (Aristide Benoist Signature - Physics Driven) -->
   <div class="cursor-preview" id="cursorPreview" aria-hidden="true">
     <img id="previewImg" src="" alt="Preview">
     <div class="cursor-preview-badge" id="previewBadge">CANLI KANAL ↗</div>
+  </div>
+
+  <!-- Velvet Page Transition Curtain (Awwwards SOTD) -->
+  <div class="page-transition-curtain" id="pageTransitionCurtain" aria-hidden="true">
+    <div class="curtain-slab curtain-slab-top"></div>
+    <div class="curtain-slab curtain-slab-bottom"></div>
+    <div class="curtain-monogram">K<span style="color: #00d9ff;">.</span></div>
+  </div>
+
+  <!-- Luxury Floating Glass Toast Notification -->
+  <div class="luxury-toast" id="luxuryToast" role="status" aria-live="polite">
+    <span class="toast-icon">✓</span>
+    <span class="toast-msg" id="luxuryToastMsg">Panoya kopyalandı</span>
   </div>
 
   <div class="page-container">
@@ -1377,7 +1762,15 @@
         <div class="status-badge">
           <span class="pulse-dot"></span>
           <span>İstanbul, TR • <span id="liveClock">--:--:-- GMT+3</span></span>
+          <span class="status-pill-badge" data-tr="SPONSORLUK AKTİF" data-en="SPONSORSHIP OPEN">SPONSORLUK AKTİF</span>
         </div>
+
+        <!-- Web Audio UI Synthesizer Toggle -->
+        <button type="button" class="nav-audio-btn is-active" id="audioToggleBtn" title="Ses Efektleri (Audio UI)" aria-label="Ses Efektlerini Aç/Kapat" aria-pressed="true">
+          <span class="audio-bars" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
 
         <div class="lang-switcher" role="radiogroup" aria-label="Dil Seçimi">
           <button type="button" class="lang-btn active" data-lang="tr" aria-label="Türkçe">TR</button>
@@ -1424,6 +1817,22 @@
       </div>
     </section>
 
+    <!-- Architectural Instant Search Box (Awwwards SOTD) -->
+    <div class="links-search-wrap">
+      <div class="links-search-box">
+        <svg class="search-box-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="linksInstantSearch" class="links-search-input" placeholder="Dizinde veya kanallarda ara... (örn: TikTok, GitHub, Sponsorluk, B2B)" autocomplete="off" spellcheck="false" data-placeholder-tr="Dizinde veya kanallarda ara... (örn: TikTok, GitHub, Sponsorluk, B2B)" data-placeholder-en="Search directory or channels... (e.g. TikTok, GitHub, Ads, B2B)" />
+        <button type="button" class="links-search-clear" id="linksSearchClear" aria-label="Temizle" style="display: none;">✕</button>
+        <div class="search-box-meta">
+          <span class="search-match-count" id="searchMatchCount">12 Kanal</span>
+          <span class="search-kbd-hint"><kbd>/</kbd></span>
+        </div>
+      </div>
+    </div>
+
     <!-- Dennis & Aristide Architectural Category Navigation -->
     <nav class="editorial-category-nav" role="tablist" aria-label="Kanal ve Dizin Filtresi">
       <button type="button" class="editorial-tab-btn active" data-filter="creative" role="tab" aria-selected="true" id="tab-creative">
@@ -1451,10 +1860,16 @@
       <!-- 01 // TIKTOK -->
       <a href="https://www.tiktok.com/@kursat.yz" target="_blank" rel="noopener noreferrer" class="directory-item" 
          data-category="creative"
+         data-copy="@kursat.yz"
          data-preview="/assets/brand-cards/brand-tiktok.svg" 
          data-preview-badge="TIKTOK ↗"
          data-badge-en="TIKTOK ↗">
-        <div class="item-index">01</div>
+        <div class="item-visual">
+          <span class="item-index">01</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-tiktok.svg" alt="TikTok" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">TikTok</h2>
@@ -1468,21 +1883,35 @@
           <span class="item-metric-pill">@kursat.yz</span>
           <span>tiktok.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursat.yz" title="Kullanıcı Adını Kopyala" aria-label="@kursat.yz kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 02 // INSTAGRAM ANİMASYON (@kursatsi) -->
       <a href="https://www.instagram.com/kursatsi/" target="_blank" rel="noopener noreferrer" class="directory-item" 
          data-category="creative"
+         data-copy="@kursatsi"
          data-preview="/assets/brand-cards/brand-instagram-anim.svg" 
          data-preview-badge="INSTAGRAM ↗"
          data-badge-en="INSTAGRAM ↗">
-        <div class="item-index">02</div>
+        <div class="item-visual">
+          <span class="item-index">02</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-instagram-anim.svg" alt="Instagram" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">Instagram</h2>
@@ -1496,21 +1925,35 @@
           <span class="item-metric-pill">@kursatsi</span>
           <span>instagram.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursatsi" title="Kullanıcı Adını Kopyala" aria-label="@kursatsi kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 03 // YOUTUBE (@kursatsi) -->
       <a href="https://www.youtube.com/@kursatsi" target="_blank" rel="noopener noreferrer" class="directory-item" 
          data-category="creative"
+         data-copy="@kursatsi"
          data-preview="/assets/brand-cards/brand-youtube.svg" 
          data-preview-badge="YOUTUBE ↗"
          data-badge-en="YOUTUBE ↗">
-        <div class="item-index">03</div>
+        <div class="item-visual">
+          <span class="item-index">03</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-youtube.svg" alt="YouTube" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">YouTube</h2>
@@ -1524,21 +1967,35 @@
           <span class="item-metric-pill">@kursatsi</span>
           <span>youtube.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursatsi" title="Kullanıcı Adını Kopyala" aria-label="@kursatsi kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 04 // X MİZAH (@kursatsi) -->
       <a href="https://x.com/kursatsi" target="_blank" rel="noopener noreferrer" class="directory-item" 
          data-category="creative"
+         data-copy="@kursatsi"
          data-preview="/assets/brand-cards/brand-x-mizah.svg" 
          data-preview-badge="X MİZAH ↗"
          data-badge-en="X COMEDY ↗">
-        <div class="item-index">04</div>
+        <div class="item-visual">
+          <span class="item-index">04</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-x-mizah.svg" alt="X" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">X</h2>
@@ -1552,21 +2009,35 @@
           <span class="item-metric-pill">@kursatsi</span>
           <span>x.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursatsi" title="Kullanıcı Adını Kopyala" aria-label="@kursatsi kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 05 // FACEBOOK (@kursatsi) -->
       <a href="https://www.facebook.com/kursatsi" target="_blank" rel="noopener noreferrer" class="directory-item" 
          data-category="creative"
+         data-copy="@kursatsi"
          data-preview="/assets/brand-cards/brand-facebook.svg" 
          data-preview-badge="FACEBOOK ↗"
          data-badge-en="FACEBOOK ↗">
-        <div class="item-index">05</div>
+        <div class="item-visual">
+          <span class="item-index">05</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-facebook.svg" alt="Facebook" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">Facebook</h2>
@@ -1580,11 +2051,19 @@
           <span class="item-metric-pill">@kursatsi</span>
           <span>facebook.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursatsi" title="Kullanıcı Adını Kopyala" aria-label="@kursatsi kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
@@ -1593,10 +2072,16 @@
       <!-- 01 // ANA PORTFOLYO -->
       <a href="/" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="https://devkursat.github.io"
          data-preview="/assets/brand-cards/brand-portfolio.svg" 
          data-preview-badge="PORTFOLYO ↗"
          data-badge-en="PORTFOLIO ↗">
-        <div class="item-index">01</div>
+        <div class="item-visual">
+          <span class="item-index">01</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-portfolio.svg" alt="Portfolio" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title" data-tr="Kişisel Portfolyo" data-en="Personal Portfolio">Kişisel Portfolyo</h2>
@@ -1610,21 +2095,35 @@
           <span class="item-metric-pill">devkursat.github.io</span>
           <span>Kürşat Yılmaz</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="https://devkursat.github.io" title="Adresi Kopyala" aria-label="devkursat.github.io kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 02 // LINKEDIN -->
       <a href="https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="https://www.linkedin.com/in/kürşatyılmaz/"
          data-preview="/assets/brand-cards/brand-linkedin.svg" 
          data-preview-badge="LINKEDIN ↗"
          data-badge-en="LINKEDIN ↗">
-        <div class="item-index">02</div>
+        <div class="item-visual">
+          <span class="item-index">02</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-linkedin.svg" alt="LinkedIn" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">LinkedIn</h2>
@@ -1638,21 +2137,35 @@
           <span class="item-metric-pill">/in/kürşatyılmaz</span>
           <span>linkedin.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="https://www.linkedin.com/in/kürşatyılmaz/" title="Profili Kopyala" aria-label="LinkedIn profilini kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 03 // INSTAGRAM KİŞİSEL (@kursat.yz) -->
       <a href="https://www.instagram.com/kursat.yz/" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="@kursat.yz"
          data-preview="/assets/brand-cards/brand-instagram-personal.svg" 
          data-preview-badge="INSTAGRAM ↗"
          data-badge-en="INSTAGRAM ↗">
-        <div class="item-index">03</div>
+        <div class="item-visual">
+          <span class="item-index">03</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-instagram-personal.svg" alt="Instagram" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">Instagram</h2>
@@ -1666,49 +2179,77 @@
           <span class="item-metric-pill">@kursat.yz</span>
           <span>instagram.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@kursat.yz" title="Kullanıcı Adını Kopyala" aria-label="@kursat.yz kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 04 // GITHUB -->
       <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="@DevKursat"
          data-preview="/assets/brand-cards/brand-github.svg" 
          data-preview-badge="GITHUB ↗"
          data-badge-en="GITHUB ↗">
-        <div class="item-index">04</div>
+        <div class="item-visual">
+          <span class="item-index">04</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-github.svg" alt="GitHub" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">GitHub</h2>
-            <span class="item-category cat-tech" data-tr="AÇIK KAYNAK" data-en="OPEN SOURCE">AÇIK KAYNAK</span>
+            <span class="item-category cat-tech" data-tr="MÜHENDİSLİK" data-en="ENGINEERING">MÜHENDİSLİK</span>
           </div>
-          <p class="item-desc" data-tr="100+ açık kaynak depo, otomasyon araçları, çıkarım betikleri ve deneysel sistemler." data-en="100+ public repositories, headless bots, local inference scripts, and experimental tools.">
-            100+ açık kaynak depo, otomasyon araçları, çıkarım betikleri ve deneysel sistemler.
+          <p class="item-desc" data-tr="100+ proje ve depo, otomasyon mimarileri, yerel model çıkarım betikleri ve deneysel sistemler." data-en="100+ projects and repositories, headless automations, local inference scripts, and experimental systems.">
+            100+ proje ve depo, otomasyon mimarileri, yerel model çıkarım betikleri ve deneysel sistemler.
           </p>
         </div>
         <div class="item-meta">
           <span class="item-metric-pill">@DevKursat</span>
           <span>github.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@DevKursat" title="Kullanıcı Adını Kopyala" aria-label="@DevKursat kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 05 // X / TWITTER (@DevKursat) -->
       <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="@DevKursat"
          data-preview="/assets/brand-cards/brand-x-tech.svg" 
          data-preview-badge="X MÜHENDİSLİK ↗"
          data-badge-en="X ENGINEERING ↗">
-        <div class="item-index">05</div>
+        <div class="item-visual">
+          <span class="item-index">05</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-x-tech.svg" alt="X" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">X</h2>
@@ -1722,21 +2263,35 @@
           <span class="item-metric-pill">@DevKursat</span>
           <span>x.com</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@DevKursat" title="Kullanıcı Adını Kopyala" aria-label="@DevKursat kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 06 // DEV.TO -->
       <a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="@devkursat"
          data-preview="/assets/brand-cards/brand-devto.svg" 
          data-preview-badge="DEV.TO ↗"
          data-badge-en="DEV.TO ↗">
-        <div class="item-index">06</div>
+        <div class="item-visual">
+          <span class="item-index">06</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-devto.svg" alt="DEV.to" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title">DEV.to</h2>
@@ -1750,21 +2305,35 @@
           <span class="item-metric-pill">dev.to/devkursat</span>
           <span>dev.to</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="@devkursat" title="Kullanıcı Adını Kopyala" aria-label="@devkursat kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
 
       <!-- 07 // YAZILAR & ANALİZLER -->
       <a href="/blog/ollama-performans-vergisi-vllm.html" class="directory-item hidden-by-filter" 
          data-category="tech"
+         data-copy="https://devkursat.github.io/blog/"
          data-preview="/assets/brand-cards/brand-blog.svg" 
          data-preview-badge="BLOG ↗"
          data-badge-en="BLOG ↗">
-        <div class="item-index">07</div>
+        <div class="item-visual">
+          <span class="item-index">07</span>
+          <div class="item-avatar">
+            <img src="/assets/brand-cards/brand-blog.svg" alt="Blog" loading="lazy" />
+          </div>
+        </div>
         <div class="item-main">
           <div class="item-title-row">
             <h2 class="item-title" data-tr="Yazılar &amp; Analizler" data-en="Essays &amp; Teardowns">Yazılar &amp; Analizler</h2>
@@ -1778,13 +2347,29 @@
           <span class="item-metric-pill">devkursat.github.io/blog</span>
           <span>Blog</span>
         </div>
-        <div class="item-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="https://devkursat.github.io/blog/" title="Blog Adresini Kopyala" aria-label="Blog adresini kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
         </div>
       </a>
+
+      <!-- Search Empty State -->
+      <div class="search-empty-state" id="searchEmptyState">
+        <div class="search-empty-icon">🔍</div>
+        <h3 class="search-empty-title" data-tr="Eşleşen Bağlantı Bulunamadı" data-en="No Matching Links Found">Eşleşen Bağlantı Bulunamadı</h3>
+        <p class="search-empty-desc" data-tr="Arama kriterinizle eşleşen kanal bulunamadı. Lütfen farklı bir anahtar kelime deneyin." data-en="No channels or links matched your search query. Try a different keyword.">Arama kriterinizle eşleşen kanal bulunamadı. Lütfen farklı bir anahtar kelime deneyin.</p>
+        <button type="button" class="search-reset-btn" id="searchResetBtn" data-tr="Aramayı Temizle" data-en="Clear Search">Aramayı Temizle</button>
+      </div>
 
     </main>
 
@@ -2021,10 +2606,79 @@
     </footer>
   </div>
 
-  <!-- Aristide Benoist Interactive Floating Preview, Binary Switcher, Kinetic 3D Slashes & i18n Script -->
+  <!-- Awwwards SOTD Interactive Script: Synthesized Audio, Physics Lerp, Instant Search, Quick Copy & Velvet Transitions -->
   <script>
     (function() {
-      // 1. Live Istanbul Clock
+      // ============================================
+      // 1. SYNTHESIZED WEB AUDIO ENGINE (AudioUI)
+      // ============================================
+      const AudioUI = (() => {
+        let audioCtx = null;
+        let isEnabled = localStorage.getItem('devkursat_audio_ui') !== 'false';
+
+        function initCtx() {
+          if (!audioCtx) {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (AudioContextClass) audioCtx = new AudioContextClass();
+          }
+          if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+        }
+
+        function playTone(freq1 = 520, freq2 = 880, duration = 0.025, gainVal = 0.035) {
+          if (!isEnabled) return;
+          try {
+            initCtx();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            const now = audioCtx.currentTime;
+            osc.frequency.setValueAtTime(freq1, now);
+            osc.frequency.exponentialRampToValueAtTime(freq2, now + duration);
+            gain.gain.setValueAtTime(gainVal, now);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + duration);
+          } catch (e) {}
+        }
+
+        return {
+          hover: () => playTone(950, 1300, 0.012, 0.02),
+          click: () => playTone(650, 380, 0.028, 0.035),
+          snap: () => playTone(440, 920, 0.04, 0.045),
+          switchTab: () => playTone(360, 680, 0.03, 0.035),
+          toggle: () => {
+            isEnabled = !isEnabled;
+            localStorage.setItem('devkursat_audio_ui', isEnabled);
+            const btn = document.getElementById('audioToggleBtn');
+            if (btn) {
+              btn.classList.toggle('is-active', isEnabled);
+              btn.setAttribute('aria-pressed', isEnabled ? 'true' : 'false');
+            }
+            if (isEnabled) playTone(440, 880, 0.04, 0.04);
+            return isEnabled;
+          },
+          isEnabled: () => isEnabled
+        };
+      })();
+
+      // Initialize audio button state
+      const audioBtn = document.getElementById('audioToggleBtn');
+      if (audioBtn) {
+        if (!AudioUI.isEnabled()) {
+          audioBtn.classList.remove('is-active');
+          audioBtn.setAttribute('aria-pressed', 'false');
+        }
+        audioBtn.addEventListener('click', () => AudioUI.toggle());
+      }
+
+      // ============================================
+      // 2. LIVE ISTANBUL CLOCK & TELEMETRY
+      // ============================================
       const clockEl = document.getElementById('liveClock');
       function updateClock() {
         if (!clockEl) return;
@@ -2041,47 +2695,54 @@
       setInterval(updateClock, 1000);
       updateClock();
 
-      // 2. Aristide Benoist Cursor Hover Preview with Spring Lerp
+      // ============================================
+      // 3. CURSOR SPOTLIGHT & SPRING LERP FLOATING PREVIEW
+      // ============================================
       const preview = document.getElementById('cursorPreview');
       const previewImg = document.getElementById('previewImg');
       const previewBadge = document.getElementById('previewBadge');
       const items = document.querySelectorAll('.directory-item');
 
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let targetX = mouseX;
-      let targetY = mouseY;
-      let currentX = mouseX;
-      let currentY = mouseY;
-      let targetRotate = 0;
-      let currentRotate = 0;
+      let targetX = window.innerWidth / 2;
+      let targetY = window.innerHeight / 2;
+      let currentX = targetX;
+      let currentY = targetY;
+      let prevTargetX = targetX;
+      let velocityX = 0;
+      let currentSkew = 0;
       let isHovered = false;
 
       window.addEventListener('mousemove', (e) => {
         targetX = e.clientX;
         targetY = e.clientY;
-
-        const deltaX = targetX - currentX;
-        targetRotate = Math.max(Math.min(deltaX * 0.25, 14), -14);
+        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
       }, { passive: true });
 
-      function renderPreview() {
-        currentX += (targetX - currentX) * 0.14;
-        currentY += (targetY - currentY) * 0.14;
-        currentRotate += (targetRotate - currentRotate) * 0.12;
+      function animatePhysics() {
+        const lerp = 0.14;
+        currentX += (targetX - currentX) * lerp;
+        currentY += (targetY - currentY) * lerp;
+
+        velocityX = targetX - prevTargetX;
+        prevTargetX = targetX;
+
+        const targetSkew = Math.max(-10, Math.min(10, velocityX * 0.18));
+        currentSkew += (targetSkew - currentSkew) * 0.12;
 
         if (preview && isHovered) {
           preview.style.left = `${currentX}px`;
           preview.style.top = `${currentY}px`;
-          preview.style.transform = `translate(-50%, -50%) rotate(${currentRotate.toFixed(2)}deg) scale(1)`;
+          preview.style.transform = `translate(-50%, -50%) skewX(${currentSkew.toFixed(2)}deg) rotate(${(currentSkew * 0.35).toFixed(2)}deg)`;
         }
 
-        requestAnimationFrame(renderPreview);
+        requestAnimationFrame(animatePhysics);
       }
-      requestAnimationFrame(renderPreview);
+      requestAnimationFrame(animatePhysics);
 
       items.forEach(item => {
         item.addEventListener('mouseenter', () => {
+          AudioUI.hover();
           const imgSrc = item.dataset.preview;
           const badgeTr = item.dataset.previewBadge;
           const badgeEn = item.dataset.badgeEn;
@@ -2096,22 +2757,192 @@
         });
 
         item.addEventListener('mouseleave', () => {
-          preview.classList.remove('active');
+          if (preview) preview.classList.remove('active');
           isHovered = false;
         });
       });
 
-      // 3. Editorial Category Switcher: 'creative' | 'tech' | 'contact'
+      // ============================================
+      // 4. LUXURY TOAST & 1-CLICK QUICK COPY
+      // ============================================
+      const toast = document.getElementById('luxuryToast');
+      const toastMsg = document.getElementById('luxuryToastMsg');
+      let toastTimeout = null;
+
+      function showToast(text) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = text;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('is-visible');
+        }, 2200);
+      }
+
+      document.querySelectorAll('.item-copy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const copyVal = btn.dataset.copy;
+          if (!copyVal) return;
+
+          navigator.clipboard.writeText(copyVal).then(() => {
+            AudioUI.snap();
+            const currentLang = localStorage.getItem('site_lang') || 'tr';
+            const feedbackText = currentLang === 'en' ? `✓ ${copyVal} copied to clipboard` : `✓ ${copyVal} panoya kopyalandı`;
+            showToast(feedbackText);
+
+            // Animate button icon to checkmark
+            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+            setTimeout(() => {
+              btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+            }, 1800);
+          });
+        });
+      });
+
+      // ============================================
+      // 5. ARCHITECTURAL INSTANT SEARCH ENGINE
+      // ============================================
+      const searchInput = document.getElementById('linksInstantSearch');
+      const searchClear = document.getElementById('linksSearchClear');
+      const searchCount = document.getElementById('searchMatchCount');
+      const searchEmpty = document.getElementById('searchEmptyState');
+      const searchReset = document.getElementById('searchResetBtn');
       const tabBtns = document.querySelectorAll('.editorial-tab-btn');
       const directoryList = document.getElementById('directoryList');
       const contactPanel = document.getElementById('linksContactPanel');
 
+      let currentActiveFilter = 'creative';
+
+      function performSearch(query) {
+        const q = (query || '').trim().toLowerCase();
+        
+        if (searchClear) {
+          searchClear.style.display = q ? 'flex' : 'none';
+        }
+
+        if (!q) {
+          // Reset to active filter view
+          if (searchEmpty) searchEmpty.style.display = 'none';
+          items.forEach(item => {
+            item.classList.remove('search-hidden');
+            const cat = item.dataset.category;
+            if (currentActiveFilter === 'contact') {
+              item.classList.add('hidden-by-filter');
+            } else if (cat === currentActiveFilter) {
+              item.classList.remove('hidden-by-filter');
+            } else {
+              item.classList.add('hidden-by-filter');
+            }
+          });
+
+          if (currentActiveFilter === 'contact') {
+            if (directoryList) directoryList.style.display = 'none';
+            if (contactPanel) contactPanel.style.display = 'block';
+          } else {
+            if (directoryList) directoryList.style.display = 'flex';
+            if (contactPanel) contactPanel.style.display = 'none';
+          }
+
+          if (searchCount) {
+            const currentLang = localStorage.getItem('site_lang') || 'tr';
+            searchCount.textContent = currentLang === 'en' ? '12 Channels' : '12 Kanal';
+          }
+          return;
+        }
+
+        // Active search: Show directory across categories
+        if (directoryList) directoryList.style.display = 'flex';
+        if (contactPanel) contactPanel.style.display = 'none';
+
+        let matchCount = 0;
+        items.forEach(item => {
+          const title = item.querySelector('.item-title')?.textContent.toLowerCase() || '';
+          const desc = item.querySelector('.item-desc')?.textContent.toLowerCase() || '';
+          const handle = item.dataset.copy?.toLowerCase() || '';
+          const cat = item.dataset.category?.toLowerCase() || '';
+
+          const isMatch = title.includes(q) || desc.includes(q) || handle.includes(q) || cat.includes(q);
+
+          if (isMatch) {
+            item.classList.remove('hidden-by-filter');
+            item.classList.remove('search-hidden');
+            matchCount++;
+          } else {
+            item.classList.add('search-hidden');
+          }
+        });
+
+        if (searchCount) {
+          const currentLang = localStorage.getItem('site_lang') || 'tr';
+          searchCount.textContent = currentLang === 'en' ? `${matchCount} Matches` : `${matchCount} Eşleşti`;
+        }
+
+        if (searchEmpty) {
+          searchEmpty.style.display = matchCount === 0 ? 'flex' : 'none';
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          performSearch(e.target.value);
+        });
+
+        // Global Shortcut: '/' to focus search
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+            e.preventDefault();
+            AudioUI.snap();
+            searchInput.focus();
+            searchInput.select();
+          } else if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            performSearch('');
+            searchInput.blur();
+          }
+        });
+      }
+
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          AudioUI.click();
+          if (searchInput) {
+            searchInput.value = '';
+            performSearch('');
+            searchInput.focus();
+          }
+        });
+      }
+
+      if (searchReset) {
+        searchReset.addEventListener('click', () => {
+          AudioUI.click();
+          if (searchInput) {
+            searchInput.value = '';
+            performSearch('');
+          }
+        });
+      }
+
+      // ============================================
+      // 6. EDITORIAL CATEGORY NAVIGATION
+      // ============================================
       function setPersona(filterKey) {
         let activeKey = 'creative';
         if (filterKey === 'tech' || filterKey === 'personal') {
           activeKey = 'tech';
         } else if (filterKey === 'contact' || filterKey === 'iletisim' || filterKey === 'kiralik') {
           activeKey = 'contact';
+        }
+
+        currentActiveFilter = activeKey;
+
+        // Clear search input if user clicks tab
+        if (searchInput && searchInput.value) {
+          searchInput.value = '';
+          if (searchClear) searchClear.style.display = 'none';
+          if (searchEmpty) searchEmpty.style.display = 'none';
         }
 
         tabBtns.forEach(btn => {
@@ -2129,6 +2960,7 @@
           if (contactPanel) contactPanel.style.display = 'none';
 
           items.forEach(item => {
+            item.classList.remove('search-hidden');
             const cat = item.dataset.category;
             if (cat === activeKey) {
               item.classList.remove('hidden-by-filter');
@@ -2137,10 +2969,16 @@
             }
           });
         }
+
+        if (searchCount) {
+          const currentLang = localStorage.getItem('site_lang') || 'tr';
+          searchCount.textContent = currentLang === 'en' ? '12 Channels' : '12 Kanal';
+        }
       }
 
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          AudioUI.switchTab();
           const filter = btn.dataset.filter;
           setPersona(filter);
           if (filter === 'creative') window.location.hash = 'anim';
@@ -2153,6 +2991,7 @@
       const sponsorshipBanner = document.getElementById('sponsorshipBannerCard');
       if (sponsorshipBanner) {
         sponsorshipBanner.addEventListener('click', () => {
+          AudioUI.click();
           setPersona('contact');
           window.location.hash = 'kiralik';
           const rentalTopic = document.querySelector('#ltfTopicGrid .typeform-choice-card[data-topic*="Reklam"]');
@@ -2161,7 +3000,6 @@
             rentalTopic.classList.add('selected');
           }
 
-          // Billboard tıklandığında konusu seçilmiş olarak doğrudan Step 2'ye (İsim & Marka) geçir
           updateLinksTfUI(2);
 
           if (contactPanel) {
@@ -2174,7 +3012,9 @@
         });
       }
 
-      // Typeform Step Navigation Logic
+      // ============================================
+      // 7. TYPEFORM STEP NAVIGATION LOGIC
+      // ============================================
       let currentLinksStep = 1;
       const totalLinksSteps = 4;
 
@@ -2201,11 +3041,10 @@
       }
 
       window.advanceLinksTf = function(fromStep) {
+        AudioUI.click();
         if (fromStep === 1) {
-          // Step 1: Konu seçimi -> Step 2'ye geç
           updateLinksTfUI(2);
         } else if (fromStep === 2) {
-          // Step 2: İsim & Marka -> Step 3'e geç
           const nameVal = (document.getElementById('ltfName')?.value || '').trim();
           if (!nameVal) {
             document.getElementById('ltfName')?.focus();
@@ -2213,7 +3052,6 @@
           }
           updateLinksTfUI(3);
         } else if (fromStep === 3) {
-          // Step 3: İletişim Bilgisi -> Step 4'e geç
           const contactVal = (document.getElementById('ltfContact')?.value || '').trim();
           if (!contactVal) {
             document.getElementById('ltfContact')?.focus();
@@ -2226,6 +3064,7 @@
       const prevBtn = document.getElementById('linksTfPrevBtn');
       if (prevBtn) {
         prevBtn.addEventListener('click', () => {
+          AudioUI.click();
           if (currentLinksStep > 1) {
             updateLinksTfUI(currentLinksStep - 1);
           }
@@ -2233,15 +3072,14 @@
       }
 
       window.selectLinksTopic = function(btn) {
+        AudioUI.snap();
         document.querySelectorAll('#ltfTopicGrid .typeform-choice-card').forEach(c => c.classList.remove('selected'));
         btn.classList.add('selected');
-        // Seçim yapıldığında otomatik olarak Step 2'ye (İsim & Marka) geç!
         setTimeout(() => {
           updateLinksTfUI(2);
         }, 200);
       };
 
-      // Enter key support for input fields
       const inputNameEl = document.getElementById('ltfName');
       if (inputNameEl) {
         inputNameEl.addEventListener('keydown', (e) => {
@@ -2263,6 +3101,7 @@
       }
 
       window.submitLinksTypeform = function(channel) {
+        AudioUI.snap();
         const name = (document.getElementById('ltfName')?.value || '').trim() || 'İsimsiz';
         const contact = (document.getElementById('ltfContact')?.value || '').trim() || 'Belirtilmedi';
         const activeTopicCard = document.querySelector('#ltfTopicGrid .typeform-choice-card.selected');
@@ -2291,7 +3130,28 @@
         }
       };
 
-      // Handle Hash Routing (Supports #anim, #creative, #tech, #personal, #contact, #iletisim, #kiralik)
+      // ============================================
+      // 8. VELVET PAGE TRANSITION CURTAIN
+      // ============================================
+      const curtain = document.getElementById('pageTransitionCurtain');
+      const backHomeLink = document.querySelector('.back-home');
+      if (curtain && backHomeLink) {
+        backHomeLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          AudioUI.click();
+          curtain.classList.add('is-closing');
+          setTimeout(() => {
+            window.location.href = backHomeLink.getAttribute('href') || '/';
+          }, 380);
+        });
+      }
+      window.addEventListener('pageshow', () => {
+        if (curtain) curtain.classList.remove('is-closing');
+      });
+
+      // ============================================
+      // 9. HASH ROUTING & BILINGUAL i18n
+      // ============================================
       function checkHash() {
         const hash = window.location.hash.toLowerCase();
         if (hash === '#contact' || hash === '#iletisim' || hash === '#kiralik') {
@@ -2302,7 +3162,6 @@
               document.querySelectorAll('#ltfTopicGrid .typeform-choice-card').forEach(c => c.classList.remove('selected'));
               rentalCard.classList.add('selected');
             }
-            // #kiralik ile gelindiğinde doğrudan Step 2'ye geç ve inputa odaklan
             updateLinksTfUI(2);
           }
         } else if (hash === '#tech' || hash === '#personal') {
@@ -2314,7 +3173,6 @@
       window.addEventListener('hashchange', checkHash);
       checkHash();
 
-      // 4. Bilingual i18n Switcher
       const langBtns = document.querySelectorAll('.lang-btn');
       function setLanguage(lang) {
         localStorage.setItem('site_lang', lang);
@@ -2328,24 +3186,32 @@
           const val = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-tr');
           if (val) el.innerHTML = val;
         });
+
+        if (searchInput) {
+          searchInput.placeholder = lang === 'en' ? (searchInput.dataset.placeholderEn || searchInput.placeholder) : (searchInput.dataset.placeholderTr || searchInput.placeholder);
+        }
+
+        if (searchCount && !searchInput?.value) {
+          searchCount.textContent = lang === 'en' ? '12 Channels' : '12 Kanal';
+        }
       }
 
       langBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          AudioUI.switchTab();
           setLanguage(btn.dataset.lang);
         });
       });
 
-      // 5. Back to Top Smooth Scroll
       const linksBackToTop = document.getElementById('linksBackToTopBtn');
       if (linksBackToTop) {
         linksBackToTop.addEventListener('click', (e) => {
           e.preventDefault();
+          AudioUI.click();
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
-      // Initialize saved language
       const savedLang = localStorage.getItem('site_lang') || 'tr';
       if (savedLang !== 'tr') {
         setLanguage(savedLang);
