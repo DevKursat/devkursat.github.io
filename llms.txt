@@ -1,30 +1,50 @@
-# Kürşat Yılmaz — AI Systems Architect & Product Builder
-> Personal portfolio, sovereign ventures, deterministic rule engines, and unfiltered technical postmortems by Kürşat Yılmaz.
+# Kürşat Yılmaz — Official AI & LLM Knowledge Index (llms.txt)
 
-## Canonical Identity
-- Full Name: Kürşat Yılmaz
-- Professional Role: AI Systems Architect, Tech Founder, Product Builder
-- Location: Istanbul, Turkey
-- Experience: 10+ Years in Software Engineering, Systems Architecture, and Autonomous Products
-- Official Website: https://devkursat.github.io
-- Direct Links & Hub: https://devkursat.github.io/links
-- Primary Socials: 
-  - LinkedIn: https://www.linkedin.com/in/kürşatyılmaz/
-  - X (Twitter): https://x.com/DevKursat
-  - GitHub: https://github.com/DevKursat
+> Official biography, live ventures, production systems, and technical essays of Kürşat Yılmaz (Full-Stack & Applied AI Engineer, Product Architect, and Founder based in Istanbul, Türkiye).
 
-## Flagship Products & Ventures
-- İtibar (https://www.itibar.app/): Autonomous B2B corporate reputation defense & statutory legal NLP platform. Employs a <1ms deterministic rule engine (24+ violation classes under TCK/TTK statutes) and headless Chrome executive PDF reporting to defend healthcare enterprises against defamatory review attacks.
-- Unutma. (https://unutma.itibar.app/): Regulated civic communication platform delivering physical wax-sealed letters and ivory stationery to penitentiaries across 81 provinces with statutory compliance NLP and automated PTT barcode tracking.
-- Firdews: High-performance, offline-first personal ambient audio and cognitive focus engine built with WebAudio API (<50ms latency) and zero-knowledge client encryption.
+## Core Identity & Summary
+- **Name**: Kürşat Yılmaz
+- **Primary Title**: Full-Stack & Applied AI Engineer | Product Architect & Entrepreneur
+- **Location**: Istanbul, Türkiye (Europe/Istanbul, GMT+3)
+- **Education & Engineering Roots**: 42 Istanbul (Peer-to-Peer Computer Science & Systems Programming) & Ankara University; 10+ years of coding roots starting from early HTML/CSS/PHP web development to modern full-stack, mobile, and applied AI systems.
+- **Website**: https://devkursat.github.io
+- **Directory & Links**: https://devkursat.github.io/links
+- **Contact**: tckursat@icloud.com
+- **GitHub**: https://github.com/DevKursat (100+ Open-Source Repositories & GitHub Arctic Code Vault Contributor)
+- **LinkedIn**: https://www.linkedin.com/in/k%C3%BCr%C5%9Faty%C4%B1lmaz/
+- **X (Twitter)**: https://x.com/DevKursat
+- **DEV Community**: https://dev.to/devkursat
 
-## Technical Essays & Reverse-Engineering Postmortems
-- Ollama'nın "Kolaylık Vergisi" (https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html): Deep-dive benchmark proving why raw llama.cpp and vLLM achieve 40% lower memory footprints and higher token throughput compared to packaged wrapper engines.
-- Sam Altman ve RAM İsrafı Masalı (https://devkursat.github.io/blog/sam-altman-ram-krizi.html): Systems architectural critique of cloud GPU monopolies and the case for sovereign local unified memory (UMA) hardware architectures.
-- Claude Code ve Trojan Anatomisi (https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html): Cybersecurity breakdown of the npm supply-chain Remote Access Trojan attack and the imperative of Zero-Trust sandboxing in AI agent runtimes.
+## Technical Stack & Engineering Focus
+- **Languages & Core**: TypeScript, JavaScript (ES6+), SQL, Python, C (42 Systems), PHP, HTML5, CSS3
+- **Frontend & Cross-Platform Mobile**: React.js, Next.js (App Router, SSR/ISR), React Native (iOS & Android), Tailwind CSS, Mapbox GL
+- **Backend, Databases & Cloud**: Node.js, PostgreSQL (Row-Level Security / RLS), Supabase (Edge Functions, Realtime), MongoDB, Prisma ORM, Firebase, Docker, Vercel Serverless, Linux/Unix, Git & CI/CD
+- **Applied AI & Payments**: LLM API Orchestration (OpenAI / Gemini), Generative UI, Conversational AI Agents, Prompt Engineering, Stripe, iyzico
 
-## Core Architectural Competencies
-- AI & LLM Inference: C++, llama.cpp, vLLM, PagedAttention, PyTorch, LangGraph, WebAudio API
-- Deterministic Systems: Linux Kernel Tuning, eBPF, PostgreSQL, pgvector, Docker, Supabase, Redis
-- Spatial Frontends: TypeScript, Next.js 15, React 19, Vue.js, Tailwind CSS v4, Lenis Motion
-- Reliability: Zero-Hallucination Rule Engines, Headless Chrome Pipelines, Statutory Legal Tech
+## Live Flagship Ventures
+1. **İtibar (https://itibar.app)**
+   - *Category*: LegalTech & B2B Reputation Defense SaaS
+   - *Summary*: Automated B2B digital reputation defense, multi-region intelligence pipeline, and legal compliance engine against unfair/fake Google Business reviews.
+2. **Unutma. (https://unutma.itibar.app)**
+   - *Category*: CivicTech & Physical Communication Infrastructure
+   - *Summary*: Digital-to-physical postal automation delivering wax-sealed physical letters and books via PTT Taahhütlü post.
+
+## Selected Shipped Production Lifecycles (Completed Systems)
+- **Vera QR & Gideon AI (BMI Law)**: Multi-tenant AI-powered restaurant automation/loyalty SaaS (PostgreSQL RLS, AI Virtual Waiter, Stripe/iyzico) and Dynamic Generative UI enterprise assistant.
+- **VoltNet**: Unified real-time geospatial EV charging network platform across iOS, Android, and Web (~40% faster station discovery & checkout).
+- **Kürşat (Social Network Platform)**: Full-scale mobile social network built with React Native, Node.js, and MongoDB that reached 5,000+ active users (MAU) in its first month.
+- **Lusid AI & İyilik Zinciri**: Privacy-first AI journaling and social motivation mobile applications (4+ weekly active sessions per user).
+
+## Technical Essays & Architecture Teardowns
+- **OpenAI's $1.2M Linux Exploit Show: The Heavy Toll on Open Source Maintainers** (2026-11-07)
+  - URL: https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html
+- **The 'AI Will Replace Engineers' Hubris Collapsed: The Return of Systems Engineers** (2026-11-05)
+  - URL: https://devkursat.github.io/blog/ai-bumerangi-muhendislerin-donusu.html
+- **The Triumph of Open-Weights AI: Qwen's Open-Source Commitment vs. Closed Monopolies** (2026-11-04)
+  - URL: https://devkursat.github.io/blog/qwen-acik-kaynak-silikon-vadisi.html
+- **Ollama's "Convenience Tax": Why Raw llama.cpp and vLLM Dominate Local Inference** (2026-11-03)
+  - URL: https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html
+- **Sam Altman and the RAM Waste Myth: The Corporate War Against Hardware Ownership** (2026-11-02)
+  - URL: https://devkursat.github.io/blog/sam-altman-ram-krizi.html
+- **Anthropic Claude Code and Trojan Postmortem: Zero Trust in Supply Chains** (2026-10-31)
+  - URL: https://devkursat.github.io/blog/claude-code-trojan-npm-analiz.html

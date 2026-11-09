@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kürşat Yılmaz | Blog</title>
+    <title>Kürşat Yılmaz | Mühendislik &amp; Sistem Mimarisi Blogu</title>
     <link>https://devkursat.github.io/</link>
-    <description>Tech Founder &amp; CEO. Yazılım mimarisi, yapay zeka ajanları ve geliştirici kültürü üzerine filtresiz analizler.</description>
+    <description>Full-Stack &amp; Applied AI Engineer. Yazılım mimarisi, yapay zeka ajanları, açık kaynak güvenliği ve sistem mühendisliği üzerine filtresiz analizler.</description>
     <language>tr</language>
-    <lastBuildDate>Mon, 02 Nov 2026 14:15:00 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 14:30:00 +0300</lastBuildDate>
     <atom:link href="https://devkursat.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura</title>
+      <link>https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html</guid>
+      <pubDate>Sat, 07 Nov 2026 14:30:00 +0300</pubDate>
+      <description>OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü.</description>
+    </item>
+    <item>
+      <title>'Yapay Zeka Yerimizi Alacak' Kibri İflas Etti: Kovulan Mühendislerin Dönüşü</title>
+      <link>https://devkursat.github.io/blog/ai-bumerangi-muhendislerin-donusu.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/ai-bumerangi-muhendislerin-donusu.html</guid>
+      <pubDate>Thu, 05 Nov 2026 16:45:00 +0300</pubDate>
+      <description>Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor.</description>
+    </item>
+    <item>
+      <title>Çin Açık Kaynağının Zaferi: Qwen'in 'Sonuna Kadar Açık Kaynak' Resti ve Silikon Vadisi Tekeli</title>
+      <link>https://devkursat.github.io/blog/qwen-acik-kaynak-silikon-vadisi.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/qwen-acik-kaynak-silikon-vadisi.html</guid>
+      <pubDate>Wed, 04 Nov 2026 14:15:00 +0300</pubDate>
+      <description>Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının açık ağırlıklı modellere kayması.</description>
+    </item>
+    <item>
+      <title>Ollama'nın "Kolaylık Vergisi": Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?</title>
+      <link>https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html</link>
+      <guid isPermaLink="true">https://devkursat.github.io/blog/ollama-performans-vergisi-vllm.html</guid>
+      <pubDate>Tue, 03 Nov 2026 10:00:00 +0300</pubDate>
+      <description>Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.</description>
+    </item>
     <item>
       <title>Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş</title>
       <link>https://devkursat.github.io/blog/sam-altman-ram-krizi.html</link>
