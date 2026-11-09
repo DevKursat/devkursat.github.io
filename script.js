@@ -471,13 +471,9 @@ function initLenis() {
             requestAnimationFrame(raf);
         }
 
-        // Velocity reactive marquee skew & speed
+        // Velocity tracking for Awwwards cursor-reactive marquee & audio interactions
         lenis.on('scroll', (e) => {
             currentScrollVelocity = e.velocity || 0;
-            const skew = Math.max(Math.min(currentScrollVelocity * 0.12, 6), -6);
-            document.querySelectorAll('.marquee-content').forEach(el => {
-                el.style.transform = `skewX(${skew}deg)`;
-            });
         });
     } catch (err) {
         console.warn("Lenis init fallback:", err);
@@ -1478,6 +1474,8 @@ function updateModalContent(project) {
             modalGithubBtn.href = project.github || '#';
         }
     }
+
+    renderArchitectureBlueprint(project);
 }
 
 function closeModal() {
@@ -2435,16 +2433,480 @@ function animateCount(element, target) {
     }, stepTime);
 }
 
+// ============================================
+// AWWWARDS SOTD: SYNTHESIZED WEB AUDIO ENGINE
+// ============================================
+const AudioUI = (() => {
+    let audioCtx = null;
+    let isEnabled = localStorage.getItem('devkursat_audio_ui') !== 'false';
+
+    function initCtx() {
+        if (!audioCtx) {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (AudioContextClass) audioCtx = new AudioContextClass();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq1 = 520, freq2 = 880, duration = 0.025, gainVal = 0.035) {
+        if (!isEnabled) return;
+        try {
+            initCtx();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const now = audioCtx.currentTime;
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq1, now);
+            osc.frequency.exponentialRampToValueAtTime(freq2, now + duration);
+
+            gain.gain.setValueAtTime(gainVal, now);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + duration);
+        } catch (e) {
+            // Audio policy fallback
+        }
+    }
+
+    return {
+        hover: () => playTone(680, 840, 0.016, 0.02),
+        click: () => playTone(340, 680, 0.03, 0.04),
+        open: () => playTone(440, 1100, 0.05, 0.05),
+        close: () => playTone(880, 320, 0.04, 0.04),
+        toggle: () => {
+            isEnabled = !isEnabled;
+            localStorage.setItem('devkursat_audio_ui', isEnabled ? 'true' : 'false');
+            const btn = document.getElementById('audioToggleBtn');
+            if (btn) {
+                btn.classList.toggle('is-active', isEnabled);
+                btn.setAttribute('aria-pressed', isEnabled ? 'true' : 'false');
+            }
+            if (isEnabled) playTone(440, 880, 0.04, 0.05);
+            return isEnabled;
+        },
+        isEnabled: () => isEnabled
+    };
+})();
+
+// ============================================
+// AWWWARDS SOTD: INTERACTIVE SYSTEM ARCHITECTURE BLUEPRINT
+// ============================================
+function renderArchitectureBlueprint(project) {
+    const wrap = document.getElementById('modalArchBlueprint');
+    const stage = document.getElementById('archBlueprintStage');
+    const telemetry = document.getElementById('archNodeTelemetry');
+    if (!wrap || !stage) return;
+
+    if (project.title !== 'İtibar' && project.title !== 'Unutma.') {
+        wrap.style.display = 'none';
+        return;
+    }
+
+    wrap.style.display = 'block';
+    const lang = currentLang;
+    const isTr = lang === 'tr';
+
+    let nodes = [];
+    if (project.title === 'İtibar') {
+        nodes = [
+            { id: 'client', name: isTr ? 'İstemci (Web / PWA)' : 'Client (Web / PWA)', sub: 'Next.js 15 • React 19', color: '#00d9ff', desc: isTr ? 'Sıfır gecikmeli PWA arayüzü, Web Crypto imzalı oturum ve anlık telemetri akışı.' : 'Zero-latency PWA interface, Web Crypto session signing & live telemetry.' },
+            { id: 'edge', name: isTr ? 'Edge Proxy & WAF' : 'Edge Proxy & WAF', sub: 'Cloudflare & Vercel Edge', color: '#38bdf8', desc: isTr ? 'DDoS mitigasyonu, akıllı bot filtreleme ve 25ms küresel TTFB dağıtım katmanı.' : 'DDoS mitigation, intelligent bot scrubbing & 25ms global TTFB distribution layer.' },
+            { id: 'policy', name: isTr ? 'Deterministik Politika Motoru' : 'Deterministic Policy Engine', sub: isTr ? '5651 & Yasal Kural Ağacı' : 'Statutory & Policy Rule Tree', color: '#10b981', desc: isTr ? 'Haksız yorumların hukuki ve kurumsal politika uygunluğunu sıfır halüsinasyonla doğrulayan çekirdek motor.' : 'Statutory evaluation engine validating violation criteria with 0% hallucination.' },
+            { id: 'ai', name: isTr ? 'AI Denetim Pipeline\'ı' : 'AI Audit Pipeline', sub: 'DeepSeek / vLLM Çıkarım', color: '#a855f7', desc: isTr ? 'Egemen yerel modellerle semantik itiraz metni ve delil klasörü sentezleme.' : 'Sovereign on-device models generating semantic appeal briefs & evidence dossiers.' },
+            { id: 'dispatch', name: isTr ? 'İcra & Dağıtım Motoru' : 'Execution & Dispatch', sub: 'Google Maps API / Legal', color: '#f59e0b', desc: isTr ? 'Resmi Google Haritalar API ve yasal tebligat kanallarına otomatik sevk.' : 'Automated dispatch to official Google Maps compliance APIs and legal portals.' }
+        ];
+    } else {
+        nodes = [
+            { id: 'client', name: isTr ? 'Zero-Knowledge İstemci' : 'Zero-Knowledge Client', sub: 'Tailwind & Web Crypto', color: '#ec4899', desc: isTr ? 'Mesaj içeriği sunucuya ulaşmadan önce tarayıcıda belleğe alınır, sıfır log prensibiyle işlenir.' : 'Message content is held in volatile memory; processed under strict zero-log policy.' },
+            { id: 'vault', name: isTr ? 'Kriptografik Kasa' : 'Cryptographic Vault', sub: 'Argon2id + AES-256-GCM', color: '#8b5cf6', desc: isTr ? 'İçerik verisi çift katmanlı simetrik şifreleme ile paketlenir; sunucu bile içeriği okuyamaz.' : 'Client payload encrypted with dual-layer symmetric ciphers; server remains blind.' },
+            { id: 'queue', name: isTr ? 'Zaman Ayarlı Kuyruk' : 'Durable Time Queue', sub: 'Redis Episodic Worker', color: '#10b981', desc: isTr ? 'Mektubun gönderileceği tam güne kadar şifreli saklanan dayanıklı cron kuyruğu.' : 'Durable episodic queue holding encrypted state until targeted dispatch date.' },
+            { id: 'physical', name: isTr ? 'Baskı & Mühür İstasyonu' : 'Print & Seal Station', sub: isTr ? 'Özel Kağıt & Balmumu' : 'Textured Paper & Wax Seal', color: '#eab308', desc: isTr ? 'Mektup yüksek gramajlı özel kağıda basılır ve gerçek balmumu mühürle el yapımı kapatılır.' : 'Printed on premium heavy stock and hand-sealed with authentic molten wax.' },
+            { id: 'ptt', name: isTr ? 'PTT Taahhütlü Teslimat' : 'PTT Registered Dispatch', sub: isTr ? 'Barkodlu Resmi Takip' : 'Barcode Tracked Mail', color: '#06b6d4', desc: isTr ? 'Cezaevine veya adrese barkodlu resmi taahhütlü teslimat ve anlık SMS bildirimi.' : 'Official registered barcode mail delivery directly to institutions or recipients.' }
+        ];
+    }
+
+    const svgWidth = 720;
+    const svgHeight = 130;
+    const nodeCount = nodes.length;
+    const nodeWidth = 110;
+    const nodeHeight = 64;
+    const stepX = (svgWidth - 60) / (nodeCount - 1);
+
+    let svgHTML = `
+        <svg viewBox="0 0 ${svgWidth} ${svgHeight}" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="archLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00d9ff" stop-opacity="0.2"/>
+                    <stop offset="50%" stop-color="#10b981" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.3"/>
+                </linearGradient>
+            </defs>
+            <path d="M 30 65 L ${svgWidth - 30} 65" stroke="url(#archLineGrad)" stroke-width="2.5" stroke-dasharray="6 6" />
+    `;
+
+    nodes.forEach((n, idx) => {
+        const cx = 30 + idx * stepX;
+        const cy = 65;
+        const x = cx - nodeWidth / 2;
+        const y = cy - nodeHeight / 2;
+
+        svgHTML += `
+            <g class="arch-node" data-node-id="${n.id}" data-desc="${n.desc}" data-color="${n.color}">
+                <rect x="${x}" y="${y}" width="${nodeWidth}" height="${nodeHeight}" rx="12" fill="#0d0e14" stroke="${n.color}" stroke-opacity="0.4" stroke-width="1.2" />
+                <circle cx="${cx}" cy="${y + 16}" r="3.5" fill="${n.color}"/>
+                <text x="${cx}" y="${y + 36}" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="8.5" font-weight="600">${n.name}</text>
+                <text x="${cx}" y="${y + 50}" text-anchor="middle" fill="${n.color}" font-family="JetBrains Mono, monospace" font-size="7" font-weight="500">${n.sub}</text>
+            </g>
+        `;
+    });
+
+    svgHTML += `</svg>`;
+    stage.innerHTML = svgHTML;
+
+    stage.querySelectorAll('.arch-node').forEach(nodeEl => {
+        nodeEl.addEventListener('mouseenter', () => {
+            AudioUI.hover();
+            const desc = nodeEl.dataset.desc;
+            const color = nodeEl.dataset.color;
+            if (telemetry) {
+                telemetry.innerHTML = `<span class="active-metric" style="color: ${color};">➔ [CANLI TELEMETRİ]:</span> <span style="margin-left: 8px;">${desc}</span>`;
+            }
+        });
+        nodeEl.addEventListener('mouseleave', () => {
+            if (telemetry) {
+                telemetry.innerHTML = `<span class="telemetry-prompt">${isTr ? 'Mimarî akışı ve bileşen detaylarını görmek için düğümlerin üzerine gelin.' : 'Hover nodes to inspect architectural components and throughput.'}</span>`;
+            }
+        });
+    });
+}
+
+// ============================================
+// AWWWARDS SOTD: 60FPS RAF CURSOR & VELOCITY REACTIVE INFINITE MARQUEE
+// ============================================
 function initMarquee() {
     const marquee = document.querySelector('.marquee');
-    if (!marquee) return;
-    const contents = marquee.querySelectorAll('.marquee-content');
+    const contents = marquee ? marquee.querySelectorAll('.marquee-content') : [];
+    const portraitMarquee = document.getElementById('aboutMarquee');
+    const portraitTrack = portraitMarquee ? portraitMarquee.querySelector('.vertical-marquee-track') : null;
+    const portraitCard = document.getElementById('aboutPortraitCard');
 
-    marquee.addEventListener('mouseenter', () => {
-        contents.forEach(c => c.style.animationPlayState = 'paused');
+    // 1. Horizontal Marquee Engine
+    if (marquee && contents.length > 0) {
+        let xPos = 0;
+        let baseSpeed = 1.15;
+        let cursorInfluence = 0;
+        let isPointerOver = false;
+
+        window.addEventListener('mousemove', (e) => {
+            const normalizedX = (e.clientX / window.innerWidth) - 0.5;
+            cursorInfluence = normalizedX * 1.8;
+        }, { passive: true });
+
+        marquee.addEventListener('mouseenter', () => { isPointerOver = true; });
+        marquee.addEventListener('mouseleave', () => { isPointerOver = false; });
+
+        function animateHorizontalMarquee() {
+            const velocityBoost = Math.max(Math.min((currentScrollVelocity || 0) * 0.15, 12), -12);
+            const currentSpeed = baseSpeed + (isPointerOver ? cursorInfluence * 2 : cursorInfluence * 0.4) + velocityBoost;
+            
+            xPos -= currentSpeed;
+            
+            const firstContent = contents[0];
+            const contentWidth = firstContent ? firstContent.offsetWidth : 1000;
+
+            if (contentWidth > 0 && Math.abs(xPos) >= contentWidth) {
+                xPos = 0;
+            }
+
+            const skew = Math.max(Math.min((currentScrollVelocity || 0) * 0.08 + (isPointerOver ? cursorInfluence * 1.5 : 0), 5), -5);
+
+            contents.forEach(el => {
+                el.style.transform = `translate3d(${xPos}px, 0, 0) skewX(${skew}deg)`;
+            });
+
+            requestAnimationFrame(animateHorizontalMarquee);
+        }
+
+        contents.forEach(el => {
+            el.style.animation = 'none';
+        });
+
+        requestAnimationFrame(animateHorizontalMarquee);
+    }
+
+    // 2. Vertical Portrait Marquee & 3D Snellenberg Parallax Card
+    if (portraitCard && portraitTrack) {
+        let yPos = 0;
+        let verticalSpeed = 0.8;
+        let cursorYFactor = 0;
+
+        portraitCard.addEventListener('mousemove', (e) => {
+            const rect = portraitCard.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+            cursorYFactor = relY * 2.2;
+
+            const tiltX = -relY * 12;
+            const tiltY = relX * 12;
+            portraitCard.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+
+            const lighting = document.getElementById('portraitLighting');
+            if (lighting) {
+                lighting.style.background = `radial-gradient(circle at ${(relX + 0.5) * 100}% ${(relY + 0.5) * 100}%, rgba(0, 217, 255, 0.14), transparent 60%)`;
+            }
+        });
+
+        portraitCard.addEventListener('mouseleave', () => {
+            cursorYFactor = 0;
+            portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+
+        portraitTrack.style.animation = 'none';
+
+        function animateVerticalMarquee() {
+            const effectiveSpeed = verticalSpeed + cursorYFactor;
+            yPos -= effectiveSpeed;
+
+            const group = portraitTrack.querySelector('.marquee-group');
+            const groupHeight = group ? group.offsetHeight : 400;
+
+            if (groupHeight > 0 && Math.abs(yPos) >= groupHeight) {
+                yPos = 0;
+            }
+
+            portraitTrack.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            requestAnimationFrame(animateVerticalMarquee);
+        }
+
+        requestAnimationFrame(animateVerticalMarquee);
+    }
+}
+
+// ============================================
+// AWWWARDS SOTD: ⌘K DEVELOPER COMMAND PALETTE
+// ============================================
+function initCommandPalette() {
+    const modal = document.getElementById('cmdPaletteModal');
+    const input = document.getElementById('cmdSearchInput');
+    const results = document.getElementById('cmdResultsList');
+    const triggerBtn = document.getElementById('cmdPaletteTriggerBtn');
+    const backdrop = document.getElementById('cmdPaletteBackdrop');
+    if (!modal || !input || !results) return;
+
+    let selectedIndex = 0;
+
+    const commands = [
+        { id: 'itibar', group: 'Projeler', title: 'itibar.app — Canlı Platformu Aç', sub: 'B2B İtibar Savunma Motoru', icon: '⚡', action: () => window.open('https://itibar.app', '_blank'), badge: 'itibar.app' },
+        { id: 'unutma', group: 'Projeler', title: 'Unutma. (unutma.itibar.app) — Canlı Platformu Aç', sub: 'Mektup & Yasal İletişim', icon: '💌', action: () => window.open('https://unutma.itibar.app', '_blank'), badge: 'unutma.app' },
+        { id: 'cven', group: 'Özgeçmiş', title: 'Kürşat Yılmaz CV (İngilizce PDF)', sub: '1 Sayfalık EPAM & Global Format', icon: '📄', action: () => window.open('Kursat_Yilmaz_CV_EN.pdf', '_blank'), badge: 'CV EN' },
+        { id: 'cvtr', group: 'Özgeçmiş', title: 'Kürşat Yılmaz CV (Türkçe PDF)', sub: '1 Sayfalık Üretim & Mühendislik Formatı', icon: '📄', action: () => window.open('Kursat_Yilmaz_CV_TR.pdf', '_blank'), badge: 'CV TR' },
+        { id: 'sec-about', group: 'Navigasyon', title: 'Hakkımda Bölümüne Git', sub: '#about — 42 İstanbul & Felsefe', icon: '👤', action: () => scrollToSection('#about') },
+        { id: 'sec-projects', group: 'Navigasyon', title: 'Projeler Bölümüne Git', sub: '#projects — Flagship Sistemler', icon: '🚀', action: () => scrollToSection('#projects') },
+        { id: 'sec-skills', group: 'Navigasyon', title: 'Beceriler & Teknoloji Bölümüne Git', sub: '#skills — 22+ Modern Stack', icon: '🛠️', action: () => scrollToSection('#skills') },
+        { id: 'sec-blog', group: 'Navigasyon', title: 'Yazılar & Analizler Bölümüne Git', sub: '#blog — Güncel Mühendislik Notları', icon: '✍️', action: () => scrollToSection('#blog') },
+        { id: 'sec-contact', group: 'Navigasyon', title: 'İletişim & Teklif Konsoluna Git', sub: '#contact — Doğrudan Görüşme', icon: '✉️', action: () => scrollToSection('#contact') },
+        { id: 'links', group: 'Navigasyon', title: 'Tüm Bağlantılar Dizini (/links)', sub: 'Sosyal Ağlar & Ekosistem', icon: '🌐', action: () => window.location.href = 'links', badge: '/links' },
+        { id: 'latest-blog', group: 'Yazılar', title: 'En Güncel Analizi Oku: OpenAI 1.2M$ Linux Exploit', sub: '30 Saatte 948 Root Açığı Postmortem', icon: '🔥', action: () => window.location.href = 'blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html', badge: 'EN GÜNCEL' },
+        { id: 'email', group: 'Aksiyon', title: 'E-Posta Adresini Kopyala', sub: 'tckursat@icloud.com', icon: '📋', action: () => copyEmailToClipboard(), badge: 'KOPYALA' },
+        { id: 'audio', group: 'Ayarlar', title: 'Ses Geri Bildirimini (Audio UI) Aç/Kapat', sub: 'Web Audio API Synthesizer', icon: '🔊', action: () => AudioUI.toggle(), badge: 'AUDIO' },
+        { id: 'lang-en', group: 'Dil', title: 'Switch Language to English', sub: 'Global English Mode', icon: '🇬🇧', action: () => setLanguage('en') },
+        { id: 'lang-tr', group: 'Dil', title: 'Dili Türkçe\'ye Çevir', sub: 'Ana Dil Modu', icon: '🇹🇷', action: () => setLanguage('tr') }
+    ];
+
+    function scrollToSection(selector) {
+        closePalette();
+        const target = document.querySelector(selector);
+        if (target) {
+            setTimeout(() => {
+                if (lenis) lenis.scrollTo(target, { offset: -70 });
+                else target.scrollIntoView({ behavior: 'smooth' });
+            }, 60);
+        }
+    }
+
+    function copyEmailToClipboard() {
+        navigator.clipboard.writeText('tckursat@icloud.com');
+        closePalette();
+        const emailLink = document.querySelector('.contact-email');
+        if (emailLink) {
+            const orig = emailLink.innerHTML;
+            emailLink.innerHTML = `<span style="color: #00d9ff;">✓ tckursat@icloud.com Panoya Kopyalandı!</span>`;
+            setTimeout(() => { emailLink.innerHTML = orig; }, 2400);
+        }
+    }
+
+    function openPalette() {
+        modal.classList.add('is-open');
+        input.value = '';
+        selectedIndex = 0;
+        renderResults('');
+        input.focus();
+        document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
+        AudioUI.open();
+    }
+
+    function closePalette() {
+        if (!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+        AudioUI.close();
+    }
+
+    function renderResults(filterText) {
+        const query = (filterText || '').toLowerCase().trim();
+        const matched = commands.filter(c => {
+            if (!query) return true;
+            return c.title.toLowerCase().includes(query) || 
+                   c.sub.toLowerCase().includes(query) || 
+                   c.group.toLowerCase().includes(query);
+        });
+
+        if (matched.length === 0) {
+            results.innerHTML = `<div style="padding: 24px; text-align: center; color: #71717a; font-size: 0.85rem;">Eşleşen komut bulunamadı.</div>`;
+            return;
+        }
+
+        if (selectedIndex >= matched.length) selectedIndex = 0;
+
+        let html = '';
+        let lastGroup = null;
+
+        matched.forEach((c, idx) => {
+            if (c.group !== lastGroup) {
+                lastGroup = c.group;
+                html += `<div class="cmd-group-label">${lastGroup}</div>`;
+            }
+            const isSelected = idx === selectedIndex;
+            html += `
+                <div class="cmd-item ${isSelected ? 'is-selected' : ''}" data-idx="${idx}" role="option" aria-selected="${isSelected}">
+                    <div class="cmd-item-left">
+                        <span class="cmd-item-icon">${c.icon}</span>
+                        <div>
+                            <span class="cmd-item-title">${c.title}</span>
+                            <span class="cmd-item-subtitle">${c.sub}</span>
+                        </div>
+                    </div>
+                    ${c.badge ? `<span class="cmd-item-badge">${c.badge}</span>` : ''}
+                </div>
+            `;
+        });
+
+        results.innerHTML = html;
+
+        results.querySelectorAll('.cmd-item').forEach(itemEl => {
+            itemEl.addEventListener('mouseenter', () => {
+                const idx = parseInt(itemEl.dataset.idx, 10);
+                selectedIndex = idx;
+                results.querySelectorAll('.cmd-item').forEach(i => i.classList.remove('is-selected'));
+                itemEl.classList.add('is-selected');
+                AudioUI.hover();
+            });
+
+            itemEl.addEventListener('click', () => {
+                const idx = parseInt(itemEl.dataset.idx, 10);
+                const cmd = matched[idx];
+                if (cmd && cmd.action) {
+                    AudioUI.click();
+                    cmd.action();
+                    closePalette();
+                }
+            });
+        });
+    }
+
+    input.addEventListener('input', (e) => {
+        selectedIndex = 0;
+        renderResults(e.target.value);
     });
-    marquee.addEventListener('mouseleave', () => {
-        contents.forEach(c => c.style.animationPlayState = 'running');
+
+    input.addEventListener('keydown', (e) => {
+        const items = results.querySelectorAll('.cmd-item');
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (items.length > 0) {
+                selectedIndex = (selectedIndex + 1) % items.length;
+                renderResults(input.value);
+                AudioUI.hover();
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (items.length > 0) {
+                selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+                renderResults(input.value);
+                AudioUI.hover();
+            }
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            const activeItem = results.querySelector('.cmd-item.is-selected');
+            if (activeItem) {
+                activeItem.click();
+            }
+        } else if (e.key === 'Escape') {
+            closePalette();
+        }
+    });
+
+    if (triggerBtn) {
+        triggerBtn.addEventListener('click', openPalette);
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', closePalette);
+    }
+
+    const audioBtn = document.getElementById('audioToggleBtn');
+    if (audioBtn) {
+        audioBtn.addEventListener('click', () => AudioUI.toggle());
+    }
+
+    // Global Key Listener for ⌘K
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (modal.classList.contains('is-open')) closePalette();
+            else openPalette();
+        } else if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closePalette();
+        }
+    });
+}
+
+// ============================================
+// AWWWARDS SOTD: VELVET PAGE TRANSITION CURTAIN
+// ============================================
+function initPageTransitions() {
+    const curtain = document.getElementById('pageTransitionCurtain');
+    if (!curtain) return;
+
+    document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const isInternal = (href.startsWith('blog/') || href === 'links' || href === 'links/') && !href.startsWith('http') && !href.startsWith('#');
+        if (isInternal) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                AudioUI.click();
+                curtain.classList.add('is-closing');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 380);
+            });
+        }
+    });
+
+    window.addEventListener('pageshow', () => {
+        curtain.classList.remove('is-closing');
     });
 }
 
@@ -2618,6 +3080,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initBlogFan();
     initHomeTypeform();
+    initCommandPalette();
+    initPageTransitions();
 });
 
 // Tab Visibility Guard

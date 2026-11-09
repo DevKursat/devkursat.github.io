@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261105-sotd">
+    <link rel="stylesheet" href="styles.css?v=20261109-awwwards">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070709'/%3E%3Ctext x='18' y='46' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-size='38' font-weight='800' fill='%23ffffff'%3EK%3C/text%3E%3Ccircle cx='46' cy='44' r='4.5' fill='%2300d9ff'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -110,6 +110,17 @@
             <a href="links" class="nav-link nav-links-pill" data-tr="Bağlantılar ↗" data-en="Links ↗">Bağlantılar ↗</a>
         </div>
         <div class="nav-right">
+            <!-- Awwwards Command Palette & Synthesized Audio UI -->
+            <button type="button" class="nav-cmd-btn" id="cmdPaletteTriggerBtn" title="Komut Paleti (⌘K / Ctrl+K)" aria-label="Komut Paleti">
+                <span class="cmd-icon">⌘</span>
+                <span class="cmd-key">K</span>
+            </button>
+            <button type="button" class="nav-audio-btn is-active" id="audioToggleBtn" title="Ses Geri Bildirimi (Audio UI)" aria-label="Ses Efektlerini Aç/Kapat" aria-pressed="true">
+                <span class="audio-bars" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+
             <!-- Luxury Circular Flag Button & Dropdown Picker -->
             <div class="lang-picker-wrapper" id="langPickerWrapper">
                 <button type="button" class="lang-picker-btn" id="langPickerBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Dili Değiştir / Change Language">
@@ -461,68 +472,7 @@
                         </p>
                     </div>
                     
-                    <!-- Interactive Identity Bento (Live Clock, 42 Istanbul Engineering, Shipped Scale, Creative Discipline) -->
-                    <div class="about-bento-grid" data-scroll="fade-up" data-scroll-delay="250">
-                        <div class="bento-card bento-clock">
-                            <div class="bento-icon">
-                                <span class="bento-pulse-dot"></span>
-                            </div>
-                            <div class="bento-body">
-                                <span class="bento-label" data-tr="Yerel Zaman" data-en="Local Time">Yerel Zaman</span>
-                                <span class="bento-value mono-val" id="istanbulClock">--:--:-- GMT+3</span>
-                                <span class="bento-sub">Europe / Istanbul</span>
-                            </div>
-                        </div>
-
-                        <div class="bento-card bento-boxer">
-                            <div class="bento-icon boxer-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="16 18 22 12 16 6"></polyline>
-                                    <polyline points="8 6 2 12 8 18"></polyline>
-                                </svg>
-                            </div>
-                            <div class="bento-body">
-                                <span class="bento-label" data-tr="Mühendislik Disiplini" data-en="Engineering Foundation">Mühendislik Disiplini</span>
-                                <span class="bento-value" data-tr="42 İstanbul &amp; Ankara Üni." data-en="42 Istanbul &amp; Ankara Univ.">42 İstanbul &amp; Ankara Üni.</span>
-                                <span class="bento-sub" data-tr="Algoritma • Sistem Mimarisi" data-en="Algorithms • Systems Architecture">Algoritma • Sistem Mimarisi</span>
-                            </div>
-                        </div>
-
-                        <div class="bento-card bento-author">
-                            <div class="bento-icon author-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                    <path d="M2 17l10 5 10-5"/>
-                                    <path d="M2 12l10 5 10-5"/>
-                                </svg>
-                            </div>
-                            <div class="bento-body">
-                                <span class="bento-label" data-tr="Üretim &amp; Ölçek" data-en="Production &amp; Scale">Üretim &amp; Ölçek</span>
-                                <span class="bento-value" data-tr="5.000+ İlk Ay MAU" data-en="5,000+ First-Month MAU">5.000+ İlk Ay MAU</span>
-                                <span class="bento-sub" data-tr="5+ Tamamlanmış Web, Mobil &amp; SaaS Ürün" data-en="5+ Shipped Web, Mobile &amp; SaaS Systems">5+ Tamamlanmış Web, Mobil &amp; SaaS Ürün</span>
-                            </div>
-                        </div>
-
-                        <a href="https://open.spotify.com/intl-tr/artist/5NQc0XkMOuLmfSrgNaz3YP" target="_blank" rel="noopener noreferrer" class="bento-card bento-spotify" aria-label="Spotify Artist &amp; Creative Discipline">
-                            <div class="bento-icon spotify-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                                </svg>
-                            </div>
-                            <div class="bento-body">
-                                <div class="bento-spotify-top">
-                                    <span class="bento-label" data-tr="Disiplin &amp; Yaratıcı Üretim" data-en="Discipline &amp; Creative Arts">Disiplin &amp; Yaratıcı Üretim</span>
-                                    <div class="spotify-eq-bars" aria-hidden="true">
-                                        <span></span><span></span><span></span><span></span>
-                                    </div>
-                                </div>
-                                <span class="bento-value" data-tr="Boks • Müzik • Edebiyat" data-en="Boxing • Music • Literature">Boks • Müzik • Edebiyat</span>
-                                <span class="bento-sub" data-tr="Ring Disiplini, Spotify &amp; Eserler ↗" data-en="Ring Grit, Spotify Artist &amp; Poetry ↗">Ring Disiplini, Spotify &amp; Eserler ↗</span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="about-stats" data-scroll="fade-up" data-scroll-delay="300">
+                    <div class="about-stats" data-scroll="fade-up" data-scroll-delay="250">
                         <div class="stat-item">
                             <span class="stat-number" data-count="100" data-suffix="+">0</span>
                             <span class="stat-label" data-tr="Açık Kaynak &amp; Üretim Projesi" data-en="Open Source &amp; Shipped Projects">Açık Kaynak &amp; Üretim Projesi</span>
@@ -1206,6 +1156,21 @@
 
                     <p class="modal-description"></p>
 
+                    <!-- Interactive Live SVG System Architecture Node Graph (Awwwards SOTD) -->
+                    <div class="modal-arch-blueprint" id="modalArchBlueprint" style="display: none;">
+                        <div class="arch-blueprint-header">
+                            <div class="arch-header-left">
+                                <span class="arch-status-dot"></span>
+                                <span class="arch-blueprint-title" data-tr="Sistem Mimarisi &amp; Canlı Veri Akışı" data-en="System Architecture &amp; Data Pipeline">Sistem Mimarisi &amp; Canlı Veri Akışı</span>
+                            </div>
+                            <span class="arch-live-pulse" data-tr="INTERAKTİF DİYAGRAM" data-en="INTERACTIVE BLUEPRINT">INTERAKTİF DİYAGRAM</span>
+                        </div>
+                        <div class="arch-blueprint-stage" id="archBlueprintStage"></div>
+                        <div class="arch-node-telemetry" id="archNodeTelemetry">
+                            <span class="telemetry-prompt" data-tr="Mimarî akışı ve bileşen detaylarını görmek için düğümlerin üzerine gelin." data-en="Hover nodes to inspect architectural components and throughput.">Mimarî akışı ve bileşen detaylarını görmek için düğümlerin üzerine gelin.</span>
+                        </div>
+                    </div>
+
                     <!-- Key Impact Metrics (Awwwards Highlight Grid) -->
                     <div class="modal-metrics" id="modalMetrics" style="display: none;">
                         <h4 class="modal-section-title">
@@ -1252,6 +1217,39 @@
         </div>
     </div>
 
+    <!-- Awwwards Command Palette Modal (⌘K / Ctrl+K) -->
+    <div class="cmd-palette-modal" id="cmdPaletteModal" role="dialog" aria-modal="true" aria-label="Geliştirici Komut Paleti">
+        <div class="cmd-palette-backdrop" id="cmdPaletteBackdrop"></div>
+        <div class="cmd-palette-dialog">
+            <div class="cmd-palette-search-wrap">
+                <span class="cmd-search-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
+                <input type="text" class="cmd-search-input" id="cmdSearchInput" placeholder="Bir komut yazın veya arayın... (örn: CV, Projeler, İtibar, Blog)" autocomplete="off" spellcheck="false" />
+                <span class="cmd-esc-badge">ESC</span>
+            </div>
+            <div class="cmd-results-list" id="cmdResultsList" role="listbox"></div>
+            <div class="cmd-palette-footer">
+                <div class="cmd-footer-hints">
+                    <span><kbd>↑</kbd><kbd>↓</kbd> Gezin</span>
+                    <span><kbd>↵</kbd> Çalıştır</span>
+                    <span><kbd>esc</kbd> Kapat</span>
+                </div>
+                <div class="cmd-footer-branding">Kürşat Yılmaz • Sovereign CLI</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Velvet Page Transition Curtain -->
+    <div class="page-transition-curtain" id="pageTransitionCurtain" aria-hidden="true">
+        <div class="curtain-slab curtain-slab-top"></div>
+        <div class="curtain-slab curtain-slab-bottom"></div>
+        <div class="curtain-monogram">K<span class="logo-dot">.</span></div>
+    </div>
+
     <!-- Core Motion & Scroll Engines -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1259,6 +1257,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
 
-    <script src="script.js?v=20261105-sotd"></script>
+    <script src="script.js?v=20261109-awwwards"></script>
 </body>
 </html>

@@ -5632,3 +5632,490 @@ body.modal-open {
         align-items: flex-start;
     }
 }
+
+/* ==========================================================================
+   AWWWARDS SOTD ENHANCEMENTS: COMMAND PALETTE, AUDIO UI, LIVE ARCH BLUEPRINT,
+   CURSOR-REACTIVE INFINITE MARQUEE & VELVET PAGE TRANSITIONS
+   ========================================================================== */
+
+/* 1. Navbar Buttons: ⌘K Command Palette & Audio UI */
+.nav-cmd-btn,
+.nav-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 38px;
+    padding: 0 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: var(--text-secondary, #a1a1aa);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.nav-cmd-btn:hover,
+.nav-audio-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(0, 217, 255, 0.4);
+    box-shadow: 0 0 16px rgba(0, 217, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.nav-cmd-btn .cmd-icon {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.nav-cmd-btn .cmd-key {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #fff;
+}
+
+.nav-audio-btn {
+    width: 38px;
+    padding: 0;
+}
+
+.nav-audio-btn .audio-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+}
+
+.nav-audio-btn .audio-bars span {
+    width: 2px;
+    height: 100%;
+    background: var(--text-secondary, #a1a1aa);
+    border-radius: 1px;
+    transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-audio-btn.is-active .audio-bars span {
+    background: #00d9ff;
+    animation: soundEqBars 0.9s ease-in-out infinite alternate;
+}
+
+.nav-audio-btn.is-active .audio-bars span:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+.nav-audio-btn.is-active .audio-bars span:nth-child(2) { animation-delay: 0.3s; height: 100%; }
+.nav-audio-btn.is-active .audio-bars span:nth-child(3) { animation-delay: 0.5s; height: 60%; }
+
+@keyframes soundEqBars {
+    0% { height: 25%; }
+    50% { height: 100%; }
+    100% { height: 45%; }
+}
+
+@media (max-width: 768px) {
+    .nav-cmd-btn {
+        display: none;
+    }
+}
+
+/* 2. Developer Command Palette Modal (⌘K) */
+.cmd-palette-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: clamp(60px, 14vh, 120px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmd-palette-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cmd-palette-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 4, 6, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.cmd-palette-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 640px;
+    background: #0c0c10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 217, 255, 0.08);
+    overflow: hidden;
+    transform: scale(0.96) translateY(-10px);
+    transition: transform 0.3s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cmd-palette-modal.is-open .cmd-palette-dialog {
+    transform: scale(1) translateY(0);
+}
+
+.cmd-palette-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.cmd-search-icon {
+    color: var(--text-tertiary, #71717a);
+    display: flex;
+}
+
+.cmd-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: var(--font-primary, sans-serif);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.cmd-search-input::placeholder {
+    color: var(--text-tertiary, #52525b);
+}
+
+.cmd-esc-badge {
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-tertiary, #a1a1aa);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.cmd-results-list {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.cmd-results-list::-webkit-scrollbar {
+    width: 6px;
+}
+.cmd-results-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+.cmd-group-label {
+    padding: 8px 12px 4px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary, #71717a);
+    text-transform: uppercase;
+}
+
+.cmd-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+    color: var(--text-secondary, #d4d4d8);
+}
+
+.cmd-item:hover,
+.cmd-item.is-selected {
+    background: rgba(0, 217, 255, 0.08);
+    color: #fff;
+}
+
+.cmd-item.is-selected {
+    border-left: 3px solid #00d9ff;
+    padding-left: 11px;
+}
+
+.cmd-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cmd-item-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: #00d9ff;
+}
+
+.cmd-item-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cmd-item-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-tertiary, #71717a);
+    margin-left: 8px;
+}
+
+.cmd-item-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    color: var(--text-tertiary, #a1a1aa);
+    padding: 2px 7px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cmd-palette-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    color: var(--text-tertiary, #71717a);
+}
+
+.cmd-footer-hints {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.cmd-footer-hints kbd {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: #e4e4e7;
+    margin-right: 4px;
+    font-size: 0.68rem;
+}
+
+/* 3. Interactive Live SVG System Architecture Blueprint inside Modal */
+.modal-arch-blueprint {
+    margin: 28px 0;
+    padding: 22px;
+    background: rgba(8, 8, 12, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.arch-blueprint-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.arch-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arch-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00d9ff;
+    box-shadow: 0 0 10px #00d9ff;
+    animation: livePulse 2s infinite;
+}
+
+.arch-blueprint-title {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.arch-live-pulse {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #00d9ff;
+    background: rgba(0, 217, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 217, 255, 0.25);
+}
+
+.arch-blueprint-stage {
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.arch-blueprint-stage svg {
+    display: block;
+    width: 100%;
+    min-width: 580px;
+    height: auto;
+}
+
+.arch-node {
+    cursor: pointer;
+    transition: transform 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.arch-node:hover rect {
+    stroke-width: 2.2px;
+    filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.45));
+}
+
+.arch-node-telemetry {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.74rem;
+    color: var(--text-secondary, #a1a1aa);
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+}
+
+.arch-node-telemetry .active-metric {
+    color: #00d9ff;
+    font-weight: 600;
+}
+
+/* 4. Smooth Infinite Marquee & Cursor Glow Enhancements */
+.marquee-section {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    gap: var(--marquee-gap, 32px);
+    flex-shrink: 0;
+    will-change: transform;
+}
+
+.marquee-content span {
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.marquee-content span:hover:not(.marquee-dot) {
+    color: #00d9ff;
+    text-shadow: 0 0 16px rgba(0, 217, 255, 0.5);
+    cursor: default;
+}
+
+/* Enable pointer events on portrait marquee for interactive cursor scrubbing */
+.visual-marquee-wrapper {
+    pointer-events: auto !important;
+}
+
+.marquee-item {
+    transition: transform 0.25s var(--ease-out-expo), color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.marquee-item:hover {
+    color: #00d9ff !important;
+    text-shadow: 0 0 24px rgba(0, 217, 255, 0.6);
+    transform: scale(1.04);
+}
+
+/* 5. Velvet Page Transition Curtain */
+.page-transition-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.curtain-slab {
+    width: 100%;
+    height: 50%;
+    background: #060608;
+    transform: scaleY(0);
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+}
+
+.curtain-slab-top {
+    transform-origin: top center;
+}
+
+.curtain-slab-bottom {
+    transform-origin: bottom center;
+}
+
+.curtain-monogram {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    font-family: var(--font-display, sans-serif);
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.curtain-monogram .logo-dot {
+    color: #00d9ff;
+}
+
+.page-transition-curtain.is-closing {
+    pointer-events: auto;
+}
+
+.page-transition-curtain.is-closing .curtain-slab {
+    transform: scaleY(1);
+}
+
+.page-transition-curtain.is-closing .curtain-monogram {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
