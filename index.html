@@ -2,7 +2,7 @@
 <html lang="tr" data-lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>Kürşat Yılmaz | Product Builder & Entrepreneur</title>
     <meta name="description" content="Yazılım ve tasarımda sıfırdan ürüne, hızla hayata geçiren girişimci. AI destekli projeler, sosyal etki platformları ve yenilikçi çözümler.">
     <meta name="keywords" content="Kürşat Yılmaz, entrepreneur, product builder, AI, startup, developer, Turkey">
@@ -28,6 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20261109-awwwards">
+    <script>document.documentElement.classList.add('is-loading');</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070709'/%3E%3Ctext x='18' y='46' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-size='38' font-weight='800' fill='%23ffffff'%3EK%3C/text%3E%3Ccircle cx='46' cy='44' r='4.5' fill='%2300d9ff'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -96,10 +97,79 @@
         </div>
     </div>
 
+    <!-- 3D Architectural Cyber Grid Backdrop & Perspective Horizon -->
+    <div class="cyber-grid-backdrop" id="cyberGridBackdrop" aria-hidden="true">
+        <div class="cyber-grid-plane" id="cyberGridPlane"></div>
+        <div class="cyber-grid-horizon-glow"></div>
+    </div>
+
+    <!-- Architectural HUD Viewfinder Frame & Corner Crosshairs -->
+    <div class="hud-viewfinder-overlay" aria-hidden="true">
+        <div class="hud-corner hud-corner-tl">
+            <span class="hud-crosshair">+</span>
+            <span class="hud-coord">LOC: 41.0082° N, 28.9784° E</span>
+        </div>
+        <div class="hud-corner hud-corner-tr">
+            <span class="hud-coord">SYS: GRID // 60FPS</span>
+            <span class="hud-crosshair">+</span>
+        </div>
+        <div class="hud-corner hud-corner-bl">
+            <span class="hud-crosshair">+</span>
+            <span class="hud-coord">RUNTIME: SOVEREIGN</span>
+        </div>
+        <div class="hud-corner hud-corner-br">
+            <span class="hud-coord">KURSAT ARCHITECTURE</span>
+            <span class="hud-crosshair">+</span>
+        </div>
+    </div>
+
+    <!-- Slayt Slayt Deck Navigation Rail (Awwwards Slide Controller) -->
+    <aside class="slide-deck-hud" id="slideDeckHud" aria-label="Slayt Navigasyonu">
+        <div class="deck-hud-header">
+            <span class="deck-hud-dot"></span>
+            <span class="deck-hud-title">DECK</span>
+        </div>
+        <div class="deck-hud-rail">
+            <a href="#hero" class="deck-slide-node active" data-slide="0" data-label="BOOT" title="01 // BOOT">
+                <span class="node-idx">01</span>
+                <span class="node-tooltip">01 // BOOT</span>
+            </a>
+            <a href="#about" class="deck-slide-node" data-slide="1" data-label="ABOUT" title="02 // ARCHITECT">
+                <span class="node-idx">02</span>
+                <span class="node-tooltip">02 // ARCHITECT</span>
+            </a>
+            <a href="#projects" class="deck-slide-node" data-slide="2" data-label="WORK" title="03 // SYSTEMS">
+                <span class="node-idx">03</span>
+                <span class="node-tooltip">03 // SYSTEMS</span>
+            </a>
+            <a href="#skills" class="deck-slide-node" data-slide="3" data-label="STACK" title="04 // GRID MATRIX">
+                <span class="node-idx">04</span>
+                <span class="node-tooltip">04 // GRID MATRIX</span>
+            </a>
+            <a href="#blog" class="deck-slide-node" data-slide="4" data-label="ESSAYS" title="05 // ESSAYS">
+                <span class="node-idx">05</span>
+                <span class="node-tooltip">05 // ESSAYS</span>
+            </a>
+            <a href="#contact" class="deck-slide-node" data-slide="5" data-label="OUTRO" title="06 // MONUMENT">
+                <span class="node-idx">06</span>
+                <span class="node-tooltip">06 // MONUMENT</span>
+            </a>
+        </div>
+        <div class="deck-hud-footer">
+            <span class="deck-active-idx" id="deckActiveIdx">01</span>
+            <span class="deck-sep">/</span>
+            <span class="deck-total-idx">06</span>
+        </div>
+    </aside>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-logo">
-            <a href="#hero">K<span class="logo-dot">.</span></a>
+            <a href="#hero" class="nav-brand-link" aria-label="KURSAT Sovereign Architecture">
+                <span class="brand-beacon" aria-hidden="true"></span>
+                <span class="brand-word">KURSAT</span>
+                <span class="brand-spec">// 01</span>
+            </a>
         </div>
         <div class="nav-links">
             <a href="#about" class="nav-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
@@ -110,6 +180,11 @@
             <a href="links" class="nav-link nav-links-pill" data-tr="Bağlantılar ↗" data-en="Links ↗">Bağlantılar ↗</a>
         </div>
         <div class="nav-right">
+            <!-- CV Direct Download Link -->
+            <a href="Kursat_Yilmaz_CV_EN.pdf" target="_blank" class="nav-cv-link" aria-label="CV PDF" title="Download CV (PDF)">
+                <span class="nav-cv-tag">CV</span>
+                <span class="nav-cv-label" data-tr="Özgeçmiş" data-en="Resume">Resume</span>
+            </a>
             <!-- Awwwards Command Palette & Synthesized Audio UI -->
             <button type="button" class="nav-cmd-btn" id="cmdPaletteTriggerBtn" title="Komut Paleti (⌘K / Ctrl+K)" aria-label="Komut Paleti">
                 <span class="cmd-icon">⌘</span>
@@ -271,7 +346,10 @@
         <div class="menu-backdrop"></div>
         <div class="menu-container">
             <div class="menu-header">
-                <a href="#" class="menu-brand-logo">K<span class="logo-dot">.</span></a>
+                <a href="#hero" class="menu-brand-logo" aria-label="KURSAT">
+                    <span class="brand-beacon" aria-hidden="true"></span>
+                    <span class="brand-word">KURSAT</span>
+                </a>
                 <button type="button" class="menu-close-btn" id="menuCloseBtn" aria-label="Menüyü Kapat">
                     <span data-tr="KAPAT" data-en="CLOSE">KAPAT</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -311,37 +389,52 @@
                     <span class="menu-item-title" data-tr="Tüm Bağlantılar (Dizin)" data-en="All Links (Directory)">Tüm Bağlantılar (Dizin)</span>
                     <span class="menu-item-arrow">↗</span>
                 </a>
+                <a href="Kursat_Yilmaz_CV_EN.pdf" target="_blank" class="menu-nav-item menu-item-pill menu-item-cv" data-index="07">
+                    <span class="menu-item-idx">07</span>
+                    <span class="menu-item-title" data-tr="Özgeçmiş (CV - PDF)" data-en="Resume / CV (PDF)">Özgeçmiş (CV - PDF)</span>
+                    <span class="menu-item-arrow">↗</span>
+                </a>
             </nav>
             <div class="menu-footer">
-                <div class="menu-footer-col">
-                    <span class="menu-footer-label" data-tr="KONUM &amp; ZAMAN" data-en="LOCATION &amp; TIME">KONUM &amp; ZAMAN</span>
-                    <span class="menu-footer-val">İstanbul, TR • <span id="menuLiveClock">--:--:--</span> GMT+3</span>
+                <div class="menu-footer-info-row">
+                    <div class="menu-footer-col menu-footer-col-left">
+                        <span class="menu-footer-label" data-tr="KONUM &amp; ZAMAN" data-en="LOCATION &amp; TIME">KONUM &amp; ZAMAN</span>
+                        <span class="menu-footer-val">İstanbul, TR (GMT+3)</span>
+                        <span class="menu-footer-subval" id="menuLiveClock">--:--:--</span>
+                    </div>
+                    <div class="menu-footer-col menu-footer-col-right">
+                        <span class="menu-footer-label" data-tr="DOĞRUDAN İLETİŞİM" data-en="DIRECT CONTACT">DOĞRUDAN İLETİŞİM</span>
+                        <a href="mailto:tckursat@icloud.com" class="menu-footer-val menu-email-link">tckursat@icloud.com</a>
+                        <span class="menu-footer-subval" data-tr="Aktif • &lt; 24s Dönüş" data-en="Active • &lt; 24h Reply">Aktif • &lt; 24s Dönüş</span>
+                    </div>
                 </div>
-                <div class="menu-footer-col">
-                    <span class="menu-footer-label" data-tr="DOĞRUDAN İLETİŞİM" data-en="DIRECT CONTACT">DOĞRUDAN İLETİŞİM</span>
-                    <a href="mailto:tckursat@icloud.com" class="menu-footer-val menu-email-link">tckursat@icloud.com</a>
-                </div>
-                <div class="menu-footer-socials">
-                    <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="menu-social-icon-btn" aria-label="GitHub" title="GitHub">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com/in/kürşatyılmaz" target="_blank" rel="noopener noreferrer" class="menu-social-icon-btn" aria-label="LinkedIn" title="LinkedIn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </a>
-                    <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="menu-social-icon-btn" aria-label="X" title="X (Twitter)">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="menu-social-icon-btn" aria-label="Instagram" title="Instagram">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
+                <div class="menu-footer-socials-wrap">
+                    <div class="menu-footer-socials-grid">
+                        <a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer" class="menu-social-pill" aria-label="GitHub">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span>GitHub ↗</span>
+                        </a>
+                        <a href="https://linkedin.com/in/kürşatyılmaz" target="_blank" rel="noopener noreferrer" class="menu-social-pill" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            <span>LinkedIn ↗</span>
+                        </a>
+                        <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="menu-social-pill" aria-label="X">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            <span>X / Twitter ↗</span>
+                        </a>
+                        <a href="https://instagram.com/kursat.yz" target="_blank" rel="noopener noreferrer" class="menu-social-pill" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <span>Instagram ↗</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -357,47 +450,48 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                <span data-tr="Yeni projelere açık" data-en="Open to new projects">Yeni projelere açık</span>
+                <span data-tr="SOVEREIGN ARCHITECTURE // %0.0001 TIER" data-en="SOVEREIGN ARCHITECTURE // %0.0001 TIER">SOVEREIGN ARCHITECTURE // %0.0001 TIER</span>
             </div>
             <h1 class="hero-title">
                 <span class="title-line">
-                    <span data-tr="Merhaba, ben" data-en="Hi, I'm">Merhaba, ben</span>
+                    <span data-tr="ÖDÜN VERİLMEYEN MİMARİ." data-en="UNCOMPROMISING ARCHITECTURE.">ÖDÜN VERİLMEYEN MİMARİ.</span>
                 </span>
                 <span class="title-line name-line">
-                    <span class="word highlight">Kürşat</span>
-                    <span class="word highlight">Yılmaz</span>
+                    <span class="word highlight">KÜRŞAT</span>
+                    <span class="word highlight">YILMAZ</span>
                 </span>
             </h1>
             <div class="hero-roles">
-                <span class="role">Full-Stack &amp; Applied AI Engineer</span>
+                <span class="role">AI Product Developer</span>
                 <span class="role-divider">•</span>
-                <span class="role">Product Architect</span>
+                <span class="role">Full-Stack Engineer</span>
                 <span class="role-divider">•</span>
-                <span class="role">Entrepreneur</span>
+                <span class="role">Yazar</span>
+                <span class="role-divider">•</span>
+                <span class="role">Boksör</span>
             </div>
             <p class="hero-description">
-                <span data-tr="Yazılım ve sistem mimarisinde" data-en="From zero to production in">Yazılım ve sistem mimarisinde</span>
-                <span class="text-gradient" data-tr="sıfırdan ürüne" data-en="full-stack &amp; AI systems">sıfırdan ürüne</span><span data-tr=", yüksek ölçekli çözümler inşa eden mühendis &amp; girişimci." data-en=", an engineer &amp; entrepreneur shipping scalable products.">, yüksek ölçekli çözümler inşa eden mühendis &amp; girişimci.</span>
+                <span data-tr="Tavsiye veren bir danışman değilim; sunucunun başında sabahlamış, faturayı ödeyen ve masaya yumruğunu koyan kurucuyum." data-en="I am not an advisory consultant; I am the founder who stays up at the server rack, pays the bill, and puts his fist on the table.">Tavsiye veren bir danışman değilim; sunucunun başında sabahlamış, faturayı ödeyen ve masaya yumruğunu koyan kurucuyum.</span>
                 <br class="mobile-break">
-                <span data-tr="Uygulamalı yapay zekâ, çok kiracılı SaaS ve çapraz platform (Web/iOS/Android) mimarileri geliştiriyorum." data-en="I architect applied AI platforms, multi-tenant SaaS, and cross-platform web &amp; mobile systems.">Uygulamalı yapay zekâ, çok kiracılı SaaS ve çapraz platform (Web/iOS/Android) mimarileri geliştiriyorum.</span>
+                <span data-tr="Yapay zekâ balonlarını, şişirilmiş PR masallarını ve bellek sızıntılarını bir kenara bırakın. Burada saf mühendislik, edebi ağırlık ve ring kondisyonu konuşur :)" data-en="Discard the AI hype bubbles, bloated marketing PR, and memory leaks. Only pure systems engineering, literary weight, and boxing conditioning speak here :)">Yapay zekâ balonlarını, şişirilmiş PR masallarını ve bellek sızıntılarını bir kenara bırakın. Burada saf mühendislik, edebi ağırlık ve ring kondisyonu konuşur :)</span>
             </p>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">
-                    <span data-tr="Projelerimi Keşfet" data-en="Explore Projects">Projelerimi Keşfet</span>
+                    <span data-tr="Amiral Gemileri (İtibar &amp; Unutma)" data-en="Flagship Platforms (İtibar &amp; Unutma)">Amiral Gemileri (İtibar &amp; Unutma)</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
                 </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <span data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</span>
+                <a href="Kursat_Yilmaz_CV_EN.pdf" target="_blank" class="btn btn-secondary btn-cv-cta" aria-label="Download CV (PDF)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    <span data-tr="Özgeçmiş (CV - PDF)" data-en="Download Resume (PDF)">Download Resume (PDF)</span>
+                </a>
+                <a href="#contact" class="btn btn-ghost-cta">
+                    <span data-tr="Masaya Otur (Direkt Hat)" data-en="Sit at the Table (Direct Line)">Masaya Otur (Direkt Hat)</span>
                 </a>
             </div>
-        </div>
-        <div class="scroll-indicator" data-scroll="fade-up" data-scroll-delay="600">
-            <div class="scroll-line">
-                <div class="scroll-dot"></div>
-            </div>
-            <span data-tr="Kaydır" data-en="Scroll">Kaydır</span>
         </div>
     </section>
 
@@ -405,56 +499,56 @@
     <section class="marquee-section">
         <div class="marquee">
             <div class="marquee-content">
-                <span>FULL-STACK ENGINEER</span>
+                <span>AI PRODUCT DEVELOPER</span>
                 <span class="marquee-dot">◆</span>
-                <span>APPLIED AI ARCHITECT</span>
+                <span>FULL-STACK ARCHITECT</span>
                 <span class="marquee-dot">◆</span>
-                <span>PRODUCT BUILDER</span>
+                <span>YAZAR &amp; DÜŞÜNCE</span>
                 <span class="marquee-dot">◆</span>
-                <span>42 ISTANBUL</span>
+                <span>BOKSÖR DİSİPLİNİ</span>
                 <span class="marquee-dot">◆</span>
-                <span>NEXT.JS &amp; REACT NATIVE</span>
+                <span>SIFIR KURUMSAL SLOP</span>
                 <span class="marquee-dot">◆</span>
-                <span>MULTI-TENANT SAAS</span>
+                <span>İTİBAR &amp; UNUTMA</span>
                 <span class="marquee-dot">◆</span>
-                <span>GENERATIVE UI</span>
+                <span>DETERMINISTIC RUNTIMES</span>
                 <span class="marquee-dot">◆</span>
-                <span>ENTREPRENEUR</span>
+                <span>%0.0001 STANDART</span>
                 <span class="marquee-dot">◆</span>
             </div>
             <div class="marquee-content" aria-hidden="true">
-                <span>FULL-STACK ENGINEER</span>
+                <span>AI PRODUCT DEVELOPER</span>
                 <span class="marquee-dot">◆</span>
-                <span>APPLIED AI ARCHITECT</span>
+                <span>FULL-STACK ARCHITECT</span>
                 <span class="marquee-dot">◆</span>
-                <span>PRODUCT BUILDER</span>
+                <span>YAZAR &amp; DÜŞÜNCE</span>
                 <span class="marquee-dot">◆</span>
-                <span>42 ISTANBUL</span>
+                <span>BOKSÖR DİSİPLİNİ</span>
                 <span class="marquee-dot">◆</span>
-                <span>NEXT.JS &amp; REACT NATIVE</span>
+                <span>SIFIR KURUMSAL SLOP</span>
                 <span class="marquee-dot">◆</span>
-                <span>MULTI-TENANT SAAS</span>
+                <span>İTİBAR &amp; UNUTMA</span>
                 <span class="marquee-dot">◆</span>
-                <span>GENERATIVE UI</span>
+                <span>DETERMINISTIC RUNTIMES</span>
                 <span class="marquee-dot">◆</span>
-                <span>ENTREPRENEUR</span>
+                <span>%0.0001 STANDART</span>
                 <span class="marquee-dot">◆</span>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section / Manifesto -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-intro">
                 <div class="section-label" data-scroll="fade-right">
                     <span class="label-line"></span>
-                    <span data-tr="01 — Hakkımda" data-en="01 — About">01 — Hakkımda</span>
+                    <span data-tr="01 — Manifesto &amp; Tavır" data-en="01 — Manifesto &amp; Stance">01 — Manifesto &amp; Tavır</span>
                 </div>
                 <h2 class="about-title" data-scroll="fade-up">
-                    <span data-tr="Fikirlerimi" data-en="I turn my ideas into">Fikirlerimi</span>
-                    <span class="text-gradient" data-tr="hızla" data-en="reality">hızla</span>
-                    <span data-tr="gerçeğe dönüştüren bir girişimciyim." data-en="quickly as an entrepreneur.">gerçeğe dönüştüren bir girişimciyim.</span>
+                    <span data-tr="Masaya oturan" data-en="The verdict of">Masaya oturan</span>
+                    <span class="text-gradient" data-tr="kıdemli liderin" data-en="the senior leader">kıdemli liderin</span>
+                    <span data-tr="hükmü." data-en="at the table.">hükmü.</span>
                 </h2>
             </div>
             
@@ -462,24 +556,32 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p class="about-lead" data-scroll="fade-up">
-                            <span class="text-gradient" data-tr="İstanbul'dan" data-en="From Istanbul,">İstanbul'dan</span><span data-tr=" dünyaya uzanan egemen ürün mimarileri inşa ediyorum." data-en=" I architect sovereign systems and products for the world."> dünyaya uzanan egemen ürün mimarileri inşa ediyorum.</span>
+                            <span class="text-gradient" data-tr="Burada tavsiye veya danışmanlık satılmıyor." data-en="No advice or consulting is peddled here.">Burada tavsiye veya danışmanlık satılmıyor.</span><span data-tr=" Gerçek mühendislik; faturayı bizzat ödeyenlerin, gece 04:00'te sunucuyu ayağa kaldıranların ve masaya yumruğunu koyanların tekelindedir." data-en=" Sovereign engineering belongs solely to those who foot the bill, keep the cluster alive at 04:00, and put their fist on the table."> Gerçek mühendislik; faturayı bizzat ödeyenlerin, gece 04:00'te sunucuyu ayağa kaldıranların ve masaya yumruğunu koyanların tekelindedir.</span>
                         </p>
                         <p data-scroll="fade-up" data-scroll-delay="100">
-                            <span data-tr="Karmaşık yasal regülasyonları, B2B itibar mekanizmalarını ve yapay zekâ modellerini soyut hype'tan arındırarak deterministik ürün mimarilerine dönüştürüyorum. Şişirilmiş kurumsal katmanlar ve gereksiz LLM API maliyetleri yerine hafif, sağlam ve yerel çalışan sistemleri tercih ederim." data-en="I convert complex statutory regulations, B2B reputation mechanics, and AI models from abstract hype into deterministic product architectures. Instead of bloated enterprise layers and unnecessary LLM API costs, I engineer lightweight, resilient, and locally deployable systems.">Karmaşık yasal regülasyonları, B2B itibar mekanizmalarını ve yapay zekâ modellerini soyut hype'tan arındırarak deterministik ürün mimarilerine dönüştürüyorum. Şişirilmiş kurumsal katmanlar ve gereksiz LLM API maliyetleri yerine hafif, sağlam ve yerel çalışan sistemleri tercih ederim.</span>
+                            <span data-tr="Teknoloji dünyası; iki satır Python betiğini sarmalayıp 'Yapay Zekâ Devrimi' diye pazarlayan acemilerle ve LinkedIn'de etkileşim dilenen sözde düşünce liderleriyle doldu. Arka plandaki bellek sızıntısını, donanım bağımlılığını ve token maliyetlerinin matematiğini görmezden gelerek ürün çıkaramazsın. Çıkarırsan faturayı AWS, cezayı ise kullanıcı keser. Masaya çıplak gerçeği koyarız; tokat etkisini o gerçek yaratır." data-en="The tech landscape is polluted by amateurs packaging two-line Python wrappers as 'AI Revolutions' and thought leaders begging for LinkedIn engagement. You cannot ship viable products by ignoring memory leaks, hardware lock-in, and compute costs. If you do, AWS bills you and users abandon you. We lay the unvarnished reality on the table.">Teknoloji dünyası; iki satır Python betiğini sarmalayıp 'Yapay Zekâ Devrimi' diye pazarlayan acemilerle ve LinkedIn'de etkileşim dilenen sözde düşünce liderleriyle doldu. Arka plandaki bellek sızıntısını, donanım bağımlılığını ve token maliyetlerinin matematiğini görmezden gelerek ürün çıkaramazsın. Çıkarırsan faturayı AWS, cezayı ise kullanıcı keser. Masaya çıplak gerçeği koyarız; tokat etkisini o gerçek yaratır.</span>
                         </p>
                         <p data-scroll="fade-up" data-scroll-delay="200">
-                            <span data-tr="Sadece kod yazmıyorum; mevzuat zeminini, sistem güvenliğini, kullanıcı psikolojisini ve dağıtım boru hatlarını tek bir çatı altında birleştirerek sıfırdan pazar payı alan bağımsız girişimler hayata geçiriyorum." data-en="Beyond writing code, I bridge statutory compliance, sovereign system security, user psychology, and deployment pipelines to build independent ventures that capture real market share from day zero.">Sadece kod yazmıyorum; mevzuat zeminini, sistem güvenliğini, kullanıcı psikolojisini ve dağıtım boru hatlarını tek bir çatı altında birleştirerek sıfırdan pazar payı alan bağımsız girişimler hayata geçiriyorum.</span>
+                            <span data-tr="Ringde gardını yarım saniye düşürürsen çenen kırılır, acı gerçeği yerde anlarsın. Sistem mimarisinde açık verirsen veritabanın çöker, itibarın sıfırlanır. Her iki dünyada da bahane üretenler değil; 12 rauntluk kondisyonu tam olanlar ayakta kalır :)" data-en="Drop your guard for half a second in the ring and your jaw gets shattered on the canvas. Leave a vulnerability in system architecture and your database implodes, zeroing your reputation. In both arenas, excuses perish; only those with 12 rounds of relentless stamina survive :)">Ringde gardını yarım saniye düşürürsen çenen kırılır, acı gerçeği yerde anlarsın. Sistem mimarisinde açık verirsen veritabanın çöker, itibarın sıfırlanır. Her iki dünyada da bahane üretenler değil; 12 rauntluk kondisyonu tam olanlar ayakta kalır :)</span>
                         </p>
                     </div>
                     
                     <div class="about-stats" data-scroll="fade-up" data-scroll-delay="250">
                         <div class="stat-item">
-                            <span class="stat-number" data-count="100" data-suffix="+">0</span>
-                            <span class="stat-label" data-tr="Açık Kaynak &amp; Üretim Projesi" data-en="Open Source &amp; Shipped Projects">Açık Kaynak &amp; Üretim Projesi</span>
+                            <span class="stat-number">%0.000</span>
+                            <span class="stat-label" data-tr="Kurumsal Slop &amp; Tolerans" data-en="Corporate Slop &amp; Tolerance">Kurumsal Slop &amp; Tolerans</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" data-count="10" data-suffix="+">0</span>
-                            <span class="stat-label" data-tr="Yıllık Kodlama Geçmişi (HTML/PHP'den AI Mimarisine)" data-en="Years Coding Roots (From Early HTML/PHP to AI)">Yıllık Kodlama Geçmişi (HTML/PHP'den AI Mimarisine)</span>
+                            <span class="stat-number">12 Raunt</span>
+                            <span class="stat-label" data-tr="Zihinsel &amp; Sistem Kondisyonu" data-en="Mental &amp; System Conditioning">Zihinsel &amp; Sistem Kondisyonu</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2 Amiral</span>
+                            <span class="stat-label" data-tr="İtibar &amp; Unutma (Canlı Üretim)" data-en="İtibar &amp; Unutma (Live Production)">İtibar &amp; Unutma (Canlı Üretim)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+ Yıl</span>
+                            <span class="stat-label" data-tr="Mühendislik &amp; Çekirdek Kodlama" data-en="Core Engineering &amp; Systems Roots">Mühendislik &amp; Çekirdek Kodlama</span>
                         </div>
                     </div>
                 </div>
@@ -491,36 +593,25 @@
                         <div class="about-portrait-lighting" id="portraitLighting"></div>
                         <div class="about-portrait-scrim"></div>
 
-                        <!-- Minimalist Live Status Pill -->
+                        <!-- Minimalist Live Status Pill (Top-Right) -->
                         <div class="about-portrait-floating-badge">
                             <span class="live-pulse-dot"></span>
-                            <span data-tr="Aktif Geliştirici" data-en="Active Builder">Aktif Geliştirici</span>
+                            <span data-tr="Sovereign Architect" data-en="Sovereign Architect">Sovereign Architect</span>
                         </div>
 
-                        <!-- Visual Marquee Wrapper (The smooth vertical role ticker over scrim) -->
-                        <div class="visual-marquee-wrapper" id="aboutMarquee">
-                            <div class="marquee-vignette vignette-top"></div>
-                            
-                            <div class="vertical-marquee-track">
-                                <!-- Group 1 -->
-                                <div class="marquee-group">
-                                    <div class="marquee-item" data-tr="Full-Stack &amp; AI Mühendisi" data-en="Full-Stack &amp; AI Engineer">Full-Stack &amp; AI Mühendisi</div>
-                                    <div class="marquee-item" data-tr="Ürün &amp; Sistem Mimarı" data-en="Product &amp; System Architect">Ürün &amp; Sistem Mimarı</div>
-                                    <div class="marquee-item" data-tr="Girişimci &amp; Kurucu" data-en="Entrepreneur &amp; Founder">Girişimci &amp; Kurucu</div>
-                                    <div class="marquee-item" data-tr="42 İstanbul" data-en="42 Istanbul">42 İstanbul</div>
-                                    <div class="marquee-item" data-tr="Boks • Müzik • Edebiyat" data-en="Boxing • Music • Literature">Boks • Müzik • Edebiyat</div>
-                                </div>
-                                <!-- Group 2 -->
-                                <div class="marquee-group" aria-hidden="true">
-                                    <div class="marquee-item" data-tr="Full-Stack &amp; AI Mühendisi" data-en="Full-Stack &amp; AI Engineer">Full-Stack &amp; AI Mühendisi</div>
-                                    <div class="marquee-item" data-tr="Ürün &amp; Sistem Mimarı" data-en="Product &amp; System Architect">Ürün &amp; Sistem Mimarı</div>
-                                    <div class="marquee-item" data-tr="Girişimci &amp; Kurucu" data-en="Entrepreneur &amp; Founder">Girişimci &amp; Kurucu</div>
-                                    <div class="marquee-item" data-tr="42 İstanbul" data-en="42 Istanbul">42 İstanbul</div>
-                                    <div class="marquee-item" data-tr="Boks • Müzik • Edebiyat" data-en="Boxing • Music • Literature">Boks • Müzik • Edebiyat</div>
-                                </div>
+                        <!-- Editorial Discipline Banner (Bottom Dock - Never covers face) -->
+                        <div class="about-portrait-bottom-bar">
+                            <div class="portrait-role-badge">
+                                <span class="live-pulse-dot"></span>
+                                <span class="portrait-role-text" id="portraitRoleTicker" data-tr="AI Product Dev &amp; Boksör Refleksi" data-en="AI Product Dev &amp; Boxing Reflex">AI Product Dev &amp; Boksör Refleksi</span>
                             </div>
-                            
-                            <div class="marquee-vignette vignette-bottom"></div>
+                            <div class="portrait-sub-disciplines">
+                                <span data-tr="Kayıpsız Mimari" data-en="Lossless Architecture">Kayıpsız Mimari</span>
+                                <span class="dot-sep">•</span>
+                                <span data-tr="Edebi Ağırlık" data-en="Literary Weight">Edebi Ağırlık</span>
+                                <span class="dot-sep">•</span>
+                                <span data-tr="Ring Disiplini" data-en="Ring Conditioning">Ring Disiplini</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -538,12 +629,20 @@
         <div class="container">
             <div class="section-label" data-scroll="fade-right">
                 <span class="label-line"></span>
-                <span data-tr="02 — Projeler" data-en="02 — Projects">02 — Projeler</span>
+                <span data-tr="02 — Sahadaki Silahlar" data-en="02 — Weapons in Production">02 — Sahadaki Silahlar</span>
             </div>
-            <h2 class="projects-title" data-scroll="fade-up">
-                <span data-tr="Fikirden ürüne," data-en="From idea to product,">Fikirden ürüne,</span>
-                <span class="text-gradient" data-tr="çözümden etkiye." data-en="from solution to impact.">çözümden etkiye.</span>
-            </h2>
+            <div class="projects-header-row" data-scroll="fade-up">
+                <h2 class="projects-title">
+                    <span data-tr="Vitrin değil," data-en="Not a showroom,">Vitrin değil,</span>
+                    <span class="text-gradient" data-tr="sahadaki silahlar." data-en="weapons in production.">sahadaki silahlar.</span>
+                </h2>
+                
+                <!-- Curated Flagship Badge (Clean, focused Awwwards standard) -->
+                <div class="projects-curated-badge" id="projectsFilterPills">
+                    <span class="live-pulse-dot"></span>
+                    <span data-tr="İtibar &amp; Unutma • 2 Amiral Gemisi Canlı Üretimde" data-en="İtibar &amp; Unutma • 2 Flagship Platforms in Production">İtibar &amp; Unutma • 2 Amiral Gemisi Canlı Üretimde</span>
+                </div>
+            </div>
             
             <!-- Dynamic Projects Grid -->
             <div class="projects-dynamic-grid" id="projectsContainer">
@@ -559,26 +658,30 @@
                 <div class="skills-header-left">
                     <div class="section-label" data-scroll="fade-right">
                         <span class="label-line"></span>
-                        <span data-tr="03 — Teknolojiler" data-en="03 — Technologies">03 — Teknolojiler</span>
+                        <span data-tr="03 — Mimari &amp; Teknoloji Matrisi" data-en="03 — Architectural &amp; Tech Matrix">03 — Mimari &amp; Teknoloji Matrisi</span>
                     </div>
                     <h2 class="skills-title" data-scroll="fade-up">
-                        <span data-tr="Her proje için" data-en="The right tool for">Her proje için</span>
-                        <span class="text-gradient" data-tr="doğru araç." data-en="every project.">doğru araç.</span>
+                        <span data-tr="Mühendislik temelleri ve" data-en="Engineering foundations &amp;">Mühendislik temelleri ve</span>
+                        <span class="text-gradient" data-tr="egemen sistemler." data-en="sovereign systems.">egemen sistemler.</span>
                     </h2>
+                    <p class="section-sub" data-tr="Abartılı buzzword'ler yerine; deterministik çalışma zamanları, veri egemenliği ve yüksek eşzamanlılık disiplini." data-en="Disciplined deterministic runtimes, data sovereignty, and high-concurrency systems over bloated buzzwords.">
+                        Abartılı buzzword'ler yerine; deterministik çalışma zamanları, veri egemenliği ve yüksek eşzamanlılık disiplini.
+                    </p>
                 </div>
 
-                <!-- Bilingual Drag & Throw Filter Pills -->
+                <!-- Architectural Stack Filter Pills -->
                 <div class="skills-filter-pills" id="skillsFilterPills">
                     <button type="button" class="skill-filter-btn active" data-category="all" data-tr="Tümü" data-en="All">Tümü</button>
+                    <button type="button" class="skill-filter-btn" data-category="ai" data-tr="Yapay Zekâ &amp; LLM" data-en="Applied AI &amp; LLM">Yapay Zekâ &amp; LLM</button>
                     <button type="button" class="skill-filter-btn" data-category="frontend" data-tr="Frontend &amp; UI" data-en="Frontend &amp; UI">Frontend &amp; UI</button>
-                    <button type="button" class="skill-filter-btn" data-category="backend" data-tr="Backend &amp; AI" data-en="Backend &amp; AI">Backend &amp; AI</button>
-                    <button type="button" class="skill-filter-btn" data-category="cloud" data-tr="Mobile &amp; Cloud" data-en="Mobile &amp; Cloud">Mobile &amp; Cloud</button>
+                    <button type="button" class="skill-filter-btn" data-category="backend" data-tr="Backend &amp; Sistemler" data-en="Backend &amp; Systems">Backend &amp; Sistemler</button>
+                    <button type="button" class="skill-filter-btn" data-category="cloud" data-tr="Mobil &amp; Bulut" data-en="Mobile &amp; Cloud">Mobil &amp; Bulut</button>
                 </div>
             </div>
             
-            <div class="skills-interactive-wrapper" data-scroll="fade-up">
-                <div class="skills-interactive-container" id="skillsCanvas">
-                    <!-- Technology cards will be generated dynamically by JavaScript -->
+            <div class="skills-bento-wrapper" data-scroll="fade-up">
+                <div class="skills-bento-grid" id="skillsBentoGrid">
+                    <!-- Rendered dynamically by script.js -->
                 </div>
             </div>
         </div>
@@ -592,209 +695,245 @@
                     <div>
                         <div class="section-label">
                             <span class="label-line"></span>
-                            <span data-tr="04 — Yazılar &amp; Analizler" data-en="04 — Essays &amp; Teardowns">04 — Yazılar &amp; Analizler</span>
+                            <span data-tr="04 — Düşünce &amp; Yazılar" data-en="04 — Essays &amp; Verdicts">04 — Düşünce &amp; Yazılar</span>
                         </div>
                         <h2 class="section-title">
-                            <span data-tr="Filtresiz" data-en="Unfiltered">Filtresiz</span>
-                            <span class="text-gradient" data-tr="mühendislik notları." data-en="engineering notes.">mühendislik notları.</span>
+                            <span data-tr="Keskin kalem," data-en="Razor-sharp pen,">Keskin kalem,</span>
+                            <span class="text-gradient" data-tr="soğuk hükümler." data-en="cold verdicts.">soğuk hükümler.</span>
                         </h2>
                     </div>
 
-                    <!-- Fan Stepper Controls & Counter (Awwwards Single-Row Reel) -->
-                    <div class="blog-fan-controls">
-                        <div class="blog-counter-display">
-                            <span id="blogActiveIdx" class="active-idx">01</span>
-                            <span class="idx-sep">/</span>
-                            <span class="total-idx">06</span>
-                        </div>
-                        <div class="fan-nav-buttons">
-                            <button type="button" class="fan-nav-btn" id="blogFanPrev" aria-label="Önceki Yazı">‹</button>
-                            <button type="button" class="fan-nav-btn" id="blogFanNext" aria-label="Sonraki Yazı">›</button>
-                        </div>
+                    <div class="blog-counter-badge">
+                        <span class="blog-status-dot"></span>
+                        <span data-tr="8 TEKNİK OTOPSİ" data-en="8 TECHNICAL AUTOPSIES">8 TEKNİK OTOPSİ</span>
                     </div>
                 </div>
-                <p class="section-sub" data-tr="Yazılım mimarileri, tedarik zinciri güvenliği, yerel yapay zekâ çıkarımı ve donanım egemenliği üzerine teknik postmortemler." data-en="Technical postmortems on sovereign system architecture, supply chain security, and local AI inference.">
-                    Yazılım mimarileri, tedarik zinciri güvenliği, yerel yapay zekâ çıkarımı ve donanım egemenliği üzerine teknik postmortemler.
+                <p class="section-sub" data-tr="Sıfır emoji, sıfır hashtag, sıfır kurumsal nezaket maskesi. Sunucu faturasını bizzat ödeyenlerin yazdığı teknik postmortemler ve mimari otopsiler." data-en="Zero emoji, zero hashtags, zero corporate diplomatic masks. Technical postmortems and architectural autopsies written by those who pay the server bills.">
+                    Sıfır emoji, sıfır hashtag, sıfır kurumsal nezaket maskesi. Sunucu faturasını bizzat ödeyenlerin yazdığı teknik postmortemler ve mimari otopsiler.
                 </p>
             </div>
 
-            <!-- Single-Row 3D Card Fan Stage (Awwwards Grade) -->
-            <div class="blog-fan-stage" id="blogFanStage" data-scroll="fade-up" data-scroll-delay="150">
-                <div class="blog-fan-deck" id="blogFanDeck">
-                    <!-- Article 1 (EN GÜNCEL): OpenAI Linux Exploit (07 Kas 2026) -->
-                    <article class="blog-fan-card is-active" data-index="0" data-link="blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.png" alt="OpenAI Linux Exploit Analizi" loading="lazy">
-                            <span class="blog-card-tag" data-tr="AÇIK KAYNAK &amp; GÜVENLİK" data-en="OPEN SOURCE &amp; SECURITY">AÇIK KAYNAK &amp; GÜVENLİK</span>
+            <!-- Editorial Publications List (Awwwards / Mobbin Editorial Grade) -->
+            <div class="editorial-publications-list" data-scroll="fade-up">
+                <!-- Article 1: 10 Kasım & Teknolojik Egemenlik (10 Kas 2026) -->
+                <a href="blog/10-kasim-teknolojik-egemenlik-ve-ataturk.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-10" class="pub-row-date">10 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
+                        <span class="badge-latest-pill" data-tr="EN GÜNCEL" data-en="LATEST">EN GÜNCEL</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="EGEMENLİK &amp; MİMARİ" data-en="SOVEREIGNTY &amp; ARCHITECTURE">EGEMENLİK &amp; MİMARİ</span>
+                            <h3 class="pub-row-title" data-tr="10 Kasım ve Teknolojik Egemenlik: &quot;İstikbal Göklerdedir&quot;den Amerikan API Bayiliğine" data-en="Nov 10 &amp; Technological Sovereignty: From Sovereign Aviation to American API Brokerage">
+                                10 Kasım ve Teknolojik Egemenlik: "İstikbal Göklerdedir"den Amerikan API Bayiliğine
+                            </h3>
                         </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-11-07">07 Kas 2026</time>
-                                <span>•</span>
-                                <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
-                                <span class="badge-latest-pill" data-tr="EN GÜNCEL" data-en="LATEST">EN GÜNCEL</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura" data-en="OpenAI's $1.2M Linux Exploit Show: The Heavy Toll on Open Source Maintainers">
+                        <p class="pub-row-excerpt" data-tr="1930'larda sıfırdan metal uçak ve motor fabrikaları kuran bir Cumhuriyet iradesinden, bugün üç satır kod için Amerikan bulut tekellerine komisyon ödeyen yazılım dünyasının acı bilançosu." data-en="From founding aircraft foundries in the 1930s to paying cloud tolls for trivial APIs: an engineering autopsy on national technological sovereignty.">
+                            1930'larda sıfırdan metal uçak ve motor fabrikaları kuran bir Cumhuriyet iradesinden, bugün üç satır kod için Amerikan bulut tekellerine komisyon ödeyen yazılım dünyasının acı bilançosu.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Article 2: Nvidia Jensen Huang Çin Casusluk Skandalı (08 Kas 2026) -->
+                <a href="blog/nvidia-jensen-huang-cin-casusluk-skandali.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-08" class="pub-row-date">08 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="6 dk okuma" data-en="6 min read">6 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="JEOPOLİTİK &amp; DONANIM" data-en="HARDWARE &amp; GEOPOLITICS">JEOPOLİTİK &amp; DONANIM</span>
+                            <h3 class="pub-row-title" data-tr="3.5 Trilyon Dolarlık Ulusal Güvenlik Duvarı: Bir Deri Ceket ve Klasik Bal Tuzağı" data-en="The $3.5 Trillion National Security Shield: A Leather Jacket &amp; Classic Honeytrap">
+                                3.5 Trilyon Dolarlık Ulusal Güvenlik Duvarı: Bir Deri Ceket ve Klasik Bal Tuzağı
+                            </h3>
+                        </div>
+                        <p class="pub-row-excerpt" data-tr="Washington'ın çip ambargolarıyla dünyayı inlettiği haftada, Pentagon'un güvendiği 3.5 trilyon dolarlık Nvidia tekeli ve Jensen Huang'ın Soğuk Savaş usulü bal tuzağına düşüşünün mimari analizi." data-en="How geopolitical export sanctions collided with corporate espionage: a breakdown of Nvidia's hardware monopoly and supply-chain vulnerabilities.">
+                            Washington'ın çip ambargolarıyla dünyayı inlettiği haftada, Pentagon'un güvendiği 3.5 trilyon dolarlık Nvidia tekeli ve Jensen Huang'ın Soğuk Savaş usulü bal tuzağına düşüşünün mimari analizi.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Article 3: OpenAI Linux Exploit (07 Kas 2026) -->
+                <a href="blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-07" class="pub-row-date">07 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="AÇIK KAYNAK &amp; GÜVENLİK" data-en="OPEN SOURCE &amp; SECURITY">AÇIK KAYNAK &amp; GÜVENLİK</span>
+                            <h3 class="pub-row-title" data-tr="OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura" data-en="OpenAI's $1.2M Linux Exploit Show: The Heavy Toll on Open Source Maintainers">
                                 OpenAI'ın 1.2 Milyon Dolarlık Linux Exploit Şovu: Açık Kaynak Topluluğuna Kesilen Ağır Fatura
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü." data-en="How OpenAI's autonomous fuzzing dumped 948 kernel root exploits onto volunteer Linux maintainers without funding remediation.">
-                                OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/openai-1-2-milyon-dolarlik-linux-exploit-skandali.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
+                        <p class="pub-row-excerpt" data-tr="OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü." data-en="How OpenAI's autonomous fuzzing dumped 948 kernel root exploits onto volunteer Linux maintainers without funding remediation.">
+                            OpenAI'ın 30 saatte 948 root açığı bulduğu PR şovu ve trilyon dolarlık sunucuları ayakta tutan bir avuç gönüllü Linux mühendisinin sırtına yıkılan bakım yükü.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
 
-                    <!-- Article 2: AI Bumerangı (05 Kas 2026) -->
-                    <article class="blog-fan-card is-next" data-index="1" data-link="blog/ai-bumerangi-muhendislerin-donusu.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/ai-bumerangi-muhendislerin-donusu.png" alt="AI Bumerangı ve Mühendislerin Dönüşü" loading="lazy">
-                            <span class="blog-card-tag" data-tr="MÜHENDİSLİK &amp; MİMARİ" data-en="ENGINEERING &amp; ARCHITECTURE">MÜHENDİSLİK &amp; MİMARİ</span>
-                        </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-11-05">05 Kas 2026</time>
-                                <span>•</span>
-                                <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="'Yapay Zeka Yerimizi Alacak' Kibri İflas Etti: Kovulan Mühendislerin Dönüşü" data-en="The 'AI Will Replace Engineers' Hubris Collapsed: The Return of Systems Engineers">
-                                'Yapay Zeka Yerimizi Alacak' Kibri İflas Etti: Kovulan Mühendislerin Dönüşü
+                <!-- Article 4: AI Bumerangı (05 Kas 2026) -->
+                <a href="blog/ai-bumerangi-muhendislerin-donusu.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-05" class="pub-row-date">05 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="MÜHENDİSLİK &amp; MİMARİ" data-en="ENGINEERING &amp; ARCHITECTURE">MÜHENDİSLİK &amp; MİMARİ</span>
+                            <h3 class="pub-row-title" data-tr="&quot;Yapay Zeka Yerimizi Alacak&quot; Kibri İflas Etti: Kovulan Mühendislerin Dönüşü" data-en="The &quot;AI Will Replace Engineers&quot; Hubris Collapsed: The Return of Systems Engineers">
+                                "Yapay Zeka Yerimizi Alacak" Kibri İflas Etti: Kovulan Mühendislerin Dönüşü
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor." data-en="Why companies that replaced engineers with unchecked AI code generation hit an architectural debt wall and are rehiring senior talent.">
-                                Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/ai-bumerangi-muhendislerin-donusu.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
+                        <p class="pub-row-excerpt" data-tr="Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor." data-en="Why companies that replaced engineers with unchecked AI code generation hit an architectural debt wall and are rehiring senior talent.">
+                            Yapay zeka bahanesiyle mühendis kovan şirketlerin üçte biri, kontrolsüz AI kodlarının yarattığı mimari çöküş sonrası eski çalışanlarını zamla geri çağırıyor.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
 
-                    <!-- Article 3: Qwen Açık Kaynak (04 Kas 2026) -->
-                    <article class="blog-fan-card is-far" data-index="2" data-link="blog/qwen-acik-kaynak-silikon-vadisi.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/qwen-acik-kaynak-silikon-vadisi.png" alt="Qwen Açık Kaynak ve Silikon Vadisi" loading="lazy">
-                            <span class="blog-card-tag" data-tr="AÇIK KAYNAK &amp; AI" data-en="OPEN WEIGHTS &amp; AI">AÇIK KAYNAK &amp; AI</span>
-                        </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-11-04">04 Kas 2026</time>
-                                <span>•</span>
-                                <span data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="Çin Açık Kaynağının Zaferi: Qwen'in 'Sonuna Kadar Açık Kaynak' Resti ve Silikon Vadisi Tekeli" data-en="The Triumph of Open-Weights AI: Qwen's Open-Source Commitment vs. Closed Monopolies">
-                                Çin Açık Kaynağının Zaferi: Qwen'in 'Sonuna Kadar Açık Kaynak' Resti ve Silikon Vadisi Tekeli
+                <!-- Article 5: Qwen Açık Kaynak (04 Kas 2026) -->
+                <a href="blog/qwen-acik-kaynak-silikon-vadisi.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-04" class="pub-row-date">04 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="AÇIK KAYNAK &amp; AI" data-en="OPEN WEIGHTS &amp; AI">AÇIK KAYNAK &amp; AI</span>
+                            <h3 class="pub-row-title" data-tr="Çin Açık Kaynağının Zaferi: Qwen'in &quot;Sonuna Kadar Açık Kaynak&quot; Resti ve Silikon Vadisi Tekeli" data-en="The Triumph of Open-Weights AI: Qwen's Open-Source Commitment vs. Closed Monopolies">
+                                Çin Açık Kaynağının Zaferi: Qwen'in "Sonuna Kadar Açık Kaynak" Resti ve Silikon Vadisi Tekeli
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının açık ağırlıklı modellere kayması." data-en="As Silicon Valley locks models behind proprietary APIs, Apache 2.0 open-weights models are becoming the global engineering standard.">
-                                Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının açık ağırlıklı modellere kayması.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/qwen-acik-kaynak-silikon-vadisi.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
+                        <p class="pub-row-excerpt" data-tr="Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının açık ağırlıklı modellere kayması." data-en="As Silicon Valley locks models behind proprietary APIs, Apache 2.0 open-weights models are becoming the global engineering standard.">
+                            Silikon Vadisi modellerini kapalı kasalara kilitlerken Alibaba'nın açık kaynak taahhüdü ve küresel yapay zeka altyapısının açık ağırlıklı modellere kayması.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
 
-                    <!-- Article 4: Ollama Performance Tax (03 Kas 2026) -->
-                    <article class="blog-fan-card is-far" data-index="3" data-link="blog/ollama-performans-vergisi-vllm.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/ollama-performans-vergisi-vllm.png" alt="Ollama Performans Vergisi" loading="lazy">
-                            <span class="blog-card-tag" data-tr="AI &amp; DONANIM" data-en="AI &amp; COMPUTE">AI &amp; DONANIM</span>
-                        </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-11-03">03 Kas 2026</time>
-                                <span>•</span>
-                                <span data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="Ollama'nın &quot;Kolaylık Vergisi&quot;: Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?" data-en="Ollama's 'Convenience Tax': Why Raw llama.cpp and vLLM Dominate Local Inference">
+                <!-- Article 6: Ollama Performance Tax (03 Kas 2026) -->
+                <a href="blog/ollama-performans-vergisi-vllm.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-03" class="pub-row-date">03 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="5 dk okuma" data-en="5 min read">5 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="AI &amp; DONANIM" data-en="AI &amp; COMPUTE">AI &amp; DONANIM</span>
+                            <h3 class="pub-row-title" data-tr="Ollama'nın &quot;Kolaylık Vergisi&quot;: Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?" data-en="Ollama's &quot;Convenience Tax&quot;: Why Raw llama.cpp and vLLM Dominate Local Inference">
                                 Ollama'nın "Kolaylık Vergisi": Yerel Çıkarımda Neden Saf llama.cpp ve vLLM Kazanıyor?
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı." data-en="How Ollama's wrapper overhead inflicts up to a 41% performance penalty compared to bare-metal llama.cpp and vLLM engines.">
-                                Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/ollama-performans-vergisi-vllm.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
+                        <p class="pub-row-excerpt" data-tr="Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı." data-en="How Ollama's wrapper overhead inflicts up to a 41% performance penalty compared to bare-metal llama.cpp and vLLM engines.">
+                            Ollama soyutlama katmanının saf llama.cpp ve vLLM motorlarına kıyasla yarattığı %40'a varan performans kaybı ve yerel yapay zeka topluluğunun mimari isyanı.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
 
-                    <!-- Article 5: Sam Altman RAM Crisis (02 Kas 2026) -->
-                    <article class="blog-fan-card is-far" data-index="4" data-link="blog/sam-altman-ram-krizi.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/sam-altman-ram-krizi.png" alt="Sam Altman ve RAM İsrafı Masalı" loading="lazy">
-                            <span class="blog-card-tag" data-tr="BULUT &amp; MÜLKİYET" data-en="SOVEREIGNTY">BULUT &amp; MÜLKİYET</span>
-                        </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-11-02">02 Kas 2026</time>
-                                <span>•</span>
-                                <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş" data-en="Sam Altman and the RAM Waste Myth: The Corporate War Against Hardware Ownership">
+                <!-- Article 7: Sam Altman RAM Crisis (02 Kas 2026) -->
+                <a href="blog/sam-altman-ram-krizi.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-11-02" class="pub-row-date">02 Kas 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="BULUT &amp; MÜLKİYET" data-en="SOVEREIGNTY">BULUT &amp; MÜLKİYET</span>
+                            <h3 class="pub-row-title" data-tr="Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş" data-en="Sam Altman and the RAM Waste Myth: The Corporate War Against Hardware Ownership">
                                 Sam Altman ve RAM İsrafı Masalı: Donanım Mülkiyetine Açılan Savaş
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi." data-en="Deconstructing OpenAI's push to centralize memory into cloud monopolies and eliminate sovereign on-device computation.">
-                                OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/sam-altman-ram-krizi.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
+                        <p class="pub-row-excerpt" data-tr="OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi." data-en="Deconstructing OpenAI's push to centralize memory into cloud monopolies and eliminate sovereign on-device computation.">
+                            OpenAI CEO'sunun kişisel bilgisayarlarda RAM bulunmasını israf ilan etmesi ve yerel modellere karşı bulut tekellerinin açtığı savaşın analizi.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
 
-                    <!-- Article 6: Claude Code Trojan (31 Eki 2026) -->
-                    <article class="blog-fan-card is-far" data-index="5" data-link="blog/claude-code-trojan-npm-analiz.html">
-                        <div class="blog-card-visual">
-                            <img src="blog/claude-hacker-news.jpg" alt="Anthropic Claude Code Trojan Anatomisi" loading="lazy">
-                            <span class="blog-card-tag" data-tr="SİBER GÜVENLİK" data-en="SECURITY">SİBER GÜVENLİK</span>
-                        </div>
-                        <div class="blog-card-body">
-                            <div class="blog-card-meta">
-                                <time datetime="2026-10-31">31 Eki 2026</time>
-                                <span>•</span>
-                                <span data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
-                            </div>
-                            <h3 class="blog-card-title" data-tr="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust" data-en="Anthropic Claude Code and Trojan Postmortem: Zero Trust in Supply Chains">
+                <!-- Article 8: Claude Code Trojan (31 Eki 2026) -->
+                <a href="blog/claude-code-trojan-npm-analiz.html" class="editorial-pub-row">
+                    <div class="pub-row-meta">
+                        <time datetime="2026-10-31" class="pub-row-date">31 Eki 2026</time>
+                        <span class="pub-row-sep">•</span>
+                        <span class="pub-row-reading" data-tr="4 dk okuma" data-en="4 min read">4 dk okuma</span>
+                    </div>
+                    <div class="pub-row-main">
+                        <div class="pub-row-top">
+                            <span class="pub-row-domain" data-tr="SİBER GÜVENLİK" data-en="SECURITY">SİBER GÜVENLİK</span>
+                            <h3 class="pub-row-title" data-tr="Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust" data-en="Anthropic Claude Code and Trojan Postmortem: Zero Trust in Supply Chains">
                                 Anthropic Claude Code ve Trojan Anatomisi: Yazılım Tedarik Zincirinde Zero Trust
                             </h3>
-                            <p class="blog-card-excerpt" data-tr="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi." data-en="Official Claude Code v2.1.313 was compromised with a Remote Access Trojan. Deep dive into agent sandboxing and zero-trust engineering.">
-                                Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi.
-                            </p>
-                            <div class="blog-card-footer">
-                                <a href="blog/claude-code-trojan-npm-analiz.html" class="read-more-link">
-                                    <span class="read-more-label" data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
-                                    <span class="read-more-arrow">↗</span>
-                                </a>
-                            </div>
                         </div>
-                    </article>
-                </div>
+                        <p class="pub-row-excerpt" data-tr="Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi." data-en="Official Claude Code v2.1.313 was compromised with a Remote Access Trojan. Deep dive into agent sandboxing and zero-trust engineering.">
+                            Anthropic'in resmi Claude Code eklentisi 2.1.313 sürümünde Remote Access Trojan yerleştirildi. Tedarik zinciri güvenliği ve otonom ajan mimarileri analizi.
+                        </p>
+                    </div>
+                    <div class="pub-row-action">
+                        <span class="pub-row-btn">
+                            <span data-tr="Analizi Oku" data-en="Read Teardown">Analizi Oku</span>
+                            <span class="pub-row-arrow">↗</span>
+                        </span>
+                    </div>
+                </a>
             </div>
 
             <!-- Daily Essays & Architecture Notes Banner (with LinkedIn, and mini round X + Dev.to) -->
             <div class="blog-cta-banner" data-scroll="fade-up">
                 <div class="blog-cta-info">
-                    <span class="blog-cta-tag" data-tr="GÜNLÜK ANALİZLER &amp; MİMARİ BÜLTENİ" data-en="DAILY ESSAYS &amp; ARCHITECTURE NEWSLETTER">GÜNLÜK ANALİZLER &amp; MİMARİ BÜLTENİ</span>
-                    <h3 data-tr="16.000+ Tekil Gösterim • Filtresiz Mühendislik &amp; Sistem Mimarisi Notları" data-en="16,000+ Single-Post Reach • Unfiltered Systems Architecture Notes">
-                        16.000+ Tekil Gösterim • Filtresiz Mühendislik &amp; Sistem Mimarisi Notları
+                    <span class="blog-cta-tag" data-tr="GÜNLÜK MÜHENDİSLİK &amp; MİMARİ BÜLTENİ" data-en="DAILY SYSTEMS &amp; ARCHITECTURE ESSAYS">GÜNLÜK MÜHENDİSLİK &amp; MİMARİ BÜLTENİ</span>
+                    <h3 data-tr="10.000+ Takipçi • Milyonlarca Okuyucu &amp; Filtresiz Sistem Mimarisi Notları" data-en="10,000+ Followers • Millions of Readers &amp; Unfiltered Systems Architecture Notes">
+                        10.000+ Takipçi • Milyonlarca Okuyucu &amp; Filtresiz Sistem Mimarisi Notları
                     </h3>
-                    <p data-tr="Donanım tekelleri, LLM soyutlama vergileri, tedarik zinciri güvenliği ve egemen yazılım mimarileri üzerine günlük teknik analizlerimi ve postmortemlerimi LinkedIn bültenimden takip edebilirsiniz." data-en="Follow my daily technical postmortems on hardware monopolies, LLM abstraction costs, supply-chain zero trust, and sovereign software architectures on my LinkedIn newsletter.">
-                        Donanım tekelleri, LLM soyutlama vergileri, tedarik zinciri güvenliği ve egemen yazılım mimarileri üzerine günlük teknik analizlerimi ve postmortemlerimi LinkedIn bültenimden takip edebilirsiniz.
+                    <p data-tr="10.000'den fazla sektör profesyoneli ve milyonlarca organik okuyucuyla; donanım tekelleri, LLM soyutlama vergileri, tedarik zinciri güvenliği ve egemen yazılım mimarileri üzerine günlük teknik analizlerimi ve postmortemlerimi LinkedIn bültenimden takip edebilirsiniz." data-en="Joined by over 10,000 tech leaders and millions of organic readers; follow my daily technical postmortems on hardware monopolies, LLM abstraction costs, supply-chain zero trust, and sovereign software architectures on my LinkedIn newsletter.">
+                        10.000'den fazla sektör profesyoneli ve milyonlarca organik okuyucuyla; donanım tekelleri, LLM soyutlama vergileri, tedarik zinciri güvenliği ve egemen yazılım mimarileri üzerine günlük teknik analizlerimi ve postmortemlerimi LinkedIn bültenimden takip edebilirsiniz.
                     </p>
                 </div>
                 <div class="blog-cta-actions">
@@ -804,18 +943,18 @@
                         </svg>
                         <span data-tr="LinkedIn'de Takip Et &amp; Bağlan ↗" data-en="Follow &amp; Connect on LinkedIn ↗">LinkedIn'de Takip Et &amp; Bağlan ↗</span>
                     </a>
-                    <!-- Small Round X Icon Button -->
-                    <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="social-circle-mini-btn" aria-label="X (Twitter)" title="X (@DevKursat)">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <!-- Small Round Dev.to Icon Button -->
-                    <a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer" class="social-circle-mini-btn" aria-label="DEV.to" title="DEV.to (@devkursat)">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7.42 10.05c-.18-.12-.46-.19-.84-.19H5.2v4.28h1.38c.38 0 .66-.07.84-.2.19-.13.29-.35.29-.65v-2.58c0-.31-.1-.53-.29-.66zM0 4.5v15c0 .83.67 1.5 1.5 1.5h21c.83 0 1.5-.67 1.5-1.5v-15c0-.83-.67-1.5-1.5-1.5h-21C.67 3 0 3.67 0 4.5zm8.74 8.78c0 .64-.23 1.15-.68 1.53-.45.38-1.09.57-1.92.57H3.6V8.62h2.54c.83 0 1.47.19 1.92.57.45.38.68.89.68 1.53v2.56zm3.38 2.1H10.5V8.62h1.62v6.76zm6.81-4.84h-2.12v1.39h1.85v1.35h-1.85v1.44h2.12v1.41h-3.74V8.62h3.74v1.42z"/>
-                        </svg>
-                    </a>
+                    <div class="blog-cta-sub-actions">
+                        <a href="https://x.com/DevKursat" target="_blank" rel="noopener noreferrer" class="social-circle-mini-btn" aria-label="X (Twitter)" title="X (@DevKursat)">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer" class="social-circle-mini-btn" aria-label="DEV.to" title="DEV.to (@devkursat)">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.42 10.05c-.18-.12-.46-.19-.84-.19H5.2v4.28h1.38c.38 0 .66-.07.84-.2.19-.13.29-.35.29-.65v-2.58c0-.31-.1-.53-.29-.66zM0 4.5v15c0 .83.67 1.5 1.5 1.5h21c.83 0 1.5-.67 1.5-1.5v-15c0-.83-.67-1.5-1.5-1.5h-21C.67 3 0 3.67 0 4.5zm8.74 8.78c0 .64-.23 1.15-.68 1.53-.45.38-1.09.57-1.92.57H3.6V8.62h2.54c.83 0 1.47.19 1.92.57.45.38.68.89.68 1.53v2.56zm3.38 2.1H10.5V8.62h1.62v6.76zm6.81-4.84h-2.12v1.39h1.85v1.35h-1.85v1.44h2.12v1.41h-3.74V8.62h3.74v1.42z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -828,15 +967,14 @@
             <div class="contact-hero-block">
                 <div class="section-label">
                     <span class="label-line"></span>
-                    <span data-tr="05 — İletişim &amp; Teklif" data-en="05 — Contact &amp; Proposal">05 — İletişim &amp; Teklif</span>
+                    <span data-tr="05 — Direkt Hat &amp; Protokol" data-en="05 — Direct Line &amp; Protocol">05 — Direkt Hat &amp; Protokol</span>
                 </div>
                 <h2 class="contact-title">
-                    <span data-tr="Birlikte" data-en="Let's create">Birlikte</span>
-                    <span class="text-gradient" data-tr="harika şeyler" data-en="amazing things">harika şeyler</span>
-                    <span data-tr="yaratalım." data-en="together.">yaratalım.</span>
+                    <span data-tr="Masaya oturmaya" data-en="Ready to sit">Masaya oturmaya</span>
+                    <span class="text-gradient" data-tr="hazır mısın?" data-en="at the table?">hazır mısın?</span>
                 </h2>
                 <p class="contact-lead">
-                    <span data-tr="Yeni yazılım projeleri, kurumsal mimari danışmanlığı veya mühendislik iş birlikleri için doğrudan iletişime geçin." data-en="Get in touch for software engineering projects, architectural consulting, or strategic collaborations.">Yeni yazılım projeleri, kurumsal mimari danışmanlığı veya mühendislik iş birlikleri için doğrudan iletişime geçin.</span>
+                    <span data-tr="Boş vaktim yok. 'Gelin kahve içip beyin fırtınası yapalım' geyiklerine kapalıyım. Ciddi bir ürün vizyonun, yüksek ölçekli bir mimari problemin veya masaya konacak gerçek bir faturan varsa doğrudan yaz." data-en="I have no idle time. Closed to corporate coffee chats and brainstorming slop. If you possess a serious product thesis, massive architectural scale, or a real balance sheet to lay on the table, reach out directly.">Boş vaktim yok. 'Gelin kahve içip beyin fırtınası yapalım' geyiklerine kapalıyım. Ciddi bir ürün vizyonun, yüksek ölçekli bir mimari problemin veya masaya konacak gerçek bir faturan varsa doğrudan yaz.</span>
                 </p>
                 <div class="contact-email-wrapper">
                     <a href="mailto:tckursat@icloud.com" class="contact-email contact-email-massive">
@@ -1044,7 +1182,12 @@
             <div class="footer-stellar-grid">
                 <!-- Sol Ana Sütun: Profil & Aksiyon -->
                 <div class="footer-stellar-main-col">
-                    <h3 class="footer-stellar-name">Kürşat Yılmaz</h3>
+                    <a href="#hero" class="footer-brand-lockup">
+                        <span class="brand-beacon"></span>
+                        <span class="brand-word">KURSAT</span>
+                        <span class="brand-spec">// 01</span>
+                    </a>
+                    <p class="footer-brand-motto">Sovereign Systems &amp; Applied AI Architecture</p>
                     <div class="footer-stellar-meta">
                         <span class="footer-stellar-loc">İstanbul, Türkiye • GMT+3</span>
                         <a href="mailto:tckursat@icloud.com" class="footer-stellar-email">tckursat@icloud.com</a>
@@ -1077,8 +1220,8 @@
                     <div class="footer-nav-col">
                         <h4 class="footer-col-title" data-tr="GİRİŞİM &amp; KOD" data-en="VENTURES &amp; CODE">GİRİŞİM &amp; KOD</h4>
                         <ul class="footer-col-list">
-                            <li><a href="https://itibar.app" target="_blank" rel="noopener noreferrer">itibar.app ↗</a></li>
-                            <li><a href="https://unutma.itibar.app" target="_blank" rel="noopener noreferrer">Unutma. (unutma.itibar.app) ↗</a></li>
+                            <li><a href="https://itibar.app" target="_blank" rel="noopener noreferrer">itibar.app <span class="footer-live-tag" data-tr="CANLI" data-en="LIVE">CANLI</span> ↗</a></li>
+                            <li><a href="https://unutma.itibar.app" target="_blank" rel="noopener noreferrer">Unutma. <span class="footer-live-tag" data-tr="CANLI" data-en="LIVE">CANLI</span> ↗</a></li>
                             <li><a href="https://github.com/DevKursat" target="_blank" rel="noopener noreferrer">GitHub (100+ Repo) ↗</a></li>
                             <li><a href="https://dev.to/devkursat" target="_blank" rel="noopener noreferrer">DEV.to Makaleler ↗</a></li>
                         </ul>
@@ -1102,7 +1245,11 @@
             <div class="footer-stellar-mid">
                 <div class="footer-stellar-divider"></div>
                 <div class="footer-mid-bottom">
-                    <span>© 2026 Kürşat Yılmaz • Sovereign Architecture &amp; Creative Media</span>
+                    <span class="footer-status-pill">
+                        <span class="status-dot-pulse"></span>
+                        <span data-tr="TÜM SİSTEMLER ÇALIŞIYOR" data-en="ALL SYSTEMS OPERATIONAL">TÜM SİSTEMLER ÇALIŞIYOR</span>
+                    </span>
+                    <span class="footer-copyright">© 2026 KURSAT • Sovereign Architecture &amp; Creative Media</span>
                     <a href="#hero" class="back-to-top" id="backToTopBtn">
                         <span data-tr="Başa Dön" data-en="Back to Top">Başa Dön</span>
                         <span>↑</span>
@@ -1111,9 +1258,16 @@
             </div>
         </div>
 
-        <!-- En Altta Alt Kenardan Kesilmiş (Bottom-Cropped) Devasa Kürşat Yazısı -->
-        <div class="footer-stellar-wordmark" aria-hidden="true">
-            <span class="stellar-huge-text">Kürşat</span>
+        <!-- En Altta Kusursuz K U R S A T Wordmark (Symmetrical 6-Letter Architectural Monolith) -->
+        <div class="footer-stellar-wordmark" id="footerWordmark" aria-label="KURSAT">
+            <span class="stellar-huge-text" id="stellarHugeText">
+                <span class="char-span" style="--char-idx: 0">K</span>
+                <span class="char-span" style="--char-idx: 1">U</span>
+                <span class="char-span" style="--char-idx: 2">R</span>
+                <span class="char-span" style="--char-idx: 3">S</span>
+                <span class="char-span" style="--char-idx: 4">A</span>
+                <span class="char-span" style="--char-idx: 5">T</span>
+            </span>
         </div>
     </footer>
 
@@ -1122,6 +1276,7 @@
     <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-lenis-prevent>
         <div class="modal-backdrop"></div>
         <div class="modal-container" data-lenis-prevent>
+            <div class="modal-drag-handle" aria-hidden="true"></div>
             <button class="modal-close" aria-label="Kapat">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1247,7 +1402,7 @@
     <div class="page-transition-curtain" id="pageTransitionCurtain" aria-hidden="true">
         <div class="curtain-slab curtain-slab-top"></div>
         <div class="curtain-slab curtain-slab-bottom"></div>
-        <div class="curtain-monogram">K<span class="logo-dot">.</span></div>
+        <div class="curtain-monogram">KURSAT</div>
     </div>
 
     <!-- Core Motion & Scroll Engines -->

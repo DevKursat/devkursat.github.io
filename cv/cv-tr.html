@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kürşat Yılmaz — Lead AI Product Developer CV (Türkçe)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 8.05pt;
+      line-height: 1.27;
+      color: #1e293b;
+      background: #ffffff;
+    }
+
+    a {
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    .cv-container {
+      max-width: 190mm;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1.5px solid #0f172a;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    h1.name {
+      font-size: 19pt;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .target-title {
+      font-size: 9.3pt;
+      font-weight: 700;
+      color: #0369a1;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 7.7pt;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .contact-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .contact-row a {
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .contact-row a:hover {
+      color: #0284c7;
+    }
+
+    /* Executive Summary */
+    .summary-text {
+      font-size: 7.95pt;
+      color: #334155;
+      line-height: 1.3;
+      margin-bottom: 5px;
+      text-align: justify;
+    }
+
+    /* Impact Highlights Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin-bottom: 6px;
+    }
+
+    .metric-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #0284c7;
+      border-radius: 4px;
+      padding: 3.5px 6px;
+    }
+
+    .metric-val {
+      font-size: 9.6pt;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-lbl {
+      font-size: 6.4pt;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 1px;
+      line-height: 1.15;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 8.4pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 1.5px;
+      margin-bottom: 3.5px;
+      margin-top: 4.5px;
+    }
+
+    /* Experience Items */
+    .exp-item {
+      margin-bottom: 4.5px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-role-company {
+      font-size: 8.5pt;
+      color: #0f172a;
+    }
+
+    .exp-role {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .exp-company {
+      font-weight: 600;
+      color: #0369a1;
+    }
+
+    .exp-meta {
+      font-size: 7.4pt;
+      font-weight: 600;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+
+    .exp-badge {
+      display: inline-block;
+      font-size: 6.4pt;
+      font-weight: 700;
+      padding: 0.5px 4px;
+      border-radius: 3px;
+      background: #f1f5f9;
+      color: #475569;
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .exp-bullets li {
+      position: relative;
+      padding-left: 10px;
+      font-size: 7.7pt;
+      color: #334155;
+      line-height: 1.26;
+      margin-bottom: 1px;
+    }
+
+    .exp-bullets li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #0284c7;
+      font-size: 7.4pt;
+    }
+
+    .exp-bullets strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .exp-stack {
+      font-size: 7.1pt;
+      color: #64748b;
+      margin-top: 1px;
+      padding-left: 10px;
+    }
+
+    .exp-stack strong {
+      color: #475569;
+      font-weight: 600;
+    }
+
+    /* Skills Table */
+    .skills-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8px;
+      font-size: 7.5pt;
+    }
+
+    .skill-row {
+      display: flex;
+      line-height: 1.25;
+    }
+
+    .skill-category {
+      width: 142px;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .skill-list {
+      color: #334155;
+    }
+
+    /* Dual Column Bottom: Education & Security Distinctions */
+    .bottom-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 3.5px;
+    }
+
+    .edu-item {
+      margin-bottom: 2px;
+    }
+
+    .edu-school {
+      font-size: 8.2pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .edu-degree {
+      font-size: 7.7pt;
+      color: #0369a1;
+      font-weight: 600;
+    }
+
+    .edu-desc {
+      font-size: 7.1pt;
+      color: #64748b;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    .distinction-list {
+      list-style: none;
+      font-size: 7.4pt;
+      color: #334155;
+      line-height: 1.26;
+    }
+
+    .distinction-list li {
+      position: relative;
+      padding-left: 9px;
+      margin-bottom: 1.2px;
+    }
+
+    .distinction-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #0284c7;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <h1 class="name">KÜRŞAT YILMAZ</h1>
+        <div class="contact-row">
+          <span>İstanbul, Türkiye</span>
+          <span>·</span>
+          <span>+90 545 380 98 28</span>
+          <span>·</span>
+          <a href="mailto:tckursat@icloud.com">tckursat@icloud.com</a>
+        </div>
+      </div>
+      <div class="target-title">Lead AI Product Developer | Full-Stack, Üretken Yapay Zekâ & Güvenli Sistem Mimarı</div>
+      <div class="contact-row">
+        <a href="https://linkedin.com/in/kürşatyılmaz" target="_blank">linkedin.com/in/kürşatyılmaz</a>
+        <span>·</span>
+        <a href="https://github.com/DevKursat" target="_blank">github.com/DevKursat</a>
+        <span>·</span>
+        <a href="https://devkursat.github.io" target="_blank">devkursat.github.io</a>
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <p class="summary-text">
+      <strong>Ürün odaklı Yapay Zekâ Mühendisi ve Full-Stack Mimarı.</strong> Sıfırdan prototip üretip sızma testleriyle (pentest) doğrulanmış kurumsal üretim ortamlarına hızla ürün çıkarma konusunda kanıtlanmış başarı geçmişine sahiptir. Kurumsal <strong>Generative UI (Üretken Arayüz) mimarileri</strong>, otonom LLM ajan orkestrasyonu (OpenAI, Gemini), deterministik fonksiyon çağırma (Zod/JSON Schema) ve çok kiracılı veritabanı güvenliği (PostgreSQL RLS) üzerine uzmanlaşmıştır. Maslak kurumsal merkezli hukuk ortaklığı için yapay zekâ evrak asistanı, restoran sipariş ajanı, filo kiralama ve e-ticaret sistemlerinin yanı sıra ilk ayında 5.000+ organik kullanıcıya ulaşan yüksek ölçekli topluluk platformları tasarlamıştır.
+    </p>
+
+    <!-- Key Metrics Highlight Banner -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val">%60 Hızlanma</div>
+        <div class="metric-lbl">Generative UI ile Evrak Akışı</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">5.000+ MAU</div>
+        <div class="metric-lbl">İlk Ay Organik Büyüme</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">~%40 Düşüş</div>
+        <div class="metric-lbl">Şarj İstasyonu Keşif Sürtünmesi</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">Sıfır Zafiyet</div>
+        <div class="metric-lbl">Pentest-Hardened Multi-Tenant RLS</div>
+      </div>
+    </div>
+
+    <!-- Engineering Experience -->
+    <div class="section-title">Mühendislik Deneyimi & Kurumsal Üretim Sistemleri</div>
+
+    <!-- BMI Law Firm -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role-company">
+          <span class="exp-role">Lider AI Product Developer & Sistem Mimarı</span> — <span class="exp-company">BMI Law Firm (Maslak Plazalar Bölgesi)</span>
+          <span class="exp-badge">Kurumsal Hukuk & Ticari Platformlar</span>
+        </div>
+        <div class="exp-meta">Eki 2025 – Eyl 2026 · İstanbul</div>
+      </div>
+      <ul class="exp-bullets">
+        <li><strong>Gideon AI (Kurumsal Generative UI Platformu):</strong> Kurumsal müvekkil taleplerini çalışma zamanında dinamik durum bilgili kartlara (Generative UI) dönüştüren LLM mimarisini kurdu; Next.js App Router ve Supabase Edge Functions ile evrak tamamlama süresini <strong>%60 kısalttı</strong>.</li>
+        <li><strong>Vera QR (Yapay Zekâ Restoran Otomasyonu & B2B SaaS):</strong> Doğal dilde sipariş alan otonom yapay zekâ ajanı, çok turlu konuşma akışı, PostgreSQL RLS veri izolasyonu ve Stripe / iyzico entegre çoklu para birimli ödeme altyapısı geliştirdi.</li>
+        <li><strong>Filo Yönetimi & B2B E-Ticaret Sistemleri:</strong> Dinamik rezervasyon ve provizyon takipli lüks araç kiralama portalı ile otomatik faturalandırma ve stok senkronizasyonlu kurumsal e-ticaret altyapısını başarıyla canlıya aldı.</li>
+        <li><strong>Uygulama Güvenliği & Sızma Testleri (Pentest):</strong> Tüm web ve API katmanlarında uçtan uca zafiyet taramaları ve sızma testleri yürüttü; OWASP Top 10 vektörlerini kapattı, kriptografik rate-limiting uyguladı ve kiracılar arası veri sızıntısını sıfıra indirdi.</li>
+      </ul>
+      <div class="exp-stack"><strong>Teknoloji Yığını:</strong> Next.js (App Router), TypeScript, Python, PostgreSQL (RLS), Supabase Edge Functions, OpenAI API, Docker, Stripe, iyzico, Vercel</div>
+    </div>
+
+    <!-- Itibar -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role-company">
+          <span class="exp-role">Kurucu & AI Product Engineer</span> — <span class="exp-company">İtibar (itibar.app)</span>
+          <span class="exp-badge">B2B SaaS & Veri Otomasyonu</span>
+        </div>
+        <div class="exp-meta">Eki 2026 – Günümüz · İstanbul</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Otonom web performans denetimleri, Yapay Zekâ Arama Motoru Optimizasyonu (AEO/GEO şema doğrulaması) ve sunucusuz telemetri boru hatları içeren kurumsal B2B marka savunma ve veri otomasyonu platformunu inşa ediyor.</li>
+        <li>Gizlilik odaklı veri çıkarma iş akışları, deterministik mevzuat uyumluluk raporlayıcıları ve Vercel Functions / PostgreSQL üzerinde çalışan dayanıklı kuyruk işleme servisleri geliştirdi.</li>
+      </ul>
+      <div class="exp-stack"><strong>Teknoloji Yığını:</strong> Next.js (App Router), React, TypeScript, Python, PostgreSQL, Supabase, Tailwind CSS, Vercel Serverless</div>
+    </div>
+
+    <!-- Kursat Social Network / Civic Campaign -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role-company">
+          <span class="exp-role">Kurucu & Lider Sistem Mühendisi</span> — <span class="exp-company">Kürşat (Çok Platformlu Sosyal & Topluluk Ağı)</span>
+          <span class="exp-badge">5.000+ Kullanıcı & Kampanya Ölçeği</span>
+        </div>
+        <div class="exp-meta">Ağu 2023 – Haz 2025 · İstanbul</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Sıfırdan tasarlayıp yayınladığı çok platformlu mobil sosyal ağı, ilk 30 günde iOS ve Android üzerinde <strong>5.000+ aktif organik kullanıcıya</strong> ulaştırdı.</li>
+        <li><strong>Yüksek Ölçekli Topluluk & Seçim Kampanyası Altyapısı:</strong> Ulusal siyasi liderlik ve kitlesel sivil hareketlerle iş birliği yaptı; yoğun seçim dönemlerinde yüksek iş hacimli canlı yayın akışları, bot önleme filtreleri ve gerçek zamanlı topluluk etkileşim araçları geliştirdi.</li>
+        <li>Özel içerik sıralama algoritmaları, gerçek zamanlı WebSocket mesajlaşma boru hatları ve otomatik görsel moderasyon servisleri tasarladı.</li>
+      </ul>
+      <div class="exp-stack"><strong>Teknoloji Yığını:</strong> React Native, Node.js, MongoDB, WebSockets / Realtime, Mobil CI/CD, Anti-Spam Filtreleme</div>
+    </div>
+
+    <!-- VoltNet -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role-company">
+          <span class="exp-role">Full-Stack & Mobil Mühendisi</span> — <span class="exp-company">VoltNet (Birleşik EV Şarj İstasyonu Ağı)</span>
+          <span class="exp-badge">iOS, Android & Web</span>
+        </div>
+        <div class="exp-meta">Ağu 2025 – Ağu 2026 · İstanbul</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Farklı şarj istasyonu sağlayıcılarının parçalı API'lerini React Native ve Web üzerinde tek bir düşük gecikmeli coğrafi harita arayüzünde birleştirdi; şarj noktası bulma ve ödeme sürtünmesini <strong>~%40 azalttı</strong>.</li>
+        <li>Gerçek zamanlı istasyon doluluğu, soket telemetrisi, coğrafi sınırlama (bounding-box) sorguları ve ödeme webhook'larını işleyen yüksek iş hacimli Node.js / PostgreSQL servisleri geliştirdi.</li>
+      </ul>
+      <div class="exp-stack"><strong>Teknoloji Yığını:</strong> React Native (iOS/Android), React.js, TypeScript, Node.js, PostgreSQL, Mapbox GL API, REST API'ler</div>
+    </div>
+
+    <!-- Technical Skills Taxonomy -->
+    <div class="section-title">Temel Teknik Yetkinlikler & Güvenlik Mimarisi</div>
+    <div class="skills-block">
+      <div class="skill-row">
+        <div class="skill-category">Yapay Zekâ & LLM Sistemleri:</div>
+        <div class="skill-list">LLM API Orkestrasyonu (OpenAI, Gemini), Generative UI (Dinamik Bileşen Üretimi), Yapılandırılmış Çıktılar (Zod / JSON Schema), Fonksiyon Çağırma (Tool Calling), RAG Mimarileri, Vektör Gömüleri (pgvector), Prompt Optimizasyonu, Token Maliyet Yönetimi</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">Ön Yüz & Çoklu Platform:</div>
+        <div class="skill-list">TypeScript, JavaScript (ES6+), Next.js (App Router, Server Components, SSR/ISR), React.js, React Native (iOS & Android), Tailwind CSS, Durum Yönetimi (Zustand, Context), Mapbox GL, WebGL/Shaderlar</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">Arka Yüz, Bulut & Veri:</div>
+        <div class="skill-list">Node.js, Python, PostgreSQL (Row-Level Security / RLS), Supabase (Edge Functions, Realtime), MongoDB, RESTful API'ler, WebSockets, Çok Kiracılı Veritabanı Mimarisi, Redis Önbellekleme</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">DevOps, Bulut & Pentest:</div>
+        <div class="skill-list">Docker, AWS (S3, EC2), Vercel Serverless, Git & GitHub Actions CI/CD, Linux/Unix, Sızma Testleri (Pentest) & OWASP Top 10 Güçlendirme, Stripe, iyzico, App Store Connect & Google Play, Figma</div>
+      </div>
+    </div>
+
+    <!-- Bottom Columns: Education & Distinctions -->
+    <div class="bottom-cols">
+      <div>
+        <div class="section-title" style="margin-top: 3px;">Eğitim</div>
+        <div class="edu-item">
+          <div class="edu-school">Ankara Üniversitesi</div>
+          <div class="edu-degree">Lisans Derecesi · 2023 – Günümüz</div>
+          <div class="edu-desc">Bilgisayar bilimleri temelleri, yazılım mimarisi, veri yapıları ve otonom sistemler odaklı akademik altyapı.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title" style="margin-top: 3px;">Mühendislik Başarıları & Diller</div>
+        <ul class="distinction-list">
+          <li><strong>GitHub Arctic Code Vault Katkıcısı:</strong> Açık kaynak kodları Arctic World Archive bünyesinde 1.000 yıl boyunca saklanmak üzere tescillendi.</li>
+          <li><strong>Güvenli Uçtan Uca Teslimat:</strong> Web, mobil ve yapay zekâ alanında mimarisi kurulan, sızma testleri yapılan 5+ canlı sistem.</li>
+          <li><strong>Diller:</strong> Türkçe (Anadil) · İngilizce (Profesyonel Çalışma Yetkinliği / Kurumsal Teknik & Müşteri İletişimi).</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

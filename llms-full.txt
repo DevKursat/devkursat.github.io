@@ -6,7 +6,7 @@
 - **Name**: Kürşat Yılmaz
 - **Primary Title**: Full-Stack & Applied AI Engineer | Product Architect & Entrepreneur
 - **Location**: Istanbul, Türkiye (Europe/Istanbul, GMT+3)
-- **Education & Engineering Roots**: 42 Istanbul (Peer-to-Peer Computer Science & Systems Programming) & Ankara University; 10+ years of coding roots starting from early HTML/CSS/PHP web development to modern full-stack, mobile, and applied AI systems.
+- **Education & Engineering Roots**: Ankara University & 42 Istanbul (Intensive C & Systems Programming Piscine); 10+ years of coding roots starting from early HTML/CSS/PHP web development to modern full-stack, mobile, and applied AI systems.
 - **Website**: https://devkursat.github.io
 - **Directory & Links**: https://devkursat.github.io/links
 - **Contact**: tckursat@icloud.com
@@ -16,7 +16,7 @@
 - **DEV Community**: https://dev.to/devkursat
 
 ## Technical Stack & Engineering Focus
-- **Languages & Core**: TypeScript, JavaScript (ES6+), SQL, Python, C (42 Systems), PHP, HTML5, CSS3
+- **Languages & Core**: TypeScript, JavaScript (ES6+), SQL, Python, C (Systems), PHP, HTML5, CSS3
 - **Frontend & Cross-Platform Mobile**: React.js, Next.js (App Router, SSR/ISR), React Native (iOS & Android), Tailwind CSS, Mapbox GL
 - **Backend, Databases & Cloud**: Node.js, PostgreSQL (Row-Level Security / RLS), Supabase (Edge Functions, Realtime), MongoDB, Prisma ORM, Firebase, Docker, Vercel Serverless, Linux/Unix, Git & CI/CD
 - **Applied AI & Payments**: LLM API Orchestration (OpenAI / Gemini), Generative UI, Conversational AI Agents, Prompt Engineering, Stripe, iyzico

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>3.5 Trilyon Dolarlık Ulusal Güvenlik Duvarı: Bir Deri Ceket ve Klasik Bal Tuzağı | Kürşat Yılmaz</title>
   <meta name="description" content="Washington'ın çip ambargolarıyla dünyayı inlettiği haftada, Pentagon'un güvendiği 3.5 trilyon dolarlık Nvidia tekeli ve Jensen Huang'ın Soğuk Savaş usulü bal tuzağına düşüşünün mimari analizi.">
   <link rel="canonical" href="https://devkursat.github.io/blog/nvidia-jensen-huang-cin-casusluk-skandali.html">
@@ -70,18 +70,31 @@
       padding-bottom: 24px;
     }
     .back-link {
-      color: #64748b;
+      color: #94a3b8;
       text-decoration: none;
       font-size: 14px;
-      display: inline-block;
-      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      min-height: 40px;
     }
     h1 {
-      font-size: 32px;
+      font-size: clamp(1.6rem, 6vw, 2rem);
       line-height: 1.25;
       color: var(--text-bright);
       margin-bottom: 14px;
       letter-spacing: -0.8px;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    article p, .tldr-box p {
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .meta {
       font-size: 14px;

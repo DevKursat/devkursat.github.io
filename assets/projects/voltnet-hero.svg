@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="voltBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041219"/>
+      <stop offset="50%" stop-color="#081e28"/>
+      <stop offset="100%" stop-color="#02080c"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#00d9ff"/>
+    </linearGradient>
+    <linearGradient id="cardGradVolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c2d3d" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#061821" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="glowVolt" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#voltBg)"/>
+
+  <!-- Radial Glow -->
+  <circle cx="400" cy="225" r="180" fill="#00d9ff" opacity="0.12" filter="url(#glowVolt)"/>
+
+  <!-- Left: Geospatial Mapbox Client & Charging Nodes -->
+  <g transform="translate(140, 95)">
+    <rect width="220" height="260" rx="16" fill="url(#cardGradVolt)" stroke="#00d9ff" stroke-width="1.2" stroke-opacity="0.4"/>
+    <text x="22" y="32" fill="#e0f2fe" font-family="-apple-system, sans-serif" font-size="12" font-weight="700">GEOSPATIAL EV MAP</text>
+    <text x="22" y="47" fill="#00d9ff" font-family="monospace" font-size="8.5">Mapbox GL · &lt;200ms Bounding Box</text>
+
+    <!-- Map Grid Pattern -->
+    <g transform="translate(20, 60)">
+      <rect width="180" height="130" rx="10" fill="#03151f" stroke="#0e435a" stroke-width="1"/>
+      
+      <!-- Roads / Routes -->
+      <path d="M 10 30 Q 60 70, 110 50 T 170 100" fill="none" stroke="#0c3547" stroke-width="6"/>
+      <path d="M 40 120 L 90 20 L 150 60" fill="none" stroke="#082937" stroke-width="4"/>
+      <!-- Active Navigation Route -->
+      <path d="M 25 95 C 45 45, 95 65, 145 35" fill="none" stroke="#00d9ff" stroke-width="2.5" filter="url(#glowVolt)"/>
+
+      <!-- Charging Station Nodes -->
+      <circle cx="25" cy="95" r="8" fill="#00d9ff" filter="url(#glowVolt)"/>
+      <circle cx="25" cy="95" r="3" fill="#ffffff"/>
+
+      <circle cx="95" cy="65" r="6" fill="#10b981"/>
+      <circle cx="95" cy="65" r="2.5" fill="#ffffff"/>
+
+      <circle cx="145" cy="35" r="10" fill="#0284c7" filter="url(#glowVolt)"/>
+      <circle cx="145" cy="35" r="4" fill="#ffffff"/>
+      <text x="110" y="22" fill="#38bdf8" font-family="monospace" font-size="7.5" font-weight="700">300 kW DC FAST</text>
+    </g>
+
+    <!-- Friction Reduction Pill -->
+    <rect x="20" y="205" width="180" height="38" rx="8" fill="#082b3a" stroke="#00d9ff" stroke-width="0.8"/>
+    <text x="32" y="222" fill="#e0f2fe" font-family="-apple-system, sans-serif" font-size="9" font-weight="700">~40% Less Friction</text>
+    <text x="32" y="234" fill="#7dd3fc" font-family="monospace" font-size="7.5">Unified Cross-Network Checkout</text>
+  </g>
+
+  <!-- Connective Pulse Beam -->
+  <path d="M 370 225 C 400 225, 420 190, 450 190" stroke="url(#cyanGlow)" stroke-width="2.5" fill="none" filter="url(#glowVolt)"/>
+
+  <!-- Right: Socket Telemetry & Aggregated Network API -->
+  <g transform="translate(450, 95)">
+    <rect width="210" height="260" rx="16" fill="url(#cardGradVolt)" stroke="#0284c7" stroke-width="1.2" stroke-opacity="0.4"/>
+    <text x="22" y="32" fill="#e0f2fe" font-family="-apple-system, sans-serif" font-size="12" font-weight="700">SOCKET TELEMETRY</text>
+    <text x="22" y="47" fill="#38bdf8" font-family="monospace" font-size="8.5">Real-time Station Protocol</text>
+
+    <!-- Station Live Card -->
+    <g transform="translate(22, 65)">
+      <rect width="166" height="58" rx="8" fill="#041a24" stroke="#0e435a" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10b981"/>
+      <text x="28" y="22" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="8.5" font-weight="700">Station #TR-34-EV</text>
+      <text x="14" y="38" fill="#7dd3fc" font-family="monospace" font-size="8">CCS2 · 350 kW · Available</text>
+      <text x="14" y="49" fill="#94a3b8" font-family="monospace" font-size="7.5">WebSocket Feed: Active (0 drops)</text>
+    </g>
+
+    <!-- Multi-Network Aggregation -->
+    <rect x="22" y="135" width="166" height="58" rx="8" fill="#041a24" stroke="#0e435a" stroke-width="1"/>
+    <text x="14" y="20" fill="#e0f2fe" font-family="-apple-system, sans-serif" font-size="8.5" font-weight="700">Protocol Aggregation</text>
+    <text x="14" y="34" fill="#38bdf8" font-family="monospace" font-size="8">ZES, Trugo, Eşarj, Voltrun</text>
+    <text x="14" y="47" fill="#7dd3fc" font-family="monospace" font-size="7.5">Unified Bounding-Box REST API</text>
+
+    <rect x="22" y="205" width="166" height="38" rx="8" fill="#082b3a" stroke="#00d9ff" stroke-width="1"/>
+    <circle cx="34" cy="224" r="4" fill="#10b981"/>
+    <text x="44" y="222" fill="#e0f2fe" font-family="-apple-system, sans-serif" font-size="8.5" font-weight="700">Cross-Platform Sync</text>
+    <text x="44" y="234" fill="#7dd3fc" font-family="monospace" font-size="7.5">iOS · Android · Web (React Native)</text>
+  </g>
+</svg>

@@ -4,7 +4,7 @@
    ========================================================================== */
 
 // ============================================
-// 1. FLAGSHIP PROJECT SHOWCASE DATA (ITIBAR & UNUTMA ONLY)
+// 1. FLAGSHIP PROJECT SHOWCASE DATA (ENTERPRISE AI & PRODUCTION SUITES)
 // ============================================
 const projectsData = {
     itibar: {
@@ -35,6 +35,7 @@ const projectsData = {
         gradient: "linear-gradient(135deg, #10b981, #059669)",
         spotlightColor: "16, 185, 129",
         filter: "web",
+        filterCategory: ["ai", "enterprise"],
         description: {
             tr: "Organize 1-yıldızlı haksız yorum saldırılarına karşı deterministik politika kural motoru, TCK/TTK yasal dayanakları ve macOS Headless Chrome PDF raporlama boru hattıyla çalışan otonom B2B itibar savunma platformu.",
             en: "Autonomous B2B reputation defense platform running on deterministic policy classification, statutory Turkish Commercial / Criminal law rules, and macOS Headless Chrome executive PDF report compilation."
@@ -103,6 +104,7 @@ const projectsData = {
         gradient: "linear-gradient(135deg, #b93826, #e06d53)",
         spotlightColor: "185, 56, 38",
         filter: "web",
+        filterCategory: ["mobile", "enterprise"],
         description: {
             tr: "Cezaevlerindeki tutuklu ve hükümlülere fildişi kâğıt, gerçek mum mühür ve PTT Taahhütlü mektup gönderimini sağlayan; cezaevi mevzuatına uyumlu yapay zekâ asistanlı sivil teknoloji platformu.",
             en: "Civic tech and postal communication platform enabling users to send wax-sealed certified letters on ivory paper to inmates, compliant with prison regulations and assisted by AI."
@@ -367,6 +369,11 @@ function setLanguage(lang) {
     // Re-render project cards & more projects card with updated text
     renderProjects();
 
+    // Re-render architectural skills bento with updated language
+    if (typeof initSkillsBento === 'function') {
+        initSkillsBento();
+    }
+
     // Update active discipline readout in About
     const activeChip = document.querySelector('.discipline-chip.active');
     if (activeChip) {
@@ -433,6 +440,13 @@ function initLanguage() {
     });
 }
 
+// Awwwards Mobile Tactile Micro-Haptics
+function triggerHaptic(duration = 10) {
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+        try { navigator.vibrate(duration); } catch (e) {}
+    }
+}
+
 // ============================================
 // 3. MOTION & SMOOTH SCROLL ENGINE (LENIS + GSAP)
 // ============================================
@@ -443,6 +457,8 @@ function initLenis() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion || typeof Lenis === 'undefined') return;
 
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+
     try {
         lenis = new Lenis({
             duration: 1.2,
@@ -451,7 +467,8 @@ function initLenis() {
             gestureOrientation: 'vertical',
             smoothWheel: true,
             wheelMultiplier: 1,
-            touchMultiplier: 1.8
+            touchMultiplier: isTouchDevice ? 0 : 1, // Do not hijack native iOS/Android momentum touch scrolling!
+            syncTouch: false
         });
 
         if (typeof ScrollTrigger !== 'undefined') {
@@ -555,11 +572,17 @@ function initLoader() {
         const shutterSeam = document.getElementById('shutterSeamLine');
 
         if (typeof gsap !== 'undefined' && shutterTop && shutterBottom) {
+            document.documentElement.classList.remove('is-loading');
+            // Set initial state of hero elements BEFORE shutter split so there is zero flash
+            gsap.set('.hero-badge, .hero-title .title-line, .hero-roles, .hero-description, .hero-cta', {
+                y: 30,
+                opacity: 0
+            });
+
             const tl = gsap.timeline({
                 onComplete: () => {
                     preloader.style.display = 'none';
                     document.body.style.overflow = '';
-                    initHeroReveal();
                     initScrollAnimations();
                 }
             });
@@ -589,13 +612,22 @@ function initLoader() {
                 ease: 'power4.inOut'
             }, "<"); // Simultaneous split!
 
-            // Step 3: Hero section blooms in smoothly
+            // Step 3: Hero section blooms in smoothly ONCE in sync with shutter release
             tl.fromTo('#hero', 
                 { scale: 0.96, opacity: 0.6 },
                 { scale: 1, opacity: 1, duration: 0.75, ease: 'power3.out' },
                 "-=0.6"
             );
+
+            tl.to('.hero-badge, .hero-title .title-line, .hero-roles, .hero-description, .hero-cta', {
+                y: 0,
+                opacity: 1,
+                duration: 0.75,
+                stagger: 0.08,
+                ease: "power3.out"
+            }, "-=0.5");
         } else {
+            document.documentElement.classList.remove('is-loading');
             preloader.style.display = 'none';
             document.body.style.overflow = '';
             initHeroReveal();
@@ -775,8 +807,16 @@ function initHeroShader() {
         mouseY = window.innerHeight - e.clientY;
     });
 
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches.length > 0) {
+            mouseX = e.touches[0].clientX;
+            mouseY = window.innerHeight - e.touches[0].clientY;
+        }
+    }, { passive: true });
+
     function resize() {
-        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        const isMobile = window.innerWidth < 768;
+        const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.0) : Math.min(window.devicePixelRatio || 1, 1.5);
         canvas.width = canvas.parentElement.offsetWidth * dpr;
         canvas.height = canvas.parentElement.offsetHeight * dpr;
         gl.viewport(0, 0, canvas.width, canvas.height);
@@ -1000,7 +1040,10 @@ async function fetchGitHubStats() {
     }
 }
 
-function renderProjects() {
+let currentProjectsFilter = 'all';
+
+function renderProjects(filter = currentProjectsFilter) {
+    currentProjectsFilter = filter;
     const container = document.getElementById('projectsContainer');
     if (!container) return;
 
@@ -1008,9 +1051,14 @@ function renderProjects() {
     const lang = currentLang;
     const getLoc = (obj) => (obj && (obj[lang] || obj['en'] || obj['tr'])) || '';
 
-    // Render Flagship Projects (Itibar & Unutma Only)
+    // Render Flagship Projects (Filtered by Category)
     for (const key in projectsData) {
         const project = projectsData[key];
+        if (filter !== 'all') {
+            const cats = project.filterCategory || [];
+            if (!cats.includes(filter)) continue;
+        }
+
         // Initial 3 visible technologies in the discrete conveyor window
         const visibleTechHTML = project.tech.slice(0, 3).map(t => `<span class="conveyor-tag">${t}</span>`).join('');
         const encodedTechList = encodeURIComponent(JSON.stringify(project.tech));
@@ -1066,7 +1114,12 @@ function renderProjects() {
                                     <span class="visit-label">${lang === 'tr' ? 'Canlı Servis' : 'Live Platform'}</span>
                                     <span class="visit-arrow">↗</span>
                                 </a>
-                            ` : ''}
+                            ` : `
+                                <div class="project-card-visit-btn project-card-modal-trigger" title="${lang === 'tr' ? 'Detaylı İncele' : 'View Architecture'}">
+                                    <span class="visit-label">${lang === 'tr' ? 'Mimariyi & Metrikleri İncele' : 'Inspect Architecture'}</span>
+                                    <span class="visit-arrow">↗</span>
+                                </div>
+                            `}
                         </div>
 
                         <!-- Row 2: Discrete Step-by-Step Tech Conveyor (1 exits left/right, 1 enters from opposite side) -->
@@ -1314,6 +1367,8 @@ function openModal(project, projectId) {
     if (!modal) return;
     modal.dataset.projectId = projectId;
 
+    triggerHaptic(12);
+
     if (lenis) lenis.stop();
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
@@ -1330,12 +1385,21 @@ function openModal(project, projectId) {
     if (typeof gsap !== 'undefined') {
         const modalContainer = modal.querySelector('.modal-container');
         const modalBackdrop = modal.querySelector('.modal-backdrop');
+        const isMobile = window.innerWidth <= 768;
 
         gsap.fromTo(modalBackdrop, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' });
-        gsap.fromTo(modalContainer, 
-            { y: 50, scale: 0.94, opacity: 0 }, 
-            { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: 'power3.out' }
-        );
+        
+        if (isMobile) {
+            gsap.fromTo(modalContainer, 
+                { y: '100%', opacity: 1 }, 
+                { y: '0%', opacity: 1, duration: 0.45, ease: 'power3.out' }
+            );
+        } else {
+            gsap.fromTo(modalContainer, 
+                { y: 50, scale: 0.94, opacity: 0 }, 
+                { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: 'power3.out' }
+            );
+        }
 
         gsap.fromTo('.modal-metric-card', 
             { y: 20, opacity: 0 }, 
@@ -1482,42 +1546,122 @@ function closeModal() {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
 
+    triggerHaptic(8);
+
     if (lenis) lenis.start();
     document.documentElement.classList.remove('modal-open');
     document.body.classList.remove('modal-open');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
 
-    if (typeof gsap !== 'undefined') {
-        const modalContainer = modal.querySelector('.modal-container');
-        const modalBackdrop = modal.querySelector('.modal-backdrop');
+    const modalContainer = modal.querySelector('.modal-container');
+    const modalBackdrop = modal.querySelector('.modal-backdrop');
+    const isMobile = window.innerWidth <= 768;
 
-        gsap.to(modalContainer, {
-            y: 30,
-            scale: 0.95,
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.in',
-            onComplete: () => {
-                modal.classList.remove('active');
-            }
-        });
+    if (typeof gsap !== 'undefined') {
+        if (isMobile) {
+            gsap.to(modalContainer, {
+                y: '100%',
+                duration: 0.32,
+                ease: 'power3.in',
+                onComplete: () => {
+                    modal.classList.remove('active');
+                    if (modalContainer) modalContainer.style.transform = '';
+                }
+            });
+        } else {
+            gsap.to(modalContainer, {
+                y: 30,
+                scale: 0.95,
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.in',
+                onComplete: () => {
+                    modal.classList.remove('active');
+                    if (modalContainer) modalContainer.style.transform = '';
+                }
+            });
+        }
         gsap.to(modalBackdrop, { opacity: 0, duration: 0.3, ease: 'power2.in' });
     } else {
         modal.classList.remove('active');
+        if (modalContainer) modalContainer.style.transform = '';
     }
 }
 
+function initProjectsFilter() {
+    const filterPills = document.getElementById('projectsFilterPills');
+    if (!filterPills) return;
+
+    filterPills.querySelectorAll('.project-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterPills.querySelectorAll('.project-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.getAttribute('data-filter') || 'all';
+            triggerHaptic(14);
+            renderProjects(filter);
+        });
+    });
+}
+
 function initProjects() {
-    renderProjects();
+    renderProjects('all');
+    initProjectsFilter();
 
     const modal = document.getElementById('projectModal');
     if (modal) {
         const modalBackdrop = modal.querySelector('.modal-backdrop');
         const modalClose = modal.querySelector('.modal-close');
+        const modalContainer = modal.querySelector('.modal-container');
 
         if (modalClose) modalClose.addEventListener('click', closeModal);
         if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+        // Mobile iOS Bottom Sheet: Swipe down to dismiss
+        let touchStartY = 0;
+        let touchCurrentY = 0;
+        let isDraggingSheet = false;
+
+        modal.addEventListener('touchstart', (e) => {
+            if (window.innerWidth > 768) return;
+            const target = e.target;
+            const modalContent = modal.querySelector('.modal-content');
+            // If dragging handle, top visual bar, or when content is scrolled to top
+            if (target.closest('.modal-drag-handle') || target.closest('.modal-close') || target.closest('.modal-visual') || (modalContent && modalContent.scrollTop <= 0)) {
+                touchStartY = e.touches[0].clientY;
+                touchCurrentY = touchStartY;
+                isDraggingSheet = true;
+            } else {
+                isDraggingSheet = false;
+            }
+        }, { passive: true });
+
+        modal.addEventListener('touchmove', (e) => {
+            if (!isDraggingSheet || window.innerWidth > 768) return;
+            touchCurrentY = e.touches[0].clientY;
+            const pullDistance = touchCurrentY - touchStartY;
+            if (pullDistance > 0 && modalContainer) {
+                // Resistance curve
+                const dampedPull = Math.min(pullDistance * 0.75, 240);
+                modalContainer.style.transform = `translateY(${dampedPull}px)`;
+            }
+        }, { passive: true });
+
+        modal.addEventListener('touchend', () => {
+            if (!isDraggingSheet || window.innerWidth > 768) return;
+            const pullDistance = touchCurrentY - touchStartY;
+            isDraggingSheet = false;
+            touchStartY = 0;
+            if (pullDistance > 90) {
+                closeModal();
+            } else if (modalContainer) {
+                modalContainer.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+                modalContainer.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    if (modalContainer) modalContainer.style.transition = '';
+                }, 260);
+            }
+        }, { passive: true });
 
         // Lock background scroll during modal interaction
         modal.addEventListener('wheel', (e) => {
@@ -1577,268 +1721,288 @@ function initAboutBento() {
 }
 
 // ============================================
-// 10. DRAG-AND-THROW PHYSICS SKILLS CANVAS
+// 10. ARCHITECTURAL SKILLS SPECIFICATION MATRIX (Awwwards / Linear Standard)
 // ============================================
-const skillsData = [
-    { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg', color: '#3178C6', category: 'frontend' },
-    { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', color: '#F7DF1E', category: 'frontend' },
-    { name: 'React.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB', category: 'frontend' },
-    { name: 'Next.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', color: '#FFFFFF', invertOnDark: true, category: 'frontend' },
-    { name: 'Tailwind CSS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', color: '#38BDF8', category: 'frontend' },
-    { name: 'HTML5', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg', color: '#E34F26', category: 'frontend' },
-    { name: 'CSS3', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg', color: '#1572B6', category: 'frontend' },
-    { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg', color: '#F24E1E', category: 'frontend' },
-
-    { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', color: '#339933', category: 'backend' },
-    { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', color: '#3776AB', category: 'backend' },
-    { name: 'PostgreSQL (RLS)', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', color: '#336791', category: 'backend' },
-    { name: 'Supabase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', color: '#3ECF8E', category: 'backend' },
-    { name: 'MongoDB', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg', color: '#47A248', category: 'backend' },
-    { name: 'C (42 Systems)', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg', color: '#A8B9CC', category: 'backend' },
-    { name: 'PHP', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg', color: '#777BB4', category: 'backend' },
-    { name: 'Prisma ORM', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg', color: '#5A67D8', invertOnDark: true, category: 'backend' },
-
-    { name: 'React Native', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB', category: 'cloud' },
-    { name: 'Apple iOS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apple/apple-original.svg', color: '#FFFFFF', invertOnDark: true, category: 'cloud' },
-    { name: 'Android', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg', color: '#3DDC84', category: 'cloud' },
-    { name: 'Vercel / Serverless', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg', color: '#FFFFFF', invertOnDark: true, category: 'cloud' },
-    { name: 'Firebase', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg', color: '#FFCA28', category: 'cloud' },
-    { name: 'Docker', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', color: '#2496ED', category: 'cloud' },
-    { name: 'Linux / Unix', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg', color: '#FCC624', category: 'cloud' },
-    { name: 'Git & CI/CD', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg', color: '#F05032', category: 'cloud' }
+const skillsBentoData = [
+    {
+        id: "ai",
+        code: "01 // AI ARCHITECTURE",
+        title: { tr: "Uygulamalı AI & Otonom Ajan Mimarileri", en: "Applied AI & Autonomous Agent Architectures" },
+        tag: { tr: "DETERMİNİSTİK & SIFIR HYPE", en: "DETERMINISTIC & ZERO HYPE" },
+        motto: { 
+            tr: "Statik prompt'lar yerine durum bilgili Generative UI, deterministik Zod şemaları ve sıfır veri sızıntılı pgvector hibrit RAG boru hatları.",
+            en: "Stateful Generative UI instead of static text; deterministic schema validation and zero-leak pgvector RAG pipelines."
+        },
+        skills: [
+            { 
+                name: "Gemini 1.5 Pro & GPT-4o", 
+                role: { tr: "Çok modlu ajan boru hatları, function calling & kod yürütme", en: "Multimodal agent pipelines, function calling & code execution" },
+                badge: "MULTIMODAL",
+                iconSvg: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 8.783a4.485 4.485 0 0 1 2.366-1.973v5.68a.76.76 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 8.783zm16.597 3.855l-5.833-3.387L15.119 8.1a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 10.12V7.782a.081.081 0 0 1 .033-.062l4.84-2.796a4.499 4.499 0 0 1 6.668 4.887zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.945a4.499 4.499 0 0 1 7.375-3.453l-.142.08L6.704 6.33a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.607 1.5-2.602-1.5z"/></svg>'
+            },
+            { 
+                name: "Claude 3.5 Sonnet", 
+                role: { tr: "Yüksek bağlamlı analitik çıkarım, kod üretimi ve artefaktlar", en: "High-context analytical reasoning, code generation & artifacts" },
+                badge: "REASONING",
+                iconSvg: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.415 4.708l-5.074 14.584H9.593L4.52 4.708h2.695l3.655 10.742h.106l3.704-10.742h2.735zm3.89 0v14.584h-2.37V4.708h2.37z"/></svg>'
+            },
+            { 
+                name: "pgvector & Hibrit RAG", 
+                role: { tr: "TCK/TTK kurumsal külliyatı, semantik ve anahtar kelime hibrit araması", en: "Statutory corpus semantic retrieval, hybrid search & zero leakage" },
+                badge: "HYBRID RAG",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+            },
+            { 
+                name: "Zod & JSON Schema", 
+                role: { tr: "Sıfır sapmalı (zero-drift) yapılandırılmış çıktı ve kesin tip garantisi", en: "Zero-drift structured outputs, strict schemas and runtime safety" },
+                badge: "ZERO-DRIFT",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+            },
+            { 
+                name: "Ajan Sandbox & Güvenlik", 
+                role: { tr: "İzolasyonlu çalışma ortamları, prompt injection savunması & zero trust", en: "Isolated runtimes, prompt injection defenses & zero trust security" },
+                badge: "SANDBOXED",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"
+            }
+        ]
+    },
+    {
+        id: "frontend",
+        code: "02 // FRONTEND & DESIGN",
+        title: { tr: "Modern Frontend & Tasarım Mühendisliği", en: "Modern Frontend & Design Engineering" },
+        tag: { tr: "60 FPS & AWWWARDS STANDARDI", en: "60 FPS & AWWWARDS CALIBER" },
+        motto: { 
+            tr: "Sıfır gecikmeli reaktif arayüzler, Awwwards ödül standardında tipografi ve donanım hızlandırmalı WebGL/GSAP koreografisi.",
+            en: "Zero-latency reactive frontends, Awwwards-caliber typography, and hardware-accelerated WebGL/GSAP choreography."
+        },
+        skills: [
+            { 
+                name: "TypeScript (Strict Mode)", 
+                role: { tr: "Sıfır 'any' disiplini, mutlak derleme güvenliği ve domain modelleme", en: "Zero 'any' discipline, absolute compile-time safety & domain modeling" },
+                badge: "TYPE-SAFE",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+            },
+            { 
+                name: "Next.js 15 & React 19", 
+                role: { tr: "App Router, Server Actions, Server Components & Edge Runtime", en: "App Router, Server Actions, Server Components & Edge Runtime" },
+                badge: "EDGE RUNTIME",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+                invertOnDark: true
+            },
+            { 
+                name: "Tailwind & Design Tokens", 
+                role: { tr: "Katı tipografi ve boşluk hiyerarşisi, akıcı mikro-etkileşimler", en: "Strict typography & 4px spacing rhythm, fluid micro-interactions" },
+                badge: "SYSTEMS",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+            },
+            { 
+                name: "GSAP, Lenis & WebGL", 
+                role: { tr: "Kinetik kaydırma fiziği, shader tuvalleri ve 60 FPS donanım ivmesi", en: "Kinetic scroll physics, shader canvases and 60 FPS acceleration" },
+                badge: "60 FPS",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+            },
+            { 
+                name: "Figma & Bileşen Mimarisi", 
+                role: { tr: "Tasarım sistemleri, atomik bileşen hiyerarşisi ve token senkronizasyonu", en: "Design systems, atomic component tokens & design-to-code mapping" },
+                badge: "ATOMIC",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+            }
+        ]
+    },
+    {
+        id: "backend",
+        code: "03 // BACKEND & SYSTEMS",
+        title: { tr: "Backend, Dağıtık Sistemler & Veri", en: "Backend, Distributed Systems & Data" },
+        tag: { tr: "YÜKSEK ERİŞİLEBİLİRLİK & İZOLASYON", en: "HIGH AVAILABILITY & ISOLATION" },
+        motto: { 
+            tr: "PostgreSQL Row-Level Security (RLS) ile çok kiracılı veri izolasyonu, asenkron kuyruklar ve yüksek eşzamanlılık performansı.",
+            en: "Multi-tenant data isolation via PostgreSQL RLS, resilient async event queues, and low-latency microservices."
+        },
+        skills: [
+            { 
+                name: "PostgreSQL & Row-Level Security", 
+                role: { tr: "Kiracı bazlı veri sızıntısını engelleyen kriptografik RLS kuralları", en: "Tenant-isolated row-level security policies preventing cross-tenant leaks" },
+                badge: "RLS TENANT",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+            },
+            { 
+                name: "Node.js & Python FastAPI", 
+                role: { tr: "Asenkron olay döngüsü, yüksek verimli LLM streaming ve mikro-servisler", en: "Async event loop, high-throughput LLM streaming & microservices" },
+                badge: "ASYNC STREAM",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+            },
+            { 
+                name: "Supabase & Redis", 
+                role: { tr: "Gerçek zamanlı abonelikler, dağıtık kilitler, kuyruklar ve hız limitleri", en: "Realtime subscriptions, distributed locks, queues & rate limiting" },
+                badge: "REALTIME",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg"
+            },
+            { 
+                name: "C Sistem Programlama", 
+                role: { tr: "Doğrudan bellek yönetimi, işaretçi (pointer) disiplini ve işletim sistemi temelleri", en: "Bare-metal memory management, pointer discipline & OS systems foundations" },
+                badge: "SYSTEMS",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg"
+            },
+            { 
+                name: "Docker & Konteynerizasyon", 
+                role: { tr: "Yinelenebilir üretim ortamları, mikro-servis orkestrasyonu", en: "Reproducible container runtime environments & microservice isolation" },
+                badge: "CONTAINERS",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+            }
+        ]
+    },
+    {
+        id: "cloud",
+        code: "04 // CLOUD & MOBILE",
+        title: { tr: "Mobil, Egemen Bulut & Altyapı", en: "Mobile, Sovereign Cloud & Infrastructure" },
+        tag: { tr: "5.000+ MAU ÖLÇEĞİ & ZERO TRUST", en: "5,000+ MAU SCALE & ZERO TRUST" },
+        motto: { 
+            tr: "Çapraz platform mobil mühendisliği, offline-first mimariler, kriptografik HMAC doğrulaması ve CI/CD otomasyonları.",
+            en: "Cross-platform mobile apps, offline-first sync, cryptographic HMAC verification, and automated CI/CD releases."
+        },
+        skills: [
+            { 
+                name: "React Native (iOS & Android)", 
+                role: { tr: "Tek kod tabanından yerel performans, TestFlight ve Play Store dağıtımı", en: "Single-codebase native performance, TestFlight & Google Play Store pipelines" },
+                badge: "NATIVE CORE",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+            },
+            { 
+                name: "HMAC & Kriptografik Doğrulama", 
+                role: { tr: "Çevrimdışı çalışan dinamik token üretimi ve kurcalanamaz biletleme", en: "Offline-first dynamic token generation & tamper-proof cryptographic checks" },
+                badge: "OFFLINE-FIRST",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg"
+            },
+            { 
+                name: "Sertleştirilmiş Linux & Shell", 
+                role: { tr: "Hardened kernel konfigürasyonu, sıfır güvenli bash/zsh sistem betikleri", en: "Hardened kernel configuration, zero trust shell & automation scripting" },
+                badge: "HARDENED",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"
+            },
+            { 
+                name: "Vercel Serverless & Global CDN", 
+                role: { tr: "Edge Middleware yönlendirme, küresel önbellekleme ve mikrosaniyeler", en: "Edge Middleware interception, global CDN caching & low-latency execution" },
+                badge: "GLOBAL EDGE",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+                invertOnDark: true
+            },
+            { 
+                name: "Git & GitHub Actions CI/CD", 
+                role: { tr: "Otomatik test koşucuları, semantik sürümleme ve güvenli dağıtım boru hatları", en: "Automated test runners, semantic release & hardened release workflows" },
+                badge: "AUTOMATED",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+            }
+        ]
+    }
 ];
 
-function initSkillsCanvas() {
-    const container = document.getElementById('skillsCanvas');
+function initSkillsBento() {
+    const container = document.getElementById('skillsBentoGrid') || document.getElementById('skillsCanvas');
     if (!container) return;
-    container.innerHTML = '';
 
-    const cards = [];
-    const cardSize = 72;
+    const lang = currentLang;
+    const getLoc = (obj) => (obj && (obj[lang] || obj['en'] || obj['tr'])) || '';
 
-    function hexToRgb(hex) {
-        let c = hex.replace('#', '');
-        if (c.length === 3) c = c.split('').map(x => x + x).join('');
-        const num = parseInt(c, 16);
-        return `${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}`;
-    }
+    let html = '';
+    skillsBentoData.forEach(card => {
+        const title = getLoc(card.title);
+        const tag = getLoc(card.tag);
+        const motto = getLoc(card.motto);
 
-    const w = container.offsetWidth || 1200;
-    const h = container.offsetHeight || 540;
-    const cols = 6;
-    const rows = 4;
-    const xMargin = 40;
-    const yMargin = 35;
-    const xStep = (w - 2 * xMargin - cardSize) / Math.max(cols - 1, 1);
-    const yStep = (h - 2 * yMargin - cardSize) / Math.max(rows - 1, 1);
+        const specsHTML = card.skills.map(s => {
+            const role = typeof s.role === 'object' ? getLoc(s.role) : s.role;
+            const iconHTML = s.iconSvg 
+                ? s.iconSvg 
+                : `<img src="${s.icon}" alt="${s.name}" ${s.invertOnDark ? 'style="filter: invert(1) brightness(2);"' : ''} loading="lazy" />`;
+            return `
+                <div class="skills-spec-item">
+                    <div class="spec-item-left">
+                        <span class="spec-item-icon">${iconHTML}</span>
+                        <div class="spec-item-core">
+                            <span class="spec-item-name">${s.name}</span>
+                            <span class="spec-item-role">${role}</span>
+                        </div>
+                    </div>
+                    <span class="spec-item-badge">${s.badge}</span>
+                </div>
+            `;
+        }).join('');
 
-    skillsData.forEach((skill, index) => {
-        const cardEl = document.createElement('div');
-        cardEl.className = 'floating-skill-card';
-        cardEl.dataset.category = skill.category;
-        cardEl.style.setProperty('--card-hover-color', skill.color);
-        cardEl.style.setProperty('--card-glow-rgb', hexToRgb(skill.color));
-
-        const imgStyle = skill.invertOnDark ? 'style="filter: invert(1) brightness(2);"' : '';
-        cardEl.innerHTML = `
-            <img src="${skill.iconUrl}" alt="${skill.name}" ${imgStyle} draggable="false" />
-            <div class="floating-skill-tooltip">${skill.name}</div>
+        html += `
+            <div class="skills-bento-card" data-category="${card.id}">
+                <div class="skills-bento-header">
+                    <div class="skills-bento-badge">
+                        <span class="skills-bento-dot"></span>
+                        <span class="skills-bento-tag">${card.code}</span>
+                    </div>
+                    <span class="skills-spec-status-pill">${tag}</span>
+                </div>
+                <h3 class="skills-bento-title">${title}</h3>
+                <p class="skills-bento-motto">${motto}</p>
+                <div class="skills-spec-list">
+                    ${specsHTML}
+                </div>
+            </div>
         `;
-        container.appendChild(cardEl);
-
-        const row = Math.floor(index / cols);
-        const col = index % cols;
-        const posX = xMargin + col * xStep + (Math.random() - 0.5) * 35;
-        const posY = yMargin + row * yStep + (Math.random() - 0.5) * 30;
-
-        cards.push({
-            el: cardEl,
-            category: skill.category,
-            x: Math.max(15, Math.min(posX, w - cardSize - 20)),
-            y: Math.max(15, Math.min(posY, h - cardSize - 20)),
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2,
-            size: cardSize,
-            isDragging: false,
-            dragStartX: 0,
-            dragStartY: 0,
-            lastX: 0,
-            lastY: 0,
-            lastTime: 0
-        });
     });
 
-    // Pointer Drag & Throw Physics
-    cards.forEach(card => {
-        card.el.addEventListener('pointerdown', (e) => {
-            e.preventDefault();
-            card.isDragging = true;
-            card.el.setPointerCapture(e.pointerId);
-            const rect = container.getBoundingClientRect();
-            card.dragStartX = (e.clientX - rect.left) - card.x;
-            card.dragStartY = (e.clientY - rect.top) - card.y;
-            card.lastX = e.clientX;
-            card.lastY = e.clientY;
-            card.lastTime = performance.now();
-            card.vx = 0;
-            card.vy = 0;
-            card.el.style.zIndex = '50';
-            card.el.style.cursor = 'grabbing';
-        });
+    container.innerHTML = html;
 
-        card.el.addEventListener('pointermove', (e) => {
-            if (!card.isDragging) return;
-            const rect = container.getBoundingClientRect();
-            card.x = (e.clientX - rect.left) - card.dragStartX;
-            card.y = (e.clientY - rect.top) - card.dragStartY;
-
-            const now = performance.now();
-            const dt = Math.max(now - card.lastTime, 16);
-            card.vx = ((e.clientX - card.lastX) / dt) * 16;
-            card.vy = ((e.clientY - card.lastY) / dt) * 16;
-
-            card.lastX = e.clientX;
-            card.lastY = e.clientY;
-            card.lastTime = now;
-        });
-
-        const release = (e) => {
-            if (!card.isDragging) return;
-            card.isDragging = false;
-            card.el.releasePointerCapture(e.pointerId);
-            card.el.style.zIndex = '1';
-            card.el.style.cursor = 'grab';
-
-            // Limit throw speed
-            card.vx = Math.max(Math.min(card.vx, 18), -18);
-            card.vy = Math.max(Math.min(card.vy, 18), -18);
-        };
-
-        card.el.addEventListener('pointerup', release);
-        card.el.addEventListener('pointercancel', release);
-    });
-
-    // Filter pills with wide redistribution across entire canvas
+    // Filter pill click listener
     const filterPills = document.querySelectorAll('.skill-filter-btn');
-    let activeCategory = 'all';
-
     filterPills.forEach(btn => {
         btn.addEventListener('click', () => {
             filterPills.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            activeCategory = btn.dataset.category;
 
-            const currentW = container.offsetWidth || 1200;
-            const currentH = container.offsetHeight || 540;
-            const activeCards = cards.filter(c => activeCategory === 'all' || c.category === activeCategory);
-            const actCount = activeCards.length;
+            const category = btn.getAttribute('data-category');
+            const allCards = container.querySelectorAll('.skills-bento-card');
 
-            const gridCols = Math.min(Math.max(Math.ceil(Math.sqrt(actCount * 1.6)), 3), 5);
-            const gridRows = Math.ceil(actCount / gridCols);
-            const xMarg = 60;
-            const yMarg = 50;
-            const colW = (currentW - 2 * xMarg - cardSize) / Math.max(gridCols - 1, 1);
-            const rowH = (currentH - 2 * yMarg - cardSize) / Math.max(gridRows - 1, 1);
-
-            activeCards.forEach((card, idx) => {
-                card.el.style.opacity = '1';
-                card.el.style.filter = 'none';
-                card.el.style.pointerEvents = 'auto';
-
-                const c = idx % gridCols;
-                const r = Math.floor(idx / gridCols);
-                const targetX = xMarg + c * colW + (Math.random() - 0.5) * 40;
-                const targetY = yMarg + r * rowH + (Math.random() - 0.5) * 35;
-                card.vx = (targetX - card.x) * 0.12;
-                card.vy = (targetY - card.y) * 0.12;
-            });
-
-            cards.filter(c => activeCategory !== 'all' && c.category !== activeCategory).forEach(card => {
-                card.el.style.opacity = '0.12';
-                card.el.style.filter = 'grayscale(1)';
-                card.el.style.pointerEvents = 'none';
+            allCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    card.classList.remove('is-dimmed');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.add('is-dimmed');
+                }
             });
         });
     });
+}
 
-    // RAF Loop with boundary bouncing & soft card repulsion
-    let isVisible = true;
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) {
-        const obs = new IntersectionObserver(([entry]) => {
-            isVisible = entry.isIntersecting;
-        }, { threshold: 0.1 });
-        obs.observe(skillsSection);
-    }
+function initSkillsCanvas() {
+    initSkillsBento();
+}
 
-    function updatePhysics() {
-        if (isVisible) {
-            const w = container.offsetWidth;
-            const h = container.offsetHeight;
+function initFooterWordmark() {
+    const wordmarkWrap = document.getElementById('footerWordmark');
+    const wordmarkText = document.getElementById('stellarHugeText');
+    if (!wordmarkWrap || !wordmarkText) return;
 
-            // Soft card-to-card repulsion so tiles spread out organically
-            for (let i = 0; i < cards.length; i++) {
-                for (let j = i + 1; j < cards.length; j++) {
-                    const c1 = cards[i];
-                    const c2 = cards[j];
-                    if (c1.isDragging || c2.isDragging) continue;
+    const reveal = () => {
+        wordmarkText.classList.add('is-revealed');
+    };
 
-                    const dx = (c2.x + c2.size / 2) - (c1.x + c1.size / 2);
-                    const dy = (c2.y + c2.size / 2) - (c1.y + c1.size / 2);
-                    const distSq = dx * dx + dy * dy;
-                    const minDist = 92;
-                    if (distSq < minDist * minDist && distSq > 0.01) {
-                        const dist = Math.sqrt(distSq);
-                        const overlap = (minDist - dist) * 0.035;
-                        const nx = dx / dist;
-                        const ny = dy / dist;
-                        c1.vx -= nx * overlap;
-                        c1.vy -= ny * overlap;
-                        c2.vx += nx * overlap;
-                        c2.vy += ny * overlap;
-                    }
-                }
-            }
-
-            cards.forEach(card => {
-                if (!card.isDragging) {
-                    card.x += card.vx;
-                    card.y += card.vy;
-
-                    // Friction damping
-                    card.vx *= 0.96;
-                    card.vy *= 0.96;
-
-                    // Gentle floating wave when near rest
-                    if (Math.abs(card.vx) < 0.1 && Math.abs(card.vy) < 0.1) {
-                        card.vx += (Math.random() - 0.5) * 0.15;
-                        card.vy += (Math.random() - 0.5) * 0.15;
-                    }
-
-                    // Wall collision & restitution
-                    if (card.x < 10) {
-                        card.x = 10;
-                        card.vx = -card.vx * 0.75;
-                    } else if (card.x > w - card.size - 10) {
-                        card.x = w - card.size - 10;
-                        card.vx = -card.vx * 0.75;
-                    }
-
-                    if (card.y < 10) {
-                        card.y = 10;
-                        card.vy = -card.vy * 0.75;
-                    } else if (card.y > h - card.size - 10) {
-                        card.y = h - card.size - 10;
-                        card.vy = -card.vy * 0.75;
-                    }
-                }
-
-                card.el.style.transform = `translate3d(${card.x.toFixed(1)}px, ${card.y.toFixed(1)}px, 0)`;
-            });
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            reveal();
         }
-        requestAnimationFrame(updatePhysics);
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+    observer.observe(wordmarkWrap);
+
+    const checkScroll = () => {
+        const rect = wordmarkWrap.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 10) {
+            reveal();
+        }
+    };
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    if (window.lenis) {
+        window.lenis.on('scroll', checkScroll);
     }
-    requestAnimationFrame(updatePhysics);
 }
 
 // ============================================
@@ -2024,13 +2188,30 @@ function initBlogFan() {
     function syncDeckHeight() {
         const activeCard = deck.querySelector('.blog-fan-card.is-active') || cards[0];
         if (activeCard) {
-            const h = Math.max(activeCard.offsetHeight, 540);
-            deck.style.minHeight = `${h + 20}px`;
-            deck.style.height = `${h + 20}px`;
+            const h = Math.ceil(activeCard.getBoundingClientRect().height);
+            const targetH = Math.max(h, 540);
+            deck.style.minHeight = `${targetH + 32}px`;
+            deck.style.height = `${targetH + 32}px`;
             const stage = deck.closest('.blog-fan-stage');
-            if (stage) stage.style.minHeight = `${h + 20}px`;
+            if (stage) {
+                stage.style.minHeight = `${targetH + 32}px`;
+                stage.style.height = `${targetH + 32}px`;
+            }
         }
     }
+
+    if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => syncDeckHeight());
+        cards.forEach(card => ro.observe(card));
+    }
+
+    deck.querySelectorAll('img').forEach(img => {
+        if (!img.complete) {
+            img.addEventListener('load', syncDeckHeight);
+        }
+    });
+
+    window.addEventListener('load', syncDeckHeight);
 
     function updateDeck(newIndex) {
         currentIndex = (newIndex + total) % total;
@@ -2642,52 +2823,57 @@ function initMarquee() {
         requestAnimationFrame(animateHorizontalMarquee);
     }
 
-    // 2. Vertical Portrait Marquee & 3D Snellenberg Parallax Card
-    if (portraitCard && portraitTrack) {
-        let yPos = 0;
-        let verticalSpeed = 0.8;
-        let cursorYFactor = 0;
-
+    // 2. Editorial Portrait 3D Tilt & Bottom Role Dock Rotation
+    if (portraitCard) {
         portraitCard.addEventListener('mousemove', (e) => {
             const rect = portraitCard.getBoundingClientRect();
             const relX = (e.clientX - rect.left) / rect.width - 0.5;
             const relY = (e.clientY - rect.top) / rect.height - 0.5;
 
-            cursorYFactor = relY * 2.2;
-
-            const tiltX = -relY * 12;
-            const tiltY = relX * 12;
-            portraitCard.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+            const tiltX = -relY * 8;
+            const tiltY = relX * 8;
+            portraitCard.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-2px)`;
 
             const lighting = document.getElementById('portraitLighting');
             if (lighting) {
-                lighting.style.background = `radial-gradient(circle at ${(relX + 0.5) * 100}% ${(relY + 0.5) * 100}%, rgba(0, 217, 255, 0.14), transparent 60%)`;
+                lighting.style.background = `radial-gradient(circle at ${(relX + 0.5) * 100}% ${(relY + 0.5) * 100}%, rgba(0, 217, 255, 0.12), transparent 60%)`;
             }
         });
 
         portraitCard.addEventListener('mouseleave', () => {
-            cursorYFactor = 0;
             portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
         });
 
-        portraitTrack.style.animation = 'none';
-
-        function animateVerticalMarquee() {
-            const effectiveSpeed = verticalSpeed + cursorYFactor;
-            yPos -= effectiveSpeed;
-
-            const group = portraitTrack.querySelector('.marquee-group');
-            const groupHeight = group ? group.offsetHeight : 400;
-
-            if (groupHeight > 0 && Math.abs(yPos) >= groupHeight) {
-                yPos = 0;
-            }
-
-            portraitTrack.style.transform = `translate3d(0, ${yPos}px, 0)`;
-            requestAnimationFrame(animateVerticalMarquee);
+        // Smooth Rotating Role Ticker at bottom of portrait
+        const roleTicker = document.getElementById('portraitRoleTicker');
+        if (roleTicker) {
+            const roles = {
+                tr: [
+                    'AI Product Developer',
+                    'Full-Stack Architect',
+                    'Yazar & Felsefe',
+                    'Boksör Disiplini'
+                ],
+                en: [
+                    'AI Product Developer',
+                    'Full-Stack Architect',
+                    'Writer & Philosophy',
+                    'Boxing Conditioning'
+                ]
+            };
+            let roleIdx = 0;
+            setInterval(() => {
+                const list = roles[currentLang] || roles.tr;
+                roleIdx = (roleIdx + 1) % list.length;
+                roleTicker.style.opacity = '0';
+                roleTicker.style.transform = 'translateY(6px)';
+                setTimeout(() => {
+                    roleTicker.textContent = list[roleIdx];
+                    roleTicker.style.opacity = '1';
+                    roleTicker.style.transform = 'translateY(0)';
+                }, 280);
+            }, 2800);
         }
-
-        requestAnimationFrame(animateVerticalMarquee);
     }
 }
 
@@ -2709,7 +2895,7 @@ function initCommandPalette() {
         { id: 'unutma', group: 'Projeler', title: 'Unutma. (unutma.itibar.app) — Canlı Platformu Aç', sub: 'Mektup & Yasal İletişim', icon: '💌', action: () => window.open('https://unutma.itibar.app', '_blank'), badge: 'unutma.app' },
         { id: 'cven', group: 'Özgeçmiş', title: 'Kürşat Yılmaz CV (İngilizce PDF)', sub: '1 Sayfalık EPAM & Global Format', icon: '📄', action: () => window.open('Kursat_Yilmaz_CV_EN.pdf', '_blank'), badge: 'CV EN' },
         { id: 'cvtr', group: 'Özgeçmiş', title: 'Kürşat Yılmaz CV (Türkçe PDF)', sub: '1 Sayfalık Üretim & Mühendislik Formatı', icon: '📄', action: () => window.open('Kursat_Yilmaz_CV_TR.pdf', '_blank'), badge: 'CV TR' },
-        { id: 'sec-about', group: 'Navigasyon', title: 'Hakkımda Bölümüne Git', sub: '#about — 42 İstanbul & Felsefe', icon: '👤', action: () => scrollToSection('#about') },
+        { id: 'sec-about', group: 'Navigasyon', title: 'Hakkımda Bölümüne Git', sub: '#about — Mühendislik & Felsefe', icon: '👤', action: () => scrollToSection('#about') },
         { id: 'sec-projects', group: 'Navigasyon', title: 'Projeler Bölümüne Git', sub: '#projects — Flagship Sistemler', icon: '🚀', action: () => scrollToSection('#projects') },
         { id: 'sec-skills', group: 'Navigasyon', title: 'Beceriler & Teknoloji Bölümüne Git', sub: '#skills — 22+ Modern Stack', icon: '🛠️', action: () => scrollToSection('#skills') },
         { id: 'sec-blog', group: 'Navigasyon', title: 'Yazılar & Analizler Bölümüne Git', sub: '#blog — Güncel Mühendislik Notları', icon: '✍️', action: () => scrollToSection('#blog') },
@@ -3062,6 +3248,160 @@ ${message}
 }
 
 // ============================================
+// 12. 3D CYBER GRID & HORIZON PARALLAX
+// ============================================
+function init3DGridEnvironment() {
+    const gridPlane = document.getElementById('cyberGridPlane');
+    if (!gridPlane) return;
+
+    let targetRotZ = 0;
+    let currentRotZ = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        const normX = (e.clientX / window.innerWidth) - 0.5;
+        targetRotZ = normX * 6; // up to ±3 deg subtle twist
+    }, { passive: true });
+
+    function tick() {
+        currentRotZ += (targetRotZ - currentRotZ) * 0.08;
+        gridPlane.style.transform = `rotateX(64deg) rotateZ(${currentRotZ.toFixed(2)}deg)`;
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+// ============================================
+// 12.1 INTERACTIVE 3D CARD TILT & SPECULAR GLARE
+// ============================================
+function init3DCardTilt() {
+    // Only enable on desktop with mouse
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const tiltSelector = '.project-card, .skills-bento-card, .about-portrait-card, .editorial-pub-row, .blog-cta-banner';
+    const attachTilt = () => {
+        const cards = document.querySelectorAll(tiltSelector);
+        cards.forEach(card => {
+            if (card.dataset.tiltAttached) return;
+            card.dataset.tiltAttached = 'true';
+            card.classList.add('has-3d-tilt', 'grid-caliper-card');
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const normX = (x - rect.width / 2) / (rect.width / 2);
+                const normY = (y - rect.height / 2) / (rect.height / 2);
+
+                const maxTilt = 7; // deg
+                const rotX = -normY * maxTilt;
+                const rotY = normX * maxTilt;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(8px) scale3d(1.012, 1.012, 1.012)`;
+                card.style.setProperty('--tilt-shine-x', `${x}px`);
+                card.style.setProperty('--tilt-shine-y', `${y}px`);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)';
+            });
+        });
+    };
+
+    attachTilt();
+    // Re-check after dynamic renders
+    setTimeout(attachTilt, 600);
+    setTimeout(attachTilt, 1500);
+}
+
+// ============================================
+// 12.2 SLIDE-BY-SLIDE DECK NAVIGATION RAIL
+// ============================================
+function initSlideDeckHUD() {
+    const deckHud = document.getElementById('slideDeckHud');
+    const nodes = document.querySelectorAll('.deck-slide-node');
+    const activeIdxEl = document.getElementById('deckActiveIdx');
+    if (!deckHud || !nodes.length) return;
+
+    const sectionIds = ['hero', 'about', 'projects', 'skills', 'blog', 'contact'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    let activeIndex = 0;
+
+    function setActiveSlide(idx) {
+        if (idx < 0 || idx >= nodes.length) return;
+        activeIndex = idx;
+        nodes.forEach((n, i) => {
+            if (i === idx) {
+                n.classList.add('active');
+            } else {
+                n.classList.remove('active');
+            }
+        });
+        if (activeIdxEl) {
+            activeIdxEl.textContent = String(idx + 1).padStart(2, '0');
+        }
+    }
+
+    // IntersectionObserver to sync active node on scroll
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = sectionIds.indexOf(entry.target.id);
+                    if (idx !== -1) {
+                        setActiveSlide(idx);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.25,
+            rootMargin: '-10% 0px -40% 0px'
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+    }
+
+    // Smooth Click Jumps
+    nodes.forEach(node => {
+        node.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = node.getAttribute('href');
+            const targetEl = document.querySelector(targetId);
+            if (!targetEl) return;
+
+            if (window.lenis) {
+                window.lenis.scrollTo(targetEl, { duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+            } else {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Keyboard Arrow slide control (ArrowDown / ArrowUp / PageDown / PageUp)
+    window.addEventListener('keydown', (e) => {
+        // Do not intercept if user is typing in form inputs
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+            if (activeIndex < sections.length - 1) {
+                e.preventDefault();
+                const nextSec = sections[activeIndex + 1];
+                if (window.lenis) window.lenis.scrollTo(nextSec, { duration: 1.1 });
+                else nextSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            if (activeIndex > 0) {
+                e.preventDefault();
+                const prevSec = sections[activeIndex - 1];
+                if (window.lenis) window.lenis.scrollTo(prevSec, { duration: 1.1 });
+                else prevSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+}
+
+// ============================================
 // 13. INITIALIZATION ORCHESTRATOR
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -3082,6 +3422,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initHomeTypeform();
     initCommandPalette();
     initPageTransitions();
+    initFooterWordmark();
+    init3DGridEnvironment();
+    init3DCardTilt();
+    initSlideDeckHUD();
 });
 
 // Tab Visibility Guard

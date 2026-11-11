@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <title>Kürşat Yılmaz — Resmi Dizin, Kanallar & Sponsorluk</title>
   <meta name="description" content="Kürşat Yılmaz — Animasyon ve mizah kanalları, B2B egemen yazılım girişimleri, sponsorluk & marka iş birlikleri ve resmi iletişim dizini.">
   <meta name="author" content="Kürşat Yılmaz">
@@ -1813,7 +1813,7 @@
     /* Mobile Responsive (Awwwards Ergonomic Spacing & App-Like Density) */
     @media (max-width: 768px) {
       .page-container {
-        padding: 16px 14px 48px;
+        padding: calc(16px + env(safe-area-inset-top, 0px)) 14px calc(48px + env(safe-area-inset-bottom, 0px));
       }
 
       .top-bar {
@@ -1823,8 +1823,11 @@
       }
 
       .back-home {
-        padding: 6px 12px;
-        font-size: 0.78rem;
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
       }
 
       .top-meta {
@@ -1891,7 +1894,13 @@
       }
 
       .links-search-input {
-        font-size: 0.88rem;
+        font-size: 16px !important; /* Strict 16px to prevent iOS auto-zoom */
+      }
+
+      .links-search-clear {
+        width: 32px;
+        height: 32px;
+        min-height: 32px;
       }
 
       .search-kbd-hint {
@@ -2301,6 +2310,53 @@
         </div>
         <div class="item-actions">
           <button type="button" class="item-copy-btn" data-copy="https://www.linkedin.com/in/kürşatyılmaz/" title="Profili Kopyala" aria-label="LinkedIn profilini kopyala">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <div class="item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 03 // LEAD AI PRODUCT DEVELOPER CV (PDF) -->
+      <a href="/Kursat_Yilmaz_CV_EN.pdf" target="_blank" rel="noopener noreferrer" class="directory-item" 
+         data-category="tech"
+         data-copy="https://devkursat.github.io/Kursat_Yilmaz_CV_EN.pdf"
+         data-preview="/assets/brand-cards/brand-portfolio.svg" 
+         data-preview-badge="CV PDF ↗"
+         data-badge-en="RESUME PDF ↗">
+        <div class="item-visual">
+          <span class="item-index">03</span>
+          <div class="item-avatar" style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00d9ff" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="item-main">
+          <div class="item-title-row">
+            <h2 class="item-title" data-tr="Lead AI Product Developer CV (PDF)" data-en="Lead AI Product Developer Resume (PDF)">Lead AI Product Developer CV (PDF)</h2>
+            <span class="item-category cat-tech" data-tr="1 SAYFA ATS" data-en="1-PAGE ATS">1 SAYFA ATS</span>
+          </div>
+          <p class="item-desc" data-tr="EPAM Systems &amp; global kurumsal standartta; Generative UI, RAG ve siber güvenlik odaklı 1 sayfalık tekil CV." data-en="Enterprise-grade 1-page ATS resume covering Generative UI, pgvector RAG, and secure production systems.">
+            EPAM Systems &amp; global kurumsal standartta; Generative UI, RAG ve siber güvenlik odaklı 1 sayfalık tekil CV.
+          </p>
+        </div>
+        <div class="item-meta">
+          <span class="item-metric-pill">Kursat_Yilmaz_CV_EN.pdf</span>
+          <span>1 Sayfa A4</span>
+        </div>
+        <div class="item-actions">
+          <button type="button" class="item-copy-btn" data-copy="https://devkursat.github.io/Kursat_Yilmaz_CV_EN.pdf" title="CV Bağlantısını Kopyala" aria-label="CV bağlantısını kopyala">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>

@@ -491,8 +491,46 @@
             transform: translateY(-2px);
         }
 
+        /* Benchmark Tables & Code Blocks - Mobile Horizontal Scroll Guard */
+        .benchmark-table-wrapper,
+        table.benchmark-table,
+        pre {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        h1.article-title, .content h1, .content h2, .content h3, .content p, .content blockquote {
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+        }
+
         @media (max-width: 680px) {
-            .header-center-title { display: none; }
+            .sticky-reader-header {
+                padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px !important;
+            }
+            .header-inner {
+                gap: 8px !important;
+            }
+            .header-center-title { display: none !important; }
+            .header-actions .follow-pill:last-child {
+                display: none !important; /* Hide secondary pill to prevent 439px header overflow */
+            }
+            .back-link {
+                font-size: 0.78rem !important;
+                padding: 6px 10px !important;
+                min-height: 38px !important;
+            }
+            main {
+                padding: 0 16px !important;
+                margin: 28px auto 60px !important;
+            }
+            h1.article-title {
+                font-size: clamp(1.6rem, 7vw, 2.3rem) !important;
+                line-height: 1.2 !important;
+            }
             .author-card {
                 grid-template-columns: 1fr;
                 text-align: center;
