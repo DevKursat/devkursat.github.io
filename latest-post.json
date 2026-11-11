@@ -1,13 +1,13 @@
 {
-  "title": "10 Kasım ve Teknolojik Egemenlik: \"İstikbal Göklerdedir\"den Amerikan API Bayiliğine",
-  "date": "2026-11-10",
-  "summary": "1930'larda sıfırdan metal uçak ve motor fabrikaları kuran bir Cumhuriyet iradesinden, bugün üç satır kod için Amerikan bulut tekellerine komisyon ödeyen yazılım dünyasının acı bilançosu.",
-  "url": "https://devkursat.github.io/blog/10-kasim-teknolojik-egemenlik-ve-ataturk.html",
-  "image": "https://devkursat.github.io/blog/10-kasim-teknolojik-egemenlik-ve-ataturk.png",
+  "title": "Meta Mühendisinin AI İtirafı: \"Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü\"",
+  "date": "2026-11-11",
+  "summary": "Meta'dan çıkarılan kıdemli mühendis Evan X. Merz'in itirafı: Şirketlerin performans kotalarını tutturmak için %90 yapay zekâ kodu şartı koşması, sığ testler ve anlaşılamayan mimarilerle canlı ortamları nasıl birer iskambil kulesine dönüştürdü?",
+  "url": "https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.html",
+  "image": "https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.png",
   "tags": [
-    "Açık Kaynak",
-    "Teknoloji Egemenliği",
+    "Yapay Zeka",
     "Mühendislik",
-    "10 Kasım"
+    "Yazılım Mimarisi",
+    "Teknik Borç"
   ]
 }

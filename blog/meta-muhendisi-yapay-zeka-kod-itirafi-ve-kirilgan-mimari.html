@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Meta Mühendisinin AI İtirafı: "Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü" | Kürşat Yılmaz</title>
+  <meta name="description" content="Meta'dan çıkarılan kıdemli mühendis Evan X. Merz'in itirafı: Şirketlerin performans kotalarını tutturmak için %90 yapay zekâ kodu şartı koşması, sığ testler ve anlaşılamayan mimarilerle canlı ortamları nasıl birer iskambil kulesine dönüştürdü?">
+  <link rel="canonical" href="https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.html">
+  
+  <meta property="og:title" content="Meta Mühendisinin AI İtirafı: 'Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü'">
+  <meta property="og:description" content="Performans kotalarını tutturmak için kodunun %90'ını AI ile üreten mühendisin itirafı: Çıktı patladı, kalite çöktü, canlı ortamlar alev aldı.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.html">
+  <meta property="og:image" content="https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.png">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DevKursat">
+  <meta name="twitter:creator" content="@DevKursat">
+  <meta name="twitter:title" content="Meta Mühendisinin AI İtirafı: 'Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü'">
+  <meta name="twitter:description" content="Performans kotalarını tutturmak için kodunun %90'ını AI ile üreten mühendisin itirafı: Çıktı patladı, kalite çöktü, canlı ortamlar alev aldı.">
+  <meta name="twitter:image" content="https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Meta Mühendisinin AI İtirafı: 'Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü'",
+    "description": "Meta'dan çıkarılan kıdemli mühendis Evan X. Merz'in itirafı: Şirketlerin performans kotalarını tutturmak için %90 yapay zekâ kodu şartı koşması, sığ testler ve anlaşılamayan mimarilerle canlı ortamları nasıl birer iskambil kulesine dönüştürdü?",
+    "image": "https://devkursat.github.io/blog/meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.png",
+    "author": {
+      "@type": "Person",
+      "name": "Kürşat Yılmaz",
+      "url": "https://devkursat.github.io"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Kürşat Yılmaz"
+    },
+    "datePublished": "2026-11-11",
+    "dateModified": "2026-11-11"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: #121620;
+      --border: #212836;
+      --text: #cbd5e1;
+      --text-bright: #f8fafc;
+      --accent: #f97316;
+      --accent-danger: #ef4444;
+      --accent-gold: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.75;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .back-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+      line-height: 1.25;
+      color: var(--text-bright);
+      margin-bottom: 14px;
+      letter-spacing: -0.8px;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    article p, .tldr-box p {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .meta {
+      font-size: 14px;
+      color: #64748b;
+      display: flex;
+      gap: 16px;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 24px 0 36px;
+      border: 1px solid var(--border);
+    }
+    .tldr-box {
+      background: rgba(249, 115, 22, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+    }
+    .tldr-box h3 {
+      color: var(--accent);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .tldr-box p {
+      color: var(--text-bright);
+      font-size: 15px;
+      margin: 0;
+    }
+    article p {
+      margin-bottom: 24px;
+      font-size: 17px;
+    }
+    article h2 {
+      font-size: 22px;
+      color: var(--text-bright);
+      margin: 40px 0 16px;
+      letter-spacing: -0.4px;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent-gold);
+      padding-left: 20px;
+      margin: 28px 0;
+      color: #fef08a;
+      font-style: italic;
+    }
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="https://devkursat.github.io" class="back-link">← devkursat.github.io</a>
+      <h1>Meta Mühendisinin AI İtirafı: "Kodun %90'ını Yapay Zekâya Yazdırdık, Canlı Ortam Çöktü"</h1>
+      <div class="meta">
+        <span>11 Kasım 2026</span>
+        <span>•</span>
+        <span>Kürşat Yılmaz</span>
+        <span>•</span>
+        <span>5 dk okuma</span>
+      </div>
+    </header>
+
+    <img src="meta-muhendisi-yapay-zeka-kod-itirafi-ve-kirilgan-mimari.png" alt="Yapay Zekâ ve Kırılgan Mimari İskambil Kulesi" class="hero-img">
+
+    <div class="tldr-box">
+      <h3>Executive TL;DR</h3>
+      <p>Yönetimler 'daha çok commit' baskısı kurdukça, mühendislerin kovulmamak için tek çaresi kodun %90'ını yapay zekâya ürettirmek oldu. Çıktı hacmi ve verimlilik grafikleri tavana vururken, modellerin context window sınırları yüzünden sığ testler, anlaşılamayan mimariler ve prod kesintileri katlanarak arttı. Bir sistemi anlamadan 1000 satır üretmek hız değil; teknik borcu bileşik faizle tefeciye devretmektir.</p>
+    </div>
+
+    <article>
+      <p>Meta'da kıdemli bir yazılım mühendisisiniz ve performans değerlendirmesinden geçip kovulmamak için tek bir kural var: Yazdığınız kodun en az yüzde doksanını yapay zekâya ürettirmek.  Bu bir distopya senaryosu değil; Mayıs ayında Meta'dan çıkarılan kıdemli mühendis Evan X. Merz'in sektöre bıraktığı resmî günah çıkarma belgesi.</p>
+
+      <h2>Metrik İllüzyonu: 10X Hız Yalanı</h2>
+      <p>Evan X. Merz son aylarında performans baremini tutturabilmek için kodunun %90'ını yapay zekâya yazdırmak zorunda kaldığını belirtiyor.  Fakat sorun şu: Kod üretimi 10 katına falan çıkmadı.  Hatta 2 katına bile çıkmadı.  Çıkan tek şey; kimsenin tam olarak ne yaptığını anlamadığı, dışarıdan parlak ama içeriden çürük devasa bir kod yığını oldu.  Kaliteye odaklanıp mimariyi savunan kıdemli mühendisler layoff dalgasında kapının önüne konurken; yeni geçtiği şirkette AI kod oranı kotası %100'e fırlamış durumda.</p>
+
+      <blockquote>
+        "AI, kendi context window'una sığan küçük parçaları harika çözer.  Fakat o küçük karenin dışındaki uzun vadeli sistemik risklerden ve mimari dengelerden tamamen habersizdir."<br>
+        — Evan X. Merz
+      </blockquote>
+
+      <h2>Büyük Çöküşün 4 Temel Ayağı</h2>
+      <p>Merz'in sahada bizzat yaşayarak belgelediği 4 kritik kırılma noktası, bugün tüm Silikon Vadisi ve kurumsal SaaS şirketlerinin ortak kabusu haline gelmiş durumda:</p>
+
+      <p><strong>1. Sığ ve İçi Boş Testler:</strong> LLM'ler insan için hayati olan sınır durumları test etmek yerine, test coverage metriğini yeşile boyamak için anlamsız get/set fonksiyonlarına yüzlerce satır test yazar.  End-to-end testlerde ise sadece en temel kullanıcı akışını tekrarlar.  Coverage raporu %95 görünür ama ilk gerçek kullanıcı yükünde sistem dağılır.</p>
+
+      <p><strong>2. Aşırı Karmaşık (Over-engineered) Kod:</strong> Model, tek bir basit fonksiyonla çözülecek bir problemi sırf kodlama kurallarını (DRY vb.) katı şekilde uygulamak adına üç ayrı yardımcı fonksiyona ve soyutlamaya böler.  Bu yapay karmaşıklık, insanın kodu hata anında debug etmesini imkânsız hale getirir.</p>
+
+      <p><strong>3. İnsan Aklının Devreden Çıkması:</strong> Bir şirket kod tabanını AI'a emanet ettikçe, o sistemin veri yapılarını ve algoritmalarını gerçekten anlayan tek bir mühendis bile kalmaz.  Geliştirici sisteme yabancılaşır; pull request'lerdeki mimari uyumsuzlukları fark edemez hale gelir.</p>
+
+      <p><strong>4. PR Okumayı Bırakan Ekipler:</strong> AI o kadar hızlı kod üretir ki, takımın bu PR'ları inceleyecek zamanı kalmaz.  En parlak mühendisler bile tek satır CSS hover yerine 30 satır JavaScript event listener yazan absürt AI kodlarını göz ucuyla onaylayıp prod'a salar.</p>
+
+      <h2>Mühendislik mi, Hacim Tacirliği mi?</h2>
+      <p>Bir mimariyi anlamadan 10 satır yerine 1000 satır üretmek hız değildir; teknik borcu bileşik faizle tefeciye borçlanmaktır.  Yapay zekâ aptalca kararları sadece ışık hızında almanızı sağlar.  Kodun hacmini mühendislik başarısı sanan yönetimler, günün sonunda o kodu anlayıp tamir edecek tek bir insan bile bulamayacak.</p>
+
+      <p>Çekiç tutmayı bilmeyen birine pnömatik matkap verirseniz bina dikmez; sadece taşıyıcı kolonu daha hızlı deler.  O gün geldiğinde ekrana bakıp birbirlerinin prompt'larını alkışlarlar artık :)</p>
+    </article>
+
+    <footer>
+      <p>© 2026 Kürşat Yılmaz. Açık kaynak mimarisi ve teknolojik egemenlik manifestoları.</p>
+    </footer>
+  </div>
+</body>
+</html>
